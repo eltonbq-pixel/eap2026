@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>App EAP 2026 — Bloco 4: Simulados</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#111410;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:#3a3f2e;border-radius:2px}
+button{font-family:'Inter',sans-serif}
+.device{width:390px;min-height:760px;background:#1a1d16;border-radius:32px;border:1px solid #3a3f2e;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.6);max-height:95vh}
+.hdr{padding:20px 16px 12px;background:#21261b;border-bottom:1px solid #2a2f21;display:flex;flex-direction:column;gap:4px;flex-shrink:0}
+.hdr-row{display:flex;align-items:center;justify-content:space-between}
+.lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#9a9684;letter-spacing:.5px}
+.scroll{flex:1;overflow-y:auto;padding:16px 16px 72px;display:flex;flex-direction:column;gap:12px;overscroll-behavior:contain}
+.nav{padding:12px 16px;background:#21261b;border-top:1px solid #2a2f21;display:flex;gap:8px;flex-shrink:0}
+.btn-primary{background:#C7A14A;color:#0d0f0b;border:none;border-radius:8px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;letter-spacing:.3px}
+.btn-nav{background:#21261b;color:#c4c0b2;border:1px solid #3a3f2e;border-radius:8px;padding:10px 14px;font-size:12px;cursor:pointer}
+.btn-back{background:transparent;color:#9a9684;border:none;padding:4px 0;font-size:11px;cursor:pointer;font-family:'IBM Plex Mono',monospace}
+.alt-btn{width:100%;background:#21261b;border:1px solid #2a2f21;border-radius:8px;padding:11px 14px;text-align:left;font-size:12px;color:#c4c0b2;cursor:pointer;line-height:1.5;margin-bottom:6px;display:flex;align-items:flex-start;gap:8px;transition:border-color .15s}
+.alt-btn:hover{border-color:#C7A14A44}
+.expl{background:#7A8B5E15;border:1px solid #7A8B5E44;border-radius:8px;padding:12px;font-size:12px;color:#c4c0b2;line-height:1.6}
+.alerta{background:#9C3D3D11;border:1px solid #9C3D3D33;border-radius:8px;padding:10px 12px;font-size:11px;color:#c4c0b2;line-height:1.6;display:flex;gap:8px;align-items:flex-start}
+.bloco-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:9px;font-family:'IBM Plex Mono',monospace;font-weight:600;letter-spacing:.5px}
+kw{background:#C7A14A33;color:#C7A14A;border-radius:2px;padding:0 2px;font-weight:500}
+.prog-bar{display:flex;gap:2px;padding:0 16px 10px;flex-shrink:0;flex-wrap:wrap}
+.prog-seg{width:8px;height:6px;border-radius:2px;flex-shrink:0}
+/* ── INTRO ── */
+.intro-hero{text-align:center;padding:24px 8px 16px}
+.intro-em{font-size:52px;margin-bottom:12px}
+.intro-tt{font-family:'Oswald',sans-serif;font-size:26px;font-weight:600;color:#C7A14A;letter-spacing:1px;margin-bottom:4px}
+.intro-sub{font-size:12px;color:#9a9684;font-family:'IBM Plex Mono',monospace}
+.info-card{background:#21261b;border:1px solid #2a2f21;border-radius:10px;padding:14px}
+.info-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #2a2f2155;font-size:12px;color:#c4c0b2}
+.info-row:last-child{border-bottom:none}
+.info-row strong{color:#E8E4D8}
+/* ── RESULTADO ── */
+.result-hero{text-align:center;padding:20px 8px 12px}
+.result-em{font-size:52px;margin-bottom:8px}
+.result-nota{font-family:'Oswald',sans-serif;font-size:40px;font-weight:600;margin-bottom:4px}
+.result-label{font-size:12px;font-family:'IBM Plex Mono',monospace;letter-spacing:1px;margin-bottom:16px}
+.result-card{background:#21261b;border:1px solid #2a2f21;border-radius:10px;padding:14px;margin-bottom:8px}
+.result-bloco{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid #2a2f2155;font-size:12px;color:#c4c0b2}
+.result-bloco:last-child{border-bottom:none}
+.mini-bar-bg{flex:1;height:6px;background:#2a2f21;border-radius:3px;overflow:hidden}
+.mini-bar-fill{height:100%;border-radius:3px}
+</style>
+</head>
+<body>
+<div class="device" id="app"></div>
+<script>
+// ── BANCO DE QUESTÕES ──────────────────────────────────────────
+// b=bloco(1/2/3) e=enunciado a=alternativas c=correta(index) x=explicação g=pegadinha
+const Q = [
+// ─── BLOCO 1 — DOUTRINA OPERACIONAL (20) ─────────────────────
+{b:1,e:'As 5 ações iniciais do Primeiro Interventor em um incidente crítico, segundo a Instrução nº 3.03.24/2018-CG, são representadas pelo mnemônico:',
+ a:['CIVEA — Conter, Isolar, Verbalizar, Estabilizar, Acionar','CIEVA — Conter, Isolar, Estabilizar, Verbalizar, Acionar','CIEVA — Conter, Isolar, Estabilizar, Verbalizar, Avisar','CINVA — Conter, Isolar, Negociar, Verbalizar, Acionar'],c:1,
+ x:'CIEVA: Conter, Isolar, Estabilizar, Verbalizar, Acionar. Ordem exata e "Acionar" ≠ "Avisar".',
+ g:'A banca embaralha a ordem (CIVEA) ou troca "Acionar" por "Avisar" (alt. C) ou insere "Negociar" (alt. D).'},
+
+{b:1,e:'No incidente crítico, o Gestor do Incidente Crítico (GIC) e o Comandante da Cena de Ação (CCA) exercem, respectivamente:',
+ a:['Autoridade de linha e autoridade técnica','Autoridade técnica e autoridade de linha','Ambos exercem autoridade de linha, com precedência do mais antigo','Autoridade técnica e autoridade técnica especializada'],c:1,
+ x:'GIC = autoridade TÉCNICA (BOPE). CCA = autoridade de LINHA (oficial mais antigo). A alt. A inverte os dois.',
+ g:'A alternativa A é a pegadinha clássica — inverte GIC e CCA.'},
+
+{b:1,e:'Sobre o Perímetro Tático Imediato (Zona Vermelha), assinale a afirmativa CORRETA conforme a Instrução nº 3.03.24/2018-CG:',
+ a:['É o perímetro mais externo, onde ficam imprensa e familiares','É o perímetro interno onde permanecem perpetrador, refém e equipes táticas do BOPE','É coordenado pelo CCA e abriga o Posto de Comando','Corresponde à zona verde, sendo a área mais segura'],c:1,
+ x:'Imediato = Zona VERMELHA (interno): perpetrador, refém/suicida e BOPE. Verde = externo (imprensa, SAMU).',
+ g:'As alts. A e D invertem as cores dos perímetros — armadilha clássica.'},
+
+{b:1,e:'Em incidente com tomada de refém de VÍNCULO EMOCIONAL, a pessoa mantida contra a vontade é tecnicamente classificada como:',
+ a:['Refém, pois está sob coerção do perpetrador','Vítima, pois o perpetrador deseja atingi-la diretamente','Testemunha, pois não é o alvo principal','Refém qualificado, por haver relação prévia com o perpetrador'],c:1,
+ x:'Com vínculo emocional = VÍTIMA (perpetrador quer atingi-la). Sem vínculo = REFÉM (usado para exigências).',
+ g:'A alt. A parece óbvia (está sob coerção). A instrução distingue os conceitos: vínculo emocional = vítima.'},
+
+{b:1,e:'É condição INDISPENSÁVEL para lavratura do REDS-TC, conforme a Resolução nº 4.745/2018-CG:',
+ a:['A presença da vítima e coleta de sua representação','O compromisso do autor de comparecer em juízo','A identificação do autor por documento civil original','A comunicação prévia ao JECrim'],c:1,
+ x:'Art. 12: condição indispensável = compromisso do autor de comparecer em juízo.',
+ g:'Alt. C parece certa, mas ausência de documento não impede lavratura se dados confirmados nos sistemas.'},
+
+{b:1,e:'Conforme o Art. 4º da Resolução nº 4.745/2018-CG, a PMMG PODERÁ lavrar o REDS-TC para infração penal eleitoral:',
+ a:['Sempre que a infração for de menor potencial ofensivo','Apenas em flagrante com autor no local','Quando no local não houver órgãos da Polícia Federal','Com autorização expressa do Juiz Eleitoral'],c:2,
+ x:'Crimes eleitorais = competência da PF. PMMG lavra por EXCEÇÃO: apenas se não houver PF no local.',
+ g:'A banca apresenta o crime eleitoral como competência ordinária da PMMG. ERRADO: é exceção.'},
+
+{b:1,e:'O prazo máximo para a CREDS-TC encaminhar o REDS-TC ao JECrim, conforme o Memorando nº 30.106.2/23-EMPM, é:',
+ a:['3 dias úteis após o registro','5 dias úteis após o registro','Preferencialmente o 1º dia útil; máximo de uma semana','10 dias corridos após o registro'],c:2,
+ x:'Preferencialmente 1º dia útil; prazo MÁXIMO uma semana. "3", "5" ou "10 dias" são incorretos.',
+ g:'A banca usa prazos plausíveis (3, 5, 10 dias) que parecem certos.'},
+
+{b:1,e:'Dois crimes em concurso formal têm penas máximas de 1 ano e 1 ano e 6 meses. A PMMG deve:',
+ a:['Lavrar o REDS-TC, pois cada crime individualmente tem pena < 2 anos','Não lavrar o REDS-TC, pois a soma das penas (2 anos e 6 meses) ultrapassa 2 anos','Lavrar TCO para o crime menor e encaminhar o outro à delegacia','Aguardar decisão do JECrim sobre a competência'],c:1,
+ x:'Critério: SOMA das penas máximas. 1+1,5 = 2,5 anos > 2 anos → não lavra TCO.',
+ g:'Alt. A analisa cada crime isoladamente — armadilha clássica. O critério é a SOMA.'},
+
+{b:1,e:'A Gestão do Desempenho Operacional (GDO), segundo a Instrução nº 8007.2/2023-CG, pode ser interpretada como:',
+ a:['Sistema de avaliação funcional dos policiais militares','Sistema de monitoramento que controla e orienta o desempenho operacional da PMMG','Conjunto de normas disciplinares para aferição do comportamento em serviço','Mecanismo de promoção por merecimento das UEOp'],c:1,
+ x:'GDO = sistema de monitoramento do desempenho operacional para controle e orientação das atividades-fim.',
+ g:'Confundir GDO com avaliação funcional individual (que é outro instrumento).'},
+
+{b:1,e:'Em relação à classificação dos indicadores da GDO, é CORRETO afirmar:',
+ a:['Todos os indicadores são de resultado, medindo apenas impacto final','Há indicadores de esforço e de resultado, com finalidades distintas','Os indicadores são apenas de processo, não medindo resultados','A GDO utiliza apenas indicadores nacionais do SINESP'],c:1,
+ x:'A GDO classifica indicadores em: ESFORÇO (medem atividade policial) e RESULTADO (impacto social).',
+ g:'Confundir com avaliação de um único tipo de indicador.'},
+
+{b:1,e:'Conforme o MTP 01 (Nº 3.04.01/2020-CG), o estado de atenção adequado ao patrulhamento ordinário é:',
+ a:['Branco — relaxado, sem preocupação','Amarelo — atenção difusa, sem alvo definido','Laranja — atenção focada em suspeito específico','Vermelho — prontidão para ação imediata'],c:1,
+ x:'Amarelo: atenção difusa, sem alvo definido — correto para patrulhamento ordinário. Branco = perigoso (relaxado).',
+ g:'A banca oferece "laranja" como resposta (parece correto por ser "intermediário"). O padrão é AMARELO.'},
+
+{b:1,e:'Assinale a sequência CORRETA das etapas da intervenção policial, conforme o MTP 01:',
+ a:['Aproximação → Abordagem → Dominância → Contenção → Custódia','Abordagem → Controle → Identificação → Contenção → Custódia','Aproximação → Dominância → Abordagem → Controle → Custódia','Identificação → Aproximação → Contenção → Dominância → Custódia'],c:0,
+ x:'MTP01: Aproximação → Abordagem → Dominância → Contenção → Custódia.',
+ g:'A banca embaralha a ordem ou troca "Dominância" por "Controle".'},
+
+{b:1,e:'O IMPO (Instrumento de Menor Potencial Ofensivo) pertence a qual nível do uso diferenciado da força, segundo o MTP 01?',
+ a:['Nível 1 — Presença policial','Nível 2 — Verbalização','Nível 3 — Força física ou uso de IMPO','Nível 4 — Força letal'],c:2,
+ x:'IMPO está no Nível 3 do uso diferenciado da força (junto com técnicas de controle/força física).',
+ g:'Confundir IMPO com Nível 2 (verbalização) ou Nível 4 (letal).'},
+
+{b:1,e:'Conforme o MTP 02 (Nº 3.04.02/2020-CG), qual é o principal objetivo da abordagem policial?',
+ a:['Prender o suspeito e encaminhá-lo à delegacia','Controlar a situação com máxima segurança para o PM, a pessoa e terceiros','Fazer a busca pessoal e coletar dados do suspeito','Verificar antecedentes criminais e a procedência do veículo'],c:1,
+ x:'MTP02: objetivo principal = controlar a situação com SEGURANÇA para o PM, abordado e terceiros.',
+ g:'A banca reduz o objetivo a "prender" ou a "busca pessoal", que são ações e não o objetivo central.'},
+
+{b:1,e:'De acordo com o MTP 02, o controle visual durante a abordagem deve recair prioritariamente sobre qual parte do corpo do abordado?',
+ a:['Os olhos, para identificar intenções hostis','O tronco, que é a maior área do corpo','As mãos, principal ameaça potencial','Os pés, para controle de deslocamento'],c:2,
+ x:'MTP02: controle visual nas MÃOS. As mãos representam a maior ameaça potencial (armas, gestos).',
+ g:'A banca oferece "os olhos" (parece psicológico) como distrator principal.'},
+
+{b:1,e:'A Blitz Policial, conforme o MTP 03 (Nº 3.04.03/2020-CG), pode ser realizada:',
+ a:['Apenas à noite e em finais de semana','Apenas com autorização prévia do BPM ou RPM','A qualquer hora, sem necessidade de horário pré-definido','Somente mediante ordem escrita do Cmt de Cia ou superior'],c:2,
+ x:'MTP03: blitz pode ser realizada A QUALQUER HORA, sem comunicação prévia obrigatória.',
+ g:'A banca cria restrições inexistentes (horário, autorização prévia).'},
+
+{b:1,e:'Na fiscalização de alcoolemia em blitz policial, o limite a partir do qual a conduta configura CRIME (art. 306 do CTB) é:',
+ a:['0,2 miligramas de álcool por litro de ar alveolar expirado','0,05 decigramas de álcool por litro de sangue','0,33 miligramas de álcool por litro de ar alveolar expirado','0,3 decigramas por litro de sangue'],c:2,
+ x:'Crime art. 306 CTB: ≥ 0,33 mg/L ar expirado OU ≥ 0,6 dg/L sangue.',
+ g:'Confundir infração administrativa (0,05 dg/L) com crime (0,33 mg/L ar). São limites diferentes.'},
+
+{b:1,e:'Um PM aborda um adulto portando 35 gramas de Cannabis sativa, sem indícios de tráfico. Conforme o Memorando nº 30.070.2/2024-EMPM, a conduta correta é:',
+ a:['Lavrar TCO Natureza I 04.028 e encaminhar ao JECrim','Lavrar BO Natureza I 99.000, notificar o abordado e liberá-lo','Conduzir o abordado à Delegacia de PC para lavratura do TCO','Aplicar advertência e liberar sem registro policial'],c:1,
+ x:'Cannabis sem tráfico = BO Natureza I 99.000 + notificação para comparecer ao JECrim. NÃO é TCO.',
+ g:'Confundir com TCO (04.028). A pesagem NÃO é obrigatória; as circunstâncias do caso definem a natureza.'},
+
+{b:1,e:'Sobre a decisão do STF no RE 635.659 e o art. 290 do Código Penal Militar, é CORRETO afirmar:',
+ a:['A decisão também descriminaliza o porte de maconha para PMs em serviço','O art. 290 do CPM foi revogado implicitamente pela decisão do STF','O art. 290 do CPM permanece vigente e a decisão do STF não se aplica a ele','A PMMG pode lavrar multa como alternativa ao TCO para usuários'],c:2,
+ x:'O art. 290 CPM permanece VIGENTE. A decisão STF (RE 635.659) refere-se ao CP comum.',
+ g:'A banca tenta estender a decisão do STF ao CPM. Diplomas legais distintos — o CPM não foi revogado.'},
+
+{b:1,e:'Sobre os objetivos do gerenciamento de crises previstos na Instrução nº 3.03.28/2020-CG, assinale a alternativa CORRETA:',
+ a:['Neutralizar o perpetrador, proteger reféns e restabelecer a normalidade','Preservar vidas, aplicar a lei e restabelecer a normalidade','Isolar o incidente, negociar e realizar o adentramento tático','Coordenar equipes, comunicar a imprensa e preservar o local de crime'],c:1,
+ x:'Objetivos: PRESERVAR VIDAS + APLICAR A LEI + RESTABELECER A NORMALIDADE.',
+ g:'Alt. A parece correta mas usa "neutralizar" (não é objetivo em si) e omite "aplicar a lei".'},
+
+// ─── BLOCO 2 — LEGISLAÇÃO INSTITUCIONAL (10) ─────────────────
+{b:2,e:'De acordo com a Lei 5.301/1969, podem ingressar como PRAÇAS da PMMG:',
+ a:['Apenas brasileiros natos','Brasileiros natos ou naturalizados','Brasileiros natos, naturalizados ou estrangeiros com visto permanente','Apenas brasileiros naturalizados'],c:1,
+ x:'Praças: natos OU naturalizados. Oficiais: exclusivamente natos.',
+ g:'Confundir a regra dos Oficiais (só natos) com a das Praças (natos ou naturalizados).'},
+
+{b:2,e:'O marco inicial da contagem do prazo do SAD, conforme o MAPPA, é:',
+ a:['A data de assinatura da portaria de instauração','O 1º dia útil após o recebimento da portaria pelo sindicante','A data de publicação no BGPM','O dia em que o fato transgressor foi praticado'],c:1,
+ x:'Marco: 1º dia útil após RECEBIMENTO da portaria pelo sindicante. Não é a data de assinatura nem publicação.',
+ g:"Confundir 'data da portaria' com 'data do recebimento'. São momentos distintos."},
+
+{b:2,e:'O prazo do PAD, conforme o MAPPA, é:',
+ a:['30 dias corridos com prorrogação de 10 e sobrestamento de 30','40 dias corridos com prorrogação de 20 e sobrestamento de 60','20 dias corridos com prorrogação de 10, sem sobrestamento','40 dias corridos com prorrogação de 10 e sobrestamento de 30'],c:1,
+ x:'PAD: 40+20 prorrogação+60 sobrestamento. Os maiores prazos do MAPPA.',
+ g:'Confundir com SAD (30+10+30). No PAD, tudo é maior.'},
+
+{b:2,e:'Conforme o CEDM, o militar estadual ingressa com qual conceito disciplinar?',
+ a:['Conceito A, com +50 pontos','Conceito B, com zero ponto','Conceito C, com zero ponto','Conceito B, com +10 pontos'],c:1,
+ x:'Ingresso: Conceito B, ZERO ponto. A cada ano sem punição: +10 pontos.',
+ g:"Confundir 'zero ponto' com '+10 pontos' (que é o ganho anual, não o inicial)."},
+
+{b:2,e:'Sobre a advertência verbal no CEDM, é correto afirmar:',
+ a:['É sanção leve que implica perda de 5 pontos','Impede o recebimento de medalhas','Não é sanção e não gera perda de pontos, mas o fato consta na ficha funcional','Gera perda de 10 pontos e consta no prontuário por 2 anos'],c:2,
+ x:'Advertência verbal: NÃO é sanção. Não perde pontos. Não impede medalhas. Registro na ficha = educativo.',
+ g:"A banca afirma que 'constar na ficha = sanção'. ERRADO."},
+
+{b:2,e:'Para que a prática de crime doloso configure transgressão GRAVE conforme a ICC PM/BM 01/2014, é necessário:',
+ a:['O indiciamento policial pelo crime','Sentença condenatória de 1ª instância','Trânsito em julgado e que o crime concorra para desprestígio da IME','Abertura de inquérito policial militar'],c:2,
+ x:'Dois requisitos cumulativos: TRÂNSITO EM JULGADO + crime concorra para desprestígio da Instituição.',
+ g:"A banca usa 'indiciamento' ou 'sentença de 1ª instância'. Exige TRÂNSITO EM JULGADO."},
+
+{b:2,e:'Nas UEOp, o Gestor de Frota da Unidade, conforme a Resolução 5.142/2021, é:',
+ a:['O Comandante da Unidade','O Chefe da Seção de Inteligência','O Chefe da Seção Administrativa','O oficial mais antigo do quadro operacional'],c:2,
+ x:'Gestor de Frota nas UEOp = Chefe da Seção Administrativa (não o Cmt da Unidade).',
+ g:'Confundir com o Comandante da Unidade, que é quem parece mais lógico ser o responsável.'},
+
+{b:2,e:'O Plano Estratégico da PMMG 2024-2027 foi aprovado pela Resolução:',
+ a:['nº 5.139, de 25/10/2021','nº 5.142, de 22/11/2021','nº 5.332, de 18/12/2023','nº 4.220, de 14/11/2012'],c:2,
+ x:'Res. nº 5.332, de 18/12/2023, BGPM nº 93/2023. Aprovada pelo Cel PM Rodrigo Piassi.',
+ g:'A banca mistura resoluções: 5.139 = Imóveis, 5.142 = Frota, 4.220 = MAPPA.'},
+
+{b:2,e:'O crime PROPRIAMENTE militar, conforme o art. 9º do CPM e o Manual de PJ, é aquele:',
+ a:['Previsto tanto no CPM quanto no Código Penal comum','Previsto exclusivamente na legislação penal militar','Praticado por militar da reserva em situação específica','Cometido por civil em local sujeito à administração militar'],c:1,
+ x:'Crime propriamente militar: existe APENAS na legislação penal militar. Ex: deserção, motim.',
+ g:"Confundir com crime impropriamente militar (existe em ambos os diplomas legais)."},
+
+{b:2,e:'O direito ao silêncio no APF, conforme o Manual de PJ da PMMG, deve ser assegurado:',
+ a:['Apenas durante o interrogatório formal perante a autoridade','A partir do momento em que o advogado chega ao local','Desde o ato de captura do suspeito','Somente após a lavratura do auto de prisão em flagrante'],c:2,
+ x:'Desde a CAPTURA. O PM que efetua a prisão deve informar imediatamente o direito ao silêncio.',
+ g:"A banca coloca 'apenas no interrogatório'. O direito começa na captura."},
+
+// ─── BLOCO 3 — LEGISLAÇÃO JURÍDICA (10) ─────────────────────
+{b:3,e:'O PM que usa força moderada e proporcional para deter suspeito que oferece resistência, no exercício de suas funções, age amparado pela excludente de ilicitude:',
+ a:['Estado de necessidade','Legítima defesa','Estrito cumprimento do dever legal','Exercício regular de direito'],c:2,
+ x:'Art. 23 III CP: ECDL — PM atua no exercício de dever imposto por lei, com força proporcional.',
+ g:"A banca oferece 'legítima defesa' — confunde-a com ECDL. Para exercício de funções legais: ECDL."},
+
+{b:3,e:'Sobre o DOLO EVENTUAL (art. 18 CP), é correto afirmar que o agente:',
+ a:['Não prevê o resultado, mas age com imprudência ou negligência','Prevê o resultado e confia que ele não ocorrerá','Prevê o resultado como possível e ASSUME o risco de produzi-lo','Quer diretamente o resultado como finalidade de sua conduta'],c:2,
+ x:'Dolo eventual: prevê e ASSUME o risco. Culpa consciente: prevê mas CONFIA na não ocorrência.',
+ g:'Confundir dolo eventual (assume) com culpa consciente (confia na não ocorrência). Diferença sutil, muito cobrada.'},
+
+{b:3,e:'Conforme a Lei 14.230/2021 (reforma da LIA), os atos de improbidade administrativa:',
+ a:['Podem ser praticados com dolo ou culpa grave, conforme o art. 10 original','Exigem obrigatoriamente DOLO DIRETO em todos os atos (arts. 9, 10 e 11)','Admitem culpa exclusivamente no art. 10 (prejuízo ao erário)','Podem ser praticados por dolo eventual nos atos do art. 9'],c:1,
+ x:'Após 2021: TODOS os atos (arts. 9, 10, 11) exigem DOLO DIRETO. Culpa não configura mais improbidade.',
+ g:'A banca mantém redação antiga do art. 10 (que admitia culpa). APÓS 2021: dolo direto em todos.'},
+
+{b:3,e:'As sanções previstas no art. 37 §4º da CF/88 para atos de improbidade administrativa incluem:',
+ a:['Pena de prisão, perda do cargo e suspensão dos direitos políticos','Suspensão dos direitos políticos, perda da função pública, indisponibilidade dos bens e ressarcimento ao erário','Multa, advertência pública e perda temporária do cargo','Afastamento cautelar, suspensão do salário e ressarcimento ao erário'],c:1,
+ x:'Art. 37 §4º CF: RISP — Ressarcimento + Inabilitação + Suspensão (pol.) + Perda (função). Sem pena de prisão.',
+ g:"A banca inclui 'pena de prisão'. O §4º trata de sanções administrativas/civis, sem prejuízo da ação penal."},
+
+{b:3,e:'São modalidades de licitação previstas na Lei 14.133/2021 (NLCC):',
+ a:['Concorrência, Tomada de Preços, Convite, Concurso e Leilão','Pregão, Concorrência, Concurso, Leilão e Diálogo Competitivo','Pregão, Concorrência, Tomada de Preços, Leilão e Concurso','Concorrência, Convite, Pregão, Diálogo Competitivo e Concurso'],c:1,
+ x:'NLCC art. 28: Pregão, Concorrência, Concurso, Leilão e Diálogo Competitivo. Tomada de Preços e Convite foram extintas.',
+ g:'Banca inclui Tomada de Preços e/ou Convite — modalidades da lei REVOGADA (8.666/93).'},
+
+{b:3,e:'O SINARM (Sistema Nacional de Armas), criado pelo Estatuto do Desarmamento (Lei 10.826/2003), está vinculado:',
+ a:['À Secretaria de Segurança Pública dos estados, no âmbito das Polícias Civis','À Polícia Federal, no Ministério da Justiça, com circunscrição nacional','Ao Comando do Exército, responsável pelo controle de todas as armas','À Polícia Militar de cada estado para controle de armas de uso permitido'],c:1,
+ x:'Art. 1º Lei 10.826: SINARM instituído no Ministério da Justiça, no âmbito da POLÍCIA FEDERAL.',
+ g:'Banca vincula SINARM à Polícia Civil. ERRADO: SINARM = PF. Uso restrito = Cmd. Exército.'},
+
+{b:3,e:'Conforme o art. 6º do Estatuto do Desarmamento, o Policial Militar pode portar arma de fogo:',
+ a:['Apenas durante o serviço, devendo devolvê-la ao término da escala','Apenas com autorização renovável do SINARM a cada 2 anos','De propriedade particular ou fornecida pela corporação, mesmo FORA DE SERVIÇO','Somente em áreas de risco definidas pelo Governador do Estado'],c:2,
+ x:'Art. 6º §1º Lei 10.826: PMs têm direito de portar arma — própria ou da corporação — mesmo FORA DE SERVIÇO.',
+ g:"A banca restringe o porte do PM ao 'período de serviço'. ERRADO: a lei autoriza portar fora de serviço."},
+
+{b:3,e:'O crime de PORTE ILEGAL de arma de fogo de uso PERMITIDO (art. 14 da Lei 10.826/2003) tem pena de:',
+ a:['Reclusão de 1 a 3 anos, mais multa','Reclusão de 2 a 4 anos, mais multa','Reclusão de 3 a 6 anos, mais multa','Detenção de 6 meses a 2 anos, mais multa'],c:1,
+ x:'Art. 14: porte ilegal = 2-4 anos. Posse irregular (art. 12) = 1-3. Uso restrito (art. 16) = 3-6.',
+ g:'Confundir porte (2-4) com posse (1-3) ou uso restrito (3-6). Mnemônico: Posse→Porte→Restrito = 1-3→2-4→3-6.'},
+
+{b:3,e:'Conforme o art. 5º, XI da CF/88, a inviolabilidade do domicílio admite exceção em caso de:',
+ a:['Suspeita fundamentada de tráfico, com ordem judicial expressa','Flagrante delito, desastre, para prestar socorro, ou por determinação judicial durante o dia','Flagrante delito a qualquer hora ou por determinação judicial a qualquer hora','Decisão do delegado de plantão nos casos de urgência'],c:1,
+ x:'Art. 5º XI CF: domicílio inviolável, exceto: flagrante delito, desastre, socorro, ou durante o DIA por ordem judicial.',
+ g:'A banca omite o requisito "durante o DIA" para a entrada judicial — a restrição noturna é regra constitucional.'},
+
+{b:3,e:'Conforme o art. 4º da LINDB (Decreto-Lei nº 4.657/1942), quando a lei for omissa, o juiz decidirá de acordo com:',
+ a:['A vontade do legislador histórico (mens legislatoris)','A analogia, os costumes e os princípios gerais de direito','As normas internacionais ratificadas e a equidade','A doutrina dominante e a jurisprudência do STF'],c:1,
+ x:'Art. 4º LINDB: omissão legal → analogia → costumes → princípios gerais de direito (nessa ordem).',
+ g:"A banca inclui 'equidade' ou 'doutrina' na lista do art. 4º. LINDB só prevê: analogia, costumes e princípios gerais."}
+];
+
+// ── ESTADO ─────────────────────────────────────────────────────
+const KEY='eap_sim1';
+function lerSim(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch{return{}}}
+function salSim(d){try{localStorage.setItem(KEY,JSON.stringify(d))}catch{}}
+
+let state={tela:'intro',qi:0,resps:{},sim:lerSim()};
+function setState(u){Object.assign(state,u);renderApp();}
+
+// ── HELPERS ────────────────────────────────────────────────────
+function el(t,c,s){const e=document.createElement(t);if(c)e.className=c;if(s)e.style.cssText=s;return e;}
+function div(c,s){return el('div',c,s);}
+function span(c,t){const e=el('span',c);if(t!==undefined)e.textContent=t;return e;}
+function btn(c,t,f){const b=el('button',c);b.textContent=t;b.onclick=f;return b;}
+
+function blocoInfo(b){
+  if(b===1) return {label:'DOUTRINA',cor:'#C7A14A'};
+  if(b===2) return {label:'LEG. INST.',cor:'#7A8B5E'};
+  return {label:'LEG. JUR.',cor:'#6B8CAE'};
+}
+
+// ── RENDER PRINCIPAL ───────────────────────────────────────────
+function renderApp(){
+  const app=document.getElementById('app');app.innerHTML='';
+  if(state.tela==='intro')    renderIntro(app);
+  else if(state.tela==='questao') renderQuestao(app);
+  else if(state.tela==='resultado') renderResultado(app);
+}
+
+// ── INTRO ──────────────────────────────────────────────────────
+function renderIntro(app){
+  const hdr=div('hdr');
+  const r=div('hdr-row');
+  r.appendChild(span('lbl','🎯 SIMULADO EAP 2026'));
+  r.appendChild(span('lbl','Bloco 4'));
+  hdr.appendChild(r);app.appendChild(hdr);
+  const scr=div('scroll');
+  const hero=div('intro-hero');
+  const em=div('intro-em');em.textContent='📝';hero.appendChild(em);
+  const tt=div('intro-tt');tt.textContent='SIMULADO';hero.appendChild(tt);
+  const sub=div('intro-sub');sub.textContent='EAP 2026 — 3º Sargento PMMG';hero.appendChild(sub);
+  scr.appendChild(hero);
+  const card=div('info-card');
+  const rows=[
+    ['Total de questões','40 questões'],
+    ['🟡 Doutrina Operacional','20 questões (50%)'],
+    ['🟢 Leg. Institucional','10 questões (25%)'],
+    ['🔵 Leg. Jurídica','10 questões (25%)'],
+    ['✅ Aprovação','24/40 acertos (60%)'],
+    ['Após resposta','Feedback imediato'],
+  ];
+  rows.forEach(([k,v])=>{
+    const row=div('info-row');
+    row.appendChild(span('',k));
+    const sv=span('');sv.textContent=v;sv.style.cssText='color:#C7A14A;font-family:IBM Plex Mono,monospace;font-size:11px;font-weight:600';
+    row.appendChild(sv);card.appendChild(row);
+  });
+  scr.appendChild(card);
+  // verificar simulado salvo
+  const sim=state.sim;
+  if(sim.resps && Object.keys(sim.resps).length > 0 && !sim.concluido){
+    const andamento=div('info-card','margin-top:8px');
+    andamento.style.borderColor='#C7A14A44';
+    const rr=div('info-row');
+    rr.innerHTML=`<span style="color:#C7A14A">⚡ Simulado em andamento</span><span style="color:#9a9684;font-size:11px">${Object.keys(sim.resps).length}/40 respondidas</span>`;
+    andamento.appendChild(rr);scr.appendChild(andamento);
+  }
+  app.appendChild(scr);
+  const nav=div('nav');
+  const rHome=btn('btn-nav','🏠',()=>window.location.href='eap-inicio.html');
+  rHome.title='Voltar ao início';nav.appendChild(rHome);
+  if(sim.resps && Object.keys(sim.resps).length > 0 && !sim.concluido){
+    const rb=btn('btn-nav','↺ Nova',()=>{salSim({});setState({tela:'intro',qi:0,resps:{},sim:{}});});
+    const rc=btn('btn-primary','Continuar →',()=>{
+      const qi=Object.keys(sim.resps).length;
+      setState({tela:'questao',qi,resps:sim.resps||{},sim});
+    });
+    nav.appendChild(rb);nav.appendChild(rc);
+  } else {
+    const rs=btn('btn-primary','Iniciar Simulado →',()=>{
+      salSim({resps:{},concluido:false});
+      setState({tela:'questao',qi:0,resps:{},sim:{resps:{}}});
+    });
+    rs.style.flex='1';rs.style.justifyContent='center';rs.style.display='flex';
+    nav.appendChild(rs);
+  }
+  app.appendChild(nav);
+}
+
+// ── QUESTÃO ────────────────────────────────────────────────────
+function renderQuestao(app){
+  const {qi,resps}=state;
+  const qst=Q[qi];
+  const bi=blocoInfo(qst.b);
+  const resp=resps[qi]??null;
+  const total=Q.length;
+
+  // header
+  const hdr=div('hdr');hdr.style.cssText='flex-direction:row;align-items:center;justify-content:space-between;padding:14px 16px 10px;background:#21261b;border-bottom:1px solid #2a2f21;flex-shrink:0;display:flex';
+  const badge=el('span','bloco-badge');badge.textContent=bi.label;badge.style.cssText=`background:${bi.cor}22;color:${bi.cor};border:1px solid ${bi.cor}44`;
+  hdr.appendChild(badge);
+  hdr.appendChild(span('lbl',`${qi+1} / ${total}`));
+  app.appendChild(hdr);
+
+  // barra de progresso
+  const pb=div('prog-bar');
+  Q.forEach((_,i)=>{
+    const s=div('prog-seg');
+    const r=resps[i];
+    s.style.background = r===undefined ? '#2a2f21' : r===Q[i].c ? '#7A8B5E' : '#9C3D3D';
+    pb.appendChild(s);
+  });
+  app.appendChild(pb);
+
+  const scr=div('scroll');
+  const inner=div('','padding:0 4px 8px');
+
+  const num=div('','font-family:IBM Plex Mono,monospace;font-size:10px;color:#7d7a6c;margin-bottom:10px');
+  num.textContent=`QUESTÃO ${qi+1}`;inner.appendChild(num);
+
+  const enun=div('','font-size:13px;color:#c4c0b2;line-height:1.65;margin-bottom:14px');enun.textContent=qst.e;inner.appendChild(enun);
+
+  qst.a.forEach((alt,i)=>{
+    const b=el('button','alt-btn');
+    let bg='#ffffff08',bc='#3a3f2e';
+    if(resp!==null){
+      if(i===qst.c){bg='#7A8B5E22';bc='#7A8B5E';}
+      else if(i===resp&&resp!==qst.c){bg='#9C3D3D22';bc='#9C3D3D';}
+      else{bg='#ffffff05';bc='#2a2f21';}
+    }
+    b.style.background=bg;b.style.borderColor=bc;
+    b.style.cursor=resp!==null?'default':'pointer';
+    const letra=span('','ABCD'[i]);letra.style.cssText=`font-family:IBM Plex Mono,monospace;font-size:10px;font-weight:600;color:${resp!==null?(i===qst.c?'#7A8B5E':i===resp?'#9C3D3D':'#555'):bi.cor};flex-shrink:0;width:16px`;
+    b.appendChild(letra);b.appendChild(document.createTextNode(alt));
+    b.onclick=()=>{if(resp===null){const nr={...resps,[qi]:i};salSim({resps:nr});setState({resps:nr});}};
+    inner.appendChild(b);
+  });
+
+  if(resp!==null){
+    const correto=resp===qst.c;
+    const res=div('','font-family:IBM Plex Mono,monospace;font-size:11px;font-weight:600;margin:10px 0 6px;padding:6px 10px;border-radius:6px;display:inline-block');
+    res.textContent=correto?'✅ CORRETO':'❌ INCORRETO';
+    res.style.cssText=`font-family:IBM Plex Mono,monospace;font-size:11px;font-weight:600;margin:10px 0 6px;padding:6px 10px;border-radius:6px;display:inline-block;background:${correto?'#7A8B5E22':'#9C3D3D22'};color:${correto?'#7A8B5E':'#9C3D3D'}`;
+    inner.appendChild(res);
+    const expl=div('expl');expl.textContent=qst.x;inner.appendChild(expl);
+    if(qst.g){
+      const al=div('alerta','margin-top:8px');
+      const ico=span('','⚠');ico.style.cssText='color:#9C3D3D;flex-shrink:0;font-size:13px';
+      const txt=div('');const lbl=el('strong');lbl.textContent='Pegadinha: ';lbl.style.color='#9C3D3D';txt.appendChild(lbl);txt.appendChild(document.createTextNode(qst.g));
+      al.appendChild(ico);al.appendChild(txt);inner.appendChild(al);
+    }
+    const nx=btn('btn-primary',qi<total-1?`Próxima (${qi+2}/${total}) →`:'Ver Resultado ✓',()=>{
+      if(qi<total-1) setState({qi:qi+1,resps:state.resps});
+      else{
+        const sim={resps:state.resps,concluido:true};salSim(sim);setState({tela:'resultado',sim});
+      }
+    });
+    nx.style.cssText='width:100%;justify-content:center;display:flex;padding:11px;font-size:13px;margin-top:12px';
+    inner.appendChild(nx);
+  }
+  scr.appendChild(inner);app.appendChild(scr);
+}
+
+// ── RESULTADO ──────────────────────────────────────────────────
+function renderResultado(app){
+  const resps=state.resps;
+  let tot=0,b1=0,b2=0,b3=0,tb1=0,tb2=0,tb3=0;
+  Q.forEach((q,i)=>{
+    const r=resps[i];
+    const ok=r===q.c;
+    if(q.b===1){tb1++;if(ok)b1++;}
+    else if(q.b===2){tb2++;if(ok)b2++;}
+    else{tb3++;if(ok)b3++;}
+    if(ok)tot++;
+  });
+  const pct=Math.round((tot/Q.length)*100);
+  const pass=tot>=24;
+
+  const hdr=div('hdr');
+  const r=div('hdr-row');
+  r.appendChild(span('lbl','🎯 RESULTADO DO SIMULADO'));
+  r.appendChild(span('lbl','EAP 2026'));
+  hdr.appendChild(r);app.appendChild(hdr);
+
+  const scr=div('scroll');
+  const hero=div('result-hero');
+  const em=div('result-em');em.textContent=pass?'🎖':'💪';hero.appendChild(em);
+  const nota=div('result-nota');nota.textContent=`${tot}/40`;nota.style.color=pass?'#7A8B5E':'#9C3D3D';hero.appendChild(nota);
+  const lbl=div('result-label');lbl.textContent=pass?'APROVADO ✓':'REPROVADO — Continue estudando';lbl.style.color=pass?'#7A8B5E':'#9C3D3D';hero.appendChild(lbl);
+  const pctSpan=span('lbl',`${pct}% de aproveitamento | Mínimo: 60% (24/40)`);hero.appendChild(pctSpan);
+  scr.appendChild(hero);
+
+  // breakdown por bloco
+  const card=div('result-card');
+  const tit=div('','font-size:11px;font-family:IBM Plex Mono,monospace;color:#7d7a6c;margin-bottom:10px');tit.textContent='DESEMPENHO POR BLOCO';card.appendChild(tit);
+  const blocos=[
+    {label:'🟡 Doutrina Operacional',acertos:b1,total:tb1,cor:'#C7A14A'},
+    {label:'🟢 Leg. Institucional',acertos:b2,total:tb2,cor:'#7A8B5E'},
+    {label:'🔵 Leg. Jurídica',acertos:b3,total:tb3,cor:'#6B8CAE'},
+  ];
+  blocos.forEach(bl=>{
+    const row=div('result-bloco');
+    const lbl=span('','');lbl.textContent=bl.label;lbl.style.cssText='font-size:12px;color:#c4c0b2;width:170px;flex-shrink:0';
+    const nota2=span('','');nota2.textContent=`${bl.acertos}/${bl.total}`;nota2.style.cssText=`font-family:IBM Plex Mono,monospace;font-size:11px;font-weight:600;color:${bl.cor};width:36px;flex-shrink:0`;
+    const bg=div('mini-bar-bg');const fill=div('mini-bar-fill');fill.style.cssText=`width:${Math.round((bl.acertos/bl.total)*100)}%;background:${bl.cor}`;bg.appendChild(fill);
+    row.appendChild(lbl);row.appendChild(nota2);row.appendChild(bg);card.appendChild(row);
+  });
+  scr.appendChild(card);
+
+  // pontuação geral
+  const card2=div('result-card');
+  const titl2=div('','font-size:11px;font-family:IBM Plex Mono,monospace;color:#7d7a6c;margin-bottom:8px');titl2.textContent='PONTUAÇÃO GERAL';card2.appendChild(titl2);
+  const msg=div('','font-size:12px;color:#c4c0b2;line-height:1.6');
+  if(pass){msg.innerHTML=`<strong style="color:#7A8B5E">Parabéns!</strong> Você atingiu ${tot} pontos de 40 possíveis (${pct}%). Continue revisando os tópicos com mais erros para garantir a aprovação!`;}
+  else{const faltam=24-tot;msg.innerHTML=`Você obteve ${tot}/40 pontos (${pct}%). Faltaram <strong style="color:#9C3D3D">${faltam} ponto${faltam>1?'s':''}</strong> para aprovação. Revise os blocos com menor desempenho e refaça o simulado!`;}
+  card2.appendChild(msg);scr.appendChild(card2);
+  app.appendChild(scr);
+
+  const nav=div('nav');
+  const rh=btn('btn-nav','🏠 Início',()=>window.location.href='eap-inicio.html');
+  const rb=btn('btn-nav','← Revisão',()=>{setState({tela:'questao',qi:0});});
+  const rn=btn('btn-primary','↺ Nova tentativa',()=>{
+    salSim({});setState({tela:'intro',qi:0,resps:{},sim:{}});
+  });
+  nav.appendChild(rh);nav.appendChild(rb);nav.appendChild(rn);app.appendChild(nav);
+}
+
+renderApp();
+</script>
+</body>
+</html>

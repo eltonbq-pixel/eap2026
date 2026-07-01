@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>App EAP 2026 — 3º Sargento PMMG</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overscroll-behavior:none}
+body{background:#111410;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:#3a3f2e;border-radius:2px}
+.device{width:390px;min-height:760px;background:#1a1d16;border-radius:32px;border:1px solid #3a3f2e;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.6);max-height:95vh}
+.lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#9a9684;letter-spacing:.5px}
+.scroll{flex:1;overflow-y:auto;padding:12px 16px 72px;display:flex;flex-direction:column;gap:10px;overscroll-behavior:contain}
+/* ── HEADER ── */
+.hero{padding:28px 20px 20px;background:#21261b;border-bottom:1px solid #2a2f21;text-align:center}
+.hero-em{font-size:44px;margin-bottom:10px}
+.hero-tt{font-family:'Oswald',sans-serif;font-size:24px;font-weight:600;color:#C7A14A;letter-spacing:1px;margin-bottom:2px}
+.hero-sub{font-size:11px;color:#9a9684;font-family:'IBM Plex Mono',monospace;letter-spacing:.5px}
+.hero-divider{width:40px;height:2px;background:#C7A14A44;margin:10px auto}
+.hero-info{font-size:11px;color:#7d7a6c;line-height:1.6}
+/* ── PROGRESSO GERAL ── */
+.prog-geral{background:#21261b;border:1px solid #2a2f21;border-radius:10px;padding:14px 16px}
+.prog-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.prog-title{font-size:11px;font-family:'IBM Plex Mono',monospace;font-weight:600;color:#C7A14A;letter-spacing:.5px}
+.prog-pct{font-size:13px;font-family:'IBM Plex Mono',monospace;font-weight:600;color:#C7A14A}
+.prog-bar-geral{height:6px;background:#2a2f21;border-radius:3px;overflow:hidden;margin-bottom:6px}
+.prog-bar-fill{height:100%;background:linear-gradient(90deg,#C7A14A,#7A8B5E);border-radius:3px;transition:width .4s}
+.prog-meta{font-size:10px;font-family:'IBM Plex Mono',monospace;color:#7d7a6c}
+/* ── CARDS DE BLOCO ── */
+.section-title{font-size:9px;font-family:'IBM Plex Mono',monospace;color:#7d7a6c;letter-spacing:1px;padding:4px 2px 2px;text-transform:uppercase}
+.bloco-card{background:#21261b;border:1px solid #2a2f21;border-radius:12px;padding:14px 16px;cursor:pointer;transition:border-color .15s,background .15s;text-decoration:none;display:block}
+.bloco-card:hover{border-color:#C7A14A44;background:#252a1e}
+.bloco-top{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.bloco-ic{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.bloco-info{flex:1}
+.bloco-nome{font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;color:#E8E4D8;line-height:1.2;margin-bottom:2px}
+.bloco-sub{font-size:10px;font-family:'IBM Plex Mono',monospace;color:#7d7a6c}
+.bloco-arrow{color:#7d7a6c;font-size:18px;flex-shrink:0}
+.bloco-stats{display:flex;gap:8px;align-items:center}
+.bloco-stat{font-size:10px;font-family:'IBM Plex Mono',monospace;color:#7d7a6c;background:#1a1d16;border:1px solid #2a2f21;border-radius:6px;padding:3px 8px}
+.bloco-prog-bg{flex:1;height:4px;background:#2a2f21;border-radius:2px;overflow:hidden}
+.bloco-prog-fill{height:100%;border-radius:2px}
+/* ── FOOTER ── */
+.footer{padding:14px 16px;background:#21261b;border-top:1px solid #2a2f21;flex-shrink:0}
+.footer-row{display:flex;justify-content:space-between;align-items:center}
+.footer-tip{font-size:10px;color:#7d7a6c;line-height:1.5}
+.footer-tip strong{color:#9a9684}
+/* ── PROVA INFO ── */
+.prova-card{background:#C7A14A0d;border:1px solid #C7A14A33;border-radius:10px;padding:12px 14px}
+.prova-title{font-size:10px;font-family:'IBM Plex Mono',monospace;color:#C7A14A;font-weight:600;letter-spacing:.5px;margin-bottom:8px}
+.prova-row{display:flex;justify-content:space-between;font-size:11px;color:#c4c0b2;padding:3px 0;border-bottom:1px solid #C7A14A15}
+.prova-row:last-child{border-bottom:none}
+.prova-val{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#C7A14A;font-weight:600}
+</style>
+</head>
+<body>
+<div class="device">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-em">🪖</div>
+    <div class="hero-tt">EAP 2026</div>
+    <div class="hero-sub">3º SARGENTO · PMMG</div>
+    <div class="hero-divider"></div>
+    <div class="hero-info">Estude, revise e simule o exame de promoção</div>
+  </div>
+
+  <!-- CONTEÚDO -->
+  <div class="scroll" id="conteudo">
+
+    <!-- PROGRESSO GERAL -->
+    <div class="prog-geral" id="prog-geral">
+      <div class="prog-header">
+        <span class="prog-title">PROGRESSO GERAL</span>
+        <span class="prog-pct" id="pct-geral">0%</span>
+      </div>
+      <div class="prog-bar-geral"><div class="prog-bar-fill" id="bar-geral" style="width:0%"></div></div>
+      <div class="prog-meta" id="meta-geral">0 de 29 tópicos concluídos</div>
+    </div>
+
+    <!-- INFO DA PROVA -->
+    <div class="prova-card">
+      <div class="prova-title">📋 DISTRIBUIÇÃO DA PROVA EAP</div>
+      <div class="prova-row"><span>🟡 Doutrina Operacional</span><span class="prova-val">50% · 20 questões</span></div>
+      <div class="prova-row"><span>🟢 Legislação Institucional</span><span class="prova-val">25% · 10 questões</span></div>
+      <div class="prova-row"><span>🔵 Legislação Jurídica</span><span class="prova-val">25% · 10 questões</span></div>
+      <div class="prova-row"><span>✅ Aprovação</span><span class="prova-val">24 / 40 acertos (60%)</span></div>
+    </div>
+
+    <!-- SEÇÃO: TRILHAS DE ESTUDO -->
+    <div class="section-title">📚 trilhas de estudo</div>
+
+    <!-- BLOCO 1 -->
+    <a class="bloco-card" id="card-b1" href="eap-bloco1.html">
+      <div class="bloco-top">
+        <div class="bloco-ic" style="background:#C7A14A22;color:#C7A14A">🟡</div>
+        <div class="bloco-info">
+          <div class="bloco-nome">Doutrina Operacional</div>
+          <div class="bloco-sub">10 tópicos · 40 questões · 50% da prova</div>
+        </div>
+        <div class="bloco-arrow">›</div>
+      </div>
+      <div class="bloco-stats">
+        <span class="bloco-stat" id="stat-b1">0/10</span>
+        <div class="bloco-prog-bg"><div class="bloco-prog-fill" id="fill-b1" style="width:0%;background:#C7A14A"></div></div>
+      </div>
+    </a>
+
+    <!-- BLOCO 2 -->
+    <a class="bloco-card" id="card-b2" href="eap-bloco2.html">
+      <div class="bloco-top">
+        <div class="bloco-ic" style="background:#7A8B5E22;color:#7A8B5E">🟢</div>
+        <div class="bloco-info">
+          <div class="bloco-nome">Legislação Institucional</div>
+          <div class="bloco-sub">9 tópicos · 36 questões · 25% da prova</div>
+        </div>
+        <div class="bloco-arrow">›</div>
+      </div>
+      <div class="bloco-stats">
+        <span class="bloco-stat" id="stat-b2">0/9</span>
+        <div class="bloco-prog-bg"><div class="bloco-prog-fill" id="fill-b2" style="width:0%;background:#7A8B5E"></div></div>
+      </div>
+    </a>
+
+    <!-- BLOCO 3 -->
+    <a class="bloco-card" id="card-b3" href="eap-bloco3.html">
+      <div class="bloco-top">
+        <div class="bloco-ic" style="background:#6B8CAE22;color:#6B8CAE">🔵</div>
+        <div class="bloco-info">
+          <div class="bloco-nome">Legislação Jurídica</div>
+          <div class="bloco-sub">10 tópicos · 40 questões · 25% da prova</div>
+        </div>
+        <div class="bloco-arrow">›</div>
+      </div>
+      <div class="bloco-stats">
+        <span class="bloco-stat" id="stat-b3">0/10</span>
+        <div class="bloco-prog-bg"><div class="bloco-prog-fill" id="fill-b3" style="width:0%;background:#6B8CAE"></div></div>
+      </div>
+    </a>
+
+    <!-- SEÇÃO: SIMULADO -->
+    <div class="section-title">🎯 prova simulada</div>
+
+    <!-- BLOCO 4 -->
+    <a class="bloco-card" id="card-b4" href="eap-bloco4.html">
+      <div class="bloco-top">
+        <div class="bloco-ic" style="background:#9C3D3D22;color:#9C3D3D">📝</div>
+        <div class="bloco-info">
+          <div class="bloco-nome">Simulado 1</div>
+          <div class="bloco-sub" id="sub-sim1">40 questões · todos os blocos · feedback por questão</div>
+        </div>
+        <div class="bloco-arrow">›</div>
+      </div>
+      <div class="bloco-stats">
+        <span class="bloco-stat" id="stat-sim">0/40</span>
+        <div class="bloco-prog-bg"><div class="bloco-prog-fill" id="fill-sim" style="width:0%;background:#9C3D3D"></div></div>
+      </div>
+    </a>
+
+    <!-- BLOCO 5 -->
+    <a class="bloco-card" id="card-b5" href="eap-bloco5.html">
+      <div class="bloco-top">
+        <div class="bloco-ic" style="background:#9C3D3D22;color:#9C3D3D">📋</div>
+        <div class="bloco-info">
+          <div class="bloco-nome">Simulado 2</div>
+          <div class="bloco-sub" id="sub-sim2">40 questões · gabarito alternativo · pratique mais</div>
+        </div>
+        <div class="bloco-arrow">›</div>
+      </div>
+      <div class="bloco-stats">
+        <span class="bloco-stat" id="stat-sim2">0/40</span>
+        <div class="bloco-prog-bg"><div class="bloco-prog-fill" id="fill-sim2" style="width:0%;background:#9C3D3D"></div></div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-row">
+      <div class="footer-tip">
+        <strong>Dica:</strong> Estude cada bloco em ordem. Complete os slides, leia o manual e responda as questões antes de avançar.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── LÊ PROGRESSO DOS BLOCOS E SIMULADOS ───────────────────────
+function lrProg(key){try{return JSON.parse(localStorage.getItem(key)||'{}')}catch{return{}}}
+
+const b1=lrProg('eap_b1');
+const b2=lrProg('eap_b2');
+const b3=lrProg('eap_b3');
+const sim=lrProg('eap_sim1');
+const sim2=lrProg('eap_sim2');
+
+// tópicos de cada bloco (IDs)
+const tops_b1=['primeiro-interventor','tco','gdo','mtp01','mtp02','mtp03','mtp04','t08','t09','t10'];
+const tops_b2=['ememg','mappa','cedm','icc','frota','plano-estrategico','policia-judiciaria','imoveis','oficios-circulares'];
+const tops_b3=['cf88','cemg','lindb','cpp','cpm','abuso-autoridade','codigo-penal','improbidade','nlcc','estatuto-desarmamento'];
+
+function contarConc(prog,tops){return tops.filter(t=>!!prog[t]).length;}
+
+const c1=contarConc(b1,tops_b1); // 0-10
+const c2=contarConc(b2,tops_b2); // 0-9
+const c3=contarConc(b3,tops_b3); // 0-10
+const cTot=c1+c2+c3;
+const mTot=tops_b1.length+tops_b2.length+tops_b3.length; // 29
+
+// simulados
+const simResps=sim.resps||{};
+const simTotal=Object.keys(simResps).length;
+const sim2Resps=sim2.resps||{};
+const sim2Total=Object.keys(sim2Resps).length;
+
+// ── ATUALIZA UI ────────────────────────────────────────────────
+function pct(n,t){return t?Math.round((n/t)*100):0;}
+
+document.getElementById('pct-geral').textContent=pct(cTot,mTot)+'%';
+document.getElementById('bar-geral').style.width=pct(cTot,mTot)+'%';
+document.getElementById('meta-geral').textContent=`${cTot} de ${mTot} tópicos concluídos`;
+
+document.getElementById('stat-b1').textContent=`${c1}/${tops_b1.length}`;
+document.getElementById('fill-b1').style.width=pct(c1,tops_b1.length)+'%';
+if(c1===tops_b1.length&&c1>0) document.getElementById('card-b1').querySelector('.bloco-ic').textContent='✅';
+
+document.getElementById('stat-b2').textContent=`${c2}/${tops_b2.length}`;
+document.getElementById('fill-b2').style.width=pct(c2,tops_b2.length)+'%';
+if(c2===tops_b2.length&&c2>0) document.getElementById('card-b2').querySelector('.bloco-ic').textContent='✅';
+
+document.getElementById('stat-b3').textContent=`${c3}/${tops_b3.length}`;
+document.getElementById('fill-b3').style.width=pct(c3,tops_b3.length)+'%';
+if(c3===tops_b3.length&&c3>0) document.getElementById('card-b3').querySelector('.bloco-ic').textContent='✅';
+
+// simulado 1
+document.getElementById('stat-sim').textContent=`${simTotal}/40`;
+document.getElementById('fill-sim').style.width=pct(simTotal,40)+'%';
+if(sim.concluido){
+  document.getElementById('card-b4').querySelector('.bloco-ic').textContent='🎖';
+  document.getElementById('sub-sim1').textContent=`Concluído ✓ · ${simTotal} questões respondidas`;
+} else if(simTotal>0){
+  document.getElementById('sub-sim1').textContent=`Em andamento · ${simTotal}/40 respondidas`;
+}
+
+// simulado 2
+document.getElementById('stat-sim2').textContent=`${sim2Total}/40`;
+document.getElementById('fill-sim2').style.width=pct(sim2Total,40)+'%';
+if(sim2.concluido){
+  document.getElementById('card-b5').querySelector('.bloco-ic').textContent='🎖';
+  document.getElementById('sub-sim2').textContent=`Concluído ✓ · ${sim2Total} questões respondidas`;
+} else if(sim2Total>0){
+  document.getElementById('sub-sim2').textContent=`Em andamento · ${sim2Total}/40 respondidas`;
+}
+</script>
+</body>
+</html>

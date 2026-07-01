@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>App EAP 2026 — Bloco 3: Legislação Jurídica</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#111410;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#3a3f2e;border-radius:2px}
+button{font-family:'Inter',sans-serif}
+.device{width:390px;min-height:760px;background:#1a1d16;border-radius:32px;border:1px solid #3a3f2e;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.6);max-height:95vh}
+.hdr{padding:20px 16px 12px;background:#21261b;border-bottom:1px solid #2a2f21;display:flex;flex-direction:column;gap:4px;flex-shrink:0}
+.hdr-row{display:flex;align-items:center;justify-content:space-between}
+.lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#9a9684;letter-spacing:.5px}
+.scroll{flex:1;overflow-y:auto;padding:12px 16px 72px;display:flex;flex-direction:column;gap:8px;overscroll-behavior:contain}
+.foot{padding:12px 16px;background:#21261b;border-top:1px solid #2a2f21;display:flex;justify-content:center;flex-shrink:0}
+.card{display:flex;align-items:center;gap:12px;padding:12px 14px;background:#21261b;border:1px solid #2a2f21;border-radius:10px;cursor:pointer}
+.card-ic{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.card-titulo{font-size:13px;font-weight:500;color:#E8E4D8;margin-bottom:2px}
+.card-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7d7a6c}
+.prog-bar{display:flex;gap:3px;padding:0 16px 12px;flex-shrink:0}
+.prog-seg{flex:1;height:3px;border-radius:2px}
+.slide-card{margin:0 16px;padding:16px;background:#21261b;border:1px solid;border-radius:12px;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+.estagio-tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-family:'IBM Plex Mono',monospace;font-weight:500;letter-spacing:1px;align-self:flex-start;margin-bottom:2px}
+.slide-titulo{font-family:'Oswald',sans-serif;font-size:20px;font-weight:600;color:#F2EFE6;line-height:1.2}
+.slide-corpo{font-size:13px;color:#c4c0b2;line-height:1.65}
+.lista{list-style:none;display:flex;flex-direction:column;gap:6px}
+.lista li{font-size:12px;color:#c4c0b2;line-height:1.5;display:flex;align-items:flex-start}
+.tabela{border-radius:8px;overflow:hidden;border:1px solid #3a3f2e}
+.tabela-row{display:flex;padding:8px 10px;gap:8px}
+.tabela-row:nth-child(odd){background:#ffffff08}
+.tabela-item{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;min-width:80px;flex-shrink:0}
+.tabela-val{font-size:12px;color:#c4c0b2;line-height:1.4}
+.destaque{padding:10px 12px;border-left:3px solid;border-radius:0 6px 6px 0;font-size:12px;color:#c4c0b2;line-height:1.5}
+.alerta{display:flex;align-items:flex-start;padding:10px 12px;background:#9C3D3D11;border:1px solid #9C3D3D44;border-radius:8px;font-size:12px;color:#c4c0b2;line-height:1.5;gap:8px}
+.nav{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#21261b;border-top:1px solid #2a2f21;flex-shrink:0}
+.btn-nav{display:flex;align-items:center;gap:4px;padding:8px 12px;background:#2a2f21;border:1px solid #3a3f2e;border-radius:8px;color:#9a9684;font-size:12px;cursor:pointer}
+.btn-primary{display:flex;align-items:center;gap:4px;padding:8px 14px;background:#C7A14A22;border:1px solid #C7A14A66;border-radius:8px;color:#C7A14A;font-size:12px;cursor:pointer}
+.btn-audio{display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:#C7A14A11;border:1px solid #C7A14A33;border-radius:50%;cursor:pointer;flex-shrink:0}
+.btn-back{background:transparent;border:none;color:#9a9684;font-size:12px;cursor:pointer;font-family:'IBM Plex Mono',monospace;padding:4px 0}
+.tr-h{font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;color:#C7A14A;letter-spacing:.5px;margin:16px 0 8px;padding-left:4px}
+.tr-p{font-size:13px;color:#c4c0b2;line-height:1.7;margin-bottom:10px;padding-left:4px}
+.tr-def{background:#21261b;border:1px solid #3a3f2e;border-radius:8px;padding:10px 12px;margin-bottom:8px}
+.tr-def-lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6B8CAE;font-weight:600;margin-bottom:4px}
+.tr-def-v{font-size:12px;color:#c4c0b2;line-height:1.6}
+.tr-eq{background:#C7A14A11;border:1px solid #C7A14A44;border-radius:8px;padding:12px 14px;margin-bottom:10px;text-align:center;font-family:'Oswald',sans-serif;font-size:13px;color:#C7A14A;letter-spacing:1px;font-weight:600}
+.banca-btn{width:100%;display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border:none;cursor:pointer;text-align:left}
+.banca-body{padding:10px 12px;font-size:12px;color:#E8E4D8;line-height:1.6;border-top:none}
+kw{background:#C7A14A22;color:#C7A14A;border-radius:3px;padding:0 3px;font-weight:600}
+.alt-btn{width:100%;display:flex;align-items:center;padding:10px 12px;border:1px solid #3a3f2e;border-radius:8px;margin-bottom:6px;background:#ffffff08;cursor:pointer;font-size:12px;color:#c4c0b2;text-align:left;gap:6px}
+.expl{padding:10px 12px;border-left:3px solid #7A8B5E;background:#7A8B5E11;border-radius:0 6px 6px 0;font-size:12px;color:#c4c0b2;line-height:1.5;margin-bottom:8px}
+</style>
+</head>
+<body>
+<div class="device" id="app"></div>
+<script>
+const BLOCO = {
+  id:'bloco3', titulo:'Legislação Jurídica', emoji:'🔵',
+  topicos:[
+
+  // T01 — Constituição Federal 1988
+  {id:'cf88',titulo:'Constituição Federal',subtitulo:'CF/88 — Promulgada em 05/10/1988',emoji:'🇧🇷',
+   slides:[
+    {estagio:'tema',titulo:'Segurança Pública — Art. 144 da CF/88',
+     corpo:'O art. 144 CF organiza os órgãos de segurança pública. A PMMG exerce a polícia ostensiva e preservação da ordem pública. A Polícia Civil exerce a função de polícia judiciária estadual.',
+     destaque:'PM = polícia OSTENSIVA + preservação da ordem pública. PC = polícia JUDICIÁRIA dos estados.',
+     audio:'O artigo 144 da Constituição Federal organiza os órgãos de segurança pública. A Polícia Militar é responsável pela polícia ostensiva e pela preservação da ordem pública.'},
+    {estagio:'estrutura',titulo:'Art. 144 — Os 6 Órgãos de Segurança',
+     lista:['PF — Polícia Federal: judiciária da União, crimes federais','PRF — Polícia Rodoviária Federal: patrulha rodovias federais','PFF — Polícia Ferroviária Federal: patrulha ferrovias federais','PC — Polícias Civis: judiciária dos estados (exceto DF)','PM — Polícias Militares: ostensiva + preservação da OP','BM — Corpo de Bombeiros: defesa civil'],
+     audio:'São seis órgãos no artigo 144: Polícia Federal, Rodoviária Federal, Ferroviária Federal, Polícias Civis, Polícias Militares e Corpos de Bombeiros.'},
+    {estagio:'conceito',titulo:'Art. 5º — Direitos do Preso',
+     tabela:[{item:'LXII',valor:'Comunicação imediata ao juiz e à família'},{item:'LXIII',valor:'Direito ao silêncio + assistência de advogado'},{item:'LXIV',valor:'Identificação do responsável pela prisão'},{item:'LXV',valor:'Prisão ilegal: relaxamento IMEDIATO'},{item:'LXVI',valor:'Liberdade provisória quando admitida por lei'}],
+     audio:'Os incisos LXII a LXVI do artigo 5º garantem ao preso: comunicação ao juiz e à família, direito ao silêncio, identificação do responsável, relaxamento de prisão ilegal e liberdade provisória.'},
+    {estagio:'estrutura',titulo:'Remédios Constitucionais — Art. 5º',
+     tabela:[{item:'HC (LXVIII)',valor:'Liberdade de locomoção — ameaça ou coação'},{item:'MS (LXIX)',valor:'Direito líquido e certo, não protegido por HC/HD'},{item:'MI (LXXI)',valor:'Falta de norma regulamentadora de direito constitucional'},{item:'HD (LXXII)',valor:'Retificação de dados pessoais em registros públicos'},{item:'AP (LXXIII)',valor:'Ato lesivo ao patrimônio público, moralidade, meio ambiente'}],
+     audio:'Os cinco remédios constitucionais são: Habeas Corpus para locomoção, Mandado de Segurança para direito líquido e certo, Mandado de Injunção para lacuna normativa, Habeas Data para dados pessoais e Ação Popular para patrimônio público.'},
+    {estagio:'pegadinha',titulo:'PM não é Polícia Judiciária',
+     corpo:'A banca troca as funções dos órgãos. Regra fundamental:',
+     tabela:[{item:'PMMG',valor:'Polícia OSTENSIVA + preservação da OP'},{item:'PC-MG',valor:'Polícia JUDICIÁRIA + investigação criminal'},{item:'PJM',valor:'Polícia Judiciária MILITAR — só para crimes militares'}],
+     alerta:'ERRO CLÁSSICO: afirmar que a PM exerce polícia judiciária. A PJM existe para crimes militares DENTRO da corporação, mas não é a polícia judiciária geral do estado.',
+     audio:'Pegadinha: a Polícia Militar NÃO exerce polícia judiciária dos estados. Isso é função da Polícia Civil. A Polícia Judiciária Militar existe apenas para crimes militares.'},
+    {estagio:'estrutura',titulo:'Art. 42 — Militares dos Estados',
+     tabela:[{item:'Art. 42',valor:'PM e BM dos estados, DF e Territórios'},{item:'Subordinação',valor:'Governador do Estado'},{item:'Estatuto MG',valor:'Lei 5.301/1969 (EMEMG)'},{item:'Inatividade',valor:'Arts. 142 §3º CF aplicados subsidiariamente'}],
+     audio:'O artigo 42 da Constituição estabelece que os militares dos estados são subordinados ao Governador e regidos por estatuto próprio. Em Minas Gerais, esse estatuto é a Lei 5.301 de 1969.'},
+    {estagio:'fixacao',titulo:'Mnemônico: Remédios Constitucionais',
+     destaque:'"HC MS MI HD AP" — Há Muita Maldade Horrível Aqui, Procuro.',
+     corpo:'HC=locomoção / MS=direito líquido e certo / MI=lacuna normativa / HD=dados pessoais / AP=patrimônio público. A banca costuma testar qual remédio protege cada direito.',
+     audio:'Para memorizar os remédios constitucionais: HC, MS, MI, HD, AP — Há Muita Maldade Horrível Aqui Procuro.'}
+   ],
+   transcricao:{
+    ref:'CF/88 — Arts. 5º (Dir. Fundamentais), 42 (Militares dos Estados), 144 (Segurança Pública)',
+    blocos:[
+     {t:'h',v:'1. Segurança Pública — Art. 144'},
+     {t:'p',v:'Art. 144 §5º: às Polícias Militares cabem a polícia ostensiva e a preservação da ordem pública, sendo o policiamento do estado sujeito ao Governador. Art. 144 §4º: às Polícias Civis incumbem as funções de polícia judiciária dos estados.',kw:['polícia ostensiva','preservação da ordem pública','polícia judiciária','Governador']},
+     {t:'banca',prob:95,assunto:'Função constitucional da PM?',resp:'Art. 144 §5º: POLÍCIA OSTENSIVA e PRESERVAÇÃO DA ORDEM PÚBLICA. NUNCA polícia judiciária (essa é da Polícia Civil, §4º).'},
+     {t:'h',v:'2. Direitos do Preso — Art. 5º LXII-LXVI'},
+     {t:'def',label:'Art. 5º LXIII',v:'O preso será informado de seus direitos, entre os quais o de permanecer calado, sendo-lhe assegurada a assistência da família e de advogado.'},
+     {t:'p',v:'O direito ao silêncio se aplica desde a prisão — ANTES de qualquer interrogatório. A comunicação deve ser feita ao juiz competente (LXII) e à família. Prisão ilegal deve ser IMEDIATAMENTE relaxada (LXV).',kw:['direito ao silêncio','comunicação','juiz','família','relaxamento','ilegal']},
+     {t:'banca',prob:90,assunto:'Quem deve ser comunicado da prisão?',resp:'Art. 5º LXII: o JUIZ competente e a família do preso (ou pessoa indicada). São dois destinatários — banca omite um.'},
+     {t:'h',v:'3. Remédios Constitucionais'},
+     {t:'p',v:'Cinco remédios previstos no art. 5º: HC (LXVIII), MS (LXIX), MI (LXXI), HD (LXXII), AP (LXXIII). Cada um protege um direito específico. HC é exclusivo para liberdade de locomoção.',kw:['Habeas Corpus','Mandado de Segurança','Mandado de Injunção','Habeas Data','Ação Popular','locomoção']},
+     {t:'banca',prob:88,assunto:'HC: qual direito protege?',resp:'EXCLUSIVAMENTE a liberdade de LOCOMOÇÃO (ir, vir, permanecer). Outros direitos líquidos e certos = MS. Dados pessoais = HD.'},
+     {t:'h',v:'4. Militares dos Estados — Art. 42'},
+     {t:'p',v:'Art. 42: PMs e BMs são militares dos estados. Subordinados ao Governador. Regidos por estatutos próprios. MG: Lei 5.301/1969. Aplicam-se subsidiariamente as normas do art. 142 §3º (Forças Armadas) no que couber.',kw:['art. 42','Governador','Lei 5.301','militares dos estados','subsidiariamente']},
+     {t:'banca',prob:82,assunto:'Art. 42 vs. Art. 142?',resp:'Art. 42: militares dos ESTADOS (PM/BM). Art. 142: Forças Armadas FEDERAIS. Não se confundem. As normas do art. 142 §3º se aplicam subsidiariamente ao art. 42.'}
+    ]
+   },
+   questoes:[
+    {enunciado:'De acordo com o art. 144 §5º da CF/88, às Polícias Militares cabem:',
+     alternativas:['Exercer a polícia judiciária dos estados, investigando crimes comuns','Exercer a polícia ostensiva e preservação da ordem pública','Realizar a prevenção de incêndios e ações de defesa civil','Investigar crimes militares e encaminhar ao poder judiciário'],
+     correta:1,
+     explicacao:'Art. 144 §5º CF: às PMs cabem a polícia OSTENSIVA e a PRESERVAÇÃO DA ORDEM PÚBLICA. Polícia judiciária estadual = Polícia Civil (§4º).',
+     pegadinha:'Banca frequentemente troca "ostensiva" por "judiciária". A PM nunca exerce função de polícia judiciária geral dos estados.'},
+    {enunciado:'O remédio constitucional cabível para proteger a LIBERDADE DE LOCOMOÇÃO ameaçada ou coagida é:',
+     alternativas:['Mandado de Segurança','Habeas Data','Ação Popular','Habeas Corpus'],
+     correta:3,
+     explicacao:'Habeas Corpus (Art. 5º LXVIII CF): concedido quando alguém sofrer ou se achar ameaçado em sua liberdade de locomoção.',
+     pegadinha:'Confundir HC (locomoção) com Habeas Data (dados pessoais em registros) ou Mandado de Segurança (direito líquido e certo genérico).'},
+    {enunciado:'Conforme o art. 5º LXIII da CF/88, o preso deve ser IMEDIATAMENTE informado:',
+     alternativas:['Apenas da identidade do policial responsável pela prisão','De seus direitos, incluindo o de permanecer calado, e da possibilidade de assistência de advogado','Do prazo máximo de sua detenção provisória e das provas contra si','Da data de audiência e do juízo competente para apreciar o caso'],
+     correta:1,
+     explicacao:'Art. 5º LXIII CF: o preso será informado de seus direitos, entre os quais o de PERMANECER CALADO, sendo-lhe assegurada a assistência da FAMÍLIA e de ADVOGADO.',
+     pegadinha:'A banca omite o direito ao silêncio ou substitui por "prazo de detenção". O direito ao silêncio é o cerne do LXIII.'},
+    {enunciado:'Os militares da PMMG são regidos pela Lei 5.301/1969 e, conforme a CF/88, subordinados a:',
+     alternativas:['Ao Presidente da República e ao Comando do Exército','Ao Governador do Estado de Minas Gerais','Ao Ministro da Defesa e ao Estado-Maior das Forças Armadas','Ao Secretário Nacional de Segurança Pública'],
+     correta:1,
+     explicacao:'Art. 42 CF: militares dos estados são subordinados ao GOVERNADOR. Em MG, regidos pela Lei 5.301/1969 (EMEMG).',
+     pegadinha:'Confundir com as Forças Armadas federais (art. 142), subordinadas ao Presidente. PMs são estaduais, subordinadas ao Governador.'}
+   ]
+  },
+
+  // T02 — Constituição do Estado de Minas Gerais
+  {id:'cemg',titulo:'Constituição Estadual MG',subtitulo:'CEMG — Promulgada em 21/09/1989',emoji:'⚖️',
+   slides:[
+    {estagio:'tema',titulo:'Segurança Pública na CEMG — Arts. 142–143',
+     corpo:'A Constituição Estadual de MG (1989) trata da segurança pública nos arts. 142-143. A PMMG é definida como força estadual, ostensiva e combativa, além de exercer a Polícia Judiciária Militar.',
+     destaque:'CEMG Arts. 142-143: PM = força ostensiva, combativa + polícia judiciária MILITAR.',
+     audio:'A Constituição do Estado de Minas Gerais, promulgada em 1989, trata da segurança pública nos artigos 142 e 143.'},
+    {estagio:'conceito',titulo:'PMMG na CEMG — Missão Constitucional',
+     lista:['Força Pública Estadual — braço armado do Governo','Policiamento ostensivo — presença uniformizada e visível','Preservação da ordem pública e incolumidade das pessoas e patrimônio','Polícia Judiciária Militar — art. 143 CEMG (crimes militares)','Auxiliar as populações em calamidades e sinistros'],
+     audio:'A Constituição Estadual atribui à Polícia Militar a função de força pública, policiamento ostensivo, preservação da ordem pública e polícia judiciária militar.'},
+    {estagio:'estrutura',titulo:'Subordinação e Comando',
+     tabela:[{item:'Subordinação',valor:'Governador do Estado'},{item:'Secretaria',valor:'Secretaria de Estado de Justiça e Segurança Pública'},{item:'Comando',valor:'Oficial da ativa, do posto mais elevado da corporação'},{item:'Uso pelo Gov.',valor:'Governador pode empregar a PM para manutenção da OP'}],
+     audio:'A PM é subordinada ao Governador do Estado, vinculada à Secretaria de Segurança Pública, e comandada pelo oficial de posto mais elevado na ativa.'},
+    {estagio:'estrutura',titulo:'Corpo de Bombeiros Militar — CBMMG',
+     tabela:[{item:'Natureza',valor:'Instituição militar estadual permanente'},{item:'Missão',valor:'Defesa civil, combate a incêndios, busca e salvamento'},{item:'Subordinação',valor:'Ao Governador do Estado'},{item:'Relação PM',valor:'Corpo de tropa organizado separadamente da PM'}],
+     audio:'O Corpo de Bombeiros Militar de Minas Gerais é uma instituição militar permanente, subordinada ao Governador, com missão de defesa civil, combate a incêndios e salvamento.'},
+    {estagio:'pegadinha',titulo:'Extinção e Organização Vedadas',
+     corpo:'A CEMG proíbe expressamente certas alterações na PM:',
+     tabela:[{item:'Extinção',valor:'VEDADA — PM não pode ser extinta'},{item:'Incorporação',valor:'VEDADA — PM não pode ser incorporada a outra instituição'},{item:'Reorganização',valor:'Somente por lei estadual específica'},{item:'PJM',valor:'Deve ser mantida — competência constitucional'}],
+     alerta:'ERRO CLÁSSICO: afirmar que a PM pode ser extinta por lei estadual ou federal. A CEMG proíbe expressamente. Qualquer alternativa que sugira extinção está ERRADA.',
+     audio:'Pegadinha: a CEMG proíbe a extinção ou incorporação da Polícia Militar. Qualquer alternativa que mencione extinção da PM está errada.'},
+    {estagio:'estrutura',titulo:'Distinção: PM vs. PC na CEMG',
+     tabela:[{item:'PMMG',valor:'Força ostensiva + PJM (crimes militares)'},{item:'PC-MG',valor:'Polícia judiciária estadual + investigação criminal'},{item:'BM-MG',valor:'Defesa civil + incêndios + salvamento'},{item:'PF',valor:'Polícia judiciária da União (federal)'}],
+     audio:'Na Constituição Estadual: PM é ostensiva e exerce PJM; Polícia Civil é judiciária dos estados; Bombeiros fazem defesa civil.'},
+    {estagio:'fixacao',titulo:'Mnemônico: Missão da PM na CEMG',
+     destaque:'"OPCI" — Ostensiva · Preservação da OP · Combativa · Incolumidade das pessoas',
+     corpo:'Art. 142 CEMG: força pública estadual → policiamento ostensivo → preservação da ordem pública → incolumidade das pessoas e do patrimônio → + PJM (art. 143).',
+     audio:'Para memorizar a missão da PM na Constituição Estadual use OPCI: Ostensiva, Preservação da ordem pública, Combativa, Incolumidade das pessoas e do patrimônio.'}
+   ],
+   transcricao:{
+    ref:'Constituição do Estado de MG — 21/09/1989 — Arts. 142 e 143 (Segurança Pública)',
+    blocos:[
+     {t:'h',v:'1. Missão Constitucional da PMMG — Art. 142 CEMG'},
+     {t:'p',v:'A PMMG é força pública estadual permanente, destinada ao policiamento ostensivo, preservação da ordem pública e incolumidade das pessoas e do patrimônio. Subordinada ao Governador.',kw:['força pública','policiamento ostensivo','ordem pública','incolumidade','Governador']},
+     {t:'def',label:'Art. 142 CEMG — PMMG',v:'A Polícia Militar é força pública, instituição permanente e regular, organizada com base na hierarquia e disciplina militares, destinada à execução de atividades de polícia ostensiva e preservação da ordem pública.'},
+     {t:'banca',prob:90,assunto:'Art. 142 CEMG: o que é a PM?',resp:'"Força pública, instituição permanente e regular" — com hierarquia e disciplina militares. Destinada à polícia OSTENSIVA e preservação da OP.'},
+     {t:'h',v:'2. Polícia Judiciária Militar — Art. 143 CEMG'},
+     {t:'p',v:'Art. 143 CEMG: a PMMG exerce a Polícia Judiciária Militar para apuração de crimes militares. É distinta da polícia judiciária estadual (Polícia Civil). A PJM atua sob o CPPMG e CPPM.',kw:['Polícia Judiciária Militar','PJM','crimes militares','CPPM','CPPMG']},
+     {t:'banca',prob:85,assunto:'PJM: quem exerce e para quê?',resp:'A própria PM exerce a PJM para apurar CRIMES MILITARES. Não confundir com a Polícia Civil, que apura crimes comuns.'},
+     {t:'h',v:'3. Extinção e Organização da PM'},
+     {t:'p',v:'A CEMG proíbe a extinção ou incorporação da PMMG. Reorganizações dependem de lei estadual específica. O Governador pode empregar a PM para manutenção da ordem pública.',kw:['extinção','incorporação','vedada','Governador','lei estadual']},
+     {t:'banca',prob:80,assunto:'A PM pode ser extinta?',resp:'NÃO. A CEMG proíbe expressamente a extinção ou incorporação da PMMG. É vedação constitucional estadual.'},
+     {t:'h',v:'4. Corpo de Bombeiros Militar — CBMMG'},
+     {t:'p',v:'O CBMMG é instituição militar estadual permanente, distinta da PM, com missão de defesa civil, combate a incêndios, busca e salvamento. Também subordinado ao Governador.',kw:['CBMMG','defesa civil','incêndios','busca','salvamento','Governador']}
+    ]
+   },
+   questoes:[
+    {enunciado:'De acordo com o art. 142 da Constituição do Estado de MG, a PMMG é definida como:',
+     alternativas:['Órgão federal auxiliar das Forças Armadas na manutenção da paz','Força pública, instituição permanente e regular, destinada ao policiamento ostensivo e preservação da ordem pública','Polícia judiciária estadual responsável pela investigação de crimes comuns','Órgão de defesa civil e combate a incêndios e sinistros'],
+     correta:1,
+     explicacao:'Art. 142 CEMG: PM = força pública, instituição permanente e regular, com hierarquia e disciplina militares, destinada à polícia ostensiva e preservação da OP.',
+     pegadinha:'Banca mistura a função da PM (ostensiva) com a da PC (judiciária) ou do BM (defesa civil). PM = polícia OSTENSIVA.'},
+    {enunciado:'A Polícia Judiciária Militar (PJM), conforme a CEMG, é exercida pela PMMG para:',
+     alternativas:['Investigar crimes comuns praticados por civis contra militares','Apurar crimes militares cometidos por integrantes da corporação','Substituir a Polícia Civil em situações de greve','Investigar crimes de corrupção praticados por agentes públicos'],
+     correta:1,
+     explicacao:'A PJM (art. 143 CEMG) serve para apurar CRIMES MILITARES, sob o CPPM e CPPMG. Crimes comuns de militares em serviço têm tratamento diferente.',
+     pegadinha:'Confundir PJM (crimes militares) com a função da Polícia Civil (crimes comuns). A PJM atua apenas no âmbito dos crimes militares.'},
+    {enunciado:'Quanto à possibilidade de extinção da PMMG, a CEMG estabelece que:',
+     alternativas:['Pode ser extinta por lei federal em casos excepcionais de segurança nacional','É vedada a extinção ou incorporação da PMMG','Pode ser extinta por decreto do Governador em estado de emergência','É permitida a extinção se aprovada por referendo popular estadual'],
+     correta:1,
+     explicacao:'A CEMG proíbe expressamente a extinção ou incorporação da PMMG. É vedação de nível constitucional estadual, que nenhuma lei ou decreto pode superar.',
+     pegadinha:'Qualquer alternativa que mencione possibilidade de extinção da PM está errada. A proibição é constitucional e absoluta.'},
+    {enunciado:'O Corpo de Bombeiros Militar de MG (CBMMG), conforme a CEMG, diferencia-se da PMMG pois:',
+     alternativas:['Não é instituição militar — é órgão civil de defesa civil','É organizado separadamente, com missão específica de defesa civil, incêndios e salvamento','É subordinado ao Ministério da Defesa, não ao Governador','É extinguível por decreto do Governador em caso de crise orçamentária'],
+     correta:1,
+     explicacao:'O CBMMG é organizado separadamente da PMMG, com missão específica (defesa civil, incêndios, busca e salvamento). Também é instituição militar e subordinado ao Governador.',
+     pegadinha:'Afirmar que o BM não é militar ou que é federal. O CBMMG é instituição MILITAR ESTADUAL, subordinada ao Governador.'}
+   ]
+  },
+
+  // T03 — LINDB
+  {id:'lindb',titulo:'LINDB',subtitulo:'Decreto-Lei nº 4.657/1942 — Lei de Introdução',emoji:'📖',
+   slides:[
+    {estagio:'tema',titulo:'LINDB — Lei de Introdução às Normas do Direito Brasileiro',
+     corpo:'A LINDB (DL 4.657/1942) não integra o Código Civil — é uma norma sobre normas. Regula vigência, revogação, eficácia e interpretação das leis brasileiras. Costuma ser cobrada junto com Direito Constitucional.',
+     destaque:'LINDB: norma SOBRE normas — define como as leis nascem, vivem e morrem.',
+     audio:'A LINDB, Decreto-Lei 4657 de 1942, é uma lei de introdução ao direito brasileiro. Ela regula a vigência, revogação e eficácia das leis.'},
+    {estagio:'conceito',titulo:'Art. 1º — Vacatio Legis',
+     corpo:'Vacatio legis = período entre a publicação e a entrada em vigor da lei.',
+     tabela:[{item:'Regra geral',valor:'45 dias após publicação (no Brasil)'},{item:'No exterior',valor:'3 meses após publicação'},{item:'Exceção',valor:'A própria lei pode fixar prazo diferente'},{item:'Sem prazo',valor:'Se a lei nada diz: 45 dias'},{item:'Vigência imediata',valor:'Lei diz "em vigor na data de publicação"'}],
+     audio:'O artigo 1º da LINDB estabelece a vacatio legis: regra geral de 45 dias no Brasil e 3 meses no exterior. A própria lei pode fixar prazo diferente.'},
+    {estagio:'estrutura',titulo:'Art. 2º — Revogação das Leis',
+     lista:['Lei posterior revoga anterior quando: (a) expressamente declarar; (b) for incompatível; (c) regular inteiramente a matéria','Lei geral NÃO revoga lei especial (salvo menção expressa)','Repristinação: lei revogada NÃO volta a vigor se a revogadora for revogada (salvo expressamente)','Lei temporária ou excepcional vigora no prazo fixado'],
+     audio:'O artigo 2º da LINDB regula a revogação das leis. Lei posterior revoga anterior quando declarar expressamente, for incompatível ou regular toda a matéria. Lei geral não revoga lei especial.'},
+    {estagio:'estrutura',titulo:'Art. 3º — Ninguém se Escusa da Lei',
+     destaque:'"Ninguém se escusa de cumprir a lei, alegando que não a conhece." — Art. 3º LINDB.',
+     corpo:'O princípio da obrigatoriedade ou da ignorantia legis non excusat é absoluto no Brasil. Não existe escusa por desconhecimento da lei — apenas eventual erro de proibição pode ser considerado na culpabilidade penal.',
+     audio:'O artigo 3º da LINDB estabelece que ninguém se escusa de cumprir a lei alegando desconhecê-la. É o princípio da obrigatoriedade das leis.'},
+    {estagio:'pegadinha',titulo:'Vacatio Legis — Armadilhas',
+     corpo:'A banca explora esses pontos:',
+     tabela:[{item:'45 dias',valor:'Regra GERAL no território nacional'},{item:'3 meses',valor:'No EXTERIOR (não 45 dias)'},{item:'Prazo próprio',valor:'Se a lei fixar outro prazo, prevalece'},{item:'Silêncio',valor:'Se a lei nada diz: 45 dias (NÃO imediata)'}],
+     alerta:'ERRO CLÁSSICO: dizer que a lei entra em vigor IMEDIATAMENTE se não fixar prazo. A regra do silêncio é de 45 dias. Só entra imediatamente se expressamente previsto.',
+     audio:'Pegadinha: se a lei não fixar prazo de vacatio legis, ela entra em vigor em 45 dias, não imediatamente. No exterior, o prazo é de 3 meses.'},
+    {estagio:'estrutura',titulo:'Art. 4º — Lacunas da Lei',
+     tabela:[{item:'Analogia',valor:'1ª opção — aplica norma de caso semelhante'},{item:'Costumes',valor:'2ª opção — práticas reiteradas com convicção jurídica'},{item:'Princ. Gerais',valor:'3ª opção — valores fundamentais do sistema'}],
+     audio:'Quando há lacuna na lei, o juiz deve recorrer nessa ordem: primeiro a analogia, depois os costumes e por último os princípios gerais do direito.'},
+    {estagio:'fixacao',titulo:'Mnemônico: LINDB Essencial',
+     destaque:'"45-3-Geral-Especial-Repristinação" — os 5 pontos mais cobrados.',
+     corpo:'45 dias (Brasil) | 3 meses (exterior) | Lei geral não revoga especial | Repristinação não é automática | Ninguém se escusa por ignorar a lei.',
+     audio:'Os cinco pontos mais cobrados da LINDB: 45 dias de vacatio no Brasil, 3 meses no exterior, lei geral não revoga especial, repristinação não automática, ninguém ignora a lei.'}
+   ],
+   transcricao:{
+    ref:'Decreto-Lei nº 4.657/1942 — Lei de Introdução às Normas do Direito Brasileiro (LINDB)',
+    blocos:[
+     {t:'h',v:'1. Vigência das Leis — Art. 1º LINDB'},
+     {t:'def',label:'Art. 1º LINDB — Vacatio Legis',v:'Salvo disposição contrária, a lei começa a vigorar em todo o País 45 (quarenta e cinco) dias depois de oficialmente publicada. Nos Estados estrangeiros: 3 meses.'},
+     {t:'p',v:'Se a lei fixar prazo diferente, prevalece o prazo da lei. Se nada diz: 45 dias. Se diz "vigora na data de publicação": entra em vigor imediatamente. O período de vacatio serve para que os destinatários da lei tomem conhecimento.',kw:['45 dias','3 meses','publicação','vigência','vacatio legis','disposição contrária']},
+     {t:'banca',prob:92,assunto:'Lei sem prazo: entra em vigor quando?',resp:'45 DIAS após publicação. NUNCA imediatamente, salvo previsão expressa. No exterior: 3 MESES.'},
+     {t:'h',v:'2. Revogação — Art. 2º LINDB'},
+     {t:'p',v:'Lei revoga anterior quando: (a) expressamente declarar; (b) for incompatível com ela; (c) regular inteiramente a matéria. Lei geral NÃO revoga especial. Repristinação NÃO é automática.',kw:['revogação','expressa','incompatível','lei geral','lei especial','repristinação']},
+     {t:'banca',prob:88,assunto:'Lei geral revoga lei especial?',resp:'NÃO. Art. 2º §2º LINDB: "A lei nova, que estabeleça disposições gerais ou especiais a par das já existentes, não revoga nem modifica a lei anterior." Regra: lei geral NÃO revoga especial.'},
+     {t:'h',v:'3. Ignorância da Lei — Art. 3º LINDB'},
+     {t:'eq',v:'NINGUÉM SE ESCUSA DE CUMPRIR A LEI ALEGANDO QUE NÃO A CONHECE — ART. 3º LINDB'},
+     {t:'p',v:'Princípio da obrigatoriedade (ignorantia legis non excusat). Aplica-se a todas as leis brasileiras. No Direito Penal, o erro de proibição inevitável pode excluir a culpabilidade, mas não a existência da lei.',kw:['ignorantia legis','obrigatoriedade','conhecimento','erro de proibição']},
+     {t:'banca',prob:85,assunto:'Alguém pode deixar de cumprir a lei por não conhecê-la?',resp:'NÃO. Art. 3º LINDB: ninguém se escusa por ignorância da lei. É princípio absoluto. O erro de proibição é tratado separadamente no direito penal.'},
+     {t:'h',v:'4. Lacunas — Art. 4º LINDB'},
+     {t:'p',v:'Quando a lei for omissa, o juiz decide o caso com analogia, costumes e princípios gerais do direito. Ordem de aplicação: 1º analogia → 2º costumes → 3º princípios gerais.',kw:['analogia','costumes','princípios gerais','lacuna','omissa']},
+     {t:'banca',prob:80,assunto:'Qual a ordem de colmatação de lacunas?',resp:'Art. 4º LINDB: 1º ANALOGIA → 2º COSTUMES → 3º PRINCÍPIOS GERAIS DO DIREITO. Banca inverte a ordem.'}
+    ]
+   },
+   questoes:[
+    {enunciado:'Conforme o art. 1º da LINDB, salvo disposição em contrário, a lei entra em vigor no território nacional:',
+     alternativas:['Imediatamente após a publicação no Diário Oficial','45 dias após a publicação oficial','30 dias após a publicação','90 dias após a publicação oficial'],
+     correta:1,
+     explicacao:'Art. 1º LINDB: regra geral de 45 DIAS após publicação no território nacional. No exterior: 3 meses. Se a lei fixar prazo diferente, prevalece o da lei.',
+     pegadinha:'A banca oferece "imediatamente" ou "30 dias". A regra do SILÊNCIO é 45 dias. Imediata apenas se a própria lei disser.'},
+    {enunciado:'De acordo com o art. 2º da LINDB, a lei nova de caráter GERAL:',
+     alternativas:['Revoga automaticamente todas as leis especiais sobre o mesmo tema','Não revoga nem modifica a lei especial anterior já existente, salvo menção expressa','Revoga a lei especial se regular a mesma matéria de forma mais completa','Suspende temporariamente os efeitos da lei especial anterior'],
+     correta:1,
+     explicacao:'Art. 2º §2º LINDB: lei nova que estabeleça disposições gerais NÃO revoga nem modifica a lei especial anterior. Regra: lei geral não revoga especial.',
+     pegadinha:'Confundir com a regra da lei posterior (que revoga a anterior quando incompatível). Esta regra só vale entre leis do mesmo nível (geral vs. geral ou especial vs. especial).'},
+    {enunciado:'O art. 3º da LINDB consagra o princípio segundo o qual:',
+     alternativas:['Ninguém pode ser preso por desconhecer a lei penal','Ninguém se escusa de cumprir a lei alegando que não a conhece','A lei deve ser amplamente divulgada antes de entrar em vigor','Os cidadãos podem alegar erro de direito em qualquer situação'],
+     correta:1,
+     explicacao:'Art. 3º LINDB: "Ninguém se escusa de cumprir a lei, alegando que não a conhece." É o princípio da obrigatoriedade (ignorantia legis non excusat).',
+     pegadinha:'Banca tenta misturar com o erro de proibição penal. O princípio do art. 3º é ABSOLUTO — ninguém se escusa. O erro de proibição é instituto penal distinto.'},
+    {enunciado:'Para a lei brasileira ter vigência nos estados estrangeiros, o prazo de vacatio legis é de:',
+     alternativas:['45 dias após publicação','30 dias após publicação','3 meses após publicação','6 meses após publicação'],
+     correta:2,
+     explicacao:'Art. 1º §1º LINDB: nos Estados estrangeiros, a lei entra em vigor 3 MESES após publicação. No Brasil: 45 dias (regra geral).',
+     pegadinha:'Confundir o prazo interno (45 dias) com o externo (3 meses). No exterior: SEMPRE 3 meses, salvo prazo especial fixado pela própria lei.'}
+   ]
+  }
+
+,
+
+  // T04 — CPP
+  {id:'cpp',titulo:'Código de Processo Penal',subtitulo:'Decreto-Lei nº 3.689/1941 — CPP',emoji:'🔍',
+   slides:[
+    {estagio:'tema',titulo:'CPP — Inquérito Policial e Flagrante',
+     corpo:'O CPP regula o processo penal. Para o PM, os pontos críticos são: prisão em flagrante (art. 302), diligências do IP (art. 6º), fiança e comunicações obrigatórias.',
+     destaque:'Flagrante: 4 modalidades. Fiança: delegado (até 4 anos) vs. juiz (acima).',
+     audio:'O Código de Processo Penal regula o processo penal. Para o policial militar, os pontos mais importantes são a prisão em flagrante e as diligências do inquérito policial.'},
+    {estagio:'estrutura',titulo:'Art. 302 — Prisão em Flagrante: 4 Modalidades',
+     tabela:[{item:'Flagrante próprio',valor:'Cometendo a infração ou acabando de cometê-la'},{item:'Flagrante impróprio',valor:'Perseguido logo após, quando presunção decorrente de circunstâncias'},{item:'Flagrante presumido',valor:'Encontrado logo depois com instrumentos, armas, objetos ou papéis que façam presumir ser o autor'},{item:'Flagrante ficto',valor:'Crimes permanentes (sequestro, tráfico, porte ilegal): estado de flagrância enquanto persistir'}],
+     audio:'O artigo 302 do CPP define quatro modalidades de flagrante: próprio, impróprio, presumido e ficto.'},
+    {estagio:'conceito',titulo:'Art. 301 — Qualquer do Povo PODE Prender',
+     corpo:'Art. 301 CPP: qualquer do povo PODE prender quem for encontrado em flagrante delito. A autoridade policial e seus agentes TÊM O DEVER de prender.',
+     tabela:[{item:'Qualquer do povo',valor:'PODE (facultativo) — ato discricionário'},{item:'Autoridade policial',valor:'DEVE (obrigatório) — dever funcional'},{item:'Delegado',valor:'Autuará em flagrante e concederá fiança (quando cabível)'}],
+     audio:'O artigo 301 distingue: qualquer do povo PODE prender em flagrante; a autoridade policial TEM O DEVER de prender. A diferença entre poder e dever.'},
+    {estagio:'estrutura',titulo:'Art. 6º — Diligências do Inquérito Policial',
+     lista:['Dirigir-se ao local do crime e preservar o estado das coisas','Apreender objetos relacionados ao fato (mandado ou flagrante)','Colher todas as provas — documentos, depoimentos, laudos','Ouvir o ofendido (vítima)','Ouvir o indiciado — com direito ao silêncio','Reconhecer pessoas e coisas','Determinar a realização de exame de corpo de delito'],
+     audio:'O artigo 6º do CPP lista as diligências que a autoridade policial deve realizar ao iniciar o inquérito: preservar o local, apreender objetos, colher provas, ouvir vítima e indiciado.'},
+    {estagio:'pegadinha',titulo:'Fiança — Quem Pode Conceder?',
+     corpo:'A fiança é tratada no art. 322 CPP:',
+     tabela:[{item:'Delegado de Polícia',valor:'Pode conceder fiança: crimes com pena máxima ATÉ 4 anos'},{item:'Juiz',valor:'Concede fiança: crimes com pena ACIMA de 4 anos'},{item:'Inafiançável',valor:'Racismo, tortura, tráfico, terrorismo, crimes hediondos (CF art. 5º XLII e XLIII)'}],
+     alerta:'ERRO CLÁSSICO: afirmar que apenas o juiz pode conceder fiança. O DELEGADO pode conceder para crimes com pena até 4 anos. Para crimes inafiançáveis, nem o juiz pode.',
+     audio:'Pegadinha: o delegado pode conceder fiança para crimes com pena máxima de até 4 anos. Acima disso, somente o juiz. Crimes inafiançáveis: nenhuma autoridade pode conceder.'},
+    {estagio:'estrutura',titulo:'Comunicações Obrigatórias na Prisão',
+     tabela:[{item:'Comunicar ao juiz',valor:'Imediatamente após a prisão (art. 5º LXII CF)'},{item:'Comunicar à família',valor:'Imediatamente ou a pessoa indicada pelo preso'},{item:'Nota de culpa',valor:'Em 24h: por escrito, com o motivo da prisão e nome do condutor'},{item:'Relaxamento',valor:'Juiz deve relaxar prisão ilegal IMEDIATAMENTE'}],
+     audio:'Ao prender alguém, o policial deve comunicar imediatamente ao juiz e à família do preso. Em 24 horas, deve entregar a nota de culpa ao preso com os motivos da prisão.'},
+    {estagio:'fixacao',titulo:'Mnemônico: Flagrante PIPC',
+     destaque:'"PIPC" — Próprio · Impróprio · Presumido · Continuado (ficto)',
+     corpo:'Próprio: está cometendo. Impróprio: perseguição logo após. Presumido: encontrado logo depois com os instrumentos. Ficto/Permanente: crime que se prolonga (sequestro, tráfico).',
+     audio:'Para memorizar as quatro modalidades de flagrante use PIPC: Próprio, Impróprio, Presumido e continuado (ou ficto).'}
+   ],
+   transcricao:{
+    ref:'Decreto-Lei nº 3.689/1941 — CPP — Arts. 6º, 301, 302, 322 e correlatos',
+    blocos:[
+     {t:'h',v:'1. Prisão em Flagrante — Art. 302 CPP'},
+     {t:'p',v:'Art. 302: considera-se em flagrante delito quem: (I) está cometendo a infração; (II) acabou de cometê-la; (III) é perseguido logo após; (IV) é encontrado logo depois com instrumentos que façam presumir ser o autor.',kw:['flagrante próprio','impróprio','presumido','perseguido','encontrado']},
+     {t:'banca',prob:92,assunto:'Qual é o flagrante "impróprio"?',resp:'O indivíduo é PERSEGUIDO logo após cometer a infração, quando as circunstâncias tornam presumível ser o autor. Diferente do "próprio" (ainda na ação) e do "presumido" (encontrado depois).'},
+     {t:'h',v:'2. Quem Pode/Deve Prender — Art. 301 CPP'},
+     {t:'def',label:'Art. 301 CPP',v:'Qualquer do povo PODERÁ (facultativo) e as autoridades policiais e seus agentes DEVERÃO (obrigatório) prender quem quer que seja encontrado em flagrante delito.'},
+     {t:'banca',prob:90,assunto:'PM tem dever ou faculdade de prender em flagrante?',resp:'DEVER. O art. 301 CPP impõe às autoridades e agentes policiais o DEVER (obrigação) de prender. "Qualquer do povo" apenas PODE (faculdade).'},
+     {t:'h',v:'3. Fiança — Art. 322 CPP'},
+     {t:'p',v:'O delegado pode conceder fiança para infrações com pena máxima de 4 anos. Acima: apenas o juiz. Crimes inafiançáveis (CF art. 5º XLII/XLIII): racismo, tortura, tráfico, terrorismo, crimes hediondos.',kw:['fiança','delegado','4 anos','juiz','inafiançável','racismo','tortura','tráfico']},
+     {t:'banca',prob:88,assunto:'Delegado pode conceder fiança?',resp:'SIM — para infrações com pena máxima de ATÉ 4 anos. Pena acima de 4 anos: somente JUIZ. Crimes inafiançáveis: NINGUÉM concede.'},
+     {t:'h',v:'4. Diligências do IP — Art. 6º CPP'},
+     {t:'p',v:'Ao tomar conhecimento da prática de infração penal, a autoridade policial deverá: dirigir-se ao local, preservar o estado das coisas, apreender objetos, colher provas, ouvir o ofendido e o indiciado.',kw:['local do crime','preservar','apreender','provas','ofendido','indiciado','diligências']},
+     {t:'banca',prob:82,assunto:'Quem inicia o IP?',resp:'A autoridade POLICIAL (Delegado), de ofício ou mediante requerimento. O PM pode autuar em flagrante e remeter ao Delegado. O PM NÃO preside o Inquérito Policial.'}
+    ]
+   },
+   questoes:[
+    {enunciado:'O art. 302 do CPP define "flagrante PRESUMIDO" como a situação em que o agente:',
+     alternativas:['Está cometendo a infração no momento da abordagem policial','É perseguido logo após cometer o crime, nas circunstâncias que tornam presumível sua autoria','É encontrado logo depois da infração com instrumentos, armas ou objetos que façam presumir ser o autor','É reconhecido por vítima dias após a prática do crime'],
+     correta:2,
+     explicacao:'Flagrante presumido (art. 302 IV CPP): encontrado, logo depois, com instrumentos, armas, objetos ou papéis que façam presumir ser autor. O "logo depois" é fator chave.',
+     pegadinha:'Confundir impróprio (perseguição imediata) com presumido (encontrado logo depois com os instrumentos). A diferença é a perseguição vs. o encontro casual.'},
+    {enunciado:'Conforme o art. 301 do CPP, qual a OBRIGAÇÃO do policial militar ao encontrar alguém em flagrante delito?',
+     alternativas:['Pode prender, a seu critério e conveniência','Deve comunicar ao Delegado e aguardar autorização','Tem o DEVER de prender, sendo ato obrigatório para autoridades e agentes policiais','Pode prender apenas se houver mandado de prisão vigente'],
+     correta:2,
+     explicacao:'Art. 301 CPP: autoridades policiais e seus agentes DEVERÃO (obrigatório) prender quem for encontrado em flagrante. Qualquer do povo PODE (facultativo). PM tem o dever.',
+     pegadinha:'A banca tenta confundir com a situação de "qualquer do povo" (que é facultativo). Para o PM, é um DEVER, não faculdade.'},
+    {enunciado:'De acordo com o art. 322 do CPP, o DELEGADO DE POLÍCIA pode conceder fiança nas infrações penais com pena máxima:',
+     alternativas:['Somente para contravenções penais','Até 2 anos de reclusão','Até 4 anos de reclusão ou detenção','Em qualquer crime, independente da pena cominada'],
+     correta:2,
+     explicacao:'Art. 322 CPP: a autoridade policial (delegado) pode conceder fiança para infrações com pena máxima de até 4 ANOS. Acima disso, a fiança fica a cargo do juiz.',
+     pegadinha:'A banca apresenta "até 2 anos" (que era a regra antiga) ou "qualquer crime". O limite atual é 4 ANOS para o delegado.'},
+    {enunciado:'Ao atuar em flagrante, o PM deve, conforme o art. 5º LXII da CF e o CPP, comunicar a prisão:',
+     alternativas:['Apenas ao delegado plantonista no prazo de 48 horas','Imediatamente ao juiz competente e à família do preso ou pessoa por ele indicada','Em até 72 horas ao Ministério Público responsável','Ao juiz somente se o preso solicitar expressamente'],
+     correta:1,
+     explicacao:'Art. 5º LXII CF + CPP: comunicar IMEDIATAMENTE ao juiz E à família do preso (ou pessoa indicada). Dois destinatários, prazo imediato.',
+     pegadinha:'A banca apresenta apenas um destinatário (juiz ou família) ou um prazo. São DOIS destinatários (juiz E família) e o prazo é IMEDIATO.'}
+   ]
+  },
+
+  // T05 — CPM
+  {id:'cpm',titulo:'Código Penal Militar',subtitulo:'Decreto-Lei nº 1.001/1969 — CPM',emoji:'⚔️',
+   slides:[
+    {estagio:'tema',titulo:'CPM — Crime Militar',
+     corpo:'O CPM define os crimes militares praticados em tempo de paz e de guerra. Para a EAP, o ponto central é o art. 9º, que classifica os crimes militares em tempo de paz.',
+     destaque:'Art. 9º CPM: crime militar em tempo de paz — 3 incisos fundamentais.',
+     audio:'O Código Penal Militar, Decreto-Lei 1001 de 1969, define os crimes militares. Para a EAP, o ponto mais cobrado é o artigo 9º, que trata dos crimes militares em tempo de paz.'},
+    {estagio:'estrutura',titulo:'Art. 9º — Crime Militar em Tempo de Paz: 3 Incisos',
+     tabela:[{item:'Inciso I',valor:'Crime PREVISTO NO CPM e no CP: se praticado por militar da ativa = militar'},{item:'Inciso II',valor:'Crime PREVISTO NO CPM e NÃO no CP: crime militar por natureza (próprio)'},{item:'Inciso III',valor:'Crime praticado por militar fora do exercício, mas em local sujeito à administração militar'}],
+     audio:'O artigo 9º do CPM define o crime militar em três incisos: o inciso 1 quando há previsão no CPM e no CP, o inciso 2 quando só existe no CPM e o inciso 3 quando praticado em local militar.'},
+    {estagio:'conceito',titulo:'Crime Militar Próprio vs. Impróprio',
+     tabela:[{item:'Crime PRÓPRIO',valor:'Existe apenas no CPM — não tem correspondente no CP comum (ex: deserção, insubordinação, violência contra superior)'},{item:'Crime IMPRÓPRIO',valor:'Existe no CPM e também no CP comum (ex: homicídio, furto, roubo). Se militar em serviço: militar; se civil: comum'}],
+     audio:'Crime militar próprio existe apenas no Código Penal Militar, como a deserção e a insubordinação. Crime militar impróprio existe também no Código Penal comum, como o homicídio e o furto.'},
+    {estagio:'estrutura',titulo:'Art. 10 — Crimes em Tempo de Guerra',
+     lista:['Crimes previstos no CPM cometidos em zona de operações militares','Crimes de qualquer natureza praticados por militares em tempo de guerra','Crimes contra a segurança nacional em período de conflito','Aplicação de penas mais graves: até pena de morte em determinados casos'],
+     audio:'O artigo 10 do CPM trata dos crimes militares em tempo de guerra, que incluem qualquer crime praticado por militar em zona de operações e são punidos com penas mais graves.'},
+    {estagio:'pegadinha',titulo:'Art. 9º II "a" — O Ponto Mais Cobrado',
+     corpo:'Art. 9º II "a" CPM: são crimes militares (em tempo de paz) os crimes previstos no CPM, embora também o sejam com igual definição na lei penal comum, quando praticados por militar em serviço.',
+     tabela:[{item:'Militar em serviço',valor:'Crime é MILITAR mesmo se igual ao CP'},{item:'Militar fora de serviço',valor:'Crime é COMUM (julgado na Justiça Comum)'},{item:'Civil vítima de militar em serviço',valor:'Pode ser crime militar — Súmula 172 STJ'}],
+     alerta:'ERRO CLÁSSICO: afirmar que todo crime de militar é militar. Militar FORA de serviço que pratica homicídio → crime COMUM (salvo exceções do art. 9º).',
+     audio:'Atenção à pegadinha: nem todo crime praticado por militar é crime militar. Se o militar está fora de serviço e pratica homicídio, em regra é crime comum, julgado pela Justiça Estadual.'},
+    {estagio:'estrutura',titulo:'Aplicação da Lei — Jurisdição',
+     tabela:[{item:'Crime MILITAR',valor:'Julgado pela Justiça Militar (CPPMG + CPPM)'},{item:'Crime COMUM do militar',valor:'Julgado pela Justiça Estadual comum'},{item:'Militar fora de serviço',valor:'Regra: Justiça Comum. Exceção: art. 9º III CPM'},{item:'Conexidade',valor:'Crime militar e comum conexos: julgamento separado'}],
+     audio:'Os crimes militares são julgados pela Justiça Militar. Crimes comuns praticados por militares são julgados pela Justiça Estadual. Quando há conexão, cada crime é julgado em sua jurisdição.'},
+    {estagio:'fixacao',titulo:'Mnemônico: Art. 9º CPM',
+     destaque:'"CPM+CP=Militar em serviço" | "Só CPM=Próprio" | "Local militar=Militar"',
+     corpo:'Inciso I: previstos em ambos os Códigos. II: previstos só no CPM (próprios) ou cometidos em serviço. III: em local sujeito à administração militar. Banca adora trocar inciso I com II.',
+     audio:'Para memorizar: Inciso 1 do artigo 9º CPM: crime previsto em ambos os códigos cometido por militar. Inciso 2: crime próprio do CPM. Inciso 3: crime em local militar.'}
+   ],
+   transcricao:{
+    ref:'Decreto-Lei nº 1.001/1969 — Código Penal Militar — Art. 9º (Crime Militar em Tempo de Paz)',
+    blocos:[
+     {t:'h',v:'1. Crime Militar em Tempo de Paz — Art. 9º CPM'},
+     {t:'p',v:'Art. 9º: consideram-se crimes militares em tempo de paz os crimes previstos nos três incisos. Inciso I: crimes do CPM previstos também no CP, se praticados por militar em serviço. Inciso II: crimes exclusivos do CPM (próprios). Inciso III: crimes em local sujeito à adm. militar.',kw:['crime militar','art. 9º','inciso I','inciso II','inciso III','em serviço','local militar']},
+     {t:'banca',prob:95,assunto:'Art. 9º II "a" CPM: quando crime é militar?',resp:'Quando o militar ESTÁ EM SERVIÇO. O mesmo crime, fora de serviço, é COMUM. Esta distinção (em serviço vs. fora de serviço) é a mais cobrada do CPM.'},
+     {t:'h',v:'2. Crime Próprio vs. Crime Impróprio'},
+     {t:'def',label:'Crime Militar Próprio',v:'Crime previsto no CPM sem correspondente no Código Penal comum. Ex.: deserção (art. 187), insubordinação (art. 163), violência contra superior (art. 157). Só existe no âmbito militar.'},
+     {t:'def',label:'Crime Militar Impróprio',v:'Crime previsto no CPM e também no CP comum. Ex.: homicídio, furto, roubo, lesão corporal. Se praticado por militar EM SERVIÇO = militar. Fora do serviço = crime comum.'},
+     {t:'banca',prob:88,assunto:'Deserção é crime próprio ou impróprio?',resp:'PRÓPRIO. Só existe no CPM. Não tem equivalente no CP comum. Todo crime que só existe no CPM é crime militar próprio.'},
+     {t:'h',v:'3. Militar Fora de Serviço'},
+     {t:'p',v:'Militar fora de serviço que pratica crime: regra é crime COMUM, julgado na Justiça Estadual. Exceção: se o crime se enquadra no art. 9º III (local militar) ou se houver conexão específica. Súmula 172 STJ: crime doloso contra a vida de civil julgado pelo Tribunal do Júri.',kw:['fora de serviço','crime comum','Justiça Estadual','Tribunal do Júri','Súmula 172','doloso contra a vida']},
+     {t:'banca',prob:90,assunto:'Homicídio doloso de PM fora de serviço contra civil: onde é julgado?',resp:'TRIBUNAL DO JÚRI (Justiça Estadual comum) — Súmula 172 STJ. Não é crime militar, pois o militar estava fora de serviço.'}
+    ]
+   },
+   questoes:[
+    {enunciado:'De acordo com o art. 9º do CPM, considera-se crime MILITAR (em tempo de paz) o crime previsto tanto no CPM quanto no CP comum, quando praticado por militar:',
+     alternativas:['Em qualquer circunstância, independente de estar ou não em serviço','Em serviço ou no exercício de suas funções militares','Apenas quando a vítima também for militar da ativa','Somente durante missões policiais ostensivas autorizadas pelo Comandante'],
+     correta:1,
+     explicacao:'Art. 9º II "a" CPM: para o crime impróprio (previsto no CPM e no CP) ser militar, o agente deve estar EM SERVIÇO ou no exercício das funções militares.',
+     pegadinha:'A banca afirma "em qualquer circunstância". Errado. Fora de serviço, o mesmo crime é COMUM. O requisito fundamental é o "em serviço".'},
+    {enunciado:'A DESERÇÃO é classificada como crime militar:',
+     alternativas:['Impróprio, pois também existe no Código Penal comum','Próprio, pois existe exclusivamente no CPM sem correspondente no CP','Comum, pois pode ser praticado por civis e militares','Contra a Administração Militar, não se enquadrando como crime militar específico'],
+     correta:1,
+     explicacao:'Deserção (art. 187 CPM) é crime militar PRÓPRIO: existe exclusivamente no CPM, sem correspondente no Código Penal comum. Só militar pode desertár.',
+     pegadinha:'Confundir com crime impróprio (que existe em ambos os códigos). Deserção, insubordinação, violência contra superior = crimes PRÓPRIOS do CPM.'},
+    {enunciado:'Policial militar FORA DE SERVIÇO que pratica crime de homicídio DOLOSO contra um civil deve ser julgado:',
+     alternativas:['Pelo Conselho de Justiça Militar, pois é militar da ativa','Pelo Tribunal do Júri da Justiça Estadual comum','Pelo Ministério Público Militar exclusivamente','Pelo Supremo Tribunal Militar em Brasília'],
+     correta:1,
+     explicacao:'Súmula 172 STJ: compete à Justiça Comum estadual processar militar por crime doloso contra a vida praticado contra civil, ainda que o fato tenha ocorrido em área militar.',
+     pegadinha:'A banca tenta enviar para a Justiça Militar. A Súmula 172 STJ é clara: crime doloso contra a vida de civil praticado por militar = TRIBUNAL DO JÚRI.'},
+    {enunciado:'O art. 9º, inciso II do CPM trata dos crimes militares em tempo de paz que:',
+     alternativas:['São previstos no CPM e igualmente no CP, praticados por militar fora de serviço','São previstos apenas no CPM (crimes próprios) ou cometidos por militar em serviço, embora previstos também no CP','São praticados por civis contra militares em qualquer circunstância','São cometidos em zona de operações militares durante conflito armado'],
+     correta:1,
+     explicacao:'Art. 9º II CPM: crimes exclusivos do CPM (próprios) OU previstos em ambos os códigos mas cometidos por militar EM SERVIÇO. É o inciso mais complexo e mais cobrado.',
+     pegadinha:'Banca mistura com o Inciso I (crimes do CPM+CP) e o III (local militar). O Inciso II engloba crimes próprios + crimes impróprios cometidos em serviço.'}
+   ]
+  },
+
+  // T06 — Lei de Abuso de Autoridade
+  {id:'abuso-autoridade',titulo:'Lei de Abuso de Autoridade',subtitulo:'Lei nº 13.869/2019',emoji:'🚨',
+   slides:[
+    {estagio:'tema',titulo:'Lei 13.869/2019 — Abuso de Autoridade',
+     corpo:'A Lei 13.869/2019 define os crimes de abuso de autoridade cometidos por agente público. Para o PM, é fundamental conhecer o elemento subjetivo especial, o sujeito ativo e a ação penal.',
+     destaque:'Elemento subjetivo ESPECIAL obrigatório: prejudicar outrem, beneficiar si/terceiro, ou mero capricho.',
+     audio:'A Lei 13.869 de 2019 define os crimes de abuso de autoridade. Para o policial militar, os pontos mais importantes são o elemento subjetivo especial e a ação penal pública incondicionada.'},
+    {estagio:'conceito',titulo:'Art. 1º — Finalidade Específica (Dolo Especial)',
+     corpo:'As condutas da Lei 13.869 só constituem crime de abuso de autoridade quando praticadas com FINALIDADE ESPECÍFICA de:',
+     lista:['(a) Prejudicar outrem','(b) Beneficiar a si mesmo ou terceiro','(c) Por mero capricho ou satisfação pessoal'],
+     audio:'Atenção: para configurar abuso de autoridade, o agente deve ter uma finalidade especial: prejudicar alguém, beneficiar a si ou a terceiro, ou agir por mero capricho.'},
+    {estagio:'estrutura',titulo:'Art. 2º — Sujeito Ativo: Qualquer Agente Público',
+     lista:['Servidores públicos e militares','Membros do Poder Legislativo','Membros do Poder Executivo','Membros do Poder Judiciário','Membros do Ministério Público','Membros dos tribunais ou conselhos de contas','Qualquer um que exerça função pública, mesmo transitoriamente'],
+     audio:'O sujeito ativo do crime de abuso de autoridade é qualquer agente público, incluindo militares, servidores civis, membros dos três poderes e do Ministério Público.'},
+    {estagio:'estrutura',titulo:'Art. 3º — Ação Penal',
+     tabela:[{item:'Regra',valor:'Ação penal PÚBLICA INCONDICIONADA'},{item:'Exceção',valor:'Ação privada subsidiária se MP não agir no prazo'},{item:'Prazo subsidiária',valor:'6 MESES contados do término do prazo para denúncia'},{item:'Divergência interpretativa',valor:'Art. 1º §2º: NÃO configura abuso de autoridade'}],
+     audio:'A ação penal nos crimes de abuso de autoridade é pública incondicionada. Admite-se ação privada subsidiária em 6 meses, se o MP não agir no prazo.'},
+    {estagio:'pegadinha',titulo:'Art. 1º §2º — Divergência Interpretativa',
+     destaque:'"A divergência na interpretação de lei ou na avaliação de fatos e provas NÃO configura abuso de autoridade." — Art. 1º §2º Lei 13.869/2019.',
+     corpo:'O policial que age com base em uma interpretação razoável da lei, mesmo que equivocada, NÃO pratica abuso de autoridade. Exige-se a finalidade específica de prejudicar.',
+     alerta:'ERRO CLÁSSICO: afirmar que qualquer excesso do policial configura abuso. Erro de interpretação jurídica ≠ abuso. Só há crime com o DOLO ESPECIAL (finalidade específica).',
+     audio:'Importante: divergência na interpretação da lei ou avaliação de fatos e provas NÃO configura abuso de autoridade. É necessário o dolo especial — a finalidade específica de prejudicar ou beneficiar.'},
+    {estagio:'estrutura',titulo:'Art. 4º — Efeitos da Condenação',
+     tabela:[{item:'Indenização',valor:'Torna certa a obrigação de indenizar o dano'},{item:'Inabilitação',valor:'1 a 5 anos — para cargo, mandato ou função pública'},{item:'Perda do cargo',valor:'Perda do cargo, mandato ou função pública'},{item:'Automatismo',valor:'NÃO: inabilitação e perda do cargo SÓ na reincidência, declaradas na sentença'}],
+     audio:'Os efeitos da condenação por abuso de autoridade incluem a obrigação de indenizar, a inabilitação de 1 a 5 anos e a possível perda do cargo. Mas a inabilitação e perda do cargo só ocorrem na reincidência e devem ser declarados na sentença.'},
+    {estagio:'fixacao',titulo:'Penas Restritivas — Art. 5º',
+     destaque:'Penas restritivas: prestação de serviços à comunidade OU suspensão do cargo de 1 a 6 meses.',
+     corpo:'Art. 5º: penas restritivas substitutivas: (I) prestação de serviços à comunidade; (II) suspensão do exercício do cargo/função por 1 a 6 meses, com perda dos vencimentos. Aplicadas autônoma ou cumulativamente.',
+     audio:'As penas restritivas do artigo 5º da Lei de Abuso de Autoridade são: prestação de serviços à comunidade ou suspensão do exercício do cargo de 1 a 6 meses, com perda dos vencimentos.'}
+   ],
+   transcricao:{
+    ref:'Lei nº 13.869, de 05/09/2019 — Lei de Abuso de Autoridade — Arts. 1º a 5º',
+    blocos:[
+     {t:'h',v:'1. Conceito e Elemento Subjetivo — Art. 1º'},
+     {t:'def',label:'Art. 1º §1º Lei 13.869/2019',v:'As condutas descritas constituem crime de abuso de autoridade quando praticadas com a finalidade específica de prejudicar outrem ou beneficiar a si mesmo ou a terceiro, ou, ainda, por mero capricho ou satisfação pessoal.'},
+     {t:'p',v:'O crime de abuso de autoridade exige DOLO ESPECÍFICO (especial fim de agir). Não cabe dolo eventual. O agente deve querer especificamente prejudicar, beneficiar ou agir por capricho.',kw:['finalidade específica','prejudicar outrem','beneficiar','mero capricho','dolo eventual','dolo específico']},
+     {t:'banca',prob:95,assunto:'O dolo eventual configura abuso de autoridade?',resp:'NÃO. A lei exige DOLO ESPECÍFICO (finalidade especial). O dolo eventual é descartado expressamente.'},
+     {t:'h',v:'2. Sujeito Ativo — Art. 2º'},
+     {t:'p',v:'Art. 2º: sujeito ativo = qualquer agente público, incluindo militares, servidores, membros dos 3 Poderes, MP e Tribunais de Contas. Inclui quem exerce função pública transitoriamente ou sem remuneração.',kw:['agente público','militares','Poder Judiciário','Ministério Público','transitoriamente','sem remuneração']},
+     {t:'banca',prob:88,assunto:'PM pode ser sujeito ativo de abuso de autoridade?',resp:'SIM. Art. 2º: "servidores públicos e militares" estão expressamente listados como sujeitos ativos.'},
+     {t:'h',v:'3. Ação Penal — Art. 3º'},
+     {t:'eq',v:'AÇÃO PENAL PÚBLICA INCONDICIONADA — AÇÃO PRIVADA SUBSIDIÁRIA EM 6 MESES'},
+     {t:'p',v:'Ação penal pública incondicionada (MP denuncia sem precisar de representação da vítima). Se MP não agir: ação privada subsidiária em 6 MESES do término do prazo para denúncia.',kw:['ação penal pública incondicionada','privada subsidiária','6 meses','Ministério Público','denúncia']},
+     {t:'banca',prob:92,assunto:'A vítima precisa representar para processar por abuso?',resp:'NÃO. A ação é PÚBLICA INCONDICIONADA. MP pode denunciar independentemente da vontade da vítima. Ação privada só entra se MP ficar inerte.'},
+     {t:'h',v:'4. Efeitos da Condenação — Art. 4º'},
+     {t:'p',v:'Efeitos: (I) obrigação de indenizar; (II) inabilitação 1-5 anos para cargo/função; (III) perda do cargo. Os efeitos II e III são condicionados à REINCIDÊNCIA e não são automáticos — devem ser declarados na sentença.',kw:['indenizar','inabilitação','1 a 5 anos','perda do cargo','reincidência','não automáticos','sentença']},
+     {t:'banca',prob:90,assunto:'A perda do cargo é efeito automático da condenação?',resp:'NÃO. A perda do cargo e a inabilitação só ocorrem na REINCIDÊNCIA e devem ser DECLARADOS MOTIVADAMENTE na sentença. Não são automáticos.'},
+     {t:'h',v:'5. Divergência Interpretativa — Art. 1º §2º'},
+     {t:'def',label:'Art. 1º §2º — Excludente',v:'"A divergência na interpretação de lei ou na avaliação de fatos e provas não configura abuso de autoridade." Erro interpretativo ≠ abuso. Exige-se a finalidade específica.'},
+     {t:'banca',prob:85,assunto:'Policial que prende alguém com interpretação equivocada da lei: abuso?',resp:'NÃO, se agiu de boa-fé com interpretação razoável. Art. 1º §2º: divergência interpretativa não é abuso. Só há crime com o DOLO ESPECIAL.'}
+    ]
+   },
+   questoes:[
+    {enunciado:'De acordo com o art. 1º §1º da Lei 13.869/2019, os crimes de abuso de autoridade exigem a presença de:',
+     alternativas:['Dolo eventual ou culpa consciente por parte do agente','Finalidade específica de prejudicar outrem, beneficiar si/terceiro ou agir por mero capricho','Dolo genérico e resultado danoso comprovado à vítima','Reincidência em condutas abusivas por parte do agente'],
+     correta:1,
+     explicacao:'Art. 1º §1º Lei 13.869/2019: exige FINALIDADE ESPECÍFICA (dolo especial) de prejudicar outrem, beneficiar a si/terceiro ou satisfação pessoal. Dolo eventual é descartado expressamente.',
+     pegadinha:'Banca oferece "dolo eventual" ou "culpa consciente". A lei exige finalidade ESPECÍFICA. Sem esse elemento subjetivo especial, não há crime de abuso.'},
+    {enunciado:'A ação penal nos crimes previstos na Lei 13.869/2019 é:',
+     alternativas:['Pública condicionada à representação da vítima','Privada exclusiva, proposta apenas pelo ofendido','Pública incondicionada, sendo admitida ação privada subsidiária em 6 meses','Pública condicionada à requisição do Ministro da Justiça'],
+     correta:2,
+     explicacao:'Art. 3º Lei 13.869/2019: ação penal PÚBLICA INCONDICIONADA. Admite-se ação privada subsidiária em 6 MESES se o MP não agir no prazo (inércia ministerial).',
+     pegadinha:'Banca tenta induzir a "condicionada à representação" ou "exclusivamente privada". Abuso de autoridade = pública INCONDICIONADA.'},
+    {enunciado:'Conforme o art. 1º §2º da Lei 13.869/2019, NÃO configura crime de abuso de autoridade:',
+     alternativas:['O uso desnecessário de algemas durante a condução do preso','A divergência na interpretação de lei ou na avaliação de fatos e provas','A prisão em flagrante realizada sem comunicação ao juiz','O interrogatório conduzido sem a presença de advogado'],
+     correta:1,
+     explicacao:'Art. 1º §2º: "A divergência na interpretação de lei ou na avaliação de fatos e provas não configura abuso de autoridade." Erro interpretativo de boa-fé ≠ abuso.',
+     pegadinha:'A banca propõe situações que PODEM configurar abuso (algemas desnecessárias, falta de advogado). O art. 1º §2º exclui APENAS a divergência interpretativa. Cada situação exige análise do dolo especial.'},
+    {enunciado:'Conforme o art. 4º da Lei 13.869/2019, a inabilitação para cargo público como efeito da condenação por abuso de autoridade:',
+     alternativas:['É automática, decorrendo de qualquer condenação por abuso de autoridade','Ocorre apenas na reincidência e deve ser declarada motivadamente na sentença','É aplicada em toda sentença condenatória, independentemente de reincidência','Só ocorre quando há perda concomitante do cargo público'],
+     correta:1,
+     explicacao:'Art. 4º §único: os efeitos de inabilitação e perda do cargo são CONDICIONADOS à REINCIDÊNCIA em crime de abuso e NÃO SÃO AUTOMÁTICOS — devem ser declarados motivadamente.',
+     pegadinha:'A banca apresenta a inabilitação como efeito automático. Errado. Dois requisitos: (1) reincidência em abuso e (2) declaração motivada na sentença.'}
+   ]
+  }
+
+,
+
+  // T07 — Código Penal Comum
+  {id:'codigo-penal',titulo:'Código Penal',subtitulo:'Decreto-Lei nº 2.848/1940 — CP',emoji:'⚖️',
+   slides:[
+    {estagio:'tema',titulo:'Código Penal — Teoria do Crime',
+     corpo:'O CP adota a teoria tripartite do crime: fato típico + ilicitude (antijuridicidade) + culpabilidade. Para o PM, os temas mais cobrados são excludentes de ilicitude, dolo, culpa e extinção da punibilidade.',
+     destaque:'Tripartite: fato TÍPICO + ILICITUDE + CULPABILIDADE. Todo crime exige os três.',
+     audio:'O Código Penal adota a teoria tripartite do crime, que exige fato típico, ilicitude e culpabilidade. Para a EAP, os pontos mais cobrados são as excludentes de ilicitude e as formas de dolo e culpa.'},
+    {estagio:'conceito',titulo:'Excludentes de Ilicitude — Art. 23 CP',
+     tabela:[{item:'Estado de necessidade',valor:'Sacrifica bem jurídico para salvar outro de perigo atual'},{item:'Legítima defesa',valor:'Repele injusta agressão, atual ou iminente, com meios necessários'},{item:'Estrito cum. dever legal',valor:'PM atuando conforme determinação legal (uso da força)'},{item:'Exerc. reg. de direito',valor:'Ato autorizado por lei ou direito reconhecido (ex: esporte)'}],
+     audio:'O artigo 23 do Código Penal prevê quatro excludentes de ilicitude: estado de necessidade, legítima defesa, estrito cumprimento do dever legal e exercício regular de direito.'},
+    {estagio:'estrutura',titulo:'Dolo Direto vs. Dolo Eventual',
+     tabela:[{item:'Dolo direto',valor:'O agente QUER o resultado — finalidade direta'},{item:'Dolo eventual',valor:'O agente ASSUME o risco de produzir o resultado (aceita)'},{item:'Culpa consciente',valor:'O agente PREVÊ o resultado mas ACREDITA que não ocorrerá'},{item:'Culpa inconsciente',valor:'O agente NÃO PREVÊ o resultado (mas devia prever)'}],
+     audio:'Dolo direto: o agente quer o resultado. Dolo eventual: o agente assume o risco. Culpa consciente: o agente prevê mas acredita que não vai acontecer. Culpa inconsciente: não prevê, mas deveria.'},
+    {estagio:'estrutura',titulo:'Legítima Defesa — Art. 25 CP',
+     corpo:'Art. 25 CP: entende-se em legítima defesa quem, usando moderadamente dos meios necessários, repele injusta agressão, atual ou iminente, a direito seu ou de outrem.',
+     lista:['Agressão INJUSTA (não provocada nem amparada pela lei)','ATUAL ou IMINENTE (não passada, não futura longínqua)','Com meios NECESSÁRIOS e MODERADOS','A DIREITO SEU ou DE OUTREM'],
+     audio:'Para configurar legítima defesa: agressão injusta, atual ou iminente, repelida com meios necessários e moderados, em defesa de direito próprio ou alheio.'},
+    {estagio:'pegadinha',titulo:'Excesso na Legítima Defesa',
+     corpo:'Mesmo agindo em legítima defesa, o agente pode responder pelo EXCESSO:',
+     tabela:[{item:'Excesso doloso',valor:'Agente sabe que a agressão cessou e continua agredindo'},{item:'Excesso culposo',valor:'Agente usa mais força do que necessário por imprudência'},{item:'Resp. pelo excesso',valor:'Responde pelo que excedeu (crime doloso ou culposo)'},{item:'LD putativa',valor:'Erro sobre os pressupostos fáticos — exclui dolo, subsiste culpa'}],
+     alerta:'ERRO CLÁSSICO: afirmar que legítima defesa SEMPRE exclui o crime. O EXCESSO é punível. Agente que continua batendo após a agressão cessar responde pelo excesso.',
+     audio:'Atenção: o excesso na legítima defesa é punível. Se o agente continua agredindo após a cessação do perigo, responde pelo excesso, que pode ser doloso ou culposo.'},
+    {estagio:'estrutura',titulo:'Extinção da Punibilidade — Art. 107 CP',
+     lista:['Morte do agente (intransmissibilidade da pena)','Anistia, graça ou indulto','Retroatividade de lei que não mais considera o fato criminoso (abolitio criminis)','Prescrição, decadência, perempção','Renúncia ao direito de queixa ou perdão aceito','Retratação do agente nos casos admitidos em lei'],
+     audio:'O artigo 107 do Código Penal lista as causas de extinção da punibilidade: morte do agente, anistia, graça, indulto, abolitio criminis, prescrição, decadência e outras.'},
+    {estagio:'fixacao',titulo:'Mnemônico: Excludentes de Ilicitude',
+     destaque:'"EN LD ECDL ERD" — Estado de Necessidade · Legítima Defesa · Estrito Cumprimento do Dever Legal · Exercício Regular de Direito',
+     corpo:'Art. 23 CP: as quatro excludentes são taxativas. Se o PM atua dentro de suas atribuições legais com força proporcional = Estrito Cumprimento do Dever Legal. Banca adora perguntar qual excludente aplica ao PM.',
+     audio:'Para memorizar as quatro excludentes de ilicitude: EN LD ECDL ERD — Estado de Necessidade, Legítima Defesa, Estrito Cumprimento do Dever Legal e Exercício Regular de Direito.'}
+   ],
+   transcricao:{
+    ref:'Decreto-Lei nº 2.848/1940 — Código Penal — Arts. 18, 20, 23-25, 107 e correlatos',
+    blocos:[
+     {t:'h',v:'1. Teoria Tripartite do Crime'},
+     {t:'eq',v:'CRIME = FATO TÍPICO + ILICITUDE + CULPABILIDADE'},
+     {t:'p',v:'Fato típico: conduta, resultado, nexo causal e tipicidade. Ilicitude: contrariedade ao ordenamento, excluída pelas causas do art. 23 CP. Culpabilidade: imputabilidade, potencial consciência da ilicitude e exigibilidade de conduta diversa.',kw:['fato típico','ilicitude','culpabilidade','imputabilidade','conduta']},
+     {t:'banca',prob:90,assunto:'CP adota teoria bipartite ou tripartite?',resp:'TRIPARTITE: fato típico + ilicitude + culpabilidade. A bipartite considera a culpabilidade fora do crime (posição minoritária). Para concursos: teoria TRIPARTITE.'},
+     {t:'h',v:'2. Excludentes de Ilicitude — Art. 23 CP'},
+     {t:'def',label:'Estrito Cumprimento do Dever Legal',v:'O agente pratica o fato tipicamente relevante no exercício de um dever imposto por lei. Exemplo: PM que usa força proporcional para deter suspeito em cumprimento do Código PM ou normativa de uso da força.'},
+     {t:'p',v:'Para o PM, a excludente mais relevante é o ECDL. O uso da força dentro dos parâmetros legais (força proporcional, necessária e progressiva) caracteriza o ECDL, excluindo a ilicitude.',kw:['estrito cumprimento','dever legal','PM','força proporcional','uso da força','ECDL']},
+     {t:'banca',prob:92,assunto:'PM usa força para deter suspeito: qual excludente?',resp:'ESTRITO CUMPRIMENTO DO DEVER LEGAL (art. 23 III CP). Desde que a força seja proporcional e necessária. Excesso: responde pelo que excedeu.'},
+     {t:'h',v:'3. Dolo e Culpa — Art. 18 CP'},
+     {t:'def',label:'Dolo Eventual vs. Culpa Consciente',v:'Dolo eventual: o agente prevê o resultado e ASSUME o risco (aceita como possível). Culpa consciente: o agente prevê o resultado mas ACREDITA que não ocorrerá (confia na não ocorrência).'},
+     {t:'banca',prob:88,assunto:'Diferença entre dolo eventual e culpa consciente?',resp:'Dolo eventual: prevê e ASSUME. Culpa consciente: prevê mas CONFIA na não ocorrência. A diferença é interna (atitude mental). No trânsito: racha = dolo eventual. Excesso de velocidade leve = culpa consciente.'},
+     {t:'h',v:'4. Extinção da Punibilidade — Art. 107 CP'},
+     {t:'p',v:'Causas: morte do agente, anistia, graça, indulto, abolitio criminis, prescrição (antes e depois de transitar em julgado), decadência, perempção, renúncia ou perdão nos crimes de ação privada.',kw:['morte','anistia','graça','indulto','abolitio criminis','prescrição','decadência','perempção']},
+     {t:'banca',prob:85,assunto:'Morte do agente extingue pena para os herdeiros?',resp:'SIM, extingue a punibilidade do AGENTE. A MULTA (pena pecuniária) também se extingue com a morte, pois não pode ser transmitida aos herdeiros (intransmissibilidade da pena penal).'}
+    ]
+   },
+   questoes:[
+    {enunciado:'O PM que usa força moderada e proporcional para deter suspeito que oferece resistência, no exercício de suas funções, age amparado pela excludente de ilicitude:',
+     alternativas:['Estado de necessidade','Legítima defesa','Estrito cumprimento do dever legal','Exercício regular de direito'],
+     correta:2,
+     explicacao:'Estrito Cumprimento do Dever Legal (art. 23 III CP): o PM atua no exercício de um dever imposto por lei, usando força proporcional. Exclui a ilicitude da conduta.',
+     pegadinha:'Banca às vezes coloca "legítima defesa" como resposta, pois o PM também está se defendendo. Para o exercício das funções com base na lei: ECDL. Legítima defesa: agressão ao próprio agente ou terceiro.'},
+    {enunciado:'Sobre o DOLO EVENTUAL, é correto afirmar que:',
+     alternativas:['O agente não prevê o resultado, mas age com imprudência ou negligência','O agente prevê o resultado e confia que ele não ocorrerá','O agente prevê o resultado como possível e assume o risco de produzi-lo','O agente quer diretamente o resultado como finalidade de sua conduta'],
+     correta:2,
+     explicacao:'Dolo eventual (art. 18 I, parte final, CP): o agente prevê o resultado como possível e, mesmo assim, ASSUME o risco de produzi-lo (aceita). Diferente da culpa consciente: aqui o agente aceita; lá, ele confia na não ocorrência.',
+     pegadinha:'Confundir dolo eventual (assume o risco) com culpa consciente (confia na não ocorrência). A diferença é sutil mas muito cobrada.'},
+    {enunciado:'Na legítima defesa (art. 25 CP), para que a conduta seja justificada, é necessário que a agressão seja:',
+     alternativas:['Futura e previsível, permitindo preparação antecipada da defesa','Injusta, atual ou iminente, repelida com meios necessários e moderados','Qualquer agressão, mesmo as provocadas, se houver risco de vida','Apenas injusta, sem necessidade de proporcionalidade nos meios'],
+     correta:1,
+     explicacao:'Art. 25 CP: legítima defesa exige: (1) agressão INJUSTA; (2) ATUAL ou IMINENTE; (3) uso MODERADO dos MEIOS NECESSÁRIOS; (4) em defesa de direito seu ou alheio.',
+     pegadinha:'Banca omite o requisito da "atualidade/iminência" ou da "moderação". Agressão futura não autoriza legítima defesa. Excesso de meios é punível.'},
+    {enunciado:'De acordo com o art. 107 do CP, a MORTE DO AGENTE:',
+     alternativas:['Extingue a punibilidade criminal, mas a pena de multa pode ser cobrada dos herdeiros','Extingue apenas as penas privativas de liberdade, subsistindo as penas de multa e restritivas','Extingue a punibilidade criminal, incluindo a multa, pois a pena é personalíssima','Não extingue a punibilidade — os herdeiros assumem o cumprimento da pena'],
+     correta:2,
+     explicacao:'Morte do agente extingue TODA a punibilidade criminal (art. 107 I CP). A pena (incluindo multa) é personalíssima — não pode ser transmitida aos herdeiros. A reparação civil não se extingue.',
+     pegadinha:'Banca afirma que a multa pode ser cobrada dos herdeiros no direito penal. Errado — a multa penal se extingue com a morte (personalidade da pena). A responsabilidade CIVIL dos herdeiros é questão diversa.'}
+   ]
+  },
+
+  // T08 — Lei da Improbidade Administrativa
+  {id:'improbidade',titulo:'Lei de Improbidade Administrativa',subtitulo:'Lei nº 8.429/1992 (c/ Lei 14.230/2021)',emoji:'💰',
+   slides:[
+    {estagio:'tema',titulo:'LIA — Improbidade Administrativa',
+     corpo:'A LIA (Lei 8.429/92) pune atos de improbidade de agentes públicos. Em 2021, a Lei 14.230 reformou radicalmente a LIA: exige agora DOLO DIRETO (culpa não configura mais improbidade).',
+     destaque:'Reforma 2021: culpa NÃO configura mais improbidade. Exige DOLO DIRETO (art. 1º §2º LIA).',
+     audio:'A Lei da Improbidade Administrativa foi reformada pela Lei 14.230 de 2021. A principal mudança: culpa não configura mais improbidade. Exige-se agora o dolo direto.'},
+    {estagio:'conceito',titulo:'Art. 37 §4º CF/88 — Base Constitucional',
+     corpo:'A CF/88 prevê no art. 37 §4º as sanções por improbidade, formando o mnemônico "RISP":',
+     tabela:[{item:'R',valor:'Ressarcimento ao erário'},{item:'I',valor:'Inabilitação para cargo/mandato/função pública'},{item:'S',valor:'Suspensão dos direitos políticos'},{item:'P',valor:'Perda da função pública'}],
+     audio:'O artigo 37 parágrafo 4 da Constituição prevê as sanções por improbidade: ressarcimento ao erário, inabilitação, suspensão dos direitos políticos e perda da função pública. Memorize: RISP.'},
+    {estagio:'estrutura',titulo:'Arts. 9, 10 e 11 — Três Atos de Improbidade',
+     tabela:[{item:'Art. 9º',valor:'ENRIQUECIMENTO ILÍCITO — obter vantagem patrimonial indevida'},{item:'Art. 10',valor:'PREJUÍZO AO ERÁRIO — ação ou omissão que cause dano ao patrimônio público'},{item:'Art. 11',valor:'VIOLAÇÃO DE PRINCÍPIOS — ação ou omissão que viole deveres de honestidade, imparcialidade, legalidade'}],
+     audio:'A LIA tipifica três atos de improbidade: artigo 9 para enriquecimento ilícito, artigo 10 para prejuízo ao erário e artigo 11 para violação de princípios da administração pública.'},
+    {estagio:'estrutura',titulo:'Reforma 2021 — Principais Mudanças',
+     lista:['Dolo DIRETO obrigatório — culpa não configura mais improbidade (art. 1º §2º)','Responsabilidade exclusiva do AGENTE PÚBLICO (terceiro: apenas se induziu ou concorreu dolosamente)','Prazo prescricional alterado: 8 anos (regra) do ato ou da cessação do cargo','Improbidade: ação proposta EXCLUSIVAMENTE pelo MP (art. 17)','Acordo de não-persecução cível: admitido'],
+     audio:'A reforma de 2021 trouxe mudanças importantes: exige dolo direto, exclui a culpa, reserva a legitimidade para o Ministério Público e cria o acordo de não persecução cível.'},
+    {estagio:'pegadinha',titulo:'Dolo Direto vs. Culpa — Ponto Mais Cobrado',
+     corpo:'Antes de 2021: culpa podia configurar improbidade (art. 10). Depois de 2021:',
+     tabela:[{item:'Enriquecimento ilícito (art. 9)',valor:'Dolo DIRETO obrigatório'},{item:'Prejuízo ao erário (art. 10)',valor:'Dolo DIRETO obrigatório (antes: bastava culpa)'},{item:'Violação de princípios (art. 11)',valor:'Dolo DIRETO obrigatório'},{item:'Divergência interpret.',valor:'NÃO configura improbidade (art. 1º §8º)'}],
+     alerta:'ERRO CLÁSSICO: afirmar que o art. 10 admite culpa. DESDE 2021, TODOS os atos de improbidade exigem DOLO DIRETO. Culpa não é mais suficiente para nenhum dos três artigos.',
+     audio:'Pegadinha: antes de 2021, o artigo 10 sobre prejuízo ao erário admitia culpa. DESDE 2021, todos os três artigos exigem dolo direto. Culpa não configura mais improbidade em nenhum caso.'},
+    {estagio:'estrutura',titulo:'Sanções por Ato de Improbidade',
+     tabela:[{item:'Art. 9 (enriq. ilícito)',valor:'Perda dos bens/valores acrescidos ilicitamente + multa até 3x o valor + inabilitação 14 anos'},{item:'Art. 10 (prej. erário)',valor:'Ressarcimento integral + multa até 2x o valor + inabilitação 12 anos'},{item:'Art. 11 (princ.)',valor:'Multa até 24x remuneração + inabilitação 4 anos'},{item:'Prescrição',valor:'8 anos do fato (regra geral)'}],
+     audio:'As sanções variam conforme o artigo: para enriquecimento ilícito, inabilitação de 14 anos. Para prejuízo ao erário, 12 anos. Para violação de princípios, 4 anos. A prescrição é de 8 anos.'},
+    {estagio:'fixacao',titulo:'Mnemônico: RISP + Três Atos',
+     destaque:'"RISP" = Ressarcimento + Inabilitação + Suspensão + Perda | "9-10-11" = Enriquecimento + Erário + Princípios',
+     corpo:'RISP = sanções constitucionais. 9-10-11 = artigos da LIA. Tudo exige DOLO DIRETO desde 2021. A ação é do MP. Prescrição: 8 anos.',
+     audio:'Para memorizar: RISP são as sanções constitucionais. Os três artigos da LIA são 9, 10 e 11 correspondendo a enriquecimento ilícito, prejuízo ao erário e violação de princípios. Tudo exige dolo direto desde 2021.'}
+   ],
+   transcricao:{
+    ref:'Lei nº 8.429/1992 com alterações da Lei 14.230/2021 — Arts. 1º, 9º, 10 e 11',
+    blocos:[
+     {t:'h',v:'1. Dolo Direto Obrigatório — Art. 1º §1º e §2º LIA'},
+     {t:'def',label:'Art. 1º §1º e §2º LIA (redação pós-2021)',v:'§1º: consideram-se atos de improbidade as condutas DOLOSAS tipificadas nos arts. 9, 10 e 11. §2º: Considera-se DOLO a vontade livre e consciente de alcançar o resultado ilícito tipificado — não bastando a voluntariedade do agente.'},
+     {t:'p',v:'A reforma de 2021 eliminou a modalidade culposa do art. 10. Agora TODOS os atos de improbidade exigem dolo DIRETO. O art. 1º §8º esclarece que divergência interpretativa baseada em jurisprudência não configura improbidade.',kw:['dolo direto','culpa','dolosas','art. 10','reforma 2021','divergência interpretativa']},
+     {t:'banca',prob:95,assunto:'Após 2021, culpa configura improbidade no art. 10?',resp:'NÃO. A Lei 14.230/2021 alterou o art. 10 e todos os atos de improbidade passaram a exigir DOLO DIRETO. Culpa não configura mais improbidade em nenhum dos três artigos.'},
+     {t:'h',v:'2. Os Três Atos de Improbidade — Arts. 9, 10, 11'},
+     {t:'p',v:'Art. 9: enriquecimento ilícito — auferir vantagem patrimonial indevida em razão do cargo. Art. 10: ação/omissão dolosa que cause prejuízo ao erário. Art. 11: ação/omissão dolosa que viole deveres de honestidade, imparcialidade e legalidade.',kw:['enriquecimento ilícito','prejuízo ao erário','violação de princípios','art. 9','art. 10','art. 11','dolosa']},
+     {t:'banca',prob:90,assunto:'Qual artigo pune o servidor que causa dano ao patrimônio público por ação dolosa?',resp:'Art. 10 LIA — Prejuízo ao Erário. A ação deve ser DOLOSA (dolo direto). Dano culposo pode gerar responsabilidade civil, mas NÃO improbidade.'},
+     {t:'h',v:'3. Sanções Constitucionais — Art. 37 §4º CF'},
+     {t:'eq',v:'RISP = Ressarcimento + Inabilitação + Suspensão + Perda da função'},
+     {t:'p',v:'Art. 37 §4º CF: os atos de improbidade importarão a suspensão dos direitos políticos, perda da função pública, indisponibilidade dos bens e ressarcimento ao erário. Sem prejuízo da ação penal.',kw:['suspensão dos direitos políticos','perda da função pública','indisponibilidade','ressarcimento ao erário','RISP']},
+     {t:'banca',prob:88,assunto:'Quais são as sanções constitucionais da improbidade?',resp:'Art. 37 §4º CF: suspensão dos direitos políticos + perda da função pública + indisponibilidade dos bens + ressarcimento ao erário. Mnemônico: RISP.'},
+     {t:'h',v:'4. Legitimidade e Prescrição'},
+     {t:'p',v:'Desde 2021: legitimidade EXCLUSIVA do MP para propor ação de improbidade (art. 17 LIA). Prescrição: 8 anos (regra geral) contados do fato ou da cessação do exercício do cargo. Acordo de não-persecução cível: admitido.',kw:['Ministério Público','exclusividade','prescrição','8 anos','acordo','não-persecução']},
+     {t:'banca',prob:85,assunto:'Pessoa jurídica prejudicada pode propor ação de improbidade?',resp:'NÃO. Desde a Lei 14.230/2021, a legitimidade é EXCLUSIVA do MP. As entidades prejudicadas perderam a legitimidade ativa para a ação de improbidade.'}
+    ]
+   },
+   questoes:[
+    {enunciado:'Conforme a Lei 14.230/2021, que reformou a LIA (Lei 8.429/92), os atos de improbidade administrativa:',
+     alternativas:['Podem ser praticados com dolo ou culpa grave, conforme o art. 10 original','Exigem obrigatoriamente DOLO DIRETO em todos os atos tipificados nos arts. 9, 10 e 11','Admitem responsabilização por culpa exclusivamente no art. 10 (prejuízo ao erário)','Podem ser praticados por dolo eventual nos casos de enriquecimento ilícito'],
+     correta:1,
+     explicacao:'Lei 14.230/2021: TODOS os atos de improbidade (arts. 9, 10 e 11) exigem DOLO DIRETO. A modalidade culposa foi abolida. Culpa pode gerar responsabilidade civil, mas não improbidade.',
+     pegadinha:'Banca mantém a redação antiga do art. 10 (que admitia culpa). DESDE 2021: dolo direto obrigatório em TODOS os artigos. Culpa não configura mais improbidade.'},
+    {enunciado:'O servidor que causa prejuízo ao erário por imprudência (culpa) ao gerir contratos públicos pratica:',
+     alternativas:['Ato de improbidade administrativa do art. 10 LIA','Ato de improbidade administrativa do art. 11 LIA','Conduta que pode gerar responsabilidade civil, mas NÃO improbidade administrativa','Crime de peculato culposo previsto no art. 312 §2º do CP'],
+     correta:2,
+     explicacao:'Após a Lei 14.230/2021, culpa NÃO configura improbidade. O servidor imprudente pode responder civilmente pelo dano, mas não por improbidade. Improbidade exige dolo direto.',
+     pegadinha:'A banca apela para o "prejuízo ao erário" do art. 10, que antes admitia culpa. Após 2021, art. 10 exige DOLO. Culpa = responsabilidade civil, não improbidade.'},
+    {enunciado:'As sanções previstas no art. 37 §4º da CF/88 para os atos de improbidade administrativa incluem:',
+     alternativas:['Pena de prisão, perda do cargo e suspensão dos direitos políticos','Suspensão dos direitos políticos, perda da função pública, indisponibilidade dos bens e ressarcimento ao erário','Pena de multa, advertência pública e perda temporária do cargo','Afastamento cautelar, suspensão do salário e ressarcimento ao erário'],
+     correta:1,
+     explicacao:'Art. 37 §4º CF: suspensão dos direitos políticos + perda da função pública + indisponibilidade dos bens + ressarcimento ao erário. Mnemônico RISP. Não há pena de prisão (que é tratada na ação penal cabível).',
+     pegadinha:'A banca inclui "pena de prisão" entre as sanções do art. 37 §4º CF. Errado: o parágrafo prevê sanções administrativas e civis, SEM PREJUÍZO da ação penal. Prisão não está no rol do §4º.'},
+    {enunciado:'Após a reforma da LIA (Lei 14.230/2021), a legitimidade para propor ação de improbidade administrativa é:',
+     alternativas:['Do Ministério Público e das pessoas jurídicas prejudicadas, conjuntamente','Exclusivamente do Ministério Público','Do ofendido, por ação privada, com prazo de 6 meses','Do Estado, através da Advocacia Geral da União ou Procuradoria do Estado'],
+     correta:1,
+     explicacao:'Art. 17 LIA pós-2021: legitimidade EXCLUSIVA do MP. As pessoas jurídicas prejudicadas perderam a legitimidade ativa que tinham antes da reforma de 2021.',
+     pegadinha:'Banca mantém a redação antiga que permitia ação da pessoa jurídica prejudicada. APÓS 2021: legitimidade EXCLUSIVA do MP. Entidades públicas podem atuar apenas como assistentes.'}
+   ]
+  },
+
+  // T09 — Nova Lei de Licitações
+  {id:'nlcc',titulo:'Nova Lei de Licitações',subtitulo:'Lei nº 14.133/2021 — NLCC',emoji:'📋',
+   slides:[
+    {estagio:'tema',titulo:'Lei 14.133/2021 — Nova Lei de Licitações',
+     corpo:'A Lei 14.133/2021 substituiu a Lei 8.666/93, a Lei 10.520/2002 (Pregão) e o RDC (Lei 12.462/2011). Define normas gerais para licitações e contratos de todas as Administrações Públicas.',
+     destaque:'14.133/2021 revogou: Lei 8.666/93 + Lei 10.520/02 + RDC (Lei 12.462/11).',
+     audio:'A Lei 14.133 de 2021 é a Nova Lei de Licitações e Contratos. Ela substituiu a Lei 8.666 de 1993, a Lei do Pregão e o Regime Diferenciado de Contratações.'},
+    {estagio:'estrutura',titulo:'5 Modalidades de Licitação — Art. 28',
+     tabela:[{item:'Pregão',valor:'Para bens e serviços comuns (inclusive serviços comuns de engenharia)'},{item:'Concorrência',valor:'Para bens, serviços e obras de maior complexidade/valor'},{item:'Concurso',valor:'Para escolha de trabalho técnico, científico ou artístico'},{item:'Leilão',valor:'Para alienação de bens móveis inservíveis ou imóveis'},{item:'Diálogo Competitivo',valor:'Para soluções inovadoras em que o setor privado desenvolve a solução'}],
+     audio:'A Nova Lei de Licitações tem cinco modalidades: Pregão, Concorrência, Concurso, Leilão e Diálogo Competitivo.'},
+    {estagio:'pegadinha',titulo:'NÃO Existem Mais: Tomada de Preço e Convite',
+     corpo:'A Lei 8.666/93 tinha 5 modalidades. A Lei 14.133/2021 tem OUTRAS 5 modalidades. A tomada de preços e o convite foram EXTINTOS.',
+     tabela:[{item:'EXTINTAS',valor:'Tomada de Preços e Convite (Lei 8.666/93)'},{item:'NOVA',valor:'Diálogo Competitivo (art. 32 NLCC)'},{item:'Mantidas',valor:'Pregão, Concorrência, Concurso, Leilão'}],
+     alerta:'ERRO CLÁSSICO: listar Tomada de Preço ou Convite como modalidades da NLCC. Elas são da lei REVOGADA (8.666/93). A lei 14.133 tem: Pregão, Concorrência, Concurso, Leilão, Diálogo Competitivo.',
+     audio:'Pegadinha: tomada de preço e convite NÃO existem mais na nova lei de licitações. Foram extintas. A nova modalidade é o Diálogo Competitivo.'},
+    {estagio:'estrutura',titulo:'Art. 9º — Vedação ao Agente Público',
+     corpo:'Art. 9º NLCC: são vedados ao agente público:',
+     lista:['Participar, direta ou indiretamente, de licitação ou contrato como licitante (durante o cargo/emprego)','Exercer funções em empresa que participou de licitação que ele conduziu (após cessação do cargo: 6 meses)','Receber vantagem patrimonial decorrente de contrato por ele autorizado'],
+     audio:'O artigo 9º da Nova Lei de Licitações proíbe o agente público de participar de licitações como licitante e de exercer funções em empresa que participou de licitação que ele conduziu.'},
+    {estagio:'conceito',titulo:'Fases do Processo Licitatório — Art. 17',
+     lista:['1ª Preparatória: elaboração do edital, ETP (Estudo Técnico Preliminar), TR (Termo de Referência)','2ª Divulgação: publicação no PNCP (Portal Nacional de Contratações Públicas)','3ª Apresentação de propostas e lances','4ª Julgamento','5ª Habilitação','6ª Recursal','7ª Homologação'],
+     audio:'O processo licitatório tem sete fases: preparatória, divulgação, apresentação de propostas, julgamento, habilitação, recursal e homologação.'},
+    {estagio:'estrutura',titulo:'Princípios da Licitação — Art. 5º NLCC',
+     corpo:'A NLCC lista expressamente os princípios em seu art. 5º:',
+     lista:['Legalidade, Impessoalidade, Moralidade, Publicidade, Eficiência (LIMPE — da CF/88)','Interesse público e probidade administrativa','Economicidade e desenvolvimento nacional sustentável','Vinculação ao instrumento convocatório (edital)','Competitividade e proporcionalidade'],
+     audio:'O artigo 5º da Nova Lei de Licitações lista os princípios que regem as licitações, incluindo os princípios constitucionais do artigo 37 mais economicidade, vinculação ao edital e competitividade.'},
+    {estagio:'fixacao',titulo:'Mnemônico: As 5 Modalidades',
+     destaque:'"PC3L" — Pregão · Concorrência · Concurso · (Diálogo) Competitivo · Leilão',
+     corpo:'PC3L: Pregão (serviços comuns) | Concorrência (obras/serviços complexos) | Concurso (trabalho técnico/artístico) | Diálogo Competitivo (inovação) | Leilão (alienação de bens).',
+     audio:'Para memorizar as cinco modalidades da nova lei de licitações: PC3L — Pregão, Concorrência, Concurso, Diálogo Competitivo e Leilão.'}
+   ],
+   transcricao:{
+    ref:'Lei nº 14.133/2021 — Nova Lei de Licitações e Contratos Administrativos — Arts. 1º, 5º, 9º, 17, 28',
+    blocos:[
+     {t:'h',v:'1. Âmbito de Aplicação — Art. 1º NLCC'},
+     {t:'p',v:'A NLCC aplica-se a todas as Administrações Públicas (direta, autárquica e fundacional) da União, Estados, DF e Municípios. EXCEÇÃO: empresas públicas e SEM (regidas pela Lei 13.303/2016).',kw:['administração pública','direta','autárquica','fundacional','União','Estados','Municípios','empresas públicas']},
+     {t:'banca',prob:88,assunto:'A NLCC se aplica às empresas públicas?',resp:'NÃO. Empresas públicas e sociedades de economia mista são regidas pela Lei 13.303/2016 (Lei das Estatais). A NLCC excepciona expressamente.'},
+     {t:'h',v:'2. Modalidades de Licitação — Art. 28'},
+     {t:'eq',v:'PREGÃO · CONCORRÊNCIA · CONCURSO · LEILÃO · DIÁLOGO COMPETITIVO'},
+     {t:'p',v:'Pregão: bens e serviços comuns. Concorrência: obras e serviços especializados, inclusive engenharia. Concurso: trabalho técnico/científico/artístico. Leilão: alienação de bens. Diálogo Competitivo: soluções inovadoras.',kw:['Pregão','Concorrência','Concurso','Leilão','Diálogo Competitivo','bens comuns','obras','alienação']},
+     {t:'banca',prob:95,assunto:'Tomada de Preço existe na NLCC?',resp:'NÃO. Tomada de Preço e Convite foram EXTINTOS. Eram modalidades da Lei 8.666/93 (revogada). A NLCC tem 5 modalidades: Pregão, Concorrência, Concurso, Leilão e Diálogo Competitivo.'},
+     {t:'h',v:'3. Vedação ao Agente Público — Art. 9º NLCC'},
+     {t:'p',v:'Art. 9º: o agente público não pode participar de licitação ou execução de contrato como licitante (conflito de interesses). Após cessação: 6 meses de quarentena para atuar em empresa que participou de licitação que conduziu.',kw:['vedação','agente público','conflito de interesses','quarentena','6 meses','licitação']},
+     {t:'banca',prob:85,assunto:'Por quanto tempo dura a quarentena após cessação do cargo?',resp:'6 MESES. O ex-agente público não pode trabalhar em empresa que participou de licitação que ele conduziu pelo prazo de 6 meses após deixar o cargo.'},
+     {t:'h',v:'4. Fases da Licitação — Art. 17 NLCC'},
+     {t:'p',v:'Fases: 1. Preparatória → 2. Divulgação (PNCP) → 3. Apresentação de propostas → 4. Julgamento → 5. Habilitação → 6. Recursal → 7. Homologação. A habilitação vem DEPOIS do julgamento na NLCC (diferente da lei 8.666).',kw:['preparatória','PNCP','julgamento','habilitação','recursal','homologação']},
+     {t:'banca',prob:82,assunto:'Na NLCC, a habilitação vem antes ou depois do julgamento?',resp:'DEPOIS. A ordem é: julgamento das propostas PRIMEIRO, depois habilitação do vencedor. Diferente da lei 8.666, onde a habilitação precedia o julgamento.'}
+    ]
+   },
+   questoes:[
+    {enunciado:'São modalidades de licitação previstas na Lei 14.133/2021 (NLCC):',
+     alternativas:['Concorrência, Tomada de Preços, Convite, Concurso e Leilão','Pregão, Concorrência, Concurso, Leilão e Diálogo Competitivo','Pregão, Concorrência, Tomada de Preços, Leilão e Concurso','Concorrência, Convite, Pregão, Diálogo Competitivo e Concurso'],
+     correta:1,
+     explicacao:'NLCC (Lei 14.133/2021), art. 28: Pregão, Concorrência, Concurso, Leilão e Diálogo Competitivo. Tomada de Preços e Convite foram extintas com a revogação da Lei 8.666/93.',
+     pegadinha:'Banca inclui Tomada de Preços e/ou Convite, que eram modalidades da lei REVOGADA (8.666/93). A NLCC NÃO tem essas modalidades.'},
+    {enunciado:'Sobre a aplicabilidade da Lei 14.133/2021 (NLCC), é correto afirmar que:',
+     alternativas:['Aplica-se a todas as entidades da administração pública, incluindo empresas públicas e SEM','Aplica-se à Administração direta, autárquica e fundacional; empresas públicas e SEM são regidas pela Lei 13.303/2016','Aplica-se apenas à União Federal e entidades federais','Aplica-se somente a contratações acima de R$ 100.000,00'],
+     correta:1,
+     explicacao:'Art. 1º NLCC: aplica-se às Adm. direta, autárquica e fundacional dos entes federados. EXCEÇÃO: empresas públicas e SEM são regidas pela Lei 13.303/2016 (Lei das Estatais).',
+     pegadinha:'Banca inclui empresas públicas e SEM no âmbito da NLCC. Errado: elas têm lei própria (13.303/2016).'},
+    {enunciado:'A modalidade de licitação DIÁLOGO COMPETITIVO, criada pela NLCC, é utilizada para:',
+     alternativas:['Aquisição de bens e serviços comuns de qualquer valor estimado','Alienação de bens imóveis da Administração Pública','Contratar obras e serviços de engenharia de médio valor','Contratar soluções inovadoras em que o setor privado desenvolve a solução com base no diálogo com a Administração'],
+     correta:3,
+     explicacao:'Diálogo Competitivo (art. 32 NLCC): modalidade em que a Administração dialoga com os licitantes para desenvolver soluções inovadoras. É a novidade da NLCC sem correspondente na lei 8.666/93.',
+     pegadinha:'Banca apresenta "obras de médio valor" (que seria Concorrência) ou "bens comuns" (Pregão). Diálogo Competitivo é ESPECÍFICO para soluções inovadoras desenvolvidas em diálogo.'},
+    {enunciado:'Na ordem das fases do processo licitatório previstas na Lei 14.133/2021, a HABILITAÇÃO:',
+     alternativas:['Antecede o julgamento das propostas, como era na Lei 8.666/93','Ocorre após o julgamento, habilitando-se apenas o vencedor','É a primeira fase do processo, ainda na fase preparatória','Não existe mais na NLCC, sendo substituída pela qualificação prévia'],
+     correta:1,
+     explicacao:'NLCC, art. 17: a habilitação ocorre APÓS o julgamento. A Administração habilitará (verificará documentos) apenas do vencedor, não de todos. Inversão em relação à Lei 8.666/93.',
+     pegadinha:'Confundir com a ordem da lei 8.666/93, onde a habilitação precedia o julgamento. Na NLCC, a ordem é invertida: primeiro julga, depois habilita o vencedor.'}
+   ]
+  },
+
+  // T10 — Estatuto do Desarmamento
+  {id:'estatuto-desarmamento',titulo:'Estatuto do Desarmamento',subtitulo:'Lei nº 10.826/2003',emoji:'🔫',
+   slides:[
+    {estagio:'tema',titulo:'Estatuto do Desarmamento — Lei 10.826/2003',
+     corpo:'A Lei 10.826/2003 dispõe sobre registro, posse e comercialização de armas de fogo e munição. Institui o SINARM. Define crimes de posse irregular, porte ilegal e tráfico de armas.',
+     destaque:'SINARM: Sistema Nacional de Armas — sob a POLÍCIA FEDERAL, no Ministério da Justiça.',
+     audio:'O Estatuto do Desarmamento, Lei 10.826 de 2003, regula o registro, a posse e o porte de armas de fogo. Institui o SINARM, o Sistema Nacional de Armas, vinculado à Polícia Federal.'},
+    {estagio:'conceito',titulo:'SINARM — Art. 1º e 2º',
+     corpo:'O SINARM é instituído no Ministério da Justiça, no âmbito da Polícia Federal, com circunscrição em todo o território nacional.',
+     lista:['Identificar características e propriedade de armas de fogo','Cadastrar armas produzidas, importadas e vendidas no Brasil','Cadastrar autorizações de porte expedidas pela PF','Cadastrar apreensões, furtos e roubos de armas','Informar às SSPs estaduais os registros e portes em seus territórios'],
+     audio:'O SINARM, Sistema Nacional de Armas, funciona na Polícia Federal e cadastra todas as armas no país, seus portes, apreensões, furtos e roubos.'},
+    {estagio:'estrutura',titulo:'Registro vs. Porte — Distinção Fundamental',
+     tabela:[{item:'REGISTRO (Art. 3º)',valor:'Obrigatório para qualquer arma. Na PM: no registro próprio da corporação'},{item:'PORTE (Art. 6º)',valor:'Proibido para civis em geral. PMs: podem portar mesmo fora de serviço'},{item:'Uso restrito',valor:'Registro no Comando do Exército (não no SINARM)'},{item:'Aquisição',valor:'Requer autorização do SINARM (uso permitido) ou do Exército (uso restrito)'}],
+     audio:'Registro é obrigatório para qualquer arma. Porte é proibido para civis em geral. Policiais militares podem portar arma de fogo mesmo fora de serviço, conforme o artigo 6º da lei.'},
+    {estagio:'estrutura',titulo:'Art. 6º — Quem Pode Portar Arma',
+     lista:['Integrantes das Forças Armadas (Exército, Marinha, Aeronáutica)','Integrantes dos órgãos de segurança pública do art. 144 CF (PM, PC, PF, PRF, Bombeiros)','Guardas Municipais de municípios com mais de 50.000 hab.','Agentes de segurança pública em exercício','PMs: podem portar arma (própria ou da corporação) mesmo fora de serviço'],
+     audio:'O artigo 6º permite o porte de arma de fogo para as Forças Armadas, os órgãos de segurança pública do artigo 144 da Constituição e as guardas municipais. Policiais militares podem portar mesmo fora de serviço.'},
+    {estagio:'pegadinha',titulo:'SINARM: Polícia Federal (NÃO Polícia Civil)',
+     corpo:'O SINARM é administrado pela POLÍCIA FEDERAL (federal), não pela Polícia Civil (estadual).',
+     tabela:[{item:'SINARM',valor:'Polícia FEDERAL — âmbito nacional'},{item:'Registros PM',valor:'No registro próprio da CORPORAÇÃO'},{item:'Uso restrito',valor:'Registro no COMANDO DO EXÉRCITO (não no SINARM)'},{item:'Porte PF',valor:'Autorizações de PORTE expedidas pela PF'}],
+     alerta:'ERRO CLÁSSICO: vincular o SINARM à Polícia Civil. O SINARM é da POLÍCIA FEDERAL. Armas de uso restrito: registro no COMANDO DO EXÉRCITO, não no SINARM.',
+     audio:'Pegadinha: o SINARM é vinculado à Polícia Federal, não à Polícia Civil. Armas de uso restrito são registradas no Comando do Exército, não no SINARM.'},
+    {estagio:'estrutura',titulo:'Crimes e Penas — Arts. 12, 14 e 16',
+     tabela:[{item:'Art. 12 — Posse irregular',valor:'Manter arma de uso permitido sem registro: 1 a 3 anos + multa'},{item:'Art. 14 — Porte ilegal',valor:'Portar arma de uso permitido sem autorização: 2 a 4 anos + multa'},{item:'Art. 16 — Uso restrito',valor:'Possuir/portar arma de uso restrito: 3 a 6 anos + multa'},{item:'Ação penal',valor:'Pública incondicionada para todos'}],
+     audio:'Os crimes do Estatuto do Desarmamento são: posse irregular com pena de 1 a 3 anos, porte ilegal de 2 a 4 anos e posse ou porte de arma de uso restrito de 3 a 6 anos.'},
+    {estagio:'fixacao',titulo:'Mnemônico: Posse × Porte × Restrita',
+     destaque:'"1-2-3 anos" → Posse | "2-4 anos" → Porte | "3-6 anos" → Uso Restrito',
+     corpo:'Sequência crescente de penas: posse irregular (1-3) → porte ilegal (2-4) → uso restrito (3-6). PM pode portar mesmo fora de serviço. SINARM = PF. Uso restrito = Cmd. Exército.',
+     audio:'Para memorizar as penas: posse irregular, um a três anos; porte ilegal, dois a quatro anos; uso restrito, três a seis anos. As penas sobem conforme a gravidade.'}
+   ],
+   transcricao:{
+    ref:'Lei nº 10.826/2003 — Estatuto do Desarmamento — Arts. 1º, 2º, 3º, 4º, 6º, 12, 14, 16',
+    blocos:[
+     {t:'h',v:'1. SINARM — Arts. 1º e 2º'},
+     {t:'def',label:'Art. 1º — SINARM',v:'O Sistema Nacional de Armas — SINARM, instituído no Ministério da Justiça, no âmbito da Polícia Federal, tem circunscrição em todo o território nacional.'},
+     {t:'p',v:'O SINARM: cadastra armas produzidas, vendidas, importadas; registra portes expedidos pela PF; cadastra apreensões, furtos e roubos. As disposições do SINARM NÃO alcançam as armas das Forças Armadas e Auxiliares (registros próprios).',kw:['SINARM','Polícia Federal','Ministério da Justiça','cadastro','porte','Forças Armadas']},
+     {t:'banca',prob:92,assunto:'O SINARM é vinculado a qual órgão?',resp:'POLÍCIA FEDERAL (âmbito nacional, Ministério da Justiça). NÃO é da Polícia Civil estadual. As armas das Forças Armadas e Auxiliares (PM/BM) têm registros PRÓPRIOS.'},
+     {t:'h',v:'2. Registro e Porte — Arts. 3º e 6º'},
+     {t:'p',v:'Art. 3º: registro OBRIGATÓRIO para toda arma de fogo no órgão competente. Armas de uso restrito: registro no Comando do Exército. Art. 6º: porte proibido a civis; permitido a militares e servidores de segurança pública.',kw:['registro obrigatório','Comando do Exército','uso restrito','porte proibido','civis','militares','segurança pública']},
+     {t:'banca',prob:90,assunto:'PM pode portar arma fora de serviço?',resp:'SIM. Art. 6º §1º: os integrantes dos órgãos referidos (art. 144 CF — inclui PMs) têm direito de portar arma de propriedade particular ou fornecida pela corporação, mesmo FORA DE SERVIÇO.'},
+     {t:'h',v:'3. Crimes e Penas'},
+     {t:'p',v:'Art. 12: posse irregular de arma de uso PERMITIDO (sem registro): 1 a 3 anos + multa. Art. 14: porte ilegal de arma de uso PERMITIDO (sem autorização): 2 a 4 anos + multa. Art. 16: posse/porte de arma de uso RESTRITO: 3 a 6 anos + multa.',kw:['posse irregular','porte ilegal','uso restrito','1 a 3 anos','2 a 4 anos','3 a 6 anos','uso permitido']},
+     {t:'eq',v:'POSSE: 1-3 anos | PORTE: 2-4 anos | RESTRITO: 3-6 anos'},
+     {t:'banca',prob:88,assunto:'Diferença entre posse irregular e porte ilegal?',resp:'POSSE (art. 12): manter a arma no domicílio/trabalho sem registro. PORTE (art. 14): carregar a arma consigo fora do domicílio/trabalho sem autorização. Porte é mais grave (2-4 anos vs 1-3 anos da posse).'},
+     {t:'h',v:'4. Requisitos para Aquisição — Art. 4º'},
+     {t:'p',v:'Para adquirir arma de uso permitido: (I) idoneidade com certidões negativas; (II) ocupação lícita e residência certa; (III) capacidade técnica e aptidão psicológica. SINARM expedirá autorização nominal e intransferível.',kw:['idoneidade','certidões negativas','ocupação lícita','capacidade técnica','aptidão psicológica','autorização intransferível']},
+     {t:'banca',prob:82,assunto:'A autorização de compra do SINARM é transferível?',resp:'NÃO. Art. 4º §1º: a autorização é expedida em nome do REQUERENTE e para a arma INDICADA, sendo intransferível.'}
+    ]
+   },
+   questoes:[
+    {enunciado:'O SINARM (Sistema Nacional de Armas), criado pelo Estatuto do Desarmamento (Lei 10.826/2003), está vinculado:',
+     alternativas:['À Secretaria de Segurança Pública dos estados, no âmbito das Polícias Civis','À Polícia Federal, no Ministério da Justiça, com circunscrição nacional','Ao Comando do Exército, responsável pelo controle de todas as armas','À Polícia Militar de cada estado para controle de armas de uso permitido'],
+     correta:1,
+     explicacao:'Art. 1º Lei 10.826/2003: SINARM instituído no Ministério da Justiça, no âmbito da POLÍCIA FEDERAL, com circunscrição em todo o território nacional.',
+     pegadinha:'Banca vincula o SINARM à Polícia Civil ou às SSPs estaduais. Errado: SINARM = POLÍCIA FEDERAL (federal). Armas de uso restrito: Comando do Exército. São sistemas diferentes.'},
+    {enunciado:'Conforme o art. 6º do Estatuto do Desarmamento, o Policial Militar pode portar arma de fogo:',
+     alternativas:['Apenas durante o serviço, devendo devolver ao término da escala','Apenas com autorização prévia e renovável do SINARM a cada 2 anos','De propriedade particular ou fornecida pela corporação, mesmo FORA DE SERVIÇO','Somente em áreas de risco definidas pelo Governador do Estado'],
+     correta:2,
+     explicacao:'Art. 6º §1º Lei 10.826/2003: os integrantes dos órgãos do art. 144 CF (incluindo PMs) têm direito de portar arma — própria ou da corporação — mesmo FORA DE SERVIÇO.',
+     pegadinha:'A banca restringe o porte do PM ao "período de serviço". Errado: a lei expressamente autoriza o porte FORA DE SERVIÇO para militares e servidores de segurança pública.'},
+    {enunciado:'O crime de PORTE ILEGAL de arma de fogo de uso PERMITIDO (art. 14 da Lei 10.826/2003) tem pena de:',
+     alternativas:['Reclusão de 1 a 3 anos, mais multa','Reclusão de 2 a 4 anos, mais multa','Reclusão de 3 a 6 anos, mais multa','Detenção de 6 meses a 2 anos, mais multa'],
+     correta:1,
+     explicacao:'Art. 14 Lei 10.826/2003: PORTE ILEGAL de arma de uso PERMITIDO = 2 a 4 anos + multa. Posse irregular (art. 12) = 1 a 3 anos. Uso restrito (art. 16) = 3 a 6 anos.',
+     pegadinha:'Confundir porte (2-4 anos) com posse (1-3 anos) ou uso restrito (3-6 anos). Mnemônico: Posse (1-3) → Porte (2-4) → Restrito (3-6). Penas crescentes.'},
+    {enunciado:'Para adquirir arma de fogo de uso permitido, o Estatuto do Desarmamento exige, entre outros requisitos:',
+     alternativas:['Apenas a apresentação de documento de identidade e comprovante de residência','Certidões negativas de antecedentes criminais, ocupação lícita, residência certa e capacidade técnica/aptidão psicológica','Autorização prévia do Governador do Estado e da Secretaria de Segurança Pública','Filiação a clube de tiro credenciado e apresentação de 3 testemunhas idôneas'],
+     correta:1,
+     explicacao:'Art. 4º Lei 10.826/2003: requisitos para aquisição de arma permitida: (I) certidões negativas; (II) ocupação lícita e residência certa; (III) capacidade técnica e aptidão psicológica.',
+     pegadinha:'Banca simplifica os requisitos (ex: "apenas identidade e comprovante"). Os requisitos são específicos e incluem aptidão psicológica e certidões negativas de MÚLTIPLAS justiças.'}
+   ]
+  }
+
+  ] // fim topicos
+}; // fim BLOCO
+
+// ── ESTILOS DE ESTÁGIO ─────────────────────────────────────────
+const EC = {
+  tema:      {cor:'#C7A14A',label:'TEMA'},
+  conceito:  {cor:'#7A8B5E',label:'CONCEITO'},
+  finalidade:{cor:'#6B8CAE',label:'FINALIDADE'},
+  estrutura: {cor:'#6B8CAE',label:'ESTRUTURA'},
+  pegadinha: {cor:'#9C3D3D',label:'⚠ PEGADINHA'},
+  fixacao:   {cor:'#7A8B5E',label:'FIXAÇÃO'},
+};
+
+// ── PERSISTÊNCIA ───────────────────────────────────────────────
+function lerProg(){try{return JSON.parse(localStorage.getItem('eap_b3')||'{}')}catch{return{}}}
+function salProg(p){try{localStorage.setItem('eap_b3',JSON.stringify(p))}catch{}}
+
+// ── HIGHLIGHT ──────────────────────────────────────────────────
+function renderText(texto,kws){
+  if(!kws||!kws.length) return [document.createTextNode(texto)];
+  const parts=[],kw_lower=kws.map(k=>k.toLowerCase());
+  let rem=texto;
+  while(rem.length){
+    let best=null,bestIdx=Infinity;
+    kws.forEach((kw,ki)=>{const idx=rem.toLowerCase().indexOf(kw_lower[ki]);if(idx!==-1&&idx<bestIdx){best=kw;bestIdx=idx;}});
+    if(!best){parts.push(document.createTextNode(rem));break;}
+    if(bestIdx>0) parts.push(document.createTextNode(rem.slice(0,bestIdx)));
+    const mark=document.createElement('kw');mark.textContent=rem.slice(bestIdx,bestIdx+best.length);
+    parts.push(mark);rem=rem.slice(bestIdx+best.length);
+  }
+  return parts;
+}
+
+// ── TTS ────────────────────────────────────────────────────────
+let falando=false,ttsTimer=null;
+function falar(txt){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  if(ttsTimer){clearInterval(ttsTimer);ttsTimer=null;}
+  if(falando){falando=false;renderApp();return;}
+  const u=new SpeechSynthesisUtterance(txt);u.lang='pt-BR';u.rate=0.95;
+  u.onstart=()=>{ttsTimer=setInterval(()=>{window.speechSynthesis.pause();window.speechSynthesis.resume();},10000);};
+  u.onend=()=>{falando=false;if(ttsTimer){clearInterval(ttsTimer);ttsTimer=null;}renderApp();};
+  u.onerror=()=>{falando=false;if(ttsTimer){clearInterval(ttsTimer);ttsTimer=null;}};
+  function doSpeak(){const vs=window.speechSynthesis.getVoices();const pv=vs.find(v=>v.lang.startsWith('pt'));if(pv)u.voice=pv;window.speechSynthesis.speak(u);falando=true;renderApp();}
+  if(window.speechSynthesis.getVoices().length>0)doSpeak();else window.speechSynthesis.onvoiceschanged=doSpeak;
+}
+
+// ── ESTADO ─────────────────────────────────────────────────────
+let state={tela:'trilha',ti:0,si:0,qi:0,resp:null,prog:lerProg(),bancas:{}};
+function setState(upd){
+  const sc=document.querySelector('.scroll');const sp=sc?sc.scrollTop:0;const pt=state.tela;
+  Object.assign(state,upd);
+  if(state.tela!=='slide'){falando=false;window.speechSynthesis&&window.speechSynthesis.cancel();}
+  renderApp();
+  if(state.tela===pt){const sc2=document.querySelector('.scroll');if(sc2)sc2.scrollTop=sp;}
+}
+
+// ── HELPERS ────────────────────────────────────────────────────
+function el(tag,cls,style){const e=document.createElement(tag);if(cls)e.className=cls;if(style)e.style.cssText=style;return e;}
+function div(cls,style){return el('div',cls,style);}
+function span(cls,txt){const e=el('span',cls);if(txt!==undefined)e.textContent=txt;return e;}
+function btn(cls,txt,fn){const b=el('button',cls);b.textContent=txt;b.onclick=fn;return b;}
+
+// ── RENDER PRINCIPAL ───────────────────────────────────────────
+function renderApp(){
+  const app=document.getElementById('app');app.innerHTML='';
+  const {tela,ti,si,qi,resp,prog,bancas}=state;
+  const top=BLOCO.topicos[ti];
+  const sld=top?.slides[si];
+  const qst=top?.questoes[qi];
+  const nS=top?.slides.length||0;
+  const nQ=top?.questoes.length||0;
+  const ok=idx=>!!prog[BLOCO.topicos[idx]?.id];
+  if(tela==='trilha')       renderTrilha(app,ok,prog);
+  else if(tela==='slide')   renderSlide(app,top,sld,si,nS);
+  else if(tela==='transcricao') renderTranscricao(app,top,bancas);
+  else if(tela==='questao') renderQuestao(app,top,qst,qi,nQ,resp);
+  else if(tela==='concluido') renderConcluido(app,top,prog);
+}
+
+// ── TELA TRILHA ────────────────────────────────────────────────
+function renderTrilha(app,ok,prog){
+  const hdr=div('hdr');
+  const row=div('hdr-row');
+  row.appendChild(span('lbl',`${BLOCO.emoji} ${BLOCO.titulo.toUpperCase()}`));
+  row.appendChild(span('lbl',`${Object.keys(prog).length}/${BLOCO.topicos.length} concluídos`));
+  hdr.appendChild(row);
+  const sub=span('lbl','EAP 2026 — 3º Sargento PMMG');sub.style.fontSize='9px';sub.style.color='#7d7a6c';
+  hdr.appendChild(sub);app.appendChild(hdr);
+  const scr=div('scroll');
+  BLOCO.topicos.forEach((top,idx)=>{
+    const done=ok(idx),blk=idx>0&&!ok(idx-1);
+    const card=div('card',`opacity:${blk?.45:1};cursor:${blk?'not-allowed':'pointer'}`);
+    const ic=div('card-ic',`background:${done?'#7A8B5E22':blk?'#ffffff08':'#C7A14A22'}`);
+    ic.style.color=done?'#7A8B5E':blk?'#7d7a6c':'#C7A14A';
+    ic.textContent=blk?'🔒':done?'✓':top.emoji;
+    card.appendChild(ic);
+    const info=div('');
+    const tt=div('card-titulo');tt.style.color=done?'#7A8B5E':blk?'#7d7a6c':'#E8E4D8';tt.textContent=top.titulo;
+    const mt=div('card-meta');mt.textContent=`${top.subtitulo||''} · ${top.slides.length} slides · ${top.questoes.length} questões`;
+    info.appendChild(tt);info.appendChild(mt);card.appendChild(info);
+    if(!blk){const arr=span('','›');arr.style.cssText='color:#7d7a6c;font-size:18px';card.appendChild(arr);}
+    card.onclick=()=>{if(!blk) setState({tela:'slide',ti:idx,si:0,qi:0,resp:null,bancas:{}});};
+    scr.appendChild(card);
+  });
+  app.appendChild(scr);
+  const foot=div('foot');foot.appendChild(span('lbl','← voltar ao início'));foot.style.cursor='pointer';foot.onclick=()=>window.location.href='eap-inicio.html';
+  app.appendChild(foot);
+}
+
+// ── TELA SLIDE ─────────────────────────────────────────────────
+function renderSlide(app,top,sld,si,nS){
+  const cfg=EC[sld.estagio]||EC.estrutura;
+  const hdr=div('hdr');hdr.style.cssText='flex-direction:row;align-items:center;justify-content:space-between;padding:14px 16px 10px;background:#21261b;border-bottom:1px solid #2a2f21;flex-shrink:0;display:flex';
+  hdr.appendChild(btn('btn-back','← Trilha',()=>setState({tela:'trilha'})));
+  const mid=div('','text-align:center');mid.appendChild(span('lbl',top.titulo));hdr.appendChild(mid);
+  hdr.appendChild(span('lbl',`${si+1}/${nS}`));app.appendChild(hdr);
+  const pb=div('prog-bar');
+  top.slides.forEach((_,i)=>{const s=div('prog-seg');s.style.background=i<=si?cfg.cor:'#3a3f2e';pb.appendChild(s);});
+  app.appendChild(pb);
+  const card=div('slide-card');card.style.borderColor=cfg.cor+'44';
+  const tag=div('estagio-tag');tag.textContent=cfg.label;tag.style.background=cfg.cor+'22';tag.style.color=cfg.cor;
+  card.appendChild(tag);
+  const titulo=div('slide-titulo');titulo.textContent=sld.titulo;card.appendChild(titulo);
+  if(sld.corpo){const p=div('slide-corpo');p.textContent=sld.corpo;card.appendChild(p);}
+  if(sld.lista){
+    const ul=el('ul','lista');
+    sld.lista.forEach(item=>{
+      const li=el('li');const bull=span('','›');bull.style.cssText=`color:${cfg.cor};margin-right:8px;flex-shrink:0`;
+      li.appendChild(bull);li.appendChild(document.createTextNode(item));ul.appendChild(li);
+    });
+    card.appendChild(ul);
+  }
+  if(sld.tabela){
+    const tbl=div('tabela');
+    sld.tabela.forEach(row=>{
+      const tr=div('tabela-row');
+      const ti=span('tabela-item',row.item);ti.style.color=cfg.cor;
+      const tv=span('tabela-val',row.valor);
+      tr.appendChild(ti);tr.appendChild(tv);tbl.appendChild(tr);
+    });
+    card.appendChild(tbl);
+  }
+  if(sld.destaque){const d=div('destaque');d.textContent=sld.destaque;d.style.borderColor=cfg.cor;d.style.background=cfg.cor+'11';card.appendChild(d);}
+  if(sld.alerta){const al=div('alerta');const ico=span('','⚠');ico.style.cssText='color:#9C3D3D;flex-shrink:0;font-size:14px';al.appendChild(ico);al.appendChild(document.createTextNode(sld.alerta));card.appendChild(al);}
+  app.appendChild(card);
+  const nav=div('nav');
+  const bk=el('button','btn-nav');bk.innerHTML='&#8249; Anterior';bk.style.opacity=si===0?.3:1;bk.disabled=si===0;bk.onclick=()=>{if(si>0)setState({si:si-1});};
+  const au=el('button','btn-audio');au.innerHTML=falando?'🔇':'🔊';au.onclick=()=>falar(sld.audio||sld.corpo||'');
+  const nx=el('button','btn-primary');
+  if(si<nS-1){nx.innerHTML='Próximo &#8250;';nx.onclick=()=>setState({si:si+1});}
+  else{nx.innerHTML='📄 Ver Manual';nx.onclick=()=>setState({tela:'transcricao',bancas:{}});}
+  nav.appendChild(bk);nav.appendChild(au);nav.appendChild(nx);app.appendChild(nav);
+}
+
+// ── TELA TRANSCRIÇÃO ───────────────────────────────────────────
+function renderTranscricao(app,top,bancas){
+  const tr=top.transcricao;
+  const hdr=div('hdr');hdr.style.cssText='flex-direction:row;align-items:center;justify-content:space-between;padding:14px 16px 10px;background:#21261b;border-bottom:1px solid #2a2f21;flex-shrink:0;display:flex';
+  hdr.appendChild(btn('btn-back','← Slides',()=>setState({tela:'slide'})));
+  const mid=div('','text-align:center');
+  const lbl=span('lbl','📄 TRANSCRIÇÃO');lbl.style.color='#6B8CAE';mid.appendChild(lbl);
+  const ref=document.createElement('div');ref.className='lbl';ref.textContent=tr.ref;ref.style.cssText='font-size:8px;color:#7d7a6c;margin-top:2px';mid.appendChild(ref);
+  hdr.appendChild(mid);hdr.appendChild(div('','width:60px'));app.appendChild(hdr);
+  const scr=div('scroll','');scr.style.gap='0';scr.style.padding='12px 16px';
+  const inner=div('','padding:4px 4px 16px');
+  tr.blocos.forEach((b,i)=>{
+    if(b.t==='h'){const h=div('tr-h');h.textContent=b.v;inner.appendChild(h);}
+    else if(b.t==='p'){const p=div('tr-p');renderText(b.v,b.kw||[]).forEach(n=>p.appendChild(n));inner.appendChild(p);}
+    else if(b.t==='def'){
+      const box=div('tr-def');
+      const lbl=div('tr-def-lbl');lbl.textContent=b.label;
+      const v=div('tr-def-v');v.textContent=b.v;
+      box.appendChild(lbl);box.appendChild(v);inner.appendChild(box);
+    }
+    else if(b.t==='eq'){const eq=div('tr-eq');eq.textContent=b.v;inner.appendChild(eq);}
+    else if(b.t==='banca'){
+      const k=`b${i}`,open=!!bancas[k],cor=b.prob>=90?'#9C3D3D':'#C7A14A';
+      const wrap=div('','margin-bottom:8px');
+      const trigger=el('button','banca-btn');
+      trigger.style.cssText=`background:${cor}18;border:1px solid ${cor}55;border-radius:${open?'8px 8px 0 0':'8px'};`;
+      const left=div('','display:flex;align-items:center;gap:8px');
+      const star=span('','★');star.style.color=cor;
+      const prob=span('',`⚡ ${b.prob}% chance em prova`);prob.style.cssText=`font-family:'IBM Plex Mono',monospace;font-size:10px;color:${cor};font-weight:600`;
+      left.appendChild(star);left.appendChild(prob);
+      const right=div('','display:flex;align-items:center;gap:6px');
+      const ass=span('',b.assunto);ass.style.cssText='font-size:11px;color:#c4c0b2';
+      const arr=span('',open?'▲':'▼');arr.style.color=cor;arr.style.fontSize='10px';
+      right.appendChild(ass);right.appendChild(arr);
+      trigger.appendChild(left);trigger.appendChild(right);
+      trigger.onclick=()=>setState({bancas:{...state.bancas,[k]:!open}});
+      wrap.appendChild(trigger);
+      if(open){const body=div('banca-body');body.style.cssText=`background:${cor}0e;border:1px solid ${cor}33;border-top:none;border-radius:0 0 8px 8px`;body.textContent=b.resp;wrap.appendChild(body);}
+      inner.appendChild(wrap);
+    }
+  });
+  scr.appendChild(inner);app.appendChild(scr);
+  const nav=div('nav');
+  const bk=el('button','btn-nav');bk.innerHTML='&#8249; Slides';bk.onclick=()=>setState({tela:'slide'});
+  const nx=el('button','btn-primary');nx.style.marginLeft='auto';nx.innerHTML='Questões &#8250;';nx.onclick=()=>setState({tela:'questao',qi:0,resp:null});
+  nav.appendChild(bk);nav.appendChild(nx);app.appendChild(nav);
+}
+
+// ── TELA QUESTÃO ───────────────────────────────────────────────
+function renderQuestao(app,top,qst,qi,nQ,resp){
+  const hdr=div('hdr');hdr.style.cssText='flex-direction:row;align-items:center;justify-content:space-between;padding:14px 16px 10px;background:#21261b;border-bottom:1px solid #2a2f21;flex-shrink:0;display:flex';
+  hdr.appendChild(btn('btn-back','← Manual',()=>setState({tela:'transcricao'})));
+  hdr.appendChild(span('lbl',`Questão ${qi+1} de ${nQ}`));app.appendChild(hdr);
+  const scr=div('scroll');const inner=div('','padding:0 4px 8px');
+  const tag=div('estagio-tag');tag.textContent='QUESTÃO DE FIXAÇÃO';
+  tag.style.cssText='display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-family:IBM Plex Mono,monospace;font-weight:500;letter-spacing:1px;background:#6B8CAE22;color:#6B8CAE;margin-bottom:12px';
+  inner.appendChild(tag);
+  const enun=div('','font-size:13px;color:#c4c0b2;line-height:1.65;margin-bottom:16px');enun.textContent=qst.enunciado;inner.appendChild(enun);
+  qst.alternativas.forEach((alt,i)=>{
+    const b=el('button','alt-btn');
+    let bg='#ffffff08',bc='#3a3f2e';
+    if(resp!==null){if(i===qst.correta){bg='#7A8B5E22';bc='#7A8B5E';}else if(i===resp&&resp!==qst.correta){bg='#9C3D3D22';bc='#9C3D3D';}else{bg='#ffffff05';}}
+    b.style.background=bg;b.style.borderColor=bc;b.style.cursor=resp!==null?'default':'pointer';
+    if(resp!==null&&i===qst.correta){const ic=span('','✓');ic.style.cssText='color:#7A8B5E;flex-shrink:0';b.appendChild(ic);}
+    if(resp!==null&&i===resp&&resp!==qst.correta){const ic=span('','✗');ic.style.cssText='color:#9C3D3D;flex-shrink:0';b.appendChild(ic);}
+    b.appendChild(document.createTextNode(alt));
+    b.onclick=()=>{if(resp===null)setState({resp:i});};
+    inner.appendChild(b);
+  });
+  if(resp!==null){
+    const expl=div('expl');expl.innerHTML=`<strong style="color:#7A8B5E">✓ </strong>${qst.explicacao}`;inner.appendChild(expl);
+    const al=div('alerta');al.style.marginBottom='12px';al.innerHTML=`<span style="color:#9C3D3D;flex-shrink:0;margin-right:6px">⚠</span><span><strong style="color:#9C3D3D">Pegadinha: </strong>${qst.pegadinha}</span>`;inner.appendChild(al);
+    const nx=el('button','btn-primary');nx.style.cssText='width:100%;justify-content:center;display:flex;padding:10px 14px;font-size:13px';
+    nx.textContent=qi<nQ-1?'Próxima questão →':'Concluir tópico ✓';
+    nx.onclick=()=>{
+      if(qi<nQ-1) setState({qi:qi+1,resp:null});
+      else{const ti=state.ti,top2=BLOCO.topicos[ti],np={...state.prog,[top2.id]:true};salProg(np);setState({prog:np,tela:'concluido'});}
+    };
+    inner.appendChild(nx);
+  }
+  scr.appendChild(inner);app.appendChild(scr);
+}
+
+// ── TELA CONCLUÍDO ─────────────────────────────────────────────
+function renderConcluido(app,top,prog){
+  const hdr=div('hdr');app.appendChild(hdr);
+  const body=div('','display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:24px;gap:16px;min-height:500px');
+  const em=div('','font-size:48px;text-align:center');em.textContent='🎖';body.appendChild(em);
+  const tt=div('','font-family:Oswald,sans-serif;font-size:22px;color:#C7A14A;text-align:center');tt.textContent='TÓPICO CONCLUÍDO';body.appendChild(tt);
+  const st=div('','font-family:IBM Plex Mono,monospace;font-size:14px;color:#7A8B5E;text-align:center');st.textContent=top.titulo;body.appendChild(st);
+  const n=Object.keys(prog).length,pct=Math.round((n/BLOCO.topicos.length)*100);
+  const pd=div('destaque');pd.style.cssText='border-color:#C7A14A;background:#C7A14A11;text-align:center';pd.innerHTML=`Progresso Bloco 3: <strong style="color:#C7A14A">${n}/${BLOCO.topicos.length} tópicos (${pct}%)</strong>`;body.appendChild(pd);
+  const bk=el('button','btn-primary');bk.style.cssText='width:100%;justify-content:center;display:flex;padding:12px 14px;font-size:14px;margin-top:8px';bk.textContent='Voltar à Trilha';bk.onclick=()=>setState({tela:'trilha'});body.appendChild(bk);
+  app.appendChild(body);
+}
+
+renderApp();
+</script>
+</body>
+</html>

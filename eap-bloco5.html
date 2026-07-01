@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>App EAP 2026 — Simulado 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#111410;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:#3a3f2e;border-radius:2px}
+button{font-family:'Inter',sans-serif}
+.device{width:390px;min-height:760px;background:#1a1d16;border-radius:32px;border:1px solid #3a3f2e;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.6);max-height:95vh}
+.hdr{padding:20px 16px 12px;background:#21261b;border-bottom:1px solid #2a2f21;display:flex;flex-direction:column;gap:4px;flex-shrink:0}
+.hdr-row{display:flex;align-items:center;justify-content:space-between}
+.lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#9a9684;letter-spacing:.5px}
+.scroll{flex:1;overflow-y:auto;padding:16px 16px 72px;display:flex;flex-direction:column;gap:12px;overscroll-behavior:contain}
+.nav{padding:12px 16px;background:#21261b;border-top:1px solid #2a2f21;display:flex;gap:8px;flex-shrink:0}
+.btn-primary{background:#C7A14A;color:#0d0f0b;border:none;border-radius:8px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;letter-spacing:.3px}
+.btn-nav{background:#21261b;color:#c4c0b2;border:1px solid #3a3f2e;border-radius:8px;padding:10px 14px;font-size:12px;cursor:pointer}
+.alt-btn{width:100%;background:#21261b;border:1px solid #2a2f21;border-radius:8px;padding:11px 14px;text-align:left;font-size:12px;color:#c4c0b2;cursor:pointer;line-height:1.5;margin-bottom:6px;display:flex;align-items:flex-start;gap:8px}
+.alt-btn:hover{border-color:#C7A14A44}
+.expl{background:#7A8B5E15;border:1px solid #7A8B5E44;border-radius:8px;padding:12px;font-size:12px;color:#c4c0b2;line-height:1.6}
+.alerta{background:#9C3D3D11;border:1px solid #9C3D3D33;border-radius:8px;padding:10px 12px;font-size:11px;color:#c4c0b2;line-height:1.6;display:flex;gap:8px;align-items:flex-start}
+.bloco-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:9px;font-family:'IBM Plex Mono',monospace;font-weight:600;letter-spacing:.5px}
+.prog-bar{display:flex;gap:2px;padding:0 16px 10px;flex-shrink:0;flex-wrap:wrap}
+.prog-seg{width:8px;height:6px;border-radius:2px;flex-shrink:0}
+.intro-hero{text-align:center;padding:24px 8px 16px}
+.intro-em{font-size:52px;margin-bottom:12px}
+.intro-tt{font-family:'Oswald',sans-serif;font-size:26px;font-weight:600;color:#C7A14A;letter-spacing:1px;margin-bottom:4px}
+.intro-sub{font-size:12px;color:#9a9684;font-family:'IBM Plex Mono',monospace}
+.info-card{background:#21261b;border:1px solid #2a2f21;border-radius:10px;padding:14px}
+.info-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #2a2f2155;font-size:12px;color:#c4c0b2}
+.info-row:last-child{border-bottom:none}
+.result-hero{text-align:center;padding:20px 8px 12px}
+.result-em{font-size:52px;margin-bottom:8px}
+.result-nota{font-family:'Oswald',sans-serif;font-size:40px;font-weight:600;margin-bottom:4px}
+.result-label{font-size:12px;font-family:'IBM Plex Mono',monospace;letter-spacing:1px;margin-bottom:16px}
+.result-card{background:#21261b;border:1px solid #2a2f21;border-radius:10px;padding:14px;margin-bottom:8px}
+.result-bloco{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid #2a2f2155;font-size:12px;color:#c4c0b2}
+.result-bloco:last-child{border-bottom:none}
+.mini-bar-bg{flex:1;height:6px;background:#2a2f21;border-radius:3px;overflow:hidden}
+.mini-bar-fill{height:100%;border-radius:3px}
+</style>
+</head>
+<body>
+<div class="device" id="app"></div>
+<script>
+// ── SIMULADO 2 — BANCO ALTERNATIVO DE QUESTÕES ─────────────────
+const Q = [
+// ─── BLOCO 1 — DOUTRINA OPERACIONAL (20) ─────────────────────
+{b:1,e:'Em um incidente crítico, as alternativas táticas de resolução são, em ordem crescente de risco:',
+ a:['Negociação → IMPO → Sniper → Adentramento Tático (Assault)','Assault → Sniper → IMPO → Negociação','Sniper → Negociação → IMPO → Assault','IMPO → Negociação → Assault → Sniper'],c:0,
+ x:'Ordem crescente de risco: Negociação (menor) → IMPO → Sniper → Assault (maior risco para maior número de policiais).',
+ g:"A banca inverte a ordem ou coloca 'Assault' como o de menor risco."},
+
+{b:1,e:'Exigências NÃO NEGOCIÁVEIS durante o processo de negociação em crise, conforme a Instrução nº 3.03.28/2020-CG, incluem:',
+ a:['Libertação de um refém em troca de comida e água','Garantia de fuga ao perpetrador mediante saída segura','Armas e drogas','Troca de reféns por negociador reconhecido'],c:2,
+ x:'Armas e drogas são exigências NÃO NEGOCIÁVEIS. Comida, água e medicação podem ser negociadas estrategicamente.',
+ g:"A banca inclui 'saída segura' como não negociável. Na verdade é negociável como subterfúgio tático."},
+
+{b:1,e:'Conforme a Resolução nº 4.745/2018-CG, quando o autor da infração MPO recusa o compromisso de comparecer em juízo, o PM deve:',
+ a:['Lavrar o REDS-TC e liberar o autor com notificação postal','Lavrar o REDS imediatamente e conduzir o autor preso em flagrante à autoridade policial civil','Registrar BO convencional e encaminhar ao MP diretamente','Aguardar determinação do JECrim por telefone antes de agir'],c:1,
+ x:'Sem compromisso = sem TCO. REDS lavrado e autor conduzido PRESO EM FLAGRANTE à autoridade policial civil.',
+ g:"Confundir 'liberar com notificação' com a regra. Recusa = flagrante."},
+
+{b:1,e:'A "Condição de Alerta" amarela, conforme o MTP 01, caracteriza-se por:',
+ a:['Estado de relaxamento total, sem preocupações com segurança','Estado de atenção difusa, sem alvo definido, adequado ao patrulhamento ordinário','Estado de atenção focada em pessoa ou situação específica suspeita','Estado de prontidão imediata com arma apontada para ameaça identificada'],c:1,
+ x:'Amarelo: atenção difusa, sem alvo definido. É o estado ideal para o patrulhamento. Branco = relaxado (perigoso).',
+ g:"A banca troca amarelo com laranja. Laranja = atenção FOCADA. Amarelo = atenção DIFUSA."},
+
+{b:1,e:'Conforme o MTP 02 (Abordagem Policial), sobre o uso de algemas e a Súmula Vinculante nº 11 do STF:',
+ a:['O uso é discricionário e depende apenas da avaliação do PM','As algemas só podem ser usadas após voz de prisão em flagrante','O uso é permitido quando há fundada suspeita de perigo, resistência ou tentativa de fuga, com necessidade de fundamentação','O uso é proibido em menores de idade e idosos acima de 70 anos em qualquer situação'],c:2,
+ x:'SV 11: algemas quando há fundada suspeita de perigo à integridade física, resistência ou fuga. Exige fundamentação (anotação no BO).',
+ g:"A banca omite a necessidade de 'fundada suspeita' ou de fundamentação, tornando o uso puramente discricionário."},
+
+{b:1,e:'Na fiscalização de alcoolemia em blitz policial, o limite a partir do qual a conduta configura INFRAÇÃO ADMINISTRATIVA (art. 165 do CTB), mas ainda NÃO crime, é:',
+ a:['0,05 decigramas de álcool por litro de sangue','0,33 miligramas de álcool por litro de ar alveolar expirado','0,3 decigramas de álcool por litro de sangue','Qualquer concentração detectável no etilômetro'],c:0,
+ x:'Infração (art. 165 CTB): ≥ 0,05 dg/L sangue (ou 0,1 mg/L ar). Crime (art. 306 CTB): ≥ 0,6 dg/L ou 0,33 mg/L ar.',
+ g:"Confundir o limite da infração administrativa (0,05 dg/L) com o do crime (0,33 mg/L ar / 0,6 dg/L sangue)."},
+
+{b:1,e:'Conforme o MTP 04 (Busca Veicular), a ordem correta para a busca de um veículo é:',
+ a:['Interior → Porta-malas → Motor → Exterior','Exterior → Motor → Interior → Porta-malas','Motor → Exterior → Porta-malas → Interior','Exterior → Interior → Motor → Porta-malas'],c:1,
+ x:'MTP04: Exterior → Motor → Interior → Porta-malas. Exterior primeiro para verificar indícios visíveis.',
+ g:"A banca inverte a ordem ou coloca 'porta-malas' como primeiro passo."},
+
+{b:1,e:'Conforme o MTP 03 (Blitz Policial), o policial responsável por SELECIONAR os veículos a serem submetidos à abordagem é denominado:',
+ a:['Vistoriador','Segurança','Selecionador','Sinalizador'],c:2,
+ x:'MTP03: o Selecionador escolhe os veículos. O Vistoriador faz a abordagem/busca. O Segurança protege a equipe.',
+ g:"Confundir 'Selecionador' com 'Vistoriador' — funções distintas e cobradas separadamente."},
+
+{b:1,e:'De acordo com o Memorando nº 30.070.2/2024-EMPM, sobre a pesagem de cannabis apreendida, é correto afirmar:',
+ a:['A pesagem é obrigatória para classificar o porte como uso ou tráfico','A pesagem é recomendada quando a quantidade aparenta superar 40g','A pesagem NÃO é obrigatória; as circunstâncias do caso definem a natureza','A pesagem é obrigatória apenas quando há suspeita de tráfico'],c:2,
+ x:'A pesagem NÃO é obrigatória. As circunstâncias do caso concreto (não apenas o peso) definem uso ou tráfico.',
+ g:"A banca usa 'obrigatória' + limite de peso para definir uso x tráfico. O memorando é claro: circunstâncias do caso."},
+
+{b:1,e:'Um adolescente de 16 anos é abordado portando maconha. Conforme o POP nº 1.8.0.049, a conduta correta é:',
+ a:['Lavrar REDS-TC Natureza I 99.000 e encaminhar ao JECrim','Lavrar BO Natureza I 99.000 e encaminhar ao MP/Vara da Infância e Juventude','Lavrar TCO Natureza I 04.028 (principal) + I 99.000 (secundária)','Liberar com advertência por ser menor de idade'],c:1,
+ x:'Adolescente: BO I 99.000 → MP/Vara da Infância e Juventude. Não é JECrim (que é para adultos).',
+ g:"Confundir o encaminhamento do adolescente (Vara da Infância) com o do adulto (JECrim)."},
+
+{b:1,e:'A Instrução nº 3.03.24/2018-CG distingue REFÉM de VÍTIMA. No contexto de incidente crítico SEM vínculo emocional, a pessoa mantida contra a vontade é:',
+ a:['Vítima, pois sofre dano físico direto','Refém, pois é usada como instrumento de barganha para exigências de terceiros','Testemunha qualificada, com proteção especial','Sequestrado, com tratamento diferente do refém'],c:1,
+ x:'SEM vínculo emocional = REFÉM (usado para barganha com terceiros). COM vínculo = VÍTIMA (perpetrador quer atingi-la).',
+ g:"Inverter: sem vínculo → refém. Com vínculo → vítima."},
+
+{b:1,e:'Conforme a Resolução nº 5.383/2024 (Diretriz de Segurança), o mnemônico "SPC NÃO!" representa:',
+ a:['Segurança, Precisão, Comunicação, Não Banalização','Segurança, Proatividade, Cooperação, Não Banalização','Segurança, Prudência, Correção, Não Banalização','Segurança, Proatividade, Correção, Não Banalização'],c:1,
+ x:'SPC NÃO! = Segurança + Proatividade + Cooperação + Não Banalização.',
+ g:"A banca troca 'Cooperação' por 'Comunicação' ou 'Correção', e 'Proatividade' por 'Precisão'."},
+
+{b:1,e:'Conforme o MTP 01, qual é a fundamentação que justifica o uso progressivo da força pelo PM?',
+ a:['O princípio da proporcionalidade isolado — a força deve ser proporcional à ameaça','Os princípios da legalidade, necessidade, proporcionalidade, moderação e conveniência','Os princípios da autoridade e hierarquia policial — o PM determina e o cidadão obedece','Apenas a legalidade — se a lei permite, o PM pode usar a força a seu critério'],c:1,
+ x:'MTP01: uso da força se fundamenta em: legalidade, necessidade, proporcionalidade, moderação e conveniência.',
+ g:"A banca isola a 'proporcionalidade' como único princípio, omitindo necessidade, moderação e conveniência."},
+
+{b:1,e:'Sobre o Relatório A3 no ciclo da GDO (Instrução nº 8007.2/2023-CG), ele é utilizado quando:',
+ a:['Os indicadores atingem metas e há necessidade de análise de boas práticas','Um indicador fica abaixo da meta e exige análise de causa e plano de ação','A unidade solicita transferência de recursos orçamentários','O Cmt da UEOp apresenta plano anual de policiamento'],c:1,
+ x:'Relatório A3: usado quando indicador fica ABAIXO da meta para análise de causa-raiz e definição de plano de ação corretivo.',
+ g:"Confundir A3 com relatório de boas práticas. A3 = problema → análise → ação corretiva."},
+
+{b:1,e:'Conforme a Instrução nº 3.03.24/2018-CG, o Posto de Comando em um incidente crítico fica localizado em qual perímetro?',
+ a:['Perímetro Tático Imediato (Zona Vermelha)','Perímetro Tático Mediato (Zona Amarela)','Fora de qualquer perímetro tático, em local de livre acesso','Perímetro de controle externo (Zona Verde)'],c:1,
+ x:'Posto de Comando: fica no Perímetro Tático MEDIATO (Zona Amarela). Zona Vermelha = só BOPE/perpetrador. Verde = externo.',
+ g:"Confundir Posto de Comando com Zona Vermelha. O PC fica na Zona AMARELA (mediato)."},
+
+{b:1,e:'Conforme os fundamentos do MTP 01, o PM que atua em estado de atenção "BRANCO" durante o patrulhamento:',
+ a:['Está no estado ideal de vigilância para o patrulhamento preventivo','Está em condição segura pois não há ameaça identificada no local','Está em condição de perigo, pois não percebe o ambiente ao redor','Está em estado de ação imediata aguardando disparo de arma'],c:2,
+ x:'Branco = relaxado, sem preocupação — condição PERIGOSA para o policial. O ideal é o Amarelo (atenção difusa).',
+ g:"A banca coloca Branco como 'seguro' por não haver ameaça. ERRADO: Branco é perigoso porque torna o PM vulnerável."},
+
+{b:1,e:'O REDS-TC pode ser lavrado sem documento de identificação do autor, conforme a Resolução nº 4.745/2018-CG, quando:',
+ a:['O autor possui ficha criminal conhecida pelos PMs','Os dados de identificação são confirmados nos sistemas de informações policiais','A vítima reconhece e confirma a identidade do autor','Há 2 testemunhas que conhecem e confirmam o autor'],c:1,
+ x:'Sem documento: pode lavrar SE os dados forem confirmados nos SISTEMAS DE INFORMAÇÕES POLICIAIS disponíveis.',
+ g:"A banca oferece 'reconhecimento pela vítima' ou 'testemunhas'. O critério legal é: sistemas de informações."},
+
+{b:1,e:'A Instrução nº 3.03.24/2018-CG define as 3 características de um incidente crítico. Uma delas é a "compressão do tempo", que significa:',
+ a:['O incidente dura poucos minutos e exige resolução imediata','O incidente exige decisões operacionais complexas em curto espaço de tempo','O tempo de resposta das equipes especializadas é inferior a 5 minutos','O horário de pico do incidente é previsível e pode ser antecipado'],c:1,
+ x:'Compressão do tempo: exige DECISÕES OPERACIONAIS COMPLEXAS em CURTO ESPAÇO DE TEMPO. Não significa que dura pouco.',
+ g:"Confundir 'compressão do tempo' com 'incidente de curta duração'. O foco é na complexidade das decisões, não na duração."},
+
+{b:1,e:'Segundo a Diretriz de Segurança para Emprego Operacional (Res. 5.383/2024), o pilar "Treinamento" (T do TCC):',
+ a:['É responsabilidade exclusiva dos Comandantes de Cia no nível de fração','As UEOp são as principais responsáveis pela execução do treinamento em segurança','A APM desempenha papel fundamental no pilar Treinamento','Restringe-se ao uso de armamento e equipamento de proteção'],c:2,
+ x:'APM tem papel fundamental no pilar TREINAMENTO do TCC. As UEOp e os Cmts complementam, mas a APM lidera.',
+ g:"A banca coloca 'UEOp' como principal responsável pelo treinamento em segurança."},
+
+{b:1,e:'Conforme o MTP 04, ao abrir o porta-malas de um veículo suspeito de conter pessoa escondida, o PM Vistoriador deve adotar qual posição de arma de fogo?',
+ a:['Arma guardada no coldre para não intimidar o possível ocupante','Arma em posição de guarda-baixa (apontada para baixo)','Arma em posição de prontidão elevada (guardada junto ao tórax)','Arma em posição 45° apontada para o porta-malas ainda fechado'],c:2,
+ x:'MTP04: ao abrir porta-malas suspeito — arma em posição de PRONTIDÃO ELEVADA (guardada junto ao tórax), sem apontar.',
+ g:"A banca oferece 'apontada para o porta-malas' como resposta intuitiva. A posição correta é prontidão elevada (não apontar ainda)."},
+
+// ─── BLOCO 2 — LEGISLAÇÃO INSTITUCIONAL (10) ─────────────────
+{b:2,e:'O Quadro de Saúde da PMMG, conforme a Lei 5.301/1969, diferencia-se dos demais quadros pois:',
+ a:['Exige nível médio e dispensa aptidão física','Não exige idoneidade moral comprovada','Admite candidatos até 35 anos e dispensa a estatura mínima de 1,60m','Exige estatura mínima de 1,70m'],c:2,
+ x:'Quadro de Saúde: idade até 35 anos (não 30) e sem exigência de estatura mínima de 1,60m. Exige graduação na área.',
+ g:"Confundir com 'exige nível médio'. O Quadro de Saúde exige GRADUAÇÃO em área compatível."},
+
+{b:2,e:'O prazo do PADS (PAD Simplificado), conforme o MAPPA, é:',
+ a:['30 dias corridos prorrogáveis por 10','15 dias corridos prorrogáveis por 10','20 dias corridos prorrogáveis por 10','40 dias corridos prorrogáveis por 20'],c:2,
+ x:'PADS: 20 dias + 10 prorrogação. É metade do PAD (40+20). PAE e SAD: 30+10. RIP e PCD: 15+10.',
+ g:'Confundir PADS (20+10) com RIP/PCD (15+10) ou SAD (30+10).'},
+
+{b:2,e:'Conforme o CEDM (Lei 14.310/2002), o cancelamento automático de punições disciplinares ocorre após:',
+ a:['3 anos de efetivo exercício após cada punição','5 anos de efetivo exercício após a ÚLTIMA punição, sem novas punições','10 anos de serviço ativo, independente de novas punições','2 anos após a sanção, mediante revisão administrativa'],c:1,
+ x:'5 anos após a ÚLTIMA punição sem novas infrações = cancelamento automático de TODAS as punições anteriores.',
+ g:'O prazo é da ÚLTIMA punição (não de cada uma). "3 anos" e "10 anos" são distratores comuns.'},
+
+{b:2,e:'Conforme a ICC PM/BM 01/2014, quando o mesmo militar pratica transgressões em dias SUBSEQUENTES (faltas em dias seguidos), elas são classificadas como:',
+ a:['Transgressões conexas, formando nexo causal pela continuidade','Transgressões simultâneas, tratadas como uma única','Transgressões autônomas, cada uma apurada independentemente','Transgressão grave de natureza continuada'],c:2,
+ x:'Faltas subsequentes = AUTÔNOMAS. Não formam conexidade (que exige nexo causal, não mera sucessão temporal).',
+ g:"A banca enquadra como 'conexas' por serem sequenciais. Conexidade exige nexo causal, não apenas sucessão no tempo."},
+
+{b:2,e:'O Auxiliar do Gestor de Frota da Unidade, conforme o Manual de Frota (Res. 5.142/2021), pode ser:',
+ a:['Somente praça graduada com estabilidade','Somente oficial subalterno','Praça ou funcionário administrativo civil','Somente sargento com função administrativa'],c:2,
+ x:'O auxiliar pode ser PRAÇA OU funcionário administrativo civil. Não é exclusividade de militar.',
+ g:"A banca restringe a 'somente praça' ou 'somente sargento'. O manual admite funcionário civil."},
+
+{b:2,e:'O imóvel no qual a unidade da PMMG deve ser instalada, conforme o Manual de Imóveis (Res. 5.139/2021):',
+ a:['Obrigatoriamente deve ser imóvel próprio do Estado','Preferencialmente deve ser imóvel próprio, mas pode ser de terceiros ou locado','Deve ser imóvel locado de empresa certificada pela SEPLAG','Deve ser imóvel próprio, vedada qualquer forma de locação'],c:1,
+ x:"As unidades devem ser instaladas PREFERENCIALMENTE em imóveis próprios. 'Preferencialmente' ≠ 'obrigatoriamente'.",
+ g:"A banca troca 'preferencialmente' por 'obrigatoriamente'. Distinção sutil e muito cobrada."},
+
+{b:2,e:'Conforme o Plano Estratégico PMMG 2024-2027, o 3º Sargento atua predominantemente em qual nível organizacional?',
+ a:['Estratégico — define objetivos e rumos da organização','Tático — traduz estratégia em planos intermediários','Operacional — executa as atividades-fim','Político-institucional — representa a PMMG perante outras instituições'],c:2,
+ x:'3º Sargento: nível OPERACIONAL (execução). CG = estratégico. RPM/BPM = tático.',
+ g:"A banca oferece 'tático' como resposta por parecer intermediário. O 3º Sgt está no nível operacional (execução)."},
+
+{b:2,e:'No crime doloso contra a vida de civil praticado por militar, conforme o Manual de PJ e a CF/88:',
+ a:['A Justiça Militar investiga e julga por ser crime militar','Somente a Justiça Comum investiga e julga','A APJM (Polícia Judiciária Militar) investiga; o julgamento é do Tribunal do Júri','A Justiça Militar julga em 1ª instância e o Júri revisa em 2ª'],c:2,
+ x:'APJM INVESTIGA o crime. JULGAMENTO: Tribunal do Júri (Justiça Comum). Investigação ≠ Julgamento.',
+ g:"Confundir 'investigar' com 'julgar'. A PJ Militar investiga, mas o julgamento é do Júri."},
+
+{b:2,e:'Conforme o Ofício 671.1.1/2023-CPM, quando o sindicado invoca o direito ao silêncio de forma TOTAL no SAD:',
+ a:['O sindicante encerra o SAD e arquiva a sindicância','O sindicante registra a invocação e continua o SAD sem tomar as declarações','O sindicante pode intimar o sindicado a depor sob pena de condução coercitiva','O SAD é automaticamente convertido em PAD pela invocação do silêncio'],c:1,
+ x:'Silêncio total: o sindicante REGISTRA a invocação e CONTINUA o SAD com os demais meios de prova.',
+ g:"A banca afirma que o silêncio total encerra o SAD ou converte em PAD. ERRADO: o SAD continua sem as declarações."},
+
+{b:2,e:'O TVR (Termo de Vinculação e Responsabilidade), conforme o Manual de Imóveis, é o instrumento pelo qual:',
+ a:['A PMMG autoriza o uso de viaturas por policiais na reserva remunerada','A SEPLAG vincula formalmente o uso de um imóvel à PMMG','O Cmt da UEOp faz a cessão de imóvel a terceiros por tempo determinado','O PM responsável pelo imóvel assume a guarda mediante termo de compromisso'],c:1,
+ x:'TVR: instrumento firmado pela SEPLAG que vincula formalmente o uso do imóvel à PMMG.',
+ g:"Confundir TVR (imóvel) com termos de responsabilidade de armamento ou viaturas."},
+
+// ─── BLOCO 3 — LEGISLAÇÃO JURÍDICA (10) ─────────────────────
+{b:3,e:'Sobre a LEGÍTIMA DEFESA (art. 25 CP), para que o PM possa invocá-la é necessário que a agressão seja:',
+ a:['Futura e previsível, permitindo preparação da defesa com antecedência','Injusta, atual ou iminente, repelida com meios necessários e moderados','Qualquer agressão, mesmo as provocadas, se houver risco de vida','Apenas injusta, sem necessidade de proporcionalidade nos meios'],c:1,
+ x:'Art. 25 CP: agressão INJUSTA + ATUAL ou IMINENTE + meios NECESSÁRIOS e MODERADOS + direito próprio ou alheio.',
+ g:"A banca omite 'moderação' dos meios ou admite 'agressão futura'. Ambos tornam a alternativa errada."},
+
+{b:3,e:'O servidor que causa prejuízo ao erário POR IMPRUDÊNCIA (culpa) ao gerir contratos públicos, após a Lei 14.230/2021:',
+ a:['Pratica ato de improbidade do art. 10 LIA','Pratica ato de improbidade do art. 11 LIA','Pode responder civilmente pelo dano, mas NÃO por improbidade administrativa','Pratica crime de peculato culposo previsto no CP'],c:2,
+ x:'Após 2021: culpa NÃO configura improbidade. O servidor responde civilmente pelo dano, mas não por LIA.',
+ g:"A banca ainda usa a redação antiga do art. 10 (que admitia culpa). Após 2021: só DOLO DIRETO."},
+
+{b:3,e:'A modalidade de licitação DIÁLOGO COMPETITIVO, prevista na Lei 14.133/2021 (NLCC), é utilizada quando:',
+ a:['A Administração precisa adquirir bens comuns de qualquer valor estimado','A Administração precisa alienar imóveis públicos','A Administração busca solução inovadora e dialoga com licitantes para desenvolvê-la','A Administração contrata obras e serviços de médio porte'],c:2,
+ x:'Diálogo Competitivo: para soluções INOVADORAS desenvolvidas em diálogo com o setor privado. Novidade da NLCC.',
+ g:"A banca oferece 'obras de médio porte' (Concorrência) ou 'alienação' (Leilão). O Diálogo é específico para inovação."},
+
+{b:3,e:'Após a reforma da LIA (Lei 14.230/2021), a legitimidade para propor a ação de improbidade administrativa é:',
+ a:['Do MP e das pessoas jurídicas prejudicadas, conjuntamente','Exclusivamente do Ministério Público','Do ofendido, por ação privada','Do Estado, pela AGU ou Procuradoria do Estado'],c:1,
+ x:'Art. 17 LIA pós-2021: legitimidade EXCLUSIVA do MP. Pessoas jurídicas prejudicadas perderam a legitimidade ativa.',
+ g:"A banca mantém a redação antiga que permitia ação da pessoa jurídica prejudicada. Após 2021: só o MP."},
+
+{b:3,e:'Conforme o art. 4º da NLCC (Lei 14.133/2021), as fases do processo licitatório ocorrem na seguinte ordem:',
+ a:['Habilitação → Apresentação de propostas → Julgamento → Recursal → Homologação','Preparatória → Divulgação → Apresentação → Julgamento → Habilitação → Recursal → Homologação','Divulgação → Habilitação → Julgamento → Adjudicação → Homologação','Julgamento → Habilitação → Homologação → Adjudicação → Publicação'],c:1,
+ x:'NLCC: Preparatória→Divulgação→Apresentação→Julgamento→Habilitação→Recursal→Homologação. Habilitação vem APÓS julgamento.',
+ g:"Confundir com a lei 8.666 (habilitação antes do julgamento). Na NLCC, a ordem é INVERTIDA: julgamento primeiro."},
+
+{b:3,e:'Conforme o Estatuto do Desarmamento (Lei 10.826/2003), a posse IRREGULAR de arma de fogo de uso PERMITIDO (art. 12) tem pena de:',
+ a:['Reclusão de 2 a 4 anos, mais multa','Reclusão de 3 a 6 anos, mais multa','Reclusão de 1 a 3 anos, mais multa','Detenção de 6 meses a 1 ano, mais multa'],c:2,
+ x:'Art. 12 (posse): 1 a 3 anos. Art. 14 (porte): 2 a 4 anos. Art. 16 (restrito): 3 a 6 anos.',
+ g:"Confundir posse (art. 12 = 1-3) com porte (art. 14 = 2-4). A posse tem pena MENOR que o porte."},
+
+{b:3,e:'O art. 37 §4º da CF/88 prevê sanções para atos de improbidade. A suspensão dos direitos políticos é uma dessas sanções. Qual alternativa descreve CORRETAMENTE outra sanção prevista no mesmo parágrafo?',
+ a:['Pena privativa de liberdade de 1 a 8 anos','Perda da função pública','Cancelamento da aposentadoria remunerada','Proibição de contratar com particulares'],c:1,
+ x:'Art. 37 §4º CF: RISP = Ressarcimento + Inabilitação (para cargo) + Suspensão (pol.) + Perda (função). SEM prisão.',
+ g:"A banca inclui 'prisão' ou 'cancelamento de aposentadoria'. O rol do §4º é taxativo e não inclui esses."},
+
+{b:3,e:'Conforme o art. 5º, XII da CF/88, o sigilo das comunicações telefônicas pode ser quebrado:',
+ a:['Por decisão do delegado de polícia, nos casos de inquérito policial em andamento','Por decisão judicial, nas hipóteses e na forma que a lei estabelecer para fins de investigação criminal ou instrução processual penal','Por ordem do Ministério Público, quando houver indícios de crime organizado','Por autorização do superior hierárquico do militar investigado'],c:1,
+ x:'Art. 5º XII CF: sigilo das comunicações telefônicas pode ser quebrado por ORDEM JUDICIAL, nas hipóteses e forma previstas em lei.',
+ g:"A banca oferece 'decisão do delegado' ou 'MP' como alternativa. Apenas o JUIZ pode autorizar a quebra do sigilo telefônico."},
+
+{b:3,e:'Conforme o art. 5º da LINDB, na aplicação da lei, o juiz deve atender:',
+ a:['À literalidade da lei, vedada interpretação extensiva','Aos fins sociais a que ela se dirige e às exigências do bem comum','À vontade histórica do legislador manifestada nos anais do Congresso','Aos precedentes obrigatórios do STF e STJ exclusivamente'],c:1,
+ x:'Art. 5º LINDB: "na aplicação da lei, o juiz atenderá aos fins sociais a que ela se dirige e às exigências do bem comum."',
+ g:"Confundir art. 5º LINDB (fins sociais) com art. 4º LINDB (omissão legal: analogia, costumes, princípios). São artigos distintos."},
+
+{b:3,e:'Conforme a Lei nº 13.869/2019 (Lei de Abuso de Autoridade), os crimes nela tipificados:',
+ a:['Podem ser praticados por qualquer pessoa, desde que abuse de autoridade pública ou privada','São praticados somente por agentes públicos no exercício de função','Exigem dolo específico de prejudicar outrem ou beneficiar a si mesmo ou a terceiro','Não admitem tentativa pois são crimes omissivos próprios'],c:2,
+ x:'Lei 13.869: crimes de abuso de autoridade exigem DOLO ESPECÍFICO — finalidade de prejudicar, beneficiar a si ou a terceiro.',
+ g:"A banca omite o 'dolo específico'. Sem a finalidade específica, a conduta não configura abuso de autoridade."}
+];
+
+// ── ESTADO ─────────────────────────────────────────────────────
+const KEY='eap_sim2';
+function lerSim(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch{return{}}}
+function salSim(d){try{localStorage.setItem(KEY,JSON.stringify(d))}catch{}}
+
+let state={tela:'intro',qi:0,resps:{},sim:lerSim()};
+function setState(u){Object.assign(state,u);renderApp();}
+
+function el(t,c,s){const e=document.createElement(t);if(c)e.className=c;if(s)e.style.cssText=s;return e;}
+function div(c,s){return el('div',c,s);}
+function span(c,t){const e=el('span',c);if(t!==undefined)e.textContent=t;return e;}
+function btn(c,t,f){const b=el('button',c);b.textContent=t;b.onclick=f;return b;}
+function blocoInfo(b){
+  if(b===1) return {label:'DOUTRINA',cor:'#C7A14A'};
+  if(b===2) return {label:'LEG. INST.',cor:'#7A8B5E'};
+  return {label:'LEG. JUR.',cor:'#6B8CAE'};
+}
+
+function renderApp(){
+  const app=document.getElementById('app');app.innerHTML='';
+  if(state.tela==='intro')    renderIntro(app);
+  else if(state.tela==='questao') renderQuestao(app);
+  else renderResultado(app);
+}
+
+function renderIntro(app){
+  const hdr=div('hdr');const r=div('hdr-row');
+  r.appendChild(span('lbl','🎯 SIMULADO 2 — EAP 2026'));r.appendChild(span('lbl','Bloco 5'));
+  hdr.appendChild(r);app.appendChild(hdr);
+  const scr=div('scroll');
+  const hero=div('intro-hero');
+  const em=div('intro-em');em.textContent='📝';hero.appendChild(em);
+  const tt=div('intro-tt');tt.textContent='SIMULADO 2';hero.appendChild(tt);
+  const sub=div('intro-sub');sub.textContent='BANCO ALTERNATIVO — EAP 2026';hero.appendChild(sub);
+  scr.appendChild(hero);
+  const card=div('info-card');
+  [['Total','40 questões'],['🟡 Doutrina','20 questões (50%)'],['🟢 Leg. Inst.','10 questões (25%)'],['🔵 Leg. Jur.','10 questões (25%)'],['✅ Aprovação','24/40 (60%)']]
+  .forEach(([k,v])=>{
+    const row=div('info-row');row.appendChild(span('',k));
+    const sv=span('');sv.textContent=v;sv.style.cssText='color:#C7A14A;font-family:IBM Plex Mono,monospace;font-size:11px;font-weight:600';
+    row.appendChild(sv);card.appendChild(row);
+  });
+  scr.appendChild(card);
+  const sim=state.sim;
+  if(sim.resps&&Object.keys(sim.resps).length>0&&!sim.concluido){
+    const a=div('info-card','margin-top:8px');a.style.borderColor='#C7A14A44';
+    const rr=div('info-row');rr.innerHTML=`<span style="color:#C7A14A">⚡ Em andamento</span><span style="color:#9a9684;font-size:11px">${Object.keys(sim.resps).length}/40</span>`;
+    a.appendChild(rr);scr.appendChild(a);
+  }
+  app.appendChild(scr);
+  const nav=div('nav');
+  const rHome=btn('btn-nav','🏠',()=>window.location.href='eap-inicio.html');nav.appendChild(rHome);
+  if(sim.resps&&Object.keys(sim.resps).length>0&&!sim.concluido){
+    nav.appendChild(btn('btn-nav','↺ Nova',()=>{salSim({});setState({tela:'intro',qi:0,resps:{},sim:{}});}));
+    nav.appendChild(btn('btn-primary','Continuar →',()=>{
+      setState({tela:'questao',qi:Object.keys(sim.resps).length,resps:sim.resps||{},sim});
+    }));
+  } else {
+    const rs=btn('btn-primary','Iniciar Simulado 2 →',()=>{
+      salSim({resps:{},concluido:false});setState({tela:'questao',qi:0,resps:{},sim:{resps:{}}});
+    });rs.style.flex='1';rs.style.justifyContent='center';rs.style.display='flex';nav.appendChild(rs);
+  }
+  app.appendChild(nav);
+}
+
+function renderQuestao(app){
+  const {qi,resps}=state;const qst=Q[qi];const bi=blocoInfo(qst.b);const resp=resps[qi]??null;
+  const hdr=div('hdr');hdr.style.cssText='flex-direction:row;align-items:center;justify-content:space-between;padding:14px 16px 10px;background:#21261b;border-bottom:1px solid #2a2f21;flex-shrink:0;display:flex';
+  const badge=el('span','bloco-badge');badge.textContent=bi.label;badge.style.cssText=`background:${bi.cor}22;color:${bi.cor};border:1px solid ${bi.cor}44`;
+  hdr.appendChild(badge);hdr.appendChild(span('lbl',`${qi+1} / ${Q.length}`));app.appendChild(hdr);
+  const pb=div('prog-bar');
+  Q.forEach((_,i)=>{const s=div('prog-seg');const r=resps[i];s.style.background=r===undefined?'#2a2f21':r===Q[i].c?'#7A8B5E':'#9C3D3D';pb.appendChild(s);});
+  app.appendChild(pb);
+  const scr=div('scroll');const inner=div('','padding:0 4px 8px');
+  const num=div('','font-family:IBM Plex Mono,monospace;font-size:10px;color:#7d7a6c;margin-bottom:10px');num.textContent=`QUESTÃO ${qi+1}`;inner.appendChild(num);
+  const enun=div('','font-size:13px;color:#c4c0b2;line-height:1.65;margin-bottom:14px');enun.textContent=qst.e;inner.appendChild(enun);
+  qst.a.forEach((alt,i)=>{
+    const b=el('button','alt-btn');let bg='#ffffff08',bc='#3a3f2e';
+    if(resp!==null){if(i===qst.c){bg='#7A8B5E22';bc='#7A8B5E';}else if(i===resp&&resp!==qst.c){bg='#9C3D3D22';bc='#9C3D3D';}else{bg='#ffffff05';bc='#2a2f21';}}
+    b.style.background=bg;b.style.borderColor=bc;b.style.cursor=resp!==null?'default':'pointer';
+    const letra=span('','ABCD'[i]);letra.style.cssText=`font-family:IBM Plex Mono,monospace;font-size:10px;font-weight:600;color:${resp!==null?(i===qst.c?'#7A8B5E':i===resp?'#9C3D3D':'#555'):bi.cor};flex-shrink:0;width:16px`;
+    b.appendChild(letra);b.appendChild(document.createTextNode(alt));
+    b.onclick=()=>{if(resp===null){const nr={...resps,[qi]:i};salSim({resps:nr});setState({resps:nr});}};
+    inner.appendChild(b);
+  });
+  if(resp!==null){
+    const correto=resp===qst.c;
+    const res=div('');res.textContent=correto?'✅ CORRETO':'❌ INCORRETO';
+    res.style.cssText=`font-family:IBM Plex Mono,monospace;font-size:11px;font-weight:600;margin:10px 0 6px;padding:6px 10px;border-radius:6px;display:inline-block;background:${correto?'#7A8B5E22':'#9C3D3D22'};color:${correto?'#7A8B5E':'#9C3D3D'}`;
+    inner.appendChild(res);
+    const expl=div('expl');expl.textContent=qst.x;inner.appendChild(expl);
+    if(qst.g){const al=div('alerta','margin-top:8px');const ico=span('','⚠');ico.style.cssText='color:#9C3D3D;flex-shrink:0;font-size:13px';const txt=div('');const lbl=el('strong');lbl.textContent='Pegadinha: ';lbl.style.color='#9C3D3D';txt.appendChild(lbl);txt.appendChild(document.createTextNode(qst.g));al.appendChild(ico);al.appendChild(txt);inner.appendChild(al);}
+    const nx=btn('btn-primary',qi<Q.length-1?`Próxima (${qi+2}/${Q.length}) →`:'Ver Resultado ✓',()=>{
+      if(qi<Q.length-1) setState({qi:qi+1,resps:state.resps});
+      else{const sim={resps:state.resps,concluido:true};salSim(sim);setState({tela:'resultado',sim});}
+    });nx.style.cssText='width:100%;justify-content:center;display:flex;padding:11px;font-size:13px;margin-top:12px';inner.appendChild(nx);
+  }
+  scr.appendChild(inner);app.appendChild(scr);
+}
+
+function renderResultado(app){
+  const resps=state.resps;let tot=0,b1=0,b2=0,b3=0,tb1=0,tb2=0,tb3=0;
+  Q.forEach((q,i)=>{const ok=resps[i]===q.c;if(q.b===1){tb1++;if(ok)b1++;}else if(q.b===2){tb2++;if(ok)b2++;}else{tb3++;if(ok)b3++;}if(ok)tot++;});
+  const pct=Math.round((tot/Q.length)*100),pass=tot>=24;
+  const hdr=div('hdr');const r=div('hdr-row');r.appendChild(span('lbl','🎯 RESULTADO — SIMULADO 2'));r.appendChild(span('lbl','EAP 2026'));hdr.appendChild(r);app.appendChild(hdr);
+  const scr=div('scroll');
+  const hero=div('result-hero');
+  const em=div('result-em');em.textContent=pass?'🎖':'💪';hero.appendChild(em);
+  const nota=div('result-nota');nota.textContent=`${tot}/40`;nota.style.color=pass?'#7A8B5E':'#9C3D3D';hero.appendChild(nota);
+  const lbl=div('result-label');lbl.textContent=pass?'APROVADO ✓':'REPROVADO — Continue estudando';lbl.style.color=pass?'#7A8B5E':'#9C3D3D';hero.appendChild(lbl);
+  hero.appendChild(span('lbl',`${pct}% de aproveitamento | Mínimo: 60% (24/40)`));scr.appendChild(hero);
+  const card=div('result-card');
+  const tit=div('','font-size:11px;font-family:IBM Plex Mono,monospace;color:#7d7a6c;margin-bottom:10px');tit.textContent='DESEMPENHO POR BLOCO';card.appendChild(tit);
+  [{l:'🟡 Doutrina Operacional',a:b1,t:tb1,c:'#C7A14A'},{l:'🟢 Leg. Institucional',a:b2,t:tb2,c:'#7A8B5E'},{l:'🔵 Leg. Jurídica',a:b3,t:tb3,c:'#6B8CAE'}].forEach(bl=>{
+    const row=div('result-bloco');
+    const ll=span('','');ll.textContent=bl.l;ll.style.cssText='font-size:12px;color:#c4c0b2;width:170px;flex-shrink:0';
+    const n=span('','');n.textContent=`${bl.a}/${bl.t}`;n.style.cssText=`font-family:IBM Plex Mono,monospace;font-size:11px;font-weight:600;color:${bl.c};width:36px;flex-shrink:0`;
+    const bg=div('mini-bar-bg');const fill=div('mini-bar-fill');fill.style.cssText=`width:${Math.round((bl.a/bl.t)*100)}%;background:${bl.c}`;bg.appendChild(fill);
+    row.appendChild(ll);row.appendChild(n);row.appendChild(bg);card.appendChild(row);
+  });
+  scr.appendChild(card);
+  const card2=div('result-card');
+  const msg=div('','font-size:12px;color:#c4c0b2;line-height:1.6');
+  if(pass) msg.innerHTML=`<strong style="color:#7A8B5E">Ótimo desempenho!</strong> ${tot}/40 pontos (${pct}%). Você está no caminho certo para a aprovação na EAP 2026!`;
+  else{const f=24-tot;msg.innerHTML=`${tot}/40 pontos (${pct}%). Faltaram <strong style="color:#9C3D3D">${f} ponto${f>1?'s':''}</strong>. Revise os blocos com menor desempenho — volte ao estudo e refaça!`;}
+  card2.appendChild(msg);scr.appendChild(card2);app.appendChild(scr);
+  const nav=div('nav');
+  nav.appendChild(btn('btn-nav','🏠 Início',()=>window.location.href='eap-inicio.html'));
+  nav.appendChild(btn('btn-nav','← Revisão',()=>setState({tela:'questao',qi:0})));
+  const rn=btn('btn-primary','↺ Nova tentativa',()=>{salSim({});setState({tela:'intro',qi:0,resps:{},sim:{}});});
+  nav.appendChild(rn);app.appendChild(nav);
+}
+
+renderApp();
+</script>
+</body>
+</html>

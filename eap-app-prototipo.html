@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>App EAP 2026 — 3º Sargento</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#111410;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#3a3f2e;border-radius:2px}
+button{font-family:'Inter',sans-serif}
+
+.device{width:390px;min-height:760px;background:#1a1d16;border-radius:32px;border:1px solid #3a3f2e;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.6);max-height:95vh}
+.hdr{padding:20px 16px 12px;background:#21261b;border-bottom:1px solid #2a2f21;display:flex;flex-direction:column;gap:4px;flex-shrink:0}
+.hdr-row{display:flex;align-items:center;justify-content:space-between}
+.lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#9a9684;letter-spacing:.5px}
+.titulo-mod{font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;color:#C7A14A;letter-spacing:1px}
+.scroll{flex:1;overflow-y:auto;padding:12px 16px;display:flex;flex-direction:column;gap:8px}
+.foot{padding:12px 16px;background:#21261b;border-top:1px solid #2a2f21;display:flex;justify-content:center;flex-shrink:0}
+
+/* Trilha */
+.card{display:flex;align-items:center;gap:12px;padding:12px 14px;background:#21261b;border:1px solid #2a2f21;border-radius:10px;cursor:pointer;transition:border-color .15s}
+.card:hover{border-color:#3a3f2e}
+.card-ic{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.card-titulo{font-size:13px;font-weight:500;color:#E8E4D8;margin-bottom:2px}
+.card-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7d7a6c}
+
+/* Barra de progresso */
+.prog-bar{display:flex;gap:3px;padding:0 16px 12px;flex-shrink:0}
+.prog-seg{flex:1;height:3px;border-radius:2px;transition:background .2s}
+
+/* Slide */
+.slide-card{margin:0 16px;padding:16px;background:#21261b;border:1px solid;border-radius:12px;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+.estagio-tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-family:'IBM Plex Mono',monospace;font-weight:500;letter-spacing:1px;align-self:flex-start;margin-bottom:2px}
+.slide-titulo{font-family:'Oswald',sans-serif;font-size:20px;font-weight:600;color:#F2EFE6;line-height:1.2}
+.slide-corpo{font-size:13px;color:#c4c0b2;line-height:1.65}
+.lista{list-style:none;display:flex;flex-direction:column;gap:6px}
+.lista li{font-size:12px;color:#c4c0b2;line-height:1.5;display:flex;align-items:flex-start}
+.lista li .bullet{margin-right:8px;flex-shrink:0}
+.tabela{border-radius:8px;overflow:hidden;border:1px solid #3a3f2e}
+.tabela-row{display:flex;padding:8px 10px;gap:8px}
+.tabela-row:nth-child(odd){background:#ffffff08}
+.tabela-item{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;min-width:110px;flex-shrink:0}
+.tabela-val{font-size:12px;color:#c4c0b2;line-height:1.4}
+.destaque{padding:10px 12px;border-left:3px solid;border-radius:0 6px 6px 0;font-size:12px;color:#c4c0b2;line-height:1.5}
+.alerta{display:flex;align-items:flex-start;padding:10px 12px;background:#9C3D3D11;border:1px solid #9C3D3D44;border-radius:8px;font-size:12px;color:#c4c0b2;line-height:1.5;gap:8px}
+.alerta-ico{flex-shrink:0;color:#9C3D3D;font-size:14px;margin-top:1px}
+
+/* Nav */
+.nav{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#21261b;border-top:1px solid #2a2f21;flex-shrink:0}
+.btn-nav{display:flex;align-items:center;gap:4px;padding:8px 12px;background:#2a2f21;border:1px solid #3a3f2e;border-radius:8px;color:#9a9684;font-size:12px;cursor:pointer}
+.btn-primary{display:flex;align-items:center;gap:4px;padding:8px 14px;background:#C7A14A22;border:1px solid #C7A14A66;border-radius:8px;color:#C7A14A;font-size:12px;cursor:pointer}
+.btn-audio{display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:#C7A14A11;border:1px solid #C7A14A33;border-radius:50%;cursor:pointer;flex-shrink:0}
+.btn-back{background:transparent;border:none;color:#9a9684;font-size:12px;cursor:pointer;font-family:'IBM Plex Mono',monospace;padding:4px 0}
+
+/* Transcrição */
+.tr-h{font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;color:#C7A14A;letter-spacing:.5px;margin:16px 0 8px;padding-left:4px}
+.tr-p{font-size:13px;color:#c4c0b2;line-height:1.7;margin-bottom:10px;padding-left:4px}
+.tr-def{background:#21261b;border:1px solid #3a3f2e;border-radius:8px;padding:10px 12px;margin-bottom:8px}
+.tr-def-lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6B8CAE;font-weight:600;margin-bottom:4px}
+.tr-def-v{font-size:12px;color:#c4c0b2;line-height:1.6}
+.tr-eq{background:#C7A14A11;border:1px solid #C7A14A44;border-radius:8px;padding:12px 14px;margin-bottom:10px;text-align:center;font-family:'Oswald',sans-serif;font-size:13px;color:#C7A14A;letter-spacing:1px;font-weight:600}
+.banca-btn{width:100%;display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border:none;cursor:pointer;text-align:left}
+.banca-body{padding:10px 12px;font-size:12px;color:#E8E4D8;line-height:1.6;border-top:none}
+kw{background:#C7A14A22;color:#C7A14A;border-radius:3px;padding:0 3px;font-weight:600}
+
+/* Questão */
+.alt-btn{width:100%;display:flex;align-items:center;padding:10px 12px;border:1px solid #3a3f2e;border-radius:8px;margin-bottom:6px;background:#ffffff08;cursor:pointer;font-size:12px;color:#c4c0b2;text-align:left;gap:6px;transition:background .1s}
+.expl{padding:10px 12px;border-left:3px solid #7A8B5E;background:#7A8B5E11;border-radius:0 6px 6px 0;font-size:12px;color:#c4c0b2;line-height:1.5;margin-bottom:8px}
+</style>
+</head>
+<body>
+<div class="device" id="app"></div>
+
+<script>
+// ── DADOS ──────────────────────────────────────────────────────
+const TOPICOS = [
+  { id:"preparo-mental", titulo:"Preparo Mental", emoji:"🧠",
+    slides:[
+      { estagio:"tema", titulo:"PREPARO MENTAL", corpo:"Fundamento psicológico que permite ao policial agir com eficiência, segurança e controle em situações de risco.", audio:"O tema é Preparo Mental — fundamento psicológico que permite ao policial agir com eficiência, segurança e controle em situações de risco." },
+      { estagio:"conceito", titulo:"O Que é Preparo Mental", corpo:"Processo de pré-visualizar os prováveis problemas e ensaiar mentalmente as possibilidades de resposta.", lista:["Gera alterações fisiológicas e psicológicas no policial","Coloca o militar num estado de prontidão ampliado","Ocorre antes da intervenção — é uma preparação antecipada"], audio:"O preparo mental é o processo de pré-visualizar os problemas e ensaiar mentalmente as respostas. Essa antecipação gera alterações fisiológicas e psicológicas." },
+      { estagio:"finalidade", titulo:"Por Que o Preparo Mental Importa", corpo:"A falta do preparo mental prejudicará o desempenho do policial, levando a aumento do tempo de resposta à agressão.", lista:["Uso da força poderá ser inadequado — excessivo ou insuficiente","Em cenário grave: resposta paralisante","Preparo mental + treinamento = maior probabilidade de êxito"], audio:"A falta de preparo mental prejudica o desempenho e leva a uso da força inadequado — excessivo ou insuficiente." },
+      { estagio:"estrutura", titulo:"Segurança Ligada ao Preparo Mental", corpo:"A segurança do policial militar, na execução das suas tarefas, está diretamente relacionada ao seu preparo mental.", lista:["Cada intervenção é singular — exige adaptação","Policial versátil se adapta às peculiaridades de cada situação","Preparo mental antecipa e reduz o elemento surpresa"], destaque:"Sem preparo mental, o policial reage. Com preparo mental, o policial age.", audio:"A segurança do policial está diretamente relacionada ao seu preparo mental. Cada intervenção é singular e exige adaptação." },
+      { estagio:"pegadinha", titulo:"Pegadinha da Banca", alerta:"A banca apresenta preparo mental como opcional ou secundário ao físico. ERRADO! É FUNDAMENTO — base de toda segurança operacional. Pode trocar 'ensaiar mentalmente' por 'treinar fisicamente'.", audio:"Pegadinha: a banca diz que preparo mental é secundário ao físico. Errado — é fundamento. Outra: troca ensaiar mentalmente por treinar fisicamente." },
+      { estagio:"fixacao", titulo:"FIXAÇÃO", corpo:"Preparo mental = PRÉ-VISUALIZAR problemas + ENSAIAR MENTALMENTE respostas.", destaque:"Ausência → aumento do tempo de resposta → uso da força inadequado.", audio:"Fixe: preparo mental é pré-visualizar e ensaiar mentalmente. A ausência aumenta o tempo de resposta e leva a uso da força inadequado." },
+    ],
+    transcricao:{ ref:"MTP nº 3.04.01/2020-CG — Seção 2", blocos:[
+      { t:"h", v:"2 PREPARO MENTAL" },
+      { t:"p", v:"É fato que cada ocorrência policial possui um conjunto de variáveis que a torna única. Cada intervenção é singular, exigindo que o policial militar seja versátil e capaz de adaptar-se às peculiaridades de cada situação do cotidiano operacional. Nesse contexto, a segurança do policial militar, na execução das suas tarefas, está diretamente relacionada ao seu preparo mental.", kw:["preparo mental","versátil","singular","diretamente relacionada"] },
+      { t:"def", label:"Definição", v:"O preparo mental é o processo de pré-visualizar os prováveis problemas a serem encontrados em cada tipo de intervenção policial-militar e ensaiar mentalmente as possibilidades de respostas." },
+      { t:"p", v:"Essa antecipação desencadeia um conjunto de alterações fisiológicas e psicológicas, colocando o policial militar num estado de prontidão que ampliará sua capacidade de resposta a cada situação.", kw:["alterações fisiológicas e psicológicas","estado de prontidão"] },
+      { t:"p", v:"A falta do preparo mental do policial militar durante uma intervenção prejudicará o seu desempenho, levando a um aumento de seu tempo de resposta à agressão e, assim, o uso da força poderá ser inadequado (excessivo ou aquém do necessário para contê-la).", kw:["falta do preparo mental","tempo de resposta","uso da força"] },
+      { t:"banca", prob:"ALTA", assunto:"Definição de Preparo Mental", resp:"Processo de PRÉ-VISUALIZAR os prováveis problemas e ENSAIAR MENTALMENTE as possibilidades de resposta. Resultado: alterações fisiológicas e psicológicas que ampliam a capacidade de resposta." },
+      { t:"banca", prob:"ALTA", assunto:"Consequência da FALTA do preparo mental", resp:"Aumento do tempo de resposta à agressão + uso da força inadequado (excessivo ou insuficiente)." },
+      { t:"banca", prob:"MÉDIA", assunto:"Relação com segurança do policial", resp:"A segurança do policial, na execução de suas tarefas, está DIRETAMENTE relacionada ao seu preparo mental — texto literal." },
+    ]},
+    questoes:[
+      { enunciado:"Segundo o MTP nº 3.04.01/2020-CG, o preparo mental do policial militar pode ser definido como:", alternativas:["A) O fortalecimento físico e psicológico obtido por meio do treinamento em academia","B) O processo de pré-visualizar os prováveis problemas e ensaiar mentalmente as possibilidades de resposta","C) A capacidade inata de controlar emoções em situações de risco","D) O conjunto de normas e procedimentos que regulam o comportamento policial"], correta:1, explicacao:"Definição literal do manual: 'processo de pré-visualizar os prováveis problemas e ensaiar mentalmente as possibilidades de respostas'.", pegadinha:"A alt. A confunde preparo mental com preparo físico. A banca adora essa troca." },
+      { enunciado:"A falta do preparo mental durante uma intervenção, de acordo com o MTP 01, acarreta:", alternativas:["A) Apenas mudanças psicológicas sem efeito prático no desempenho","B) Aumento do tempo de resposta e possível uso da força inadequado","C) Maior criatividade na tomada de decisões táticas","D) Redução automática do estado de prontidão para o nível laranja"], correta:1, explicacao:"Falta de preparo mental → aumento do tempo de resposta → uso da força inadequado (excessivo ou insuficiente).", pegadinha:"A alt. D usa termos corretos do manual (laranja, estados de prontidão) mas fora de contexto." },
+    ]
+  },
+  { id:"estados-prontidao", titulo:"Estados de Prontidão", emoji:"👁",
+    slides:[
+      { estagio:"tema", titulo:"ESTADOS DE PRONTIDÃO", corpo:"Escala de alerta mental com 5 estados, representados por cores, que indica o nível de atenção e preparação do policial.", audio:"Estados de Prontidão: cinco estados representados por cores." },
+      { estagio:"conceito", titulo:"A Escala de 5 Cores", corpo:"Do menor ao maior nível de alerta:", lista:["⬜ BRANCO — Relaxado, sem atenção ao ambiente","🟡 AMARELO — Atenção geral relaxada","🟠 LARANJA — Ameaça específica identificada","🔴 VERMELHO — Risco real, ação necessária","⬛ PRETO — Colapso cognitivo e motor"], audio:"Cinco estados: branco, amarelo, laranja, vermelho e preto. São cinco, não quatro." },
+      { estagio:"estrutura", titulo:"Estado Vermelho — Alarme", corpo:"Neste estado de prontidão, o risco é real e uma resposta do policial militar é necessária.", lista:["Focalizar a ameaça — atenção concentrada no problema","Transição da intervenção verbal ao uso das demais técnicas","Inclusive força potencialmente letal"], audio:"No estado vermelho, risco é real e resposta é necessária. Admite força potencialmente letal." },
+      { estagio:"estrutura", titulo:"Estado Laranja — Pré-Alarme", corpo:"Estado de alerta específico onde o policial se prepara ativamente:", lista:["Identifica ameaça ou suspeito específico","Verbaliza com a guarnição: local, possíveis ações, prováveis abrigos","Prepara-se taticamente — sem enfrentar risco real ainda"], audio:"No laranja, ameaça específica identificada. O policial verbaliza com a guarnição e se prepara taticamente." },
+      { estagio:"pegadinha", titulo:"Pegadinha Clássica", alerta:"A banca apresenta APENAS 4 estados, omitindo o PRETO. São 5! Branco, Amarelo, Laranja, Vermelho e PRETO. O preto (colapso) é o mais cobrado e o mais esquecido.", audio:"Pegadinha: a banca coloca quatro estados. São cinco. O preto é colapso cognitivo e motor — o mais esquecido." },
+      { estagio:"fixacao", titulo:"FIXAÇÃO", corpo:"B-A-L-V-P → 5 cores: Branco · Amarelo · Laranja · Vermelho · Preto", destaque:"Patrulha rotineira = Amarelo. Ameaça específica = Laranja. Confronto = Vermelho. Colapso = Preto.", audio:"B-A-L-V-P. Cinco estados. Patrulha é Amarelo, ameaça é Laranja, confronto é Vermelho, colapso é Preto." },
+    ],
+    transcricao:{ ref:"MTP nº 3.04.01/2020-CG — Seção 2.1", blocos:[
+      { t:"h", v:"2.1 ESTADOS DE PRONTIDÃO" },
+      { t:"p", v:"O policial militar deve se manter no estado de prontidão compatível com a gravidade dos riscos que identificar, podendo migrar de um estado de prontidão a outro, de acordo com a evolução da situação.", kw:["estado de prontidão compatível","gravidade dos riscos","migrar"] },
+      { t:"def", label:"a) Atenção Relaxada — Cor Amarela", v:"Policial atento ao ambiente sem foco específico. Estado de referência para o serviço policial ativo — nem relaxado demais (branco), nem em alerta específico (laranja)." },
+      { t:"def", label:"b) Alerta Específico — Cor Laranja", v:"O policial identifica ameaça ou suspeito específico. Verbaliza com os demais integrantes da guarnição sobre o local, possíveis ações e prováveis abrigos." },
+      { t:"def", label:"c) Estado de Alarme — Cor Vermelha", v:"O risco é real e uma resposta do policial militar é necessária. Focalizar a ameaça e ter disposição para transitar da intervenção verbal ao uso das demais técnicas, inclusive da força potencialmente letal." },
+      { t:"def", label:"d) Estado de Colapso — Cor Preta", v:"Pânico com colapso cognitivo e motor. Paralisia ou ação irracional. O preparo mental existe para evitar que o policial chegue a este estado." },
+      { t:"banca", prob:"ALTA", assunto:"Quantos são os estados de prontidão?", resp:"CINCO: Branco, Amarelo, Laranja, Vermelho e Preto. A banca adora apresentar apenas 4, omitindo o preto." },
+      { t:"banca", prob:"ALTA", assunto:"Estado do policial em patrulha rotineira", resp:"Estado AMARELO (atenção relaxada). Nem branco (despreparado), nem laranja (que pressupõe ameaça específica identificada)." },
+      { t:"banca", prob:"ALTA", assunto:"Definição do Estado de Alarme (vermelho)", resp:"'O risco é REAL e uma resposta é NECESSÁRIA.' Admite transição à força potencialmente letal. Texto literal." },
+    ]},
+    questoes:[
+      { enunciado:"De acordo com o MTP 01, quantos são os estados de prontidão e qual representa o colapso cognitivo e motor?", alternativas:["A) 4 estados; o estado vermelho representa o colapso","B) 5 estados; o estado preto representa o colapso","C) 4 estados; o estado preto representa o colapso","D) 5 estados; o estado vermelho representa o colapso"], correta:1, explicacao:"São 5 estados. O PRETO = colapso cognitivo e motor (paralisia ou ação irracional).", pegadinha:"A banca coloca '4 estados' (alternativas A e C). Vermelho é alarme/confronto, não colapso." },
+      { enunciado:"Sobre o Estado de Alarme (Cor Vermelha), assinale a afirmativa correta conforme o MTP 01:", alternativas:["A) O policial identifica ameaça específica e verbaliza com a guarnição","B) O risco é real e resposta é necessária, admitindo força potencialmente letal","C) Estado de alerta geral sem foco em ameaça específica — adequado para patrulha","D) Estado de pânico com colapso cognitivo e motor do policial"], correta:1, explicacao:"Vermelho: risco REAL, resposta NECESSÁRIA, admite força potencialmente letal. A = Laranja, C = Amarelo, D = Preto.", pegadinha:"A alt. D (colapso/pânico) parece 'alarme' mas colapso é o PRETO. Vermelho é ação; preto é paralisia." },
+    ]
+  },
+  { id:"avaliacao-riscos", titulo:"Avaliação de Riscos", emoji:"🎯",
+    slides:[
+      { estagio:"tema", titulo:"AVALIAÇÃO DE RISCOS", corpo:"Processo sistemático e contínuo de identificação dos riscos de cada intervenção, antes e durante sua execução.", audio:"Avaliação de Riscos: processo contínuo de identificação dos riscos." },
+      { estagio:"conceito", titulo:"Definição de Risco", corpo:"O risco é a probabilidade de concretização de uma ameaça contra pessoa e bens.", lista:["A AR é contínua — não apenas no início","O policial migra de estado de prontidão conforme a situação","AR alimenta diretamente o DPI"], audio:"Risco é a probabilidade de concretização de uma ameaça. A avaliação é contínua." },
+      { estagio:"estrutura", titulo:"Posições da Arma vs. Nível de Risco", corpo:"As posições da arma correspondem aos níveis de risco:", tabela:[{item:"Localizada",valor:"Risco I ou II — percepção subjetiva"},{item:"Guarda-baixa",valor:"Risco II — risco potencial"},{item:"Guarda-alta",valor:"Risco II ou III"},{item:"Pronta resposta",valor:"Risco III — risco REAL (objetivo)"}], audio:"Posições da arma seguem o risco. Pronta resposta somente no risco três com percepção objetiva." },
+      { estagio:"pegadinha", titulo:"Pegadinha", alerta:"A banca diz que a AR é feita apenas antes da abordagem. ERRADO! É CONTÍNUA. Também confunde risco potencial (subjetivo) com risco real (objetivo). Pronta resposta = exclusivo do Risco III objetivo.", audio:"Pegadinha: AR não é só antes — é contínua. E pronta resposta é risco três objetivo, não dois." },
+      { estagio:"fixacao", titulo:"FIXAÇÃO", corpo:"Risco = probabilidade de concretização de ameaça. AR é contínua. Pronta resposta = Risco III objetivo.", destaque:"AR + PT = DPI — A AR é metade da equação central do MTP 01.", audio:"Risco é probabilidade. AR é contínua. Pronta resposta é risco três. AR mais PT igual a DPI." },
+    ],
+    transcricao:{ ref:"MTP nº 3.04.01/2020-CG — Seção 3", blocos:[
+      { t:"h", v:"3 AVALIAÇÃO DE RISCOS" },
+      { t:"p", v:"Toda intervenção envolve algum tipo de risco potencial que deverá ser considerado pelo policial militar. O risco é a probabilidade de concretização de uma ameaça contra pessoa e bens.", kw:["risco é a probabilidade","concretização de uma ameaça"] },
+      { t:"p", v:"Cada situação exigirá que ele se mantenha no estado de prontidão compatível com a gravidade dos riscos que identificar, podendo migrar de um estado de prontidão a outro, de acordo com a evolução da situação.", kw:["migrar","evolução da situação","compatível"] },
+      { t:"def", label:"ARMA LOCALIZADA", v:"Percepção subjetiva de risco potencial — Risco Nível I ou II." },
+      { t:"def", label:"ARMA EM PRONTA RESPOSTA", v:"Risco real à segurança do policial e terceiros (percepção objetiva) — Risco Nível III." },
+      { t:"banca", prob:"ALTA", assunto:"Definição literal de Risco", resp:"'O risco é a PROBABILIDADE de concretização de uma AMEAÇA contra pessoa e bens.' A banca troca 'probabilidade' por 'possibilidade' ou 'certeza'." },
+      { t:"banca", prob:"ALTA", assunto:"Posição de arma no Risco III", resp:"PRONTA RESPOSTA — percepção OBJETIVA de risco real. Guarda-alta = subjetivo (II/III). São distintas." },
+      { t:"banca", prob:"MÉDIA", assunto:"AR é pontual ou contínua?", resp:"CONTÍNUA. O policial migra de estado conforme a evolução da situação." },
+    ]},
+    questoes:[
+      { enunciado:"O MTP 01 define risco como:", alternativas:["A) A certeza de concretização de uma ameaça à integridade do policial","B) A probabilidade de concretização de uma ameaça contra pessoa e bens","C) A possibilidade de uso da força em situações de alta periculosidade","D) O conjunto de indicadores comportamentais observados no suspeito"], correta:1, explicacao:"Definição literal: 'O risco é a probabilidade de concretização de uma ameaça contra pessoa e bens.'", pegadinha:"A banca troca 'probabilidade' por 'certeza'. Risco é probabilidade — se fosse certeza, seria ameaça em curso." },
+      { enunciado:"A 'Arma em Pronta Resposta', segundo o MTP 01, é adotada:", alternativas:["A) Sempre que há percepção subjetiva de risco potencial (Risco II)","B) Em situações com risco real (percepção objetiva) — Risco Nível III","C) Em qualquer nível de risco, a critério do policial","D) Apenas após autorização do superior hierárquico"], correta:1, explicacao:"Pronta Resposta = Risco III, percepção OBJETIVA. A subjetiva → Guarda-alta (II/III).", pegadinha:"Banca confunde percepção subjetiva (guarda-alta) com objetiva (pronta resposta)." },
+    ]
+  },
+  { id:"pensamento-tatico", titulo:"Pensamento Tático", emoji:"⚡",
+    slides:[
+      { estagio:"tema", titulo:"PENSAMENTO TÁTICO", corpo:"Recurso cognitivo que fornece elementos para analisar o teatro de operações e interferir no processo mental do agressor.", audio:"Pensamento Tático: analisa o teatro de operações e interfere no processo mental do agressor." },
+      { estagio:"conceito", titulo:"Quando Ocorre o PT", corpo:"Enquanto o preparo mental ocorre ANTES da intervenção, o PT ocorre CONCOMITANTEMENTE com a Avaliação de Riscos.", lista:["Processo dinâmico — atualiza-se conforme a ocorrência evolui","Integra-se à AR para gerar o DPI","Busca limitar e interferir na ação do agressor"], audio:"Diferença-chave: preparo mental é antes. Pensamento tático é concomitante à avaliação de riscos." },
+      { estagio:"estrutura", titulo:"A Equação Central: AR + PT = DPI", corpo:"Equação literal do MTP 01:", tabela:[{item:"AR",valor:"Avaliação de Riscos"},{item:"PT",valor:"Pensamento Tático"},{item:"DPI",valor:"Diagnóstico Provável da Intervenção"}], destaque:"AVALIAÇÃO DE RISCOS + PENSAMENTO TÁTICO = DIAGNÓSTICO PROVÁVEL DA INTERVENÇÃO", audio:"A equação central e literal do MTP: A-R mais P-T igual a D-P-I. O DPI é sempre o resultado." },
+      { estagio:"pegadinha", titulo:"Pegadinha", alerta:"A banca inverte a equação: 'PT + DPI = AR' ou 'AR + DPI = PT'. O DPI é SEMPRE o resultado, nunca o fator. E PT não ocorre antes — é CONCOMITANTE à AR.", audio:"Inversão da equação é a pegadinha. DPI é sempre resultado. E PT é concomitante à AR, não antes." },
+      { estagio:"fixacao", titulo:"FIXAÇÃO", corpo:"AR + PT = DPI (literal). PT = concomitante à AR. Preparo mental = antes.", destaque:"O PT interfere no processo mental do agressor, subsidiando o planejamento.", audio:"A-R mais P-T igual a D-P-I. PT é concomitante à AR. Preparo mental é antes." },
+    ],
+    transcricao:{ ref:"MTP nº 3.04.01/2020-CG — Seção 4", blocos:[
+      { t:"h", v:"4 PENSAMENTO TÁTICO" },
+      { t:"p", v:"O Pensamento Tático é outro recurso importante para o diagnóstico de cada ocorrência. Ele fornece elementos para analisar e controlar as diferentes áreas do 'teatro de operações' e buscar interferir no processo mental do agressor, subsidiando o planejamento da intervenção.", kw:["teatro de operações","processo mental do agressor","subsidiando o planejamento"] },
+      { t:"p", v:"Enquanto o preparo mental ocorre antes da intervenção, o pensamento tático ocorre concomitantemente com a avaliação de riscos, sendo importantes componentes do diagnóstico provável da intervenção. Num processo dinâmico, atualiza-se em função da evolução da ocorrência.", kw:["antes da intervenção","concomitantemente","processo dinâmico"] },
+      { t:"eq", v:"AVALIAÇÃO DE RISCOS + PENSAMENTO TÁTICO = DIAGNÓSTICO PROVÁVEL DA INTERVENÇÃO" },
+      { t:"banca", prob:"ALTA", assunto:"Equação AR + PT = DPI", resp:"DPI é sempre o RESULTADO. A banca inverte — coloca AR ou PT como resultado. O DPI = Diagnóstico Provável da Intervenção." },
+      { t:"banca", prob:"ALTA", assunto:"PT vs. Preparo Mental: quando cada um ocorre?", resp:"PREPARO MENTAL = ANTES da intervenção. PT = CONCOMITANTE à AR durante a intervenção. Diferença temporal — clássica pegadinha." },
+      { t:"banca", prob:"ALTA", assunto:"O que o PT faz com o agressor?", resp:"Busca INTERFERIR NO PROCESSO MENTAL do agressor — limitando sua ação. É interferência na decisão do adversário, não treinamento do policial." },
+    ]},
+    questoes:[
+      { enunciado:"Segundo o MTP 01, AR + PT = DPI significa:", alternativas:["A) Ação Rápida + Pensamento Tático = Diagnóstico Policial Integrado","B) Avaliação de Riscos + Pensamento Tático = Diagnóstico Provável da Intervenção","C) Avaliação de Riscos + Planejamento Tático = Diagnóstico Provável da Intervenção","D) Ameaça Real + Pensamento Tático = Diagnóstico Provável da Intervenção"], correta:1, explicacao:"AR = Avaliação de Riscos; PT = Pensamento Tático; DPI = Diagnóstico Provável da Intervenção.", pegadinha:"A banca troca 'Avaliação' por 'Ação' (A, D) ou 'Pensamento' por 'Planejamento' (C). Cada palavra conta." },
+      { enunciado:"Em relação ao Pensamento Tático, o MTP 01 estabelece que:", alternativas:["A) Ocorre antes da intervenção, assim como o preparo mental","B) Ocorre após a intervenção, para análise crítica das ações","C) Ocorre concomitantemente à Avaliação de Riscos, durante a intervenção","D) Ocorre exclusivamente em situações de Risco Nível III"], correta:2, explicacao:"Preparo Mental = ANTES. Pensamento Tático = CONCOMITANTE à AR.", pegadinha:"A alt. A confunde PT com preparo mental quanto ao momento de ocorrência." },
+    ]
+  },
+  { id:"intervencao-policial", titulo:"Intervenção Policial", emoji:"🎯",
+    slides:[
+      { estagio:"tema", titulo:"INTERVENÇÃO POLICIAL", corpo:"Ação controlada do policial para neutralizar ameaças. Classificada em três níveis em função dos objetivos e riscos avaliados.", audio:"Intervenção Policial: três níveis, em função dos objetivos e riscos avaliados." },
+      { estagio:"estrutura", titulo:"Processo Mental do Agressor — 3 Fases", corpo:"O agressor percorre apenas 3 fases:", lista:["1. IDENTIFICAR — percebe a oportunidade ou alvo","2. DECIDIR — toma a decisão de atacar","3. AGIR — executa a agressão"], audio:"O agressor tem 3 fases: identificar, decidir, agir. Sem fase de verificação." },
+      { estagio:"estrutura", titulo:"Processo Mental do Policial — 4 Fases", corpo:"O policial tem uma fase a mais que o agressor:", lista:["1. IDENTIFICAR — percebe indícios de ameaça","2. CERTIFICAR — confirma que a ameaça é real","3. DECIDIR — escolhe a resposta adequada","4. AGIR — executa com controle"], destaque:"A fase CERTIFICAR é exclusiva do policial. Evita erros irreversíveis.", audio:"O policial tem 4 fases. A diferença é o CERTIFICAR — confirma que a ameaça é real antes de agir." },
+      { estagio:"estrutura", titulo:"Regra de Tueller — 21 Pés / 6,4m", corpo:"Distância crítica de segurança na abordagem:", tabela:[{item:"Distância",valor:"6,4 metros (21 pés)"},{item:"Situação",valor:"Suspeito com arma branca"},{item:"Risco",valor:"Ataque mais rápido que reação do policial"}], audio:"Regra de Tueller, ou 21 pés: a 6 vírgula 4 metros, agressor com arma branca atinge o policial antes de sua reação." },
+      { estagio:"pegadinha", titulo:"Pegadinha Clássica", alerta:"A banca afirma que policial e agressor têm o mesmo número de fases. ERRADO! Agressor = 3, Policial = 4 (CERTIFICAR). A banca também troca '21 pés' por '21 metros'.", lista:["Agressor: Identificar → Decidir → Agir (3 fases)","Policial: Identificar → Certificar → Decidir → Agir (4 fases)"], audio:"Pegadinha: mesmas fases para os dois. Errado. Agressor tem 3, policial tem 4. O CERTIFICAR é a diferença." },
+      { estagio:"fixacao", titulo:"FIXAÇÃO", corpo:"Agressor = 3 · Policial = 4 (CERTIFICAR) · Tueller = 6,4m / 21 pés", destaque:"CERTIFICAR é o que diferencia a ação policial da reação impulsiva.", audio:"Três números: agressor 3 fases, policial 4 fases, Tueller 6 vírgula 4 metros ou 21 pés." },
+    ],
+    transcricao:{ ref:"MTP nº 3.04.01/2020-CG — Seção 5", blocos:[
+      { t:"h", v:"5 INTERVENÇÃO POLICIAL" },
+      { t:"p", v:"A Intervenção Policial-Militar é classificada em três níveis diferentes, em função dos objetivos e riscos avaliados.", kw:["três níveis diferentes","objetivos e riscos avaliados"] },
+      { t:"def", label:"Processo Mental do Agressor (3 fases)", v:"IDENTIFICAR → DECIDIR → AGIR. Sem fase de certificação. O agressor age assim que decide." },
+      { t:"def", label:"Processo Mental do Policial (4 fases)", v:"IDENTIFICAR → CERTIFICAR → DECIDIR → AGIR. A fase CERTIFICAR é exclusiva do policial — confirma que a ameaça é real. Evita erros irreversíveis." },
+      { t:"banca", prob:"ALTA", assunto:"Agressor vs. Policial: número de fases", resp:"AGRESSOR = 3 fases. POLICIAL = 4 fases. A diferença é o CERTIFICAR (exclusiva do policial). A banca diz 'mesmas 3 fases'." },
+      { t:"banca", prob:"ALTA", assunto:"Regra de Tueller", resp:"6,4 METROS = 21 PÉS (não metros!). Agressor com ARMA BRANCA. A banca coloca '21 metros'." },
+      { t:"banca", prob:"ALTA", assunto:"Quantos níveis tem a intervenção?", resp:"TRÊS NÍVEIS — texto literal do manual." },
+    ]},
+    questoes:[
+      { enunciado:"Sobre o processo mental na intervenção, o MTP 01 afirma que:", alternativas:["A) Policial e agressor passam pelas mesmas 3 fases","B) O agressor tem 4 fases, incluindo Certificar","C) O policial tem 4 fases; a fase exclusiva é o Certificar","D) O policial tem 3 fases; o agressor tem 4"], correta:2, explicacao:"Policial: 4 fases (Identificar, Certificar, Decidir, Agir). Agressor: 3 (Identificar, Decidir, Agir). CERTIFICAR é exclusiva do policial.", pegadinha:"A alt. A é a mais perigosa — 'mesmas 3 fases'. A banca quer que você esqueça o CERTIFICAR." },
+      { enunciado:"A Regra de Tueller (Regra dos 21 Pés) estabelece que:", alternativas:["A) A 21 metros, agressor com arma de fogo atinge o policial antes de sua reação","B) A 6,4 metros, agressor com arma branca atinge o policial antes de sua reação","C) O policial deve manter 21 centímetros de distância durante a abordagem","D) Suspeitos a menos de 21 metros devem ser imobilizados imediatamente"], correta:1, explicacao:"21 pés = 6,4 metros. ARMA BRANCA (não de fogo). Dentro dessa distância, o ataque é mais rápido que a reação.", pegadinha:"A alt. A usa '21 metros' em vez de '21 pés'. O número certo, a unidade errada — pegadinha clássica." },
+    ]
+  },
+  { id:"abordagem-ssrau", titulo:"Abordagem / SSRAU", emoji:"🛡",
+    slides:[
+      { estagio:"tema", titulo:"SSRAU — ABORDAGEM POLICIAL", corpo:"Mnemônico oficial dos fundamentos da abordagem policial segundo o MTP 01.", audio:"Abordagem Policial orientada pelo mnemônico S-S-R-A-U." },
+      { estagio:"conceito", titulo:"SSRAU — Definição Oficial", corpo:"SSRAU é um processo mnemônico para representar:", lista:["S — SEGURANÇA","S — SURPRESA","R — RAPIDEZ","A — ação VIGOROSA","U — UNIDADE DE COMANDO"], destaque:"Texto literal: 'SSRAU é um processo mnemônico para representar as palavras Segurança, Surpresa, Rapidez, ação Vigorosa e Unidade de Comando.'", audio:"S-S-R-A-U: Segurança, Surpresa, Rapidez, ação Vigorosa, Unidade de Comando." },
+      { estagio:"estrutura", titulo:"S — Segurança e S — Surpresa", corpo:"As duas primeiras letras:", lista:["SEGURANÇA: conjunto de medidas para controlar e mitigar os riscos. Identifica área de segurança e área de risco, monitora pontos de foco, controla pontos quentes.","SURPRESA: medidas que dificultam a percepção do abordado. Ação inesperada que reduz o tempo de reação do suspeito."], audio:"Segurança: mitigar riscos, identificar áreas. Surpresa: ação inesperada que reduz o tempo de reação." },
+      { estagio:"estrutura", titulo:"R — Rapidez, A — Ação Vigorosa, U — Unidade", corpo:"As três últimas letras:", lista:["RAPIDEZ: velocidade com que a ação é processada — reduz tempo de reação do suspeito.","AÇÃO VIGOROSA: execução decisiva e sem hesitação.","UNIDADE DE COMANDO: apenas um policial comanda — evita ordens conflitantes."], audio:"Rapidez é velocidade da ação. Ação vigorosa é execução sem hesitação. Unidade evita ordens conflitantes." },
+      { estagio:"pegadinha", titulo:"Pegadinhas do SSRAU", alerta:"'Ação Vigorosa' → 'Ação Contundente'. 'Unidade de Comando' → 'Uniformidade'. Segundo S = SURPRESA (não Silêncio). A ordem pode ser embaralhada.", audio:"Vigorosa vira Contundente. Unidade vira Uniformidade. Segundo S é Surpresa, não Silêncio." },
+      { estagio:"fixacao", titulo:"FIXAÇÃO", corpo:"SSRAU: Segurança · Surpresa · Rapidez · ação Vigorosa · Unidade de Comando", destaque:"Qualquer alteração de termo ou ordem é pegadinha.", audio:"S-S-R-A-U exato: Segurança, Surpresa, Rapidez, ação Vigorosa, Unidade de Comando." },
+    ],
+    transcricao:{ ref:"MTP nº 3.04.01/2020-CG — Seção 5.3", blocos:[
+      { t:"h", v:"5.3 ABORDAGEM POLICIAL — SSRAU" },
+      { t:"def", label:"Definição oficial", v:"SSRAU é um processo mnemônico utilizado para representar as palavras Segurança, Surpresa, Rapidez, ação Vigorosa e Unidade de Comando." },
+      { t:"def", label:"a) Segurança", v:"Conjunto de medidas para controlar e mitigar os riscos. O policial identifica a área de segurança e a área de risco, monitora os pontos de foco e controla os pontos quentes." },
+      { t:"def", label:"b) Surpresa", v:"Medidas que dificultam a percepção do abordado em relação ao policial. Ação inesperada que reduz o tempo de reação do suspeito." },
+      { t:"def", label:"c) Rapidez", v:"Velocidade com que a ação policial-militar é processada — reduz o tempo de reação do suspeito e o tempo de exposição ao risco do policial." },
+      { t:"def", label:"d) Ação Vigorosa", v:"Execução decisiva e sem hesitação. O policial age com determinação para cumprir o objetivo." },
+      { t:"def", label:"e) Unidade de Comando", v:"Apenas um policial comanda a ação — garante coesão e evita ordens conflitantes." },
+      { t:"banca", prob:"ALTA", assunto:"Definição exata do SSRAU", resp:"Segurança, Surpresa, Rapidez, ação VIGOROSA (não 'contundente'), Unidade de COMANDO (não 'uniformidade'). Segundo S = SURPRESA (não Silêncio)." },
+      { t:"banca", prob:"ALTA", assunto:"Segurança no SSRAU", resp:"'Conjunto de medidas para controlar e mitigar os riscos.' Identifica ÁREA DE SEGURANÇA e ÁREA DE RISCO, monitora PONTOS DE FOCO e controla PONTOS QUENTES." },
+      { t:"banca", prob:"ALTA", assunto:"Surpresa no SSRAU", resp:"'Medidas que dificultam a percepção do abordado em relação ao policial.' Ação INESPERADA que reduz TEMPO DE REAÇÃO do suspeito." },
+    ]},
+    questoes:[
+      { enunciado:"O mnemônico SSRAU, previsto no MTP 01, significa corretamente:", alternativas:["A) Segurança, Silêncio, Rapidez, Ação Contundente, Uniformidade","B) Segurança, Surpresa, Rapidez, Ação Vigorosa, Unidade de Comando","C) Segurança, Surpresa, Resolução, Ação Vigorosa, Unidade de Comando","D) Segurança, Surpresa, Rapidez, Ação Vigorosa, Uniformidade"], correta:1, explicacao:"SSRAU: Segurança, Surpresa, Rapidez, ação Vigorosa, Unidade de Comando.", pegadinha:"Cada alternativa errada tem exatamente um erro. Unidade vs. Uniformidade é a mais cobrada." },
+      { enunciado:"O fundamento 'Surpresa' no SSRAU caracteriza-se por:", alternativas:["A) Agir com força excessiva de forma inesperada","B) Medidas que dificultam a percepção do abordado, reduzindo seu tempo de reação","C) Uso de equipamentos especiais que impedem identificação visual do policial","D) Abordagem realizada exclusivamente no período noturno"], correta:1, explicacao:"Surpresa = 'medidas que dificultam a percepção do abordado, ação inesperada que reduz o tempo de reação'.", pegadinha:"A alt. A confunde Surpresa com Ação Vigorosa. Surpresa é percepção, não força." },
+    ]
+  },
+  { id:"processo-comunicacao", titulo:"Processo de Comunicação", emoji:"💬",
+    slides:[
+      { estagio:"tema", titulo:"PROCESSO DE COMUNICAÇÃO", corpo:"A comunicação é instrumento facilitador em qualquer intervenção, aplicável em todos os níveis de uso da força pela Polícia Militar.", audio:"Comunicação: instrumento facilitador em todos os níveis de uso da força." },
+      { estagio:"conceito", titulo:"Verbal e Não Verbal", corpo:"O MTP 01 destaca especificamente:", lista:["VERBAL — o conteúdo do que se diz","NÃO VERBAL — postura, expressão, gestos, contato visual","Ambos são instrumentos facilitadores da intervenção"], audio:"O manual destaca verbal e não verbal como instrumentos facilitadores da intervenção." },
+      { estagio:"estrutura", titulo:"Comunicação por Nível de Intervenção", corpo:"O policial adapta a comunicação conforme o nível:", lista:["Nível I — saudação verbal + contato visual + sorriso ('quebrar o gelo')","Nível II — explica o que será feito antes de se aproximar","Nível III — comando direto, firme e claro"], destaque:"Comunicação verbal = PRIMEIRO recurso em qualquer intervenção, antes do uso da força.", audio:"Comunicação se adapta ao nível. Nível I: quebrar o gelo. Nível II: explicar antes. Nível III: comando firme." },
+      { estagio:"pegadinha", titulo:"Pegadinha", alerta:"A banca afirma que comunicação só se aplica em baixos riscos. ERRADO! O MTP 01 é explícito: aplicável em TODOS os níveis de uso da força.", audio:"Pegadinha: comunicação não é só para baixo risco. O manual diz todos os níveis de uso da força." },
+      { estagio:"fixacao", titulo:"FIXAÇÃO", corpo:"Comunicação = instrumento facilitador em TODOS os níveis de uso da força.", destaque:"Verbal + Não Verbal. Comunicação é o PRIMEIRO recurso — antes de qualquer força.", audio:"Comunicação em todos os níveis. Verbal mais não verbal. Sempre o primeiro recurso." },
+    ],
+    transcricao:{ ref:"MTP nº 3.04.01/2020-CG — Seção 6", blocos:[
+      { t:"h", v:"6 PROCESSO DE COMUNICAÇÃO" },
+      { t:"p", v:"O Processo de Comunicação destaca a importância dos elementos verbais e não verbais do processo de comunicação, como instrumento facilitador em qualquer intervenção, aplicável em todos os níveis de uso da força pela Polícia Militar.", kw:["elementos verbais e não verbais","instrumento facilitador","todos os níveis de uso da força"] },
+      { t:"p", v:"O policial militar estabelece um vínculo verbal e de confiança com o abordado. Por exemplo, numa intervenção nível I, pode 'quebrar o gelo' com uma saudação verbal, demonstrando interesse ao também olhar diretamente nos olhos do interlocutor sorrindo.", kw:["vínculo verbal e de confiança","quebrar o gelo"] },
+      { t:"p", v:"Numa intervenção nível II, explicando o que será realizado, antes de se aproximar. A comunicação reduz a possibilidade de resistência.", kw:["explicando o que será realizado","antes de se aproximar"] },
+      { t:"def", label:"Verbal", v:"O que é dito na intervenção. Primeiro recurso do policial em qualquer abordagem." },
+      { t:"def", label:"Não Verbal", v:"Postura, expressão, gestos, contato visual, distância. Transmite autoridade antes mesmo das palavras." },
+      { t:"banca", prob:"ALTA", assunto:"Aplicabilidade por nível de força", resp:"QUALQUER intervenção, TODOS os níveis de uso da força — texto literal. Não se restringe a baixo risco." },
+      { t:"banca", prob:"ALTA", assunto:"Elementos destacados pelo MTP 01", resp:"VERBAIS e NÃO VERBAIS. O foco do manual é nesses dois — não nos clássicos da teoria da comunicação (emissor, receptor, ruído etc.)." },
+      { t:"banca", prob:"MÉDIA", assunto:"Comunicação no Nível I", resp:"Saudação verbal + contato visual + sorriso = 'quebrar o gelo'. Cria vínculo de confiança antes de qualquer ação." },
+    ]},
+    questoes:[
+      { enunciado:"Quanto ao Processo de Comunicação no MTP 01, assinale a afirmativa CORRETA:", alternativas:["A) Aplicável apenas em intervenções de Nível I, onde o risco é baixo","B) Instrumento facilitador em qualquer intervenção, em todos os níveis de uso da força","C) Limita-se à comunicação verbal, sendo os gestos irrelevantes","D) Deve ser suprimido em situações de Risco Nível III para não comprometer a rapidez"], correta:1, explicacao:"Texto literal: 'instrumento facilitador em qualquer intervenção, aplicável em todos os níveis de uso da força'.", pegadinha:"A alt. A parece intuitiva mas o manual é explícito: TODOS os níveis." },
+      { enunciado:"O papel do elemento NÃO VERBAL em uma abordagem é:", alternativas:["A) Transmitir mensagens codificadas entre os policiais da guarnição","B) Substituir completamente a verbal em alto risco","C) Expressar por postura, expressão e gestos autoridade e controle do policial","D) Registrar ocorrências por sinais padronizados"], correta:2, explicacao:"O não verbal (postura, expressão, gestos) transmite autoridade e controle, muitas vezes antes das palavras.", pegadinha:"A alt. A confunde comunicação não verbal pessoal com sinalização tática entre policiais." },
+    ]
+  },
+  { id:"uso-da-forca", titulo:"Uso da Força", emoji:"⚖",
+    slides:[
+      { estagio:"tema", titulo:"USO DA FORÇA", corpo:"Os policiais militares devem empregar a força quando estritamente necessária e na medida exigida para o cumprimento do seu dever.", audio:"Uso da Força: quando estritamente necessária e na medida exigida para o cumprimento do dever." },
+      { estagio:"conceito", titulo:"3 Princípios do Uso da Força", corpo:"Obrigatoriamente cumulativos:", lista:["LEGALIDADE — amparado por lei e regulamentos vigentes","NECESSIDADE — força mínima para neutralizar a resistência","PROPORCIONALIDADE — compatível com o nível de ameaça"], destaque:"Ausência de qualquer dos 3 princípios = uso indevido da força.", audio:"Três princípios cumulativos: legalidade, necessidade e proporcionalidade." },
+      { estagio:"estrutura", titulo:"Responsabilidade TRIPLA", corpo:"A responsabilidade pelo uso da força recai sobre:", lista:["a) DO AUTOR — individual, quem empregou a força","b) DOS SUPERIORES — cientes de ordem manifestamente ilegal e omissos","c) DA EQUIPE — o cumprimento de ordens ilegais não é justificativa"], destaque:"Cumprir ordens superiores NÃO justifica uso de força manifestamente ilegal.", audio:"Responsabilidade tripla: do autor, dos superiores omissos e da equipe. Ordens ilegais não justificam." },
+      { estagio:"estrutura", titulo:"Força x Resistência", corpo:"O nível de força corresponde ao nível de resistência:", tabela:[{item:"Cooperativo",valor:"Presença + comunicação verbal"},{item:"Resistência passiva",valor:"Controle físico leve"},{item:"Resistência ativa (não letal)",valor:"Força não letal"},{item:"Resistência ativa letal",valor:"Força potencialmente letal"}], audio:"A força deve corresponder à resistência: cooperativo pede presença, letal pede força letal." },
+      { estagio:"pegadinha", titulo:"Pegadinha — Responsabilidade Tripla", alerta:"A banca diz que só o policial executor responde. ERRADO! Responsabilidade é TRIPLA. E cumprimento de ordens NÃO é justificativa se a ordem for manifestamente ilegal.", audio:"Pegadinha: só quem executou responde. Errado — é responsabilidade tripla." },
+      { estagio:"fixacao", titulo:"FIXAÇÃO", corpo:"3 princípios: Legalidade · Necessidade · Proporcionalidade. 3 responsáveis: Autor · Superior omisso · Equipe.", destaque:"Força CESSA quando resistência CESSA. Ordem ilegal NÃO justifica.", audio:"Três princípios, três responsáveis. Força cessa quando resistência cessa. Ordem ilegal não justifica." },
+    ],
+    transcricao:{ ref:"MTP nº 3.04.01/2020-CG — Seção 7", blocos:[
+      { t:"h", v:"7 USO DA FORÇA" },
+      { t:"p", v:"Os policiais militares devem empregar a força quando estritamente necessária e na medida exigida para o cumprimento do seu dever.", kw:["estritamente necessária","medida exigida"] },
+      { t:"def", label:"a) Responsabilidade do Autor", v:"É individual e recai sobre o policial militar que empregou a força." },
+      { t:"def", label:"b) Responsabilidade dos Superiores", v:"O cumprimento de ordens superiores não será justificado quando os policiais militares tenham conhecimento de que uma determinação para usar força foi manifestamente ilegal e tenham tido oportunidade razoável de recusar." },
+      { t:"def", label:"c) Responsabilidade da Equipe", v:"Dever de reportar o uso indevido. Silenciar sobre uso excessivo é conivência — gera responsabilidade." },
+      { t:"banca", prob:"ALTA", assunto:"Quem responde pelo uso da força?", resp:"TRIPLA: a) AUTOR (individual); b) SUPERIORES (cientes de ordem ilegal); c) EQUIPE (pelo dever de reportar). A banca diz 'exclusivamente do autor'." },
+      { t:"banca", prob:"ALTA", assunto:"Cumprimento de ordens e uso da força", resp:"O cumprimento de ordens NÃO justifica força MANIFESTAMENTE ILEGAL — quando o policial tinha conhecimento e oportunidade de recusar." },
+      { t:"banca", prob:"ALTA", assunto:"Definição literal do momento de uso da força", resp:"'Quando ESTRITAMENTE NECESSÁRIA e na MEDIDA EXIGIDA para o cumprimento do dever.' A banca troca 'estritamente' por 'absolutamente'." },
+    ]},
+    questoes:[
+      { enunciado:"A responsabilidade pelo uso da força, segundo o MTP 01, recai sobre:", alternativas:["A) Exclusivamente sobre o policial que executou a ação","B) Sobre o policial executor e automaticamente sobre todos os membros","C) Sobre o autor, os superiores cientes de ordem ilegal e a equipe que não reportou","D) Exclusivamente sobre o superior hierárquico que ordenou o uso da força"], correta:2, explicacao:"Responsabilidade tripla: a) autor, b) superiores cientes de ordem ilegal, c) equipe pelo dever de reportar.", pegadinha:"A alt. A é a pegadinha clássica. B parece certa mas 'automaticamente sobre TODOS' é excessivo." },
+      { enunciado:"Os policiais militares devem empregar a força:", alternativas:["A) Sempre que necessário, independente do nível de resistência","B) Quando estritamente necessária e na medida exigida para o cumprimento do dever","C) Apenas em ocorrências de Risco III com autorização prévia do superior","D) Como primeiro recurso em situações de risco potencial, visando à prevenção"], correta:1, explicacao:"Texto literal: 'quando estritamente necessária e na medida exigida para o cumprimento do seu dever'.", pegadinha:"A alt. C inventa 'autorização prévia do superior' — não existe no manual. D inverte a lógica: força é ÚLTIMO recurso." },
+    ]
+  },
+];
+
+// ── ESTILOS DE ESTÁGIO ─────────────────────────────────────────
+const EC = {
+  tema:{cor:"#C7A14A",label:"TEMA"},
+  conceito:{cor:"#7A8B5E",label:"CONCEITO"},
+  finalidade:{cor:"#6B8CAE",label:"FINALIDADE"},
+  estrutura:{cor:"#6B8CAE",label:"ESTRUTURA"},
+  pegadinha:{cor:"#9C3D3D",label:"⚠ PEGADINHA"},
+  fixacao:{cor:"#7A8B5E",label:"FIXAÇÃO"},
+};
+
+// ── PERSISTÊNCIA ───────────────────────────────────────────────
+function lerProg(){ try{return JSON.parse(localStorage.getItem("eap_p26")||"{}")}catch{return{}} }
+function salProg(p){ try{localStorage.setItem("eap_p26",JSON.stringify(p))}catch{} }
+
+// ── HIGHLIGHT DE KEYWORDS ──────────────────────────────────────
+function renderText(texto, kws){
+  if(!kws||!kws.length) return texto;
+  const parts=[], kw_lower=kws.map(k=>k.toLowerCase());
+  let rem=texto;
+  while(rem.length){
+    let best=null,bestIdx=Infinity;
+    kws.forEach((kw,ki)=>{
+      const idx=rem.toLowerCase().indexOf(kw_lower[ki]);
+      if(idx!==-1&&idx<bestIdx){best=kw;bestIdx=idx;}
+    });
+    if(!best){parts.push(document.createTextNode(rem));break;}
+    if(bestIdx>0) parts.push(document.createTextNode(rem.slice(0,bestIdx)));
+    const mark=document.createElement('kw');
+    mark.textContent=rem.slice(bestIdx,bestIdx+best.length);
+    parts.push(mark);
+    rem=rem.slice(bestIdx+best.length);
+  }
+  return parts;
+}
+
+// ── TTS ────────────────────────────────────────────────────────
+let falando=false, utter=null;
+function falar(txt){
+  if(!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  if(falando){falando=false;renderApp();return;}
+  utter=new SpeechSynthesisUtterance(txt);
+  utter.lang="pt-BR"; utter.rate=0.95;
+  utter.onend=()=>{falando=false;renderApp();};
+  window.speechSynthesis.speak(utter);
+  falando=true; renderApp();
+}
+
+// ── ESTADO ─────────────────────────────────────────────────────
+let state={
+  tela:"trilha", ti:0, si:0, qi:0, resp:null,
+  prog:lerProg(), bancas:{}
+};
+function setState(upd){
+  Object.assign(state,upd);
+  if(state.tela!=="slide") {falando=false;window.speechSynthesis&&window.speechSynthesis.cancel();}
+  renderApp();
+}
+
+// ── RENDER ─────────────────────────────────────────────────────
+function renderApp(){
+  const app=document.getElementById('app');
+  app.innerHTML='';
+  const {tela,ti,si,qi,resp,prog,bancas}=state;
+  const top=TOPICOS[ti];
+  const sld=top?.slides[si];
+  const qst=top?.questoes[qi];
+  const nS=top?.slides.length||0;
+  const nQ=top?.questoes.length||0;
+  const ok=idx=>!!prog[TOPICOS[idx]?.id];
+
+  if(tela==="trilha") renderTrilha(app,ok,prog);
+  else if(tela==="slide") renderSlide(app,top,sld,si,nS,ti,ok);
+  else if(tela==="transcricao") renderTranscricao(app,top,bancas);
+  else if(tela==="questao") renderQuestao(app,top,qst,qi,nQ,resp);
+  else if(tela==="concluido") renderConcluido(app,top,prog);
+}
+
+function el(tag,cls,style){const e=document.createElement(tag);if(cls)e.className=cls;if(style)e.style.cssText=style;return e;}
+function div(cls,style){return el('div',cls,style);}
+function span(cls,txt){const e=el('span',cls);e.textContent=txt;return e;}
+function btn(cls,txt,onClick){const b=el('button',cls);b.textContent=txt;b.onclick=onClick;return b;}
+
+// ─── TELA TRILHA ───────────────────────────────────────────────
+function renderTrilha(app,ok,prog){
+  const hdr=div('hdr');
+  const r=div('',`display:flex;align-items:center;justify-content:space-between`);
+  r.appendChild(span('lbl','🟢 DOUTRINA OPERACIONAL'));
+  hdr.appendChild(r);
+  const t=span('','MTP 01'); t.style.cssText='font-family:Oswald,sans-serif;font-size:18px;font-weight:600;color:#C7A14A;letter-spacing:1px';
+  hdr.appendChild(t);
+  hdr.appendChild(span('lbl','Manual Técnico-Profissional nº 3.04.01/2020-CG'));
+  app.appendChild(hdr);
+
+  const scr=div('scroll');
+  TOPICOS.forEach((top,idx)=>{
+    const done=ok(idx), blk=idx>0&&!ok(idx-1);
+    const card=div('card',`opacity:${blk?.45:1};cursor:${blk?'not-allowed':'pointer'}`);
+    const ic=div('card-ic',`background:${done?'#7A8B5E22':blk?'#ffffff08':'#C7A14A22'}`);
+    ic.textContent=blk?'🔒':done?'✓':top.emoji;
+    ic.style.color=done?'#7A8B5E':blk?'#7d7a6c':'#C7A14A';
+    card.appendChild(ic);
+    const info=div('');
+    const tt=div('card-titulo'); tt.style.color=done?'#7A8B5E':blk?'#7d7a6c':'#E8E4D8'; tt.textContent=top.titulo;
+    const mt=div('card-meta'); mt.textContent=`${top.slides.length} slides · transcrição · ${top.questoes.length} questões`;
+    info.appendChild(tt); info.appendChild(mt);
+    card.appendChild(info);
+    if(!blk){const arr=span('','›');arr.style.cssText='color:#7d7a6c;font-size:18px';card.appendChild(arr);}
+    card.onclick=()=>{
+      if(blk) return;
+      setState({tela:'slide',ti:idx,si:0,qi:0,resp:null,bancas:{}});
+    };
+    scr.appendChild(card);
+  });
+  app.appendChild(scr);
+
+  const foot=div('foot');
+  foot.appendChild(span('lbl',`${Object.keys(prog).length}/${TOPICOS.length} tópicos concluídos`));
+  app.appendChild(foot);
+}
+
+// ─── TELA SLIDE ────────────────────────────────────────────────
+function renderSlide(app,top,sld,si,nS,ti,ok){
+  const cfg=EC[sld.estagio]||EC.estrutura;
+
+  const hdr=div('hdr');
+  hdr.style.flexDirection='row'; hdr.style.alignItems='center'; hdr.style.justifyContent='space-between';
+  const bk=btn('btn-back','← Trilha',()=>setState({tela:'trilha'}));
+  const label=span('lbl',top.titulo);
+  const pg=span('lbl',`${si+1}/${nS}`);
+  hdr.appendChild(bk); hdr.appendChild(label); hdr.appendChild(pg);
+  app.appendChild(hdr);
+
+  const pb=div('prog-bar');
+  top.slides.forEach((_,i)=>{
+    const s=div('prog-seg'); s.style.background=i<=si?cfg.cor:'#3a3f2e'; pb.appendChild(s);
+  });
+  app.appendChild(pb);
+
+  const card=div('slide-card'); card.style.borderColor=cfg.cor+'44';
+
+  const tag=div('estagio-tag'); tag.textContent=cfg.label;
+  tag.style.background=cfg.cor+'22'; tag.style.color=cfg.cor;
+  card.appendChild(tag);
+
+  const titulo=div('slide-titulo'); titulo.textContent=sld.titulo; card.appendChild(titulo);
+  if(sld.corpo){const p=div('slide-corpo'); p.textContent=sld.corpo; card.appendChild(p);}
+  if(sld.lista){
+    const ul=el('ul','lista');
+    sld.lista.forEach(item=>{
+      const li=el('li');
+      const bull=span('bullet','›'); bull.style.color=cfg.cor;
+      li.appendChild(bull); li.appendChild(document.createTextNode(item));
+      ul.appendChild(li);
+    });
+    card.appendChild(ul);
+  }
+  if(sld.tabela){
+    const tbl=div('tabela');
+    sld.tabela.forEach(row=>{
+      const tr=div('tabela-row');
+      const ti=span('tabela-item',row.item); ti.style.color=cfg.cor;
+      const tv=span('tabela-val',row.valor);
+      tr.appendChild(ti); tr.appendChild(tv); tbl.appendChild(tr);
+    });
+    card.appendChild(tbl);
+  }
+  if(sld.destaque){
+    const d=div('destaque'); d.textContent=sld.destaque;
+    d.style.borderColor=cfg.cor; d.style.background=cfg.cor+'11';
+    card.appendChild(d);
+  }
+  if(sld.alerta){
+    const al=div('alerta');
+    const ico=span('alerta-ico','⚠'); al.appendChild(ico);
+    const txt=span('',sld.alerta); al.appendChild(txt);
+    card.appendChild(al);
+  }
+  if(sld.lista&&sld.estagio==='pegadinha'&&sld.alerta){
+    // extra lista após alerta
+    const ul=el('ul','lista'); ul.style.marginTop='8px';
+    sld.lista.forEach(item=>{
+      const li=el('li');
+      const bull=span('bullet','›'); bull.style.color=cfg.cor;
+      li.appendChild(bull); li.appendChild(document.createTextNode(item));
+      ul.appendChild(li);
+    });
+    card.appendChild(ul);
+  }
+  app.appendChild(card);
+
+  const nav=div('nav');
+  const bkBtn=el('button','btn-nav'); bkBtn.style.opacity=si===0?.3:1; bkBtn.disabled=si===0;
+  bkBtn.innerHTML='&#8249; Anterior';
+  bkBtn.onclick=()=>{if(si>0)setState({si:si-1});};
+
+  const audBtn=el('button','btn-audio');
+  audBtn.innerHTML=falando?'🔇':'🔊';
+  audBtn.onclick=()=>falar(sld.audio||sld.corpo||'');
+
+  const nextBtn=el('button','btn-primary');
+  if(si<nS-1){nextBtn.innerHTML='Próximo &#8250;'; nextBtn.onclick=()=>setState({si:si+1});}
+  else{nextBtn.innerHTML='📄 Ver Manual'; nextBtn.onclick=()=>setState({tela:'transcricao',bancas:{}});}
+
+  nav.appendChild(bkBtn); nav.appendChild(audBtn); nav.appendChild(nextBtn);
+  app.appendChild(nav);
+}
+
+// ─── TELA TRANSCRIÇÃO ──────────────────────────────────────────
+function renderTranscricao(app,top,bancas){
+  const tr=top.transcricao;
+
+  const hdr=div('hdr');
+  hdr.style.flexDirection='row'; hdr.style.alignItems='center'; hdr.style.justifyContent='space-between';
+  const bk=btn('btn-back','← Slides',()=>setState({tela:'slide'}));
+  const mid=div(''); mid.style.textAlign='center';
+  const lbl=span('lbl','📄 TRANSCRIÇÃO'); lbl.style.color='#6B8CAE';
+  mid.appendChild(lbl);
+  const ref=span('lbl',tr.ref); ref.style.display='block'; ref.style.fontSize='8px'; ref.style.color='#7d7a6c';
+  mid.appendChild(ref);
+  hdr.appendChild(bk); hdr.appendChild(mid); hdr.appendChild(div('','width:60px'));
+  app.appendChild(hdr);
+
+  const scr=div('scroll'); scr.style.gap='0'; scr.style.padding='12px 16px';
+  const inner=div('','padding:4px 4px 16px');
+
+  tr.blocos.forEach((b,i)=>{
+    if(b.t==='h'){
+      const h=div('tr-h'); h.textContent=b.v; inner.appendChild(h);
+    } else if(b.t==='p'){
+      const p=div('tr-p');
+      const parts=renderText(b.v,b.kw||[]);
+      if(Array.isArray(parts)) parts.forEach(n=>p.appendChild(n));
+      else p.textContent=b.v;
+      inner.appendChild(p);
+    } else if(b.t==='def'){
+      const box=div('tr-def');
+      const lbl=div('tr-def-lbl'); lbl.textContent=b.label;
+      const v=div('tr-def-v'); v.textContent=b.v;
+      box.appendChild(lbl); box.appendChild(v); inner.appendChild(box);
+    } else if(b.t==='eq'){
+      const eq=div('tr-eq'); eq.textContent=b.v; inner.appendChild(eq);
+    } else if(b.t==='banca'){
+      const k=`b${i}`, open=!!bancas[k];
+      const cor=b.prob==='ALTA'?'#9C3D3D':'#C7A14A';
+      const wrap=div('','margin-bottom:8px');
+
+      const trigger=el('button','banca-btn');
+      trigger.style.cssText=`background:${cor}18;border:1px solid ${cor}55;border-radius:${open?'8px 8px 0 0':'8px'};`;
+      const left=div('','display:flex;align-items:center;gap:8px');
+      const star=span('','★'); star.style.color=cor;
+      const prob=span('',`⚡ ${b.prob} chance em prova`);
+      prob.style.cssText=`font-family:'IBM Plex Mono',monospace;font-size:10px;color:${cor};font-weight:600`;
+      left.appendChild(star); left.appendChild(prob);
+      const right=div('','display:flex;align-items:center;gap:6px');
+      const ass=span('',b.assunto); ass.style.cssText='font-size:11px;color:#c4c0b2';
+      const arr=span('',open?'▲':'▼'); arr.style.color=cor; arr.style.fontSize='10px';
+      right.appendChild(ass); right.appendChild(arr);
+      trigger.appendChild(left); trigger.appendChild(right);
+      trigger.onclick=()=>{
+        const nb={...state.bancas,[k]:!open};
+        setState({bancas:nb});
+      };
+      wrap.appendChild(trigger);
+
+      if(open){
+        const body=div('banca-body');
+        body.style.cssText=`background:${cor}0e;border:1px solid ${cor}33;border-top:none;border-radius:0 0 8px 8px`;
+        body.textContent=b.resp; wrap.appendChild(body);
+      }
+      inner.appendChild(wrap);
+    }
+  });
+
+  scr.appendChild(inner);
+  app.appendChild(scr);
+
+  const nav=div('nav');
+  const bkBtn=el('button','btn-nav'); bkBtn.innerHTML='&#8249; Slides';
+  bkBtn.onclick=()=>setState({tela:'slide'});
+  const nextBtn=el('button','btn-primary'); nextBtn.style.marginLeft='auto';
+  nextBtn.innerHTML='Questões &#8250;';
+  nextBtn.onclick=()=>setState({tela:'questao',qi:0,resp:null});
+  nav.appendChild(bkBtn); nav.appendChild(nextBtn);
+  app.appendChild(nav);
+}
+
+// ─── TELA QUESTÃO ──────────────────────────────────────────────
+function renderQuestao(app,top,qst,qi,nQ,resp){
+  const hdr=div('hdr');
+  hdr.style.flexDirection='row'; hdr.style.alignItems='center'; hdr.style.justifyContent='space-between';
+  const bk=btn('btn-back','← Manual',()=>setState({tela:'transcricao'}));
+  hdr.appendChild(bk);
+  hdr.appendChild(span('lbl',`Questão ${qi+1} de ${nQ}`));
+  app.appendChild(hdr);
+
+  const scr=div('scroll');
+  const inner=div('','padding:0 4px 8px');
+
+  const tag=div('estagio-tag'); tag.textContent='QUESTÃO DE FIXAÇÃO';
+  tag.style.cssText='display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-family:IBM Plex Mono,monospace;font-weight:500;letter-spacing:1px;background:#6B8CAE22;color:#6B8CAE;margin-bottom:12px';
+  inner.appendChild(tag);
+
+  const enun=div('','font-size:13px;color:#c4c0b2;line-height:1.65;margin-bottom:16px');
+  enun.textContent=qst.enunciado; inner.appendChild(enun);
+
+  qst.alternativas.forEach((alt,i)=>{
+    const b=el('button','alt-btn');
+    let bg='#ffffff08', bc='#3a3f2e';
+    if(resp!==null){
+      if(i===qst.correta){bg='#7A8B5E22';bc='#7A8B5E';}
+      else if(i===resp&&resp!==qst.correta){bg='#9C3D3D22';bc='#9C3D3D';}
+      else{bg='#ffffff05';}
+    }
+    b.style.background=bg; b.style.borderColor=bc;
+    b.style.cursor=resp!==null?'default':'pointer';
+    if(resp!==null&&i===qst.correta){const ic=span('','✓');ic.style.color='#7A8B5E';ic.style.flexShrink='0';b.appendChild(ic);}
+    if(resp!==null&&i===resp&&resp!==qst.correta){const ic=span('','✗');ic.style.color='#9C3D3D';ic.style.flexShrink='0';b.appendChild(ic);}
+    b.appendChild(document.createTextNode(alt));
+    b.onclick=()=>{if(resp===null)setState({resp:i});};
+    inner.appendChild(b);
+  });
+
+  if(resp!==null){
+    const expl=div('expl'); expl.innerHTML=`<strong style="color:#7A8B5E">✓ </strong>${qst.explicacao}`;
+    inner.appendChild(expl);
+    const al=div('alerta'); al.style.marginBottom='12px';
+    al.innerHTML=`<span style="color:#9C3D3D;flex-shrink:0;margin-right:6px">⚠</span><span><strong style="color:#9C3D3D">Pegadinha: </strong>${qst.pegadinha}</span>`;
+    inner.appendChild(al);
+    const nx=el('button','btn-primary');
+    nx.style.cssText='width:100%;justify-content:center;display:flex;padding:10px 14px;font-size:13px';
+    nx.textContent=qi<nQ-1?'Próxima questão →':'Concluir tópico ✓';
+    nx.onclick=()=>{
+      if(qi<nQ-1) setState({qi:qi+1,resp:null});
+      else {
+        const ti=state.ti, top2=TOPICOS[ti];
+        const np={...state.prog,[top2.id]:true};
+        salProg(np);
+        setState({prog:np,tela:'concluido'});
+      }
+    };
+    inner.appendChild(nx);
+  }
+
+  scr.appendChild(inner);
+  app.appendChild(scr);
+}
+
+// ─── TELA CONCLUÍDO ────────────────────────────────────────────
+function renderConcluido(app,top,prog){
+  const hdr=div('hdr');
+  app.appendChild(hdr);
+  const body=div('','display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:24px;gap:16px;min-height:500px');
+  const emoji=div('','font-size:48px;text-align:center'); emoji.textContent='🎖'; body.appendChild(emoji);
+  const titulo=div('','font-family:Oswald,sans-serif;font-size:22px;color:#C7A14A;text-align:center'); titulo.textContent='TÓPICO CONCLUÍDO'; body.appendChild(titulo);
+  const sub=div('','font-family:IBM Plex Mono,monospace;font-size:14px;color:#7A8B5E;text-align:center'); sub.textContent=top.titulo; body.appendChild(sub);
+  const n=Object.keys(prog).length, pct=Math.round((n/TOPICOS.length)*100);
+  const prog_div=div('destaque'); prog_div.style.borderColor='#C7A14A'; prog_div.style.background='#C7A14A11'; prog_div.style.textAlign='center';
+  prog_div.innerHTML=`Progresso: <strong style="color:#C7A14A">${n}/${TOPICOS.length} tópicos (${pct}%)</strong>`;
+  body.appendChild(prog_div);
+  const bk=el('button','btn-primary'); bk.style.cssText='width:100%;justify-content:center;display:flex;padding:12px 14px;font-size:14px;margin-top:8px';
+  bk.textContent='Voltar à Trilha'; bk.onclick=()=>setState({tela:'trilha'});
+  body.appendChild(bk);
+  app.appendChild(body);
+}
+
+// ── INIT ───────────────────────────────────────────────────────
+renderApp();
+</script>
+</body>
+</html>

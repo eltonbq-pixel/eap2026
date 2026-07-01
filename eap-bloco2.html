@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>App EAP 2026 — Bloco 2: Legislação Institucional</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#111410;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#3a3f2e;border-radius:2px}
+button{font-family:'Inter',sans-serif}
+.device{width:390px;min-height:760px;background:#1a1d16;border-radius:32px;border:1px solid #3a3f2e;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.6);max-height:95vh}
+.hdr{padding:20px 16px 12px;background:#21261b;border-bottom:1px solid #2a2f21;display:flex;flex-direction:column;gap:4px;flex-shrink:0}
+.hdr-row{display:flex;align-items:center;justify-content:space-between}
+.lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#9a9684;letter-spacing:.5px}
+.scroll{flex:1;overflow-y:auto;padding:12px 16px 72px;display:flex;flex-direction:column;gap:8px;overscroll-behavior:contain}
+.foot{padding:12px 16px;background:#21261b;border-top:1px solid #2a2f21;display:flex;justify-content:center;flex-shrink:0}
+.card{display:flex;align-items:center;gap:12px;padding:12px 14px;background:#21261b;border:1px solid #2a2f21;border-radius:10px;cursor:pointer}
+.card-ic{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.card-titulo{font-size:13px;font-weight:500;color:#E8E4D8;margin-bottom:2px}
+.card-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7d7a6c}
+.prog-bar{display:flex;gap:3px;padding:0 16px 12px;flex-shrink:0}
+.prog-seg{flex:1;height:3px;border-radius:2px}
+.slide-card{margin:0 16px;padding:16px;background:#21261b;border:1px solid;border-radius:12px;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+.estagio-tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-family:'IBM Plex Mono',monospace;font-weight:500;letter-spacing:1px;align-self:flex-start;margin-bottom:2px}
+.slide-titulo{font-family:'Oswald',sans-serif;font-size:20px;font-weight:600;color:#F2EFE6;line-height:1.2}
+.slide-corpo{font-size:13px;color:#c4c0b2;line-height:1.65}
+.lista{list-style:none;display:flex;flex-direction:column;gap:6px}
+.lista li{font-size:12px;color:#c4c0b2;line-height:1.5;display:flex;align-items:flex-start}
+.tabela{border-radius:8px;overflow:hidden;border:1px solid #3a3f2e}
+.tabela-row{display:flex;padding:8px 10px;gap:8px}
+.tabela-row:nth-child(odd){background:#ffffff08}
+.tabela-item{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;min-width:80px;flex-shrink:0}
+.tabela-val{font-size:12px;color:#c4c0b2;line-height:1.4}
+.destaque{padding:10px 12px;border-left:3px solid;border-radius:0 6px 6px 0;font-size:12px;color:#c4c0b2;line-height:1.5}
+.alerta{display:flex;align-items:flex-start;padding:10px 12px;background:#9C3D3D11;border:1px solid #9C3D3D44;border-radius:8px;font-size:12px;color:#c4c0b2;line-height:1.5;gap:8px}
+.nav{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#21261b;border-top:1px solid #2a2f21;flex-shrink:0}
+.btn-nav{display:flex;align-items:center;gap:4px;padding:8px 12px;background:#2a2f21;border:1px solid #3a3f2e;border-radius:8px;color:#9a9684;font-size:12px;cursor:pointer}
+.btn-primary{display:flex;align-items:center;gap:4px;padding:8px 14px;background:#C7A14A22;border:1px solid #C7A14A66;border-radius:8px;color:#C7A14A;font-size:12px;cursor:pointer}
+.btn-audio{display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:#C7A14A11;border:1px solid #C7A14A33;border-radius:50%;cursor:pointer;flex-shrink:0}
+.btn-back{background:transparent;border:none;color:#9a9684;font-size:12px;cursor:pointer;font-family:'IBM Plex Mono',monospace;padding:4px 0}
+.tr-h{font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;color:#C7A14A;letter-spacing:.5px;margin:16px 0 8px;padding-left:4px}
+.tr-p{font-size:13px;color:#c4c0b2;line-height:1.7;margin-bottom:10px;padding-left:4px}
+.tr-def{background:#21261b;border:1px solid #3a3f2e;border-radius:8px;padding:10px 12px;margin-bottom:8px}
+.tr-def-lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6B8CAE;font-weight:600;margin-bottom:4px}
+.tr-def-v{font-size:12px;color:#c4c0b2;line-height:1.6}
+.tr-eq{background:#C7A14A11;border:1px solid #C7A14A44;border-radius:8px;padding:12px 14px;margin-bottom:10px;text-align:center;font-family:'Oswald',sans-serif;font-size:13px;color:#C7A14A;letter-spacing:1px;font-weight:600}
+.banca-btn{width:100%;display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border:none;cursor:pointer;text-align:left}
+.banca-body{padding:10px 12px;font-size:12px;color:#E8E4D8;line-height:1.6;border-top:none}
+kw{background:#C7A14A22;color:#C7A14A;border-radius:3px;padding:0 3px;font-weight:600}
+.alt-btn{width:100%;display:flex;align-items:center;padding:10px 12px;border:1px solid #3a3f2e;border-radius:8px;margin-bottom:6px;background:#ffffff08;cursor:pointer;font-size:12px;color:#c4c0b2;text-align:left;gap:6px}
+.expl{padding:10px 12px;border-left:3px solid #7A8B5E;background:#7A8B5E11;border-radius:0 6px 6px 0;font-size:12px;color:#c4c0b2;line-height:1.5;margin-bottom:8px}
+</style>
+</head>
+<body>
+<div class="device" id="app"></div>
+<script>
+const BLOCO = {
+  id:'bloco2', titulo:'Legislação Institucional', emoji:'🟡',
+  topicos:[
+
+  // T01 — EMEMG
+  {id:'ememg',titulo:'EMEMG',subtitulo:'Lei Estadual nº 5.301/1969',emoji:'⚖️',
+   slides:[
+    {estagio:'tema',titulo:'Lei 5.301/1969 — Estatuto dos Militares de MG',
+     corpo:'A Lei 5.301/1969 define quem são os militares do Estado (PMMG + CBMMG), suas situações funcionais e os requisitos de ingresso e progressão na carreira.',
+     destaque:'Militares do Estado: PMMG e CBMMG. Situações: ativa, reserva remunerada, reformado.',
+     audio:'A Lei 5301 de 1969 é o Estatuto dos Militares do Estado de Minas Gerais.'},
+    {estagio:'conceito',titulo:'Situações do Militar do Estado',
+     lista:['Ativa: em pleno exercício das atribuições do cargo','Reserva remunerada: afastado do serviço ativo mas sujeito à convocação','Reformado: definitivamente afastado do serviço ativo'],
+     audio:'O militar pode estar em três situações: na ativa, na reserva remunerada ou como reformado.'},
+    {estagio:'estrutura',titulo:'Cidadania — Nato vs. Naturalizado',
+     corpo:'A lei estabelece distinção importante para o ingresso nas carreiras:',
+     tabela:[{item:'OFICIAIS',valor:'Somente brasileiros NATOS'},{item:'PRAÇAS',valor:'Brasileiros natos OU naturalizados'}],
+     alerta:'Banca cobra: praças podem ser naturalizados; oficiais NUNCA.',
+     audio:'Oficiais devem ser brasileiros natos. Praças podem ser natos ou naturalizados.'},
+    {estagio:'estrutura',titulo:'Requisitos de Ingresso — Art. 5º',
+     lista:['Cidadão brasileiro (nato para oficiais)','Idoneidade moral comprovada','Quite com obrigações militares e eleitorais','18 a 30 anos (Quadro Saúde: até 35 anos)','Nível superior (PM) ou médio (CBM)','Estatura mínima 1,60m (exceto Quadro Saúde)','Aptidão física e avaliação psicológica','Tatuagem não incompatível'],
+     audio:'Os requisitos incluem cidadania, idoneidade, faixa etária, escolaridade e estatura mínima.'},
+    {estagio:'pegadinha',titulo:'Quadro de Saúde — Regras Especiais',
+     corpo:'O Quadro de Saúde tem duas exceções em relação aos demais quadros:',
+     tabela:[{item:'Idade',valor:'Até 35 anos (demais: 30 anos)'},{item:'Estatura',valor:'SEM exigência mínima de 1,60m'},{item:'Escolaridade',valor:'Graduação em área compatível'}],
+     alerta:'ERRO CLÁSSICO: afirmar que TODOS precisam de 1,60m. O Quadro Saúde é exceção.',
+     audio:'Atenção à pegadinha do Quadro de Saúde: idade até 35 anos e sem exigência de 1,60 metros.'},
+    {estagio:'estrutura',titulo:'Tempo de Serviço — Quadros de Oficiais',
+     tabela:[{item:'QO-PM geral',valor:'Até 20 anos de efetivo serviço'},{item:'QOPM',valor:'Exige bacharelado em Direito + OAB no concurso'},{item:'QOC e QOE',valor:'Até 24 anos de efetivo serviço'}],
+     audio:'O QO-PM geral permite até 20 anos de serviço. O QOC e QOE permitem até 24 anos.'},
+    {estagio:'fixacao',titulo:'Mnemônico: Natos e Naturalizados',
+     destaque:'OF-CI-AL → só NATOS. PRAÇA → nato OU naturalizado.',
+     corpo:'Oficiais: exclusivamente natos. Praças: natos ou naturalizados. Qualquer questão que misture esses critérios: lembre da regra.',
+     audio:'Para memorizar: oficiais são exclusivamente natos. Praças podem ser natos ou naturalizados.'}
+   ],
+   transcricao:{
+    ref:'Lei Estadual nº 5.301, de 16/10/1969 — Estatuto dos Militares do Estado de MG',
+    blocos:[
+     {t:'h',v:'1. Organização e Situações do Militar'},
+     {t:'p',v:'A PMMG e o CBMMG compõem as IME de MG. Situações: ativa, reserva remunerada e reformado.',kw:['PMMG','CBMMG','ativa','reserva remunerada','reformado']},
+     {t:'def',label:'Reserva Remunerada',v:'Militar afastado do serviço ativo que percebe proventos e pode ser convocado nos casos previstos em lei.'},
+     {t:'h',v:'2. Cidadania para Ingresso'},
+     {t:'p',v:'Oficiais: exclusivamente brasileiros natos. Praças: natos ou naturalizados. Banca troca "nato" por "naturalizado" nas questões sobre oficiais.',kw:['natos','naturalizados','Oficiais','Praças']},
+     {t:'banca',prob:92,assunto:'Oficiais: nato ou naturalizado?',resp:'APENAS NATOS. Praças: natos ou naturalizados. Distinção mais cobrada do EMEMG.'},
+     {t:'h',v:'3. Requisitos de Ingresso (Art. 5º)'},
+     {t:'p',v:'18 a 30 anos (Saúde: até 35). Nível superior (PM) ou médio (CBM). Estatura 1,60m (exceto Saúde). QOPM exige Direito + OAB.',kw:['18 a 30 anos','35 anos','1,60m','Quadro Saúde','nível superior','OAB']},
+     {t:'banca',prob:88,assunto:'Saúde: quais exceções?',resp:'DUAS exceções: (1) limite de idade sobe para 35 anos; (2) sem exigência de 1,60m.'},
+     {t:'h',v:'4. Tempo de Serviço'},
+     {t:'p',v:'QO geral: até 20 anos. QOC e QOE: até 24 anos. QOPM exige bacharelado em Direito com participação da OAB no concurso.',kw:['20 anos','24 anos','QOC','QOE','Direito','OAB']},
+     {t:'banca',prob:80,assunto:'QOC/QOE: 20 ou 24 anos?',resp:'QOC e QOE têm prazo MAIOR: até 24 anos. QO geral: até 20. Banca inverte.'}
+    ]
+   },
+   questoes:[
+    {enunciado:'De acordo com a Lei 5.301/1969, podem ingressar como PRAÇAS da PMMG:',
+     alternativas:['Apenas brasileiros natos','Brasileiros natos ou naturalizados','Brasileiros natos, naturalizados ou estrangeiros com visto permanente','Apenas brasileiros naturalizados'],
+     correta:1,
+     explicacao:'Praças: natos OU naturalizados. Diferente dos Oficiais, que são exclusivamente natos.',
+     pegadinha:'Confundir a regra dos Oficiais (só natos) com a das Praças (natos ou naturalizados).'},
+    {enunciado:'O Quadro de Saúde da PMMG diferencia-se dos demais quadros pois:',
+     alternativas:['Exige nível médio e dispensa aptidão física','Não exige idoneidade moral comprovada','Admite candidatos até 35 anos e dispensa a estatura mínima de 1,60m','Exige estatura mínima de 1,70m'],
+     correta:2,
+     explicacao:'Saúde: idade até 35 (não 30) e sem exigência de 1,60m. Demais requisitos iguais.',
+     pegadinha:'Questão sugere que Saúde exige nível médio. ERRADO: exige GRADUAÇÃO em área compatível.'},
+    {enunciado:'Quanto ao tempo de serviço nos Quadros de Oficiais, assinale a alternativa correta:',
+     alternativas:['QO geral: até 24 anos; QOC e QOE: até 20 anos','QO geral: até 20 anos; QOC e QOE: até 24 anos','Todos os quadros: até 20 anos','Todos os quadros: até 30 anos'],
+     correta:1,
+     explicacao:'QO geral: até 20 anos. QOC e QOE: até 24 anos.',
+     pegadinha:'A banca inverte: QOC/QOE têm MAIS tempo (24), não menos.'},
+    {enunciado:'O ingresso no QOPM exige como requisito específico:',
+     alternativas:['Especialização em Segurança Pública','Bacharelado em Direito com participação da OAB no concurso','Experiência mínima de 2 anos em cargo público','Mestrado em Ciências Jurídicas'],
+     correta:1,
+     explicacao:'QOPM: bacharelado em Direito e o edital prevê participação da OAB. Nenhum outro quadro tem essa exigência.',
+     pegadinha:"Confundir 'bacharelado' com 'especialização' ou 'mestrado'. São títulos diferentes."}
+   ]
+  },
+
+  // T02 — MAPPA
+  {id:'mappa',titulo:'MAPPA',subtitulo:'Resolução Conjunta nº 4.220/2012',emoji:'📋',
+   slides:[
+    {estagio:'tema',titulo:'MAPPA — Manual de Procedimentos Administrativos',
+     corpo:'A Resolução Conjunta 4.220/2012 aprova o MAPPA das IME de MG, regulando 6 procedimentos: SAD, PAD, PADS, PAE, RIP e PCD.',
+     destaque:'Base legal: Resolução Conjunta PM/BM nº 4.220, de 14/11/2012.',
+     audio:'O MAPPA regula seis procedimentos administrativos das Instituições Militares do Estado.'},
+    {estagio:'estrutura',titulo:'Os 6 Procedimentos do MAPPA',
+     lista:['SAD — Sindicância Averiguatória Disciplinar','PAD — Processo Administrativo Disciplinar','PADS — PAD Simplificado','PAE — PAD Especial','RIP — Requerimento de Instauração de Processo','PCD — Processo de Capacidade e Desempenho'],
+     audio:'Os seis procedimentos são: SAD, PAD, PADS, PAE, RIP e PCD.'},
+    {estagio:'estrutura',titulo:'Prazos do SAD',
+     tabela:[{item:'Prazo SAD',valor:'30 dias corridos'},{item:'Prorrogação',valor:'+ 10 dias corridos'},{item:'Sobrestamento',valor:'Até 30 dias'},{item:'Defesa prévia',valor:'2 dias úteis'},{item:'Defesa final',valor:'5 dias úteis (2+ sindicados: 10)'},{item:'Decisão autoridade',valor:'10 dias úteis'}],
+     audio:'O SAD tem prazo de 30 dias corridos, prorrogáveis por mais 10.'},
+    {estagio:'estrutura',titulo:'Prazos do PAD, PADS, PAE e RIP',
+     tabela:[{item:'PAD',valor:'40 dias + 20 prorrogação + 60 sobrestamento'},{item:'PAD defesa',valor:'5 dias úteis (2+: 10 dias úteis)'},{item:'PADS',valor:'20 dias + 10 prorrogação'},{item:'PAE',valor:'30 dias + 10 prorrogação'},{item:'RIP',valor:'15 dias + 10 prorrogação'},{item:'PCD',valor:'15 dias + 10 prorrogação'}],
+     audio:'O PAD tem 40 dias mais 20 de prorrogação. O PADS tem 20 mais 10. O PAE tem 30 mais 10.'},
+    {estagio:'pegadinha',titulo:'Marco Inicial do SAD',
+     corpo:'A banca cobra o momento exato em que o prazo do SAD começa a correr.',
+     destaque:'Marco inicial: 1º dia útil APÓS o recebimento da portaria pelo SINDICANTE.',
+     alerta:'ERRO CLÁSSICO: marcar "data da portaria" ou "data de publicação". O prazo começa quando o sindicante RECEBE a portaria.',
+     audio:'O prazo do SAD começa no primeiro dia útil após o recebimento da portaria pelo sindicante.'},
+    {estagio:'estrutura',titulo:'Quem Pode Ser Sindicante?',
+     corpo:'O sindicante deve ter precedência hierárquica sobre o sindicado.',
+     lista:['Graduação mínima: Sargento','Deve ter posto ou graduação superior ao sindicado','Se mesmo posto: o mais antigo','Comissão de 3 membros em casos especiais'],
+     audio:'O sindicante deve ser superior hierárquico ao sindicado, com graduação mínima de Sargento.'},
+    {estagio:'fixacao',titulo:'Regra Rápida dos Prazos',
+     tabela:[{item:'SAD',valor:'30+10'},{item:'PAD',valor:'40+20 (sobr.60)'},{item:'PADS',valor:'20+10'},{item:'PAE',valor:'30+10'},{item:'RIP',valor:'15+10'},{item:'PCD',valor:'15+10'}],
+     destaque:'PAD é o maior (40+20). SAD e PAE empatam (30+10). PADS é metade do PAD (20+10). RIP e PCD menores (15+10).',
+     audio:'Para memorizar: PAD é o maior. SAD e PAE têm 30 mais 10. PADS tem 20 mais 10. RIP e PCD têm 15 mais 10.'}
+   ],
+   transcricao:{
+    ref:'Resolução Conjunta PM/BM nº 4.220, de 14/11/2012 — MAPPA',
+    blocos:[
+     {t:'h',v:'1. Os 6 Procedimentos'},
+     {t:'p',v:'O MAPPA regula 6 procedimentos: SAD, PAD, PADS, PAE, RIP e PCD. Cada um tem prazo, finalidade e tramitação específicos.',kw:['SAD','PAD','PADS','PAE','RIP','PCD']},
+     {t:'h',v:'2. SAD — Prazos e Marco Inicial'},
+     {t:'p',v:'SAD: 30 dias corridos + prorrogação de 10. Sobrestamento: até 30 dias. Marco inicial: 1º dia útil após recebimento da portaria pelo sindicante.',kw:['30 dias','10 dias','1º dia útil','sindicante','sobrestamento']},
+     {t:'def',label:'SAD — Defesas',v:'Defesa prévia: 2 dias úteis. Defesa final: 5 dias úteis (2+ sindicados: 10 dias úteis). Autoridade decide em 10 dias úteis.'},
+     {t:'banca',prob:95,assunto:'Marco inicial do SAD',resp:'1º DIA ÚTIL após o RECEBIMENTO da portaria pelo sindicante. Não é data de publicação nem de assinatura. Cai em todas as provas.'},
+     {t:'h',v:'3. PAD'},
+     {t:'p',v:'PAD: 40 dias corridos + prorrogação de 20 dias. Sobrestamento: até 60 dias. Defesa final: 5 dias úteis (2+ acusados: 10 dias úteis).',kw:['40 dias','20 dias','60 dias','5 dias úteis','10 dias úteis']},
+     {t:'banca',prob:90,assunto:'PAD x PADS',resp:'PAD = 40+20 (maior). PADS = 20+10 (simplificado = metade). PAE = 30+10 (igual ao SAD).'},
+     {t:'h',v:'4. PADS, PAE, RIP e PCD'},
+     {t:'p',v:'PADS: 20+10. PAE: 30+10. RIP: 15+10, decisão da autoridade em 10 dias úteis. PCD: 15+10.',kw:['PADS','PAE','RIP','PCD','15 dias','20 dias','30 dias']},
+     {t:'banca',prob:85,assunto:'RIP: prazo da autoridade',resp:'Após relatório final do RIP, a autoridade tem 10 dias ÚTEIS para decidir. Não é corrido.'},
+     {t:'def',label:'Sobrestamento',v:'Suspensão temporária do prazo por fato externo (ex.: processo criminal). Diferente de prorrogação (extensão ordinária).'},
+     {t:'banca',prob:78,assunto:'Sobrestamento x Prorrogação',resp:'Prorrogação: extensão ordinária do prazo. Sobrestamento: suspensão por fato externo. São institutos distintos.'}
+    ]
+   },
+   questoes:[
+    {enunciado:'O marco inicial da contagem do prazo do SAD, conforme o MAPPA, é:',
+     alternativas:['A data de assinatura da portaria de instauração','O 1º dia útil após o recebimento da portaria pelo sindicante','A data de publicação no BGPM','O dia em que o fato transgressor foi praticado'],
+     correta:1,
+     explicacao:'Marco inicial: 1º dia útil após o RECEBIMENTO da portaria pelo sindicante. A portaria pode ser assinada/publicada antes; o prazo só começa quando o sindicante recebe.',
+     pegadinha:"Confundir 'data da portaria' com 'data do recebimento'. São momentos diferentes."},
+    {enunciado:'O prazo do PAD, conforme o MAPPA, é:',
+     alternativas:['30 dias com prorrogação de 10 e sobrestamento de 30 dias','40 dias com prorrogação de 20 e sobrestamento de 60 dias','20 dias com prorrogação de 10, sem sobrestamento','40 dias com prorrogação de 10 e sobrestamento de 30 dias'],
+     correta:1,
+     explicacao:'PAD: 40+20 prorrogação+60 sobrestamento. Os maiores prazos do MAPPA.',
+     pegadinha:'Confundir com o SAD (30+10+30). No PAD, tudo é maior.'},
+    {enunciado:'No PAD com 2 ou mais acusados, o prazo para defesa final é:',
+     alternativas:['5 dias úteis','10 dias úteis','15 dias corridos','20 dias corridos'],
+     correta:1,
+     explicacao:'Com 2 ou mais acusados: 10 dias úteis. Com 1 acusado: 5 dias úteis.',
+     pegadinha:'A regra geral é 5 dias; pluralidade de acusados dobra o prazo.'},
+    {enunciado:'O prazo do PADS (PAD Simplificado), conforme o MAPPA, é:',
+     alternativas:['30 dias corridos prorrogáveis por 10','15 dias corridos prorrogáveis por 10','20 dias corridos prorrogáveis por 10','40 dias corridos prorrogáveis por 20'],
+     correta:2,
+     explicacao:'PADS: 20 dias + 10 prorrogação. É a metade do PAD (40+20).',
+     pegadinha:'Trocar PADS (20+10) com RIP/PCD (15+10). PADS tem mais dias que o RIP.'}
+   ]
+  },
+
+  // T03 — CEDM
+  {id:'cedm',titulo:'CEDM',subtitulo:'Lei Estadual nº 14.310/2002',emoji:'🏛️',
+   slides:[
+    {estagio:'tema',titulo:'CEDM — Código de Ética e Disciplina Militar',
+     corpo:'A Lei 14.310/2002 institui o CEDM de MG. Define transgressões, sanções, recursos, recompensas e regulamenta o PAD.',
+     destaque:'Base legal: Lei Estadual nº 14.310, de 19 de junho de 2002.',
+     audio:'O CEDM é o Código de Ética e Disciplina dos Militares de Minas Gerais.'},
+    {estagio:'finalidade',titulo:'Finalidade do CEDM',
+     lista:['Definir, especificar e classificar as transgressões disciplinares','Estabelecer sanções, conceitos e recursos','Regulamentar as recompensas militares','Regulamentar o PAD','Regulamentar o CEDMU'],
+     audio:'A finalidade do CEDM é definir transgressões, estabelecer sanções e recursos, e regulamentar o PAD.'},
+    {estagio:'estrutura',titulo:'Conceito Disciplinar — A, B e C',
+     tabela:[{item:'Conceito A',valor:'50 pontos ou mais — ÓTIMO'},{item:'Conceito B',valor:'-50 a +49 pontos — BOM'},{item:'Conceito C',valor:'-51 pontos ou menos — INSUFICIENTE/MAU'}],
+     destaque:'Todo militar INGRESSA no Conceito B com ZERO ponto. A cada ano sem punição: +10 pontos.',
+     audio:'O militar ingressa com zero ponto no Conceito B. A cada ano sem punição, ganha mais 10 pontos.'},
+    {estagio:'pegadinha',titulo:'Advertência Verbal NÃO é Sanção',
+     corpo:'O aconselhamento verbal e a advertência verbal são medidas educativas — não constituem sanção disciplinar.',
+     lista:['Não gera perda de ponto de conceito','Não altera o conceito disciplinar','NÃO impede recebimento de medalhas','O fato consta na ficha funcional (registro educativo)'],
+     alerta:'A banca afirma que "advertência verbal impede medalha" ou "gera perda de ponto". FALSO.',
+     audio:'Atenção: advertência verbal não é sanção. Não perde ponto, não impede medalha.'},
+    {estagio:'estrutura',titulo:'A Quem se Aplica o CEDM',
+     lista:['Militares da ATIVA: aplicação plena e irrestrita','Militares da RESERVA REMUNERADA: apenas nos casos expressamente previstos','NÃO se aplica: Coronéis Juízes do TJM-MG'],
+     alerta:'Coronéis do TJM não são julgados pelo CEDM. Têm regime próprio do Tribunal.',
+     audio:'O CEDM aplica-se plenamente aos da ativa. Na reserva remunerada, só nos casos expressos. Coronéis Juízes do TJM estão excluídos.'},
+    {estagio:'estrutura',titulo:'Bases da Disciplina — PRO-OB-EM-CO-CO',
+     lista:['PRonta obediência às ordens legais','OBservância das prescrições dos regulamentos','EMprego de toda a capacidade no serviço','COrreção de atitudes','COlaboração espontânea'],
+     destaque:'5 bases da disciplina: PRO-OB-EM-CO-CO',
+     audio:'As cinco bases da disciplina: Pronta obediência, Observância, Emprego, Correção e Colaboração.'},
+    {estagio:'fixacao',titulo:'Cancelamento de Punições',
+     destaque:'5 anos de efetivo exercício após a ÚLTIMA punição, sem novas punições → cancelamento automático de TODAS as punições anteriores.',
+     alerta:'Prazo é da ÚLTIMA punição registrada, não de cada punição individualmente.',
+     audio:'O cancelamento automático ocorre após 5 anos da última punição, sem novos registros disciplinares.'}
+   ],
+   transcricao:{
+    ref:'Lei Estadual nº 14.310, de 19/06/2002 — Código de Ética e Disciplina dos Militares de MG',
+    blocos:[
+     {t:'h',v:'1. Finalidade e Âmbito de Aplicação'},
+     {t:'p',v:'O CEDM define e classifica transgressões; estabelece sanções, conceitos, recursos e recompensas; regulamenta o PAD e o CEDMU.',kw:['transgressões','sanções','conceitos','recursos','recompensas','PAD','CEDMU']},
+     {t:'p',v:'Aplica-se: militares da ativa (plenamente) e da reserva remunerada (casos expressos). Não se aplica: Coronéis Juízes do TJM-MG.',kw:['ativa','reserva remunerada','Coronéis Juízes','TJM-MG']},
+     {t:'def',label:'Transgressão Disciplinar',v:'Ofensa concreta aos princípios da ética profissional e deveres do militar estadual, manifestação elementar e simples, objetivamente especificada no CEDM.'},
+     {t:'banca',prob:88,assunto:'CEDM aplica-se à reserva remunerada?',resp:'SIM, mas APENAS nos casos expressamente previstos. Não é aplicação plena como na ativa.'},
+     {t:'h',v:'2. Conceito Disciplinar'},
+     {t:'p',v:'Ingressante: Conceito B, zero ponto. A cada ano sem punição: +10. Conceito A: ≥+50. B: -50 a +49. C: ≤-51.',kw:['Conceito A','Conceito B','Conceito C','50 pontos','zero ponto','+10 pontos']},
+     {t:'banca',prob:92,assunto:'Valor inicial do ponto de conceito',resp:'ZERO ponto, Conceito B. Não começa em +10 nem em Conceito A. Zero, no meio da escala.'},
+     {t:'h',v:'3. Advertência Verbal — Não é Sanção'},
+     {t:'p',v:'Aconselhamento verbal e advertência verbal: medidas EDUCATIVAS, não sanções. Não geram perda de ponto nem impedem medalhas.',kw:['aconselhamento verbal','advertência verbal','NÃO são sanções','medalhas']},
+     {t:'banca',prob:85,assunto:'Advertência verbal impede medalha?',resp:'NÃO. Advertência verbal não é sanção. O militar pode receber medalha. A banca afirma o contrário.'},
+     {t:'h',v:'4. Bases da Disciplina'},
+     {t:'eq',v:'PRO-OB-EM-CO-CO: Pronta Obediência · Observância · EMprego · COrrição · COlaboração'},
+     {t:'banca',prob:80,assunto:'Quantas bases tem a disciplina?',resp:'5 bases: Pronta obediência, Observância, Emprego da capacidade, Correção de atitudes, Colaboração espontânea.'},
+     {t:'h',v:'5. Cancelamento de Punições'},
+     {t:'p',v:'Cancelamento automático: 5 anos de efetivo exercício após a ÚLTIMA punição sem novas punições. Beneficia todas as punições anteriores.',kw:['5 anos','efetivo exercício','última punição','cancelamento automático']},
+     {t:'banca',prob:78,assunto:'Prazo para cancelamento',resp:'5 anos após a ÚLTIMA punição. Não é 5 anos de cada punição individualmente.'}
+    ]
+   },
+   questoes:[
+    {enunciado:'Conforme o CEDM, o militar estadual ingressa com qual conceito disciplinar?',
+     alternativas:['Conceito A, com +50 pontos','Conceito B, com zero ponto','Conceito C, com zero ponto','Conceito B, com +10 pontos'],
+     correta:1,
+     explicacao:'Ingresso: Conceito B, zero ponto. A cada ano sem punição, ganha +10 pontos.',
+     pegadinha:"Confundir 'zero ponto' com '+10 pontos' ou com 'Conceito C'."},
+    {enunciado:'Sobre a advertência verbal no CEDM, é correto afirmar:',
+     alternativas:['É sanção leve que implica perda de 5 pontos','Impede o recebimento de medalhas','Não é sanção e não implica perda de pontos, mas o fato consta na ficha funcional','É sanção que gera perda de 10 pontos e consta no prontuário por 2 anos'],
+     correta:2,
+     explicacao:'Advertência verbal: não é sanção. Não perde pontos. Não impede medalhas. Fato consta na ficha (registro educativo).',
+     pegadinha:"A banca diz que 'constar na ficha = é sanção'. ERRADO."},
+    {enunciado:'O CEDM aplica-se a militares da reserva remunerada:',
+     alternativas:['De forma plena e irrestrita, como os da ativa','Apenas nos casos expressamente previstos no código','Nunca, pois a reserva está fora do âmbito do CEDM','Somente quando o militar estiver de uniforme'],
+     correta:1,
+     explicacao:'Reserva remunerada: sujeita ao CEDM APENAS nos casos expressamente previstos. Não é plena como a ativa.',
+     pegadinha:"Confundir 'plena' com 'casos expressos'. A reserva tem aplicação RESTRITA."},
+    {enunciado:'O cancelamento automático de punições disciplinares no CEDM ocorre após:',
+     alternativas:['3 anos após cada punição','5 anos após a última punição, sem novas punições','10 anos de serviço ativo','2 anos após a sanção, por revisão administrativa'],
+     correta:1,
+     explicacao:'5 anos após a ÚLTIMA punição, sem novos registros → cancelamento de todas as punições anteriores.',
+     pegadinha:'Prazo é da ÚLTIMA punição (não de cada uma individualmente).'}
+   ]
+  },
+
+
+  // T04 — ICC PM/BM 01/2014
+  {id:'icc',titulo:'ICC PM/BM 01/2014',subtitulo:'Instrução Conjunta das Corregedorias',emoji:'📜',
+   slides:[
+    {estagio:'tema',titulo:'ICC PM/BM 01/2014 — Instrução Conjunta',
+     corpo:'A Instrução Conjunta das Corregedorias nº 01, de 03/02/2014, regulamenta o enquadramento de transgressões simultâneas e conexas e lista as transgressões graves das IME de MG.',
+     destaque:'Fundamenta-se no CEDM (Lei 14.310/2002) e complementa a aplicação da disciplina.',
+     audio:'A Instrução Conjunta das Corregedorias número 01 de 2014 regulamenta as transgressões simultâneas, conexas e as consideradas graves.'},
+    {estagio:'conceito',titulo:'Simultaneidade de Transgressões',
+     corpo:'Ocorre quando o mesmo militar comete mais de uma transgressão ao mesmo tempo, no mesmo lugar.',
+     lista:['Exemplo: fardamento alterado + arma irregular + barba por fazer (mesmo ato de serviço)','Transgressão PRINCIPAL: a mais grave','Se mesma gravidade: a mais predominante','Agravantes incidem SOMENTE sobre a transgressão principal'],
+     audio:'Simultaneidade: mesmo tempo e lugar. A transgressão principal é a mais grave. As agravantes incidem apenas sobre ela.'},
+    {estagio:'conceito',titulo:'Conexidade de Transgressões',
+     corpo:'Ocorre quando transgressões distintas estão intimamente ligadas por nexo causal.',
+     lista:['Exemplo: chegar atrasado + simular doença para justificar o atraso','A conexão se dá pelo nexo causal ou motivação comum','Faltas SUBSEQUENTES ao serviço NÃO são conexas — são transgressões autônomas'],
+     alerta:'ATENÇÃO: faltas em dias seguidos sem comparecer ao serviço NÃO formam conexidade. São transgressões autônomas.',
+     audio:'Conexidade: transgressões ligadas por nexo causal. Atenção: faltas em dias consecutivos são autônomas, não conexas.'},
+    {estagio:'estrutura',titulo:'Transgressões Graves — Grupo I',
+     lista:['Ato atentatório à dignidade da pessoa ou direitos humanos (exige procedimento apuratório em andamento)','Crime doloso que concorra para desprestígio da IME (exige TRÂNSITO EM JULGADO)','Falta pública de decoro causando grave escândalo','Exercer coação ou assédio (sexual/moral) sobre pessoas com relações funcionais'],
+     audio:'As transgressões graves incluem: atos contra a dignidade humana, crime doloso com trânsito em julgado, falta pública de decoro e assédio.'},
+    {estagio:'estrutura',titulo:'Transgressões Graves — Grupo II',
+     lista:['Apresentar-se com sinais de embriaguez em serviço, fardado ou causando escândalo','Praticar ato violento sem configurar infração penal','Divulgar assunto sigiloso em razão do cargo ou função','Usar recursos humanos/logísticos do Estado para interesse pessoal','Exercer, quando na ativa, atividade privada cuja fiscalização caiba às IME'],
+     audio:'Também são graves: embriaguez em serviço, ato violento, divulgação de sigilo, uso de recursos públicos para interesse pessoal.'},
+    {estagio:'pegadinha',titulo:'Crime Doloso — Qual o Requisito?',
+     corpo:'Para que o crime doloso configure transgressão grave, é necessário:',
+     lista:['TRÂNSITO EM JULGADO da sentença condenatória','O crime deve ter concorrido para o DESPRESTÍGIO da Instituição','Crime culposo NÃO está nessa categoria automaticamente'],
+     alerta:'A banca usa "indiciamento" ou "sentença de 1ª instância" no lugar de "trânsito em julgado". ERRADO.',
+     audio:'Para crime doloso configurar transgressão grave: exige trânsito em julgado e que o crime concorra para desprestígio da Instituição.'},
+    {estagio:'fixacao',titulo:'Simultânea vs. Conexa — Resumo',
+     tabela:[{item:'Simultânea',valor:'Mesmo tempo e lugar — ex: farda+arma+barba'},{item:'Conexa',valor:'Nexo causal — ex: atrasou+simulou doença'},{item:'Principal',valor:'Mais grave ou, se iguais, a predominante'},{item:'Agravantes',valor:'Só sobre a transgressão PRINCIPAL'},{item:'Faltas sub.',valor:'NÃO são conexas — são autônomas'}],
+     audio:'Resumo: simultânea é mesmo tempo e lugar. Conexa é nexo causal. Agravantes só na principal. Faltas subsequentes são autônomas.'}
+   ],
+   transcricao:{
+    ref:'Instrução Conjunta das Corregedorias PM/BM nº 01, de 03/02/2014',
+    blocos:[
+     {t:'h',v:'1. Simultaneidade e Conexidade'},
+     {t:'p',v:'Simultaneidade: mesmo militar, mesmo tempo e lugar. Conexidade: transgressões intimamente ligadas por nexo causal. Em ambos os casos: identifica-se a transgressão PRINCIPAL (mais grave ou, se iguais, a predominante).',kw:['Simultaneidade','Conexidade','transgressão principal','mais grave','predominante']},
+     {t:'def',label:'Exemplo Clássico — Simultânea',v:'Militar com fardamento alterado + arma irregular + barba por fazer no mesmo ato. Três transgressões simultâneas, uma principal.'},
+     {t:'def',label:'Exemplo Clássico — Conexa',v:'Militar chega atrasado ao serviço (transgressão 1) e simula doença para justificar o atraso (transgressão 2). Nexo causal claro.'},
+     {t:'banca',prob:90,assunto:'Faltas subsequentes: conexas ou não?',resp:'NÃO são conexas. Faltas em dias consecutivos são transgressões AUTÔNOMAS, não formam conexidade. Banca tenta incluir como conexas.'},
+     {t:'h',v:'2. Transgressões Graves'},
+     {t:'p',v:'São graves: ato atentatório à dignidade/DH; desprestígio da IME por crime doloso (trânsito em julgado); decoro público; assédio; embriaguez em serviço; ato violento; divulgação de sigilo; uso de recursos do Estado para interesse pessoal; atividade privada em área de fiscalização da IME.',kw:['crime doloso','trânsito em julgado','desprestígio','assédio','embriaguez','sigiloso','interesse pessoal']},
+     {t:'banca',prob:88,assunto:'Crime doloso: quando é grave?',resp:'TRÂNSITO EM JULGADO da condenação criminal, E o crime deve ter concorrido para desprestígio da IME. Indiciamento ou sentença de 1ª instância não bastam.'},
+     {t:'def',label:'Agravantes — A Quem se Aplicam',v:'As agravantes incidem SOMENTE sobre a transgressão principal (a mais grave). As demais transgressões simultâneas/conexas não recebem agravantes separadas.'},
+     {t:'banca',prob:82,assunto:'Agravantes: sobre qual transgressão?',resp:'Somente sobre a PRINCIPAL. Erro clássico: aplicar agravante a cada transgressão individualmente.'},
+     {t:'h',v:'3. Uso da Designação Hierárquica — Reserva'},
+     {t:'p',v:'Militar da reserva remunerada NÃO pode usar designação hierárquica em: atividades comerciais/liberais/industriais; discussão de assuntos institucionais; cargos civis privados; atividades religiosas; circunstâncias que prejudiquem a imagem das IME.',kw:['reserva remunerada','designação hierárquica','atividades comerciais','imagem das IME']},
+     {t:'banca',prob:75,assunto:'Reserva: pode usar patente em cargo civil?',resp:'NÃO. Em cargo civil privado não pode usar a designação hierárquica. Também não em atividades comerciais, liberais, industriais e religiosas.'}
+    ]
+   },
+   questoes:[
+    {enunciado:'Conforme a ICC PM/BM 01/2014, ocorre SIMULTANEIDADE de transgressões quando:',
+     alternativas:['O mesmo militar pratica transgressões em dias consecutivos','O mesmo militar pratica mais de uma transgressão no mesmo tempo e lugar','Dois militares praticam transgressões relacionadas ao mesmo fato','Transgressões de natureza diversa estão causalmente ligadas'],
+     correta:1,
+     explicacao:'Simultaneidade: mesmo militar, mesmo tempo e lugar. Exemplo: fardamento irregular + arma + barba ao mesmo tempo.',
+     pegadinha:"Confundir simultaneidade com 'dias consecutivos' — esse caso é faltas autônomas, não simultâneas."},
+    {enunciado:'Nas transgressões simultâneas ou conexas, as circunstâncias agravantes incidem:',
+     alternativas:['Sobre todas as transgressões cometidas','Apenas sobre a transgressão de menor gravidade','Somente sobre a transgressão principal','Igualmente sobre todas, com pesos diferentes'],
+     correta:2,
+     explicacao:'As agravantes incidem SOMENTE sobre a transgressão principal (a mais grave ou, se iguais, a predominante).',
+     pegadinha:'A banca afirma que agravantes incidem sobre todas. ERRADO: apenas sobre a principal.'},
+    {enunciado:'Para que a prática de crime doloso configure transgressão GRAVE conforme a ICC 01/2014, é necessário:',
+     alternativas:['Apenas o indiciamento policial pelo crime','Sentença condenatória de 1ª instância','Trânsito em julgado e que o crime concorra para desprestígio da IME','Abertura de inquérito policial militar'],
+     correta:2,
+     explicacao:'Dois requisitos cumulativos: (1) trânsito em julgado e (2) o crime deve concorrer para desprestígio da Instituição.',
+     pegadinha:"A banca usa 'indiciamento' ou 'sentença de 1ª instância'. Exige TRÂNSITO EM JULGADO."},
+    {enunciado:'As faltas de serviço em dias SUBSEQUENTES (dias seguidos sem comparecer) enquadram-se, conforme a ICC 01/2014, como:',
+     alternativas:['Transgressões conexas, formando nexo causal','Transgressões simultâneas, tratadas como uma só','Transgressões autônomas, cada uma apurada independentemente','Transgressão grave de natureza continuada'],
+     correta:2,
+     explicacao:'Faltas subsequentes são AUTÔNOMAS — não formam conexidade. Cada falta é uma transgressão distinta.',
+     pegadinha:'A questão tenta enquadrar como conexas por serem seguidas. Conexidade exige nexo causal, não mera sucessão temporal.'}
+   ]
+  },
+
+  // T05 — FROTA
+  {id:'frota',titulo:'Gerenciamento de Frota',subtitulo:'Resolução nº 5.142/2021',emoji:'🚗',
+   slides:[
+    {estagio:'tema',titulo:'Manual de Frota — Resolução 5.142/2021',
+     corpo:'A Resolução 5.142, de 22/11/2021, aprova o Manual de Gerenciamento de Frota da PMMG. Vigência: imediata, exceto regras de acidentes/danos/multas (a partir de 01/04/2022).',
+     destaque:'Revoga: Resolução 4.219/2012 (manual anterior) + Capítulo IX do MAPPA (vigência 01/04/2022).',
+     audio:'A Resolução 5142 de 2021 aprova o novo Manual de Gerenciamento de Frota da PMMG.'},
+    {estagio:'estrutura',titulo:'As 3 Esferas de Gestão da Frota',
+     tabela:[{item:'1ª esfera',valor:'Gestor de Frota da Unidade (Chefe da Seção Administrativa)'},{item:'2ª esfera',valor:'Gestor de Frota Regional (Chefe da Seção de Frota do BPM/U)'},{item:'3ª esfera',valor:'Gestor de Frota Geral — DAL (Diretoria de Apoio Logístico)'}],
+     destaque:'Nas UEOp (Unidades de Execução Operacional): Gestor = Chefe da Seção Administrativa.',
+     audio:'A gestão da frota tem 3 esferas: unidade, regional e geral pela DAL.'},
+    {estagio:'pegadinha',titulo:'Auxiliar do Gestor de Frota',
+     corpo:'A banca cobra esse detalhe com frequência:',
+     lista:['O Auxiliar do Gestor pode ser: PRAÇA ou FUNCIONÁRIO ADMINISTRATIVO CIVIL','NÃO é exclusividade de praça militar','A designação é feita pelo Gestor de Frota da Unidade'],
+     alerta:'ERRO CLÁSSICO: afirmar que o Auxiliar deve ser obrigatoriamente uma praça. Funcionário civil também pode ser designado.',
+     audio:'Atenção: o auxiliar do gestor de frota pode ser praça OU funcionário administrativo civil. A banca restringe a apenas praça.'},
+    {estagio:'estrutura',titulo:'Acidentes e Danos com Viaturas',
+     lista:['Todo acidente deve ser comunicado imediatamente à cadeia de comando','Lavra-se BO na DP civil para acidentes no perímetro urbano','Gestor de Frota da Unidade acompanha o caso','Apuração de responsabilidade: SAD (a partir de 01/04/2022, substituindo o Cap. IX do MAPPA)'],
+     destaque:'Após 01/04/2022: acidentes e danos com viaturas são apurados pelo SAD.',
+     audio:'Após 1º de abril de 2022, a apuração de acidentes com viaturas passou a ser feita pelo SAD.'},
+    {estagio:'estrutura',titulo:'Multas de Trânsito com Viaturas',
+     lista:['Multa: comunicada imediatamente ao Gestor de Frota','Identificação do condutor responsável é obrigatória','A partir de 01/04/2022: apuração via SAD','Pagamento pela IME: ressarcimento obrigatório se houver culpa do condutor'],
+     audio:'Multas de trânsito com viaturas: identificar o condutor, comunicar ao gestor e apurar via SAD a partir de abril de 2022.'},
+    {estagio:'pegadinha',titulo:'O que o Manual de Frota NÃO Revogou',
+     lista:['A Instrução Conjunta 001/2016 (continua vigente)','Demais capítulos do MAPPA (exceto o Capítulo IX)','Resoluções sobre procedimentos disciplinares gerais'],
+     alerta:'A banca afirma que o Manual de Frota revogou TODO o MAPPA. FALSO: revogou apenas o Capítulo IX.',
+     audio:'Atenção: o Manual de Frota revogou apenas o Capítulo IX do MAPPA e a Resolução 4219/2012. A Instrução Conjunta 001/2016 continua válida.'},
+    {estagio:'fixacao',titulo:'Resumo Rápido — Frota',
+     tabela:[{item:'Aprovação',valor:'22/11/2021'},{item:'Vigência acidentes',valor:'01/04/2022'},{item:'Revogou',valor:'Res. 4.219/2012 + Cap. IX MAPPA'},{item:'Gestor UEOp',valor:'Chefe Seção Administrativa'},{item:'Auxiliar',valor:'Praça OU funcionário civil'},{item:'Não revogou',valor:'IC 001/2016'}],
+     audio:'Resumo da Resolução 5142: aprovada em novembro de 2021, vigência de acidentes em abril de 2022, gestor é o chefe da seção administrativa.'}
+   ],
+   transcricao:{
+    ref:'Resolução nº 5.142, de 22/11/2021 — Manual de Gerenciamento de Frota da PMMG',
+    blocos:[
+     {t:'h',v:'1. Base Legal e Vigência'},
+     {t:'p',v:'Res. 5.142/2021 aprova o Manual de Frota. Vigência geral: imediata. Para acidentes, danos e multas: 01/04/2022 (mesma data em que o Cap. IX do MAPPA foi revogado).',kw:['Res. 5.142/2021','01/04/2022','Capítulo IX','MAPPA']},
+     {t:'banca',prob:85,assunto:'Quando o Cap. IX do MAPPA perdeu vigência?',resp:'01/04/2022. A partir dessa data, acidentes e danos com viaturas são apurados pelo SAD, conforme o novo manual.'},
+     {t:'h',v:'2. Estrutura de Gestão'},
+     {t:'p',v:'3 esferas: (1) Unidade — Chefe da Seção Administrativa; (2) Regional — Chefe da Seção de Frota; (3) Geral — DAL.',kw:['3 esferas','Seção Administrativa','Seção de Frota','DAL']},
+     {t:'def',label:'Auxiliar do Gestor',v:'Pode ser PRAÇA ou FUNCIONÁRIO ADMINISTRATIVO CIVIL. A designação é feita pelo Gestor de Frota da Unidade. Não é exclusividade de praça.'},
+     {t:'banca',prob:90,assunto:'Auxiliar de frota: praça ou civil?',resp:'Pode ser AMBOS: praça OU funcionário administrativo civil. A banca restringe a "somente praça".'},
+     {t:'h',v:'3. Acidentes, Danos e Multas'},
+     {t:'p',v:'A partir de 01/04/2022, a apuração de responsabilidade é via SAD, substituindo o Cap. IX do MAPPA. Multas: comunicar imediatamente e identificar o condutor.',kw:['acidente','dano','SAD','01/04/2022','comunicado imediatamente','condutor']},
+     {t:'banca',prob:78,assunto:'Multas: o que fazer?',resp:'Comunicar imediatamente ao Gestor de Frota. Identificar o condutor. Se comprovada culpa: ressarcimento obrigatório.'},
+     {t:'h',v:'4. O que NÃO foi revogado'},
+     {t:'p',v:'Revogou: Res. 4.219/2012 e Cap. IX do MAPPA. A IC 001/2016 e os demais capítulos do MAPPA continuam vigentes.',kw:['IC 001/2016','MAPPA','Resolução 4.219/2012']},
+     {t:'banca',prob:72,assunto:'Manual revogou todo o MAPPA?',resp:'NÃO. Revogou APENAS o Capítulo IX do MAPPA (a partir de 01/04/2022). Demais capítulos e a IC 001/2016 continuam vigentes.'}
+    ]
+   },
+   questoes:[
+    {enunciado:'Nas UEOp, o Gestor de Frota da Unidade, conforme a Resolução 5.142/2021, é:',
+     alternativas:['O Comandante da Unidade','O Chefe da Seção de Inteligência','O Chefe da Seção Administrativa','O oficial mais antigo do quadro operacional'],
+     correta:2,
+     explicacao:'Nas UEOp: Gestor de Frota = Chefe da Seção Administrativa.',
+     pegadinha:'Confundir com o Comandante da Unidade. O gestor é o Chefe da Seção Administrativa.'},
+    {enunciado:'O Auxiliar do Gestor de Frota da Unidade, conforme o Manual de Frota, pode ser:',
+     alternativas:['Somente praça graduada com estabilidade','Somente oficial subalterno','Praça ou funcionário administrativo civil','Somente sargento com função administrativa'],
+     correta:2,
+     explicacao:'O auxiliar pode ser praça OU funcionário administrativo civil. Não é exclusividade de militar.',
+     pegadinha:"A banca restringe a 'somente praça'. O manual admite funcionário civil."},
+    {enunciado:'As regras sobre acidentes, danos e multas da Resolução 5.142/2021 entraram em vigor:',
+     alternativas:['Na data de aprovação: 22/11/2021','Em 01/01/2022','Em 01/04/2022','Imediatamente após publicação em BGPM'],
+     correta:2,
+     explicacao:'01/04/2022 — mesma data em que o Capítulo IX do MAPPA foi revogado.',
+     pegadinha:'O manual entrou em vigor em 22/11/2021, mas as regras de acidentes/multas só valeram a partir de 01/04/2022.'},
+    {enunciado:'Qual instrumento normativo foi revogado pelo Manual de Frota (Res. 5.142/2021)?',
+     alternativas:['Resolução 4.219/2012 e o Capítulo IX do MAPPA','Toda a Resolução do MAPPA (4.220/2012)','IC 001/2016 e a Resolução 4.219/2012','Apenas a IC 001/2016'],
+     correta:0,
+     explicacao:'Revogou: Resolução 4.219/2012 (manual anterior) e o Capítulo IX do MAPPA. A IC 001/2016 continua vigente.',
+     pegadinha:'A banca inclui a IC 001/2016 ou o MAPPA inteiro como revogados. Somente o Capítulo IX do MAPPA foi afetado.'}
+   ]
+  },
+
+  // T06 — PLANO ESTRATÉGICO
+  {id:'plano-estrategico',titulo:'Plano Estratégico 2024-2027',subtitulo:'Resolução nº 5.332/2023',emoji:'🗺️',
+   slides:[
+    {estagio:'tema',titulo:'Plano Estratégico 2024-2027 — Resolução 5.332/2023',
+     corpo:'A Resolução 5.332, de 18/12/2023 (BGPM nº 93, 19/12/2023), aprovada pelo Cel PM Rodrigo Piassi do Nascimento, institui o Plano Estratégico da PMMG para 2024-2027.',
+     destaque:'Aprovação: 18/12/2023. BGPM: nº 93, de 19/12/2023. Aprovador: Cel PM Rodrigo PIASSI.',
+     audio:'A Resolução 5332 de 2023 aprova o Plano Estratégico da PMMG para o período de 2024 a 2027.'},
+    {estagio:'estrutura',titulo:'Os 3 Níveis da PMMG',
+     tabela:[{item:'Estratégico',valor:'CG e órgãos de assessoramento — define rumos e objetivos macro'},{item:'Tático',valor:'Nível intermediário — traduz estratégia em planos e programas'},{item:'Operacional',valor:'Execução — nível de quem realiza as atividades de PM'}],
+     destaque:'O 3º Sargento atua no nível OPERACIONAL (execução).',
+     audio:'A PMMG tem três níveis: estratégico no Comando-Geral, tático no intermediário, e operacional na execução.'},
+    {estagio:'conceito',titulo:'Conceitos do Planejamento Estratégico',
+     lista:['Planejamento Estratégico: processo de definição do caminho para atingir a missão','Gestão Estratégica: conjunto de processos para monitorar e ajustar o Plano','Gestão pelas Diretrizes: desdobramento das metas estratégicas em objetivos anuais','Gestão da Rotina: monitoramento e melhoria das ações e verificações do dia a dia'],
+     audio:'Os conceitos centrais: gestão estratégica, gestão pelas diretrizes e gestão da rotina.'},
+    {estagio:'conceito',titulo:'Objetivo e Indicador Estratégico',
+     tabela:[{item:'Objetivo Estratégico',valor:'Resultado que a organização pretende alcançar em determinado período'},{item:'Indicador Estratégico',valor:'Medida que avalia o desempenho no alcance dos objetivos'},{item:'Plano de Ação',valor:'Conjunto de atividades para atingir uma meta em prazo definido'}],
+     audio:'Objetivo estratégico é o resultado a alcançar. Indicador estratégico mede se estamos atingindo o objetivo.'},
+    {estagio:'estrutura',titulo:'Gestão pelas Diretrizes vs. Gestão da Rotina',
+     lista:['Diretrizes: referem-se a METAS — projetadas no médio/longo prazo','Rotina: referem-se a PROCESSOS — monitorados continuamente no dia a dia','Diretrizes: derivam do Plano Estratégico para cada exercício anual','Rotina: garante qualidade e estabilidade das atividades ordinárias'],
+     audio:'Gestão pelas diretrizes cuida de metas de médio prazo. Gestão da rotina monitora os processos diários.'},
+    {estagio:'pegadinha',titulo:'Datas e Nomes para Não Errar',
+     corpo:'A banca troca datas, nomes e períodos. Memorize:',
+     tabela:[{item:'Resolução',valor:'nº 5.332, de 18/12/2023'},{item:'BGPM',valor:'nº 93, de 19/12/2023'},{item:'Aprovado por',valor:'Cel PM Rodrigo PIASSI do Nascimento'},{item:'Período',valor:'2024-2027 (4 anos)'}],
+     alerta:"Não confundir 'Rodrigo Piassi' (Plano Estratégico) com 'Rodrigo Sousa Rodrigues' (aprovou o Manual de Imóveis).",
+     audio:'Atenção: o Plano Estratégico foi aprovado pelo Cel Rodrigo Piassi. O Manual de Imóveis foi aprovado pelo Cel Rodrigo Sousa Rodrigues. A banca troca os nomes.'},
+    {estagio:'fixacao',titulo:'Processo vs. Projeto',
+     tabela:[{item:'Processo',valor:'Conjunto de atividades ROTINEIRAS inter-relacionadas para gerar um serviço'},{item:'Projeto',valor:'Conjunto de ações TEMPORÁRIAS para alcançar resultado específico e único'}],
+     destaque:'Processo = rotineiro e contínuo. Projeto = temporário e singular.',
+     audio:'Processo é rotineiro e contínuo. Projeto é temporário e singular. A banca troca esses conceitos.'}
+   ],
+   transcricao:{
+    ref:'Resolução nº 5.332, de 18/12/2023 — Plano Estratégico PMMG 2024-2027 (BGPM nº 93/2023)',
+    blocos:[
+     {t:'h',v:'1. Identificação'},
+     {t:'p',v:'Res. 5.332/2023, aprovada em 18/12/2023, BGPM 93 de 19/12/2023. Aprovada pelo Cel PM Rodrigo Piassi do Nascimento. Vigência: 2024 a 2027.',kw:['5.332/2023','18/12/2023','BGPM 93','Rodrigo Piassi','2024-2027']},
+     {t:'banca',prob:88,assunto:'Quem aprovou o Plano Estratégico?',resp:"Cel PM Rodrigo PIASSI do Nascimento. Não confundir com 'Rodrigo Sousa Rodrigues' (aprovou o Manual de Imóveis)."},
+     {t:'h',v:'2. Níveis Organizacionais'},
+     {t:'p',v:'3 níveis: Estratégico (CG e assessorias), Tático (intermediário) e Operacional (execução). O 3º Sargento atua no nível Operacional.',kw:['Estratégico','Tático','Operacional','CG']},
+     {t:'banca',prob:82,assunto:'3º Sargento: qual nível?',resp:'OPERACIONAL. É o nível de execução. O CG é estratégico. O intermediário (RPM, BPM) é tático.'},
+     {t:'h',v:'3. Conceitos-Chave'},
+     {t:'def',label:'Gestão pelas Diretrizes',v:'Desdobramento das metas estratégicas em objetivos e planos de ação anuais para cada unidade. Foca em METAS de médio/longo prazo.'},
+     {t:'def',label:'Gestão da Rotina',v:'Monitoramento contínuo e melhoria das ações e verificações diárias. Foca em PROCESSOS ordinários.'},
+     {t:'def',label:'Indicador Estratégico',v:'Medida que avalia o desempenho no alcance dos Objetivos Estratégicos. Responde à pergunta: estamos atingindo o objetivo?'},
+     {t:'banca',prob:80,assunto:'Gestão Diretrizes x Rotina',resp:'Diretrizes = metas anuais derivadas do Plano. Rotina = processos diários de qualidade. São complementares mas distintos.'},
+     {t:'h',v:'4. Processo e Projeto'},
+     {t:'p',v:'Processo: atividades rotineiras inter-relacionadas que geram um serviço. Projeto: ações temporárias para resultado específico e único.',kw:['Processo','Projeto','temporárias','rotineiras']},
+     {t:'banca',prob:75,assunto:'Processo vs. Projeto',resp:'Processo = rotineiro e contínuo. Projeto = temporário e singular. Banca troca os conceitos.'}
+    ]
+   },
+   questoes:[
+    {enunciado:'O Plano Estratégico da PMMG 2024-2027 foi aprovado pela Resolução:',
+     alternativas:['nº 5.139, de 25/10/2021','nº 5.142, de 22/11/2021','nº 5.332, de 18/12/2023','nº 4.220, de 14/11/2012'],
+     correta:2,
+     explicacao:'Resolução nº 5.332, de 18/12/2023, publicada no BGPM nº 93, de 19/12/2023.',
+     pegadinha:'A banca mistura as resoluções: 5.139 é Imóveis, 5.142 é Frota, 4.220 é MAPPA.'},
+    {enunciado:'O 3º Sargento da PMMG atua predominantemente em qual nível organizacional?',
+     alternativas:['Estratégico','Tático','Operacional','Político-institucional'],
+     correta:2,
+     explicacao:'O 3º Sargento é nível OPERACIONAL — executor das atividades de policiamento.',
+     pegadinha:'Confundir Tático (intermediário) com Operacional (execução). O 3º Sargento executa.'},
+    {enunciado:"A 'Gestão pelas Diretrizes', conforme o Plano Estratégico 2024-2027, refere-se a:",
+     alternativas:['Monitoramento contínuo dos processos diários da unidade','Desdobramento das metas estratégicas em objetivos e planos de ação anuais','Fiscalização externa realizada pela Corregedoria','Planejamento exclusivo do Comando-Geral'],
+     correta:1,
+     explicacao:'Gestão pelas Diretrizes: desdobramento das metas estratégicas para objetivos anuais de cada unidade. Foca em METAS.',
+     pegadinha:'Confundir com Gestão da Rotina (que cuida dos processos diários).'},
+    {enunciado:'O Indicador Estratégico, conforme o Plano Estratégico PMMG 2024-2027, é:',
+     alternativas:['Resultado específico que a organização pretende alcançar em determinado período','Medida que avalia o desempenho no alcance dos Objetivos Estratégicos','Conjunto de ações temporárias para atingir uma meta específica','Processo rotineiro de monitoramento diário das atividades'],
+     correta:1,
+     explicacao:'Indicador Estratégico: medida de desempenho que responde se estamos atingindo o objetivo.',
+     pegadinha:'Trocar Indicador com Objetivo Estratégico (que é o resultado a alcançar). O Indicador MEDE o objetivo.'}
+   ]
+  },
+
+
+  // T07 — POLÍCIA JUDICIÁRIA
+  {id:'policia-judiciaria',titulo:'Polícia Judiciária Militar',subtitulo:'Resolução Conjunta nº 5.346/2024',emoji:'⚖️',
+   slides:[
+    {estagio:'tema',titulo:'Manual de Polícia Judiciária — Res. Conjunta 5.346/2024',
+     corpo:'A Resolução Conjunta 5.346, de 15/02/2024 (BEPM nº 09, 16/02/2024), aprova o Manual de Polícia Judiciária das IME de MG. Trata de APF, IPM e Instrução Provisória de Deserção.',
+     destaque:'Aprovado em 15/02/2024. Publicado no BEPM nº 09, de 16/02/2024.',
+     audio:'A Resolução Conjunta 5346 de 2024 aprova o Manual de Polícia Judiciária das Instituições Militares do Estado de Minas Gerais.'},
+    {estagio:'conceito',titulo:'Crime Militar — Art. 9º do CPM',
+     lista:['Inciso I — Crime PROPRIAMENTE militar: existe SOMENTE na legislação penal militar','Inciso II — Crime IMPROPRIAMENTE militar: previsto tanto no CPM quanto na lei penal comum','Inciso III — Crimes de reservistas/reformados/civis em situações específicas','Lei 13.491/17: ampliou competência da JM para crimes comuns praticados por militares em serviço'],
+     audio:'O artigo 9º do CPM classifica os crimes militares. O inciso primeiro são os propriamente militares, o segundo são os impropriamente militares.'},
+    {estagio:'estrutura',titulo:'APF — As 4 Fases',
+     tabela:[{item:'1ª fase',valor:'Captura do infrator'},{item:'2ª fase',valor:'Condução coercitiva à autoridade competente'},{item:'3ª fase',valor:'Lavratura do Auto de Prisão em Flagrante'},{item:'4ª fase',valor:'Ratificação pela autoridade'}],
+     destaque:'Direito ao silêncio: desde a CAPTURA, não apenas no interrogatório formal.',
+     audio:'O APF tem quatro fases: captura, condução coercitiva, lavratura do auto e ratificação. O direito ao silêncio começa na captura.'},
+    {estagio:'pegadinha',titulo:'Apresentação Voluntária vs. Captura',
+     corpo:'A banca tenta confundir esses dois institutos:',
+     lista:['Captura: ato coercitivo de detenção da pessoa em flagrante delito','Apresentação voluntária: suspeito se apresenta espontaneamente — NÃO configura captura','Sem captura: não há APF — há apenas apresentação administrativa'],
+     alerta:'ERRO CLÁSSICO: dizer que apresentação voluntária configura prisão em flagrante. NÃO configura.',
+     audio:'Atenção: apresentação voluntária não é captura e não configura prisão em flagrante.'},
+    {estagio:'pegadinha',titulo:'Algemas — Art. 234 do CPPM',
+     corpo:'O uso de algemas é regulado pelo art. 234 do CPPM:',
+     lista:['PERMITIDO: desobediência, resistência à prisão, tentativa de fuga','PROIBIDO para autoridades do art. 242 do CPPM','Não é medida de segurança preventiva sem resistência'],
+     alerta:'A banca pergunta "em quais hipóteses algemas são proibidas". Resposta: para as autoridades do art. 242 CPPM.',
+     audio:'Algemas são permitidas nos casos de desobediência, resistência e tentativa de fuga. São proibidas para as autoridades do artigo 242 do CPPM.'},
+    {estagio:'estrutura',titulo:'Crime Doloso contra Civil — Jurisdição',
+     lista:['Investigação: competência da APJM (Autoridade de Polícia Judiciária Militar)','Julgamento: Tribunal do Júri (Justiça Comum)','Lei 13.491/17 não alterou essa regra específica'],
+     destaque:'Banca cobra: APJM investiga; Tribunal do Júri julga. São competências diferentes.',
+     audio:'Crime doloso contra civil: a Polícia Judiciária Militar investiga, mas o julgamento é pelo Tribunal do Júri.'},
+    {estagio:'fixacao',titulo:'Tipos de Flagrante no CPPM',
+     lista:['Próprio: preso durante ou imediatamente após o crime','Impróprio: perseguido logo após e capturado','Ficto (por presunção): encontrado com instrumentos do crime','Preparado/Provocado: crime impossível — ILEGAL','Esperado: ação controlada sem induzimento — LEGAL'],
+     audio:'Os tipos de flagrante: próprio, impróprio, ficto, preparado (ilegal) e esperado (legal).'}
+   ],
+   transcricao:{
+    ref:'Resolução Conjunta nº 5.346, de 15/02/2024 — Manual de Polícia Judiciária das IME/MG (BEPM 09/2024)',
+    blocos:[
+     {t:'h',v:'1. Base Legal'},
+     {t:'p',v:'A Res. Conjunta 5.346/2024 aprova o Manual de PJ das IME. Trata de: APF, IPM e Instrução Provisória de Deserção.',kw:['5.346/2024','APF','IPM','Polícia Judiciária Militar','Instrução Provisória de Deserção']},
+     {t:'h',v:'2. Crime Militar (Art. 9º CPM)'},
+     {t:'p',v:'Inciso I = crimes propriamente militares (só no CPM). Inciso II = impropriamente militares (CPM + lei penal comum). Lei 13.491/17: ampliou competência da JM.',kw:['Art. 9º','propriamente militar','impropriamente militar','CPM','Lei 13.491']},
+     {t:'def',label:'Lei 13.491/2017',v:'Ampliou a competência da JM para julgar militares ativos que praticam crimes comuns quando em serviço ou em razão da função.'},
+     {t:'banca',prob:90,assunto:'Crime doloso contra civil: quem investiga?',resp:'A APJM investiga. O JULGAMENTO é pelo Tribunal do Júri (Justiça Comum). Banca tenta inverter.'},
+     {t:'h',v:'3. APF — 4 Fases'},
+     {t:'p',v:'Fases: (1) Captura; (2) Condução coercitiva; (3) Lavratura do auto; (4) Ratificação. Direito ao silêncio: desde a captura.',kw:['Captura','Condução coercitiva','Lavratura','Ratificação','direito ao silêncio']},
+     {t:'banca',prob:88,assunto:'Apresentação voluntária = APF?',resp:'NÃO. Apresentação voluntária não é captura. Sem captura, não há APF.'},
+     {t:'def',label:'Direito ao Silêncio',v:'Vigora desde o ato de captura, não apenas no interrogatório formal. O militar que realiza a prisão deve informar o preso imediatamente.'},
+     {t:'banca',prob:85,assunto:'Silêncio: desde quando?',resp:'Desde a CAPTURA. Não precisa aguardar interrogatório formal. Banca coloca "apenas no interrogatório" como correta.'},
+     {t:'h',v:'4. Algemas — Art. 234 CPPM'},
+     {t:'p',v:'Uso de algemas permitido: desobediência, resistência, tentativa de fuga. Proibido para autoridades do art. 242 CPPM.',kw:['algemas','desobediência','resistência','tentativa de fuga','art. 242']},
+     {t:'banca',prob:82,assunto:'Algemas: hipóteses permitidas',resp:'Três hipóteses taxativas: (1) desobediência, (2) resistência, (3) tentativa de fuga. Art. 234 CPPM. Fora dessas, é vedado.'},
+     {t:'h',v:'5. Tipos de Flagrante'},
+     {t:'p',v:'Próprio: durante/após o crime. Impróprio: perseguido logo após. Ficto: encontrado com instrumentos. Preparado/provocado: crime impossível, ILEGAL. Esperado: ação controlada sem induzimento, LEGAL.',kw:['Próprio','Impróprio','Ficto','Preparado','Esperado','crime impossível']},
+     {t:'banca',prob:78,assunto:'Flagrante preparado é legal?',resp:'NÃO. Flagrante preparado/provocado = crime impossível = ILEGAL. Flagrante ESPERADO (sem induzimento) é legal.'}
+    ]
+   },
+   questoes:[
+    {enunciado:'O crime PROPRIAMENTE militar, conforme o art. 9º do CPM e o Manual de PJ, é aquele:',
+     alternativas:['Previsto tanto no CPM quanto no Código Penal comum','Previsto exclusivamente na legislação penal militar','Praticado por militar da reserva em situação específica','Cometido por civil em local sujeito à administração militar'],
+     correta:1,
+     explicacao:'Crime propriamente militar (Art. 9º, I, CPM): existe APENAS na legislação penal militar.',
+     pegadinha:'Confundir com crime impropriamente militar (que existe em ambos os diplomas legais).'},
+    {enunciado:'O direito ao silêncio no APF, conforme o Manual de PJ, deve ser assegurado:',
+     alternativas:['Apenas durante o interrogatório formal perante a autoridade','A partir do momento em que o advogado chega','Desde o ato de captura do suspeito','Somente após a lavratura do auto de prisão'],
+     correta:2,
+     explicacao:'Desde a CAPTURA. O militar que realiza a prisão deve informar imediatamente o preso sobre seu direito ao silêncio.',
+     pegadinha:"A banca coloca 'apenas no interrogatório' como resposta. O silêncio começa na captura."},
+    {enunciado:'No crime doloso contra a vida de civil praticado por militar, conforme o Manual de PJ:',
+     alternativas:['A Justiça Militar investiga e julga, por se tratar de crime militar','Somente a Justiça Comum é competente — investigação e julgamento','A APJM investiga; o julgamento é do Tribunal do Júri','A Justiça Militar julga em 1ª instância e o Júri revisa'],
+     correta:2,
+     explicacao:'A APJM (Polícia Judiciária Militar) INVESTIGA. O JULGAMENTO é do Tribunal do Júri. São competências distintas.',
+     pegadinha:"Confundir 'investigar' com 'julgar'. A JM investiga, mas não julga crime doloso contra civil."},
+    {enunciado:'O uso de algemas, nos termos do art. 234 do CPPM, é PERMITIDO em caso de:',
+     alternativas:['Desconforto ou risco potencial, a critério da autoridade','Sempre que o preso for conduzido a local público','Desobediência, resistência à prisão ou tentativa de fuga','Toda prisão para garantia da segurança dos policiais'],
+     correta:2,
+     explicacao:'Três hipóteses taxativas: desobediência, resistência e tentativa de fuga. Não é discricionário.',
+     pegadinha:"'Critério da autoridade' não é hipótese legal. O uso deve se enquadrar nas hipóteses TAXATIVAS do art. 234."}
+   ]
+  },
+
+  // T08 — IMÓVEIS
+  {id:'imoveis',titulo:'Gerenciamento de Imóveis',subtitulo:'Resolução nº 5.139/2021',emoji:'🏢',
+   slides:[
+    {estagio:'tema',titulo:'Manual de Imóveis — Resolução 5.139/2021',
+     corpo:'A Resolução 5.139, de 25/10/2021, aprovada pelo Cel PM Rodrigo Sousa Rodrigues, aprova o Manual de Gerenciamento de Imóveis da PMMG.',
+     destaque:'Gestão central: DAL 2 — Seção de Patrimônio. Base: Decreto Estadual nº 46.467/2014.',
+     audio:'A Resolução 5139 de 2021 aprova o Manual de Gerenciamento de Imóveis da PMMG, aprovada pelo Cel Rodrigo Sousa Rodrigues.'},
+    {estagio:'estrutura',titulo:'Classificação dos Imóveis da PMMG',
+     tabela:[{item:'Próprios',valor:"Imóveis de propriedade do Estado (PMMG)"},{item:'De terceiros',valor:'Cedidos ao uso da PMMG por outros órgãos/entidades'},{item:'Locados',valor:'Alugados de particulares ou pessoas jurídicas'}],
+     alerta:"A banca inclui 'doados' como opção. ERRADO: 'doados' NÃO é categoria no Manual.",
+     audio:'Os imóveis classificam-se em próprios, de terceiros e locados. Não existe categoria doados.'},
+    {estagio:'pegadinha',titulo:'Imóvel Próprio: Preferencial ou Obrigatório?',
+     corpo:'Ponto crítico cobrado em prova:',
+     destaque:"As unidades da PMMG devem ser instaladas PREFERENCIALMENTE em imóveis próprios do Estado.",
+     lista:["'Preferencialmente' ≠ 'obrigatoriamente'",'A unidade pode funcionar em imóvel locado ou de terceiros','A preferência é orientação de gestão, não imposição absoluta'],
+     alerta:"ERRO CLÁSSICO: trocar 'preferencialmente' por 'obrigatoriamente'.",
+     audio:"Atenção: as unidades devem estar preferencialmente em imóveis próprios — não obrigatoriamente. A banca troca 'preferencialmente' por 'obrigatoriamente'."},
+    {estagio:'estrutura',titulo:'Estrutura de Gestão de Imóveis',
+     tabela:[{item:'DAL',valor:'Diretoria de Apoio Logístico — gestão central'},{item:'DAL 2',valor:'Seção de Patrimônio — interface com SEPLAG'},{item:'SEPLAG',valor:'Secretaria de Planejamento — detentora dos imóveis'},{item:'TVR',valor:'Termo de Vinculação e Responsabilidade — vincula imóvel à PMMG'},{item:'SIAD',valor:'Sistema informatizado de gerenciamento do patrimônio'}],
+     audio:'A gestão central é feita pela DAL, por meio da DAL 2 - Seção de Patrimônio, em interface com a SEPLAG.'},
+    {estagio:'estrutura',titulo:'Responsabilidades do Gestor Local',
+     corpo:'O Chefe da Seção Administrativa é o gestor do imóvel da unidade.',
+     lista:['Manutenção e conservação do imóvel','Controle de despesas com o imóvel','Arquivo da documentação pertinente','Comunicação de danos e necessidades de reforma à DAL 2'],
+     audio:'O Chefe da Seção Administrativa é o gestor local do imóvel, responsável por manutenção, conservação e documentação.'},
+    {estagio:'conceito',titulo:'TVR — Termo de Vinculação e Responsabilidade',
+     corpo:'O TVR é o instrumento formal pelo qual a SEPLAG vincula o uso do imóvel à PMMG.',
+     lista:['TVR é firmado entre SEPLAG e PMMG','Identifica o imóvel, sua destinação e o responsável pela guarda','Sem TVR: uso do imóvel não está regularizado formalmente'],
+     destaque:'SIAD: sistema de gerenciamento do patrimônio imobiliário — onde os imóveis são registrados.',
+     audio:'O TVR é o instrumento pelo qual a SEPLAG vincula formalmente o uso do imóvel à PMMG.'},
+    {estagio:'fixacao',titulo:'Frota vs. Imóveis — Comparativo',
+     tabela:[{item:'Frota',valor:'Res. 5.142 (22/11/2021) — Rodrigo PIASSI'},{item:'Imóveis',valor:'Res. 5.139 (25/10/2021) — Rodrigo SOUSA RODRIGUES'},{item:'Gestão central',valor:'Ambos: DAL'},{item:'Gestor unidade',valor:'Ambos: Chefe Seção Administrativa'},{item:'Auxiliar Frota',valor:'Praça OU funcionário civil'},{item:'Imóveis: vinculação',valor:'TVR pela SEPLAG'}],
+     audio:'Para não confundir: Frota é a 5142 aprovada pelo Rodrigo Piassi. Imóveis é a 5139 aprovada pelo Rodrigo Sousa Rodrigues.'}
+   ],
+   transcricao:{
+    ref:'Resolução nº 5.139, de 25/10/2021 — Manual de Gerenciamento de Imóveis da PMMG',
+    blocos:[
+     {t:'h',v:'1. Identificação'},
+     {t:'p',v:'Res. 5.139/2021 aprovada em 25/10/2021 pelo Cel PM Rodrigo Sousa Rodrigues. Base: Decreto Estadual nº 46.467/2014.',kw:['5.139/2021','25/10/2021','Rodrigo Sousa Rodrigues','46.467/2014']},
+     {t:'banca',prob:85,assunto:'Quem aprovou o Manual de Imóveis?',resp:"Cel PM Rodrigo SOUSA RODRIGUES. Não confundir com Rodrigo PIASSI (aprovou Plano Estratégico)."},
+     {t:'h',v:'2. Classificação dos Imóveis'},
+     {t:'p',v:"Imóveis da PMMG: próprios (do Estado), de terceiros (cedidos) e locados (alugados). NÃO existe a categoria 'doados'.",kw:['próprios','de terceiros','locados','doados']},
+     {t:'banca',prob:90,assunto:'Categorias de imóveis',resp:"Apenas 3 categorias: PRÓPRIOS, DE TERCEIROS e LOCADOS. A banca inclui 'doados'. ERRADO."},
+     {t:'h',v:'3. Instalação das Unidades'},
+     {t:'p',v:"As unidades devem ser instaladas PREFERENCIALMENTE em imóveis próprios. 'Preferencialmente' não significa 'obrigatoriamente'.",kw:['preferencialmente','imóveis próprios','não obrigatoriamente']},
+     {t:'banca',prob:88,assunto:'Preferencial ou obrigatório?',resp:"PREFERENCIALMENTE. A unidade pode funcionar em imóvel locado ou cedido. A banca troca por 'obrigatoriamente'."},
+     {t:'h',v:'4. Estrutura de Gestão'},
+     {t:'p',v:'DAL: gestão central. DAL 2 — Seção de Patrimônio: interface com SEPLAG. TVR: instrumento de vinculação. SIAD: sistema de controle.',kw:['DAL','DAL 2','SEPLAG','TVR','SIAD','Seção de Patrimônio']},
+     {t:'def',label:'TVR — Termo de Vinculação e Responsabilidade',v:'Instrumento pelo qual a SEPLAG vincula formalmente o uso de um imóvel à PMMG. Identifica o imóvel, sua destinação e o responsável.'},
+     {t:'banca',prob:78,assunto:'O que é o TVR?',resp:'Termo firmado pela SEPLAG que VINCULA o imóvel à PMMG. Sem TVR, o uso não está regularizado.'},
+     {t:'h',v:'5. Gestor Local'},
+     {t:'p',v:'Gestor local: Chefe da Seção Administrativa. Responde por: manutenção, conservação, controle de despesas, arquivo e comunicação de problemas à DAL 2.',kw:['Chefe da Seção Administrativa','manutenção','conservação','DAL 2']},
+     {t:'banca',prob:75,assunto:'Quem responde pelo imóvel da unidade?',resp:'O Chefe da Seção Administrativa. O mesmo que é Gestor de Frota da Unidade. Coincidência que a banca explora.'}
+    ]
+   },
+   questoes:[
+    {enunciado:'Os imóveis da PMMG classificam-se, conforme o Manual de Imóveis, em:',
+     alternativas:["Próprios, de terceiros, locados e doados","Próprios, de terceiros e locados","Públicos, privados e mistos","Próprios, arrendados e cedidos"],
+     correta:1,
+     explicacao:"Apenas 3 categorias: próprios, de terceiros e locados. 'Doados' NÃO é categoria do Manual.",
+     pegadinha:"A banca inclui 'doados' como opção. Esse conceito não existe no Manual de Imóveis."},
+    {enunciado:'De acordo com o Manual de Imóveis, as unidades da PMMG devem ser instaladas:',
+     alternativas:['Obrigatoriamente em imóveis próprios do Estado','Preferencialmente em imóveis próprios do Estado','Exclusivamente em imóveis construídos para tal finalidade','Em qualquer tipo de imóvel, sem preferência estabelecida'],
+     correta:1,
+     explicacao:"PREFERENCIALMENTE em imóveis próprios. Não é obrigatório — podem usar locados ou de terceiros.",
+     pegadinha:"Trocar 'preferencialmente' por 'obrigatoriamente'. Frequente em prova."},
+    {enunciado:'O TVR (Termo de Vinculação e Responsabilidade), conforme o Manual de Imóveis, é o instrumento pelo qual:',
+     alternativas:['A PMMG compra o imóvel do Estado','A SEPLAG vincula formalmente o uso do imóvel à PMMG','O Chefe da Seção Administrativa assume a gestão do imóvel','A DAL autoriza obras de manutenção no imóvel'],
+     correta:1,
+     explicacao:'TVR: instrumento firmado pela SEPLAG que vincula o imóvel à PMMG, identificando destinação e responsável.',
+     pegadinha:'Confundir TVR com instrumento interno da PMMG. É a SEPLAG (externa) que firma o TVR.'},
+    {enunciado:'O responsável pela gestão do imóvel ocupado por uma unidade da PMMG é:',
+     alternativas:['O Comandante da Unidade','O Gestor de Patrimônio da DAL 2','O Chefe da Seção Administrativa','O Oficial de Dia da Unidade'],
+     correta:2,
+     explicacao:'Chefe da Seção Administrativa: gestor local do imóvel. Responde por manutenção, conservação e documentação.',
+     pegadinha:'Confundir com o Comandante ou com o servidor da DAL 2. O gestor LOCAL é o Chefe da Seção Administrativa.'}
+   ]
+  },
+
+  // T09 — OFÍCIOS CIRCULARES
+  {id:'oficios-circulares',titulo:'Ofícios Circulares — Corregedoria',subtitulo:'Ofícios 671 e 945 de 2023-CPM',emoji:'📩',
+   slides:[
+    {estagio:'tema',titulo:'Ofícios Circulares da Corregedoria PM — 2023',
+     corpo:'A Corregedoria da PMMG expediu ofícios circulares em 2023 orientando sobre: direito ao silêncio em interrogatórios administrativos (Ofício 671) e depoimento especial de criança e adolescente (Ofício 945).',
+     destaque:'Signatário: Cel PM Murilo César Ferreira — Corregedor da PMMG.',
+     audio:'A Corregedoria da PMMG emitiu dois ofícios circulares em 2023: o 671 sobre direito ao silêncio, e o 945 sobre escuta protegida de crianças e adolescentes.'},
+    {estagio:'conceito',titulo:'Ofício 671 — Direito ao Silêncio',
+     corpo:'Orienta sobre o exercício do direito ao silêncio em interrogatórios nos procedimentos do MAPPA:',
+     lista:['Silêncio TOTAL: encerrar o termo imediatamente após a invocação','Silêncio PARCIAL: consignar apenas perguntas e respostas elaboradas pela própria defesa','Fundamento: Lei 13.869/2019 (Lei de Abuso de Autoridade), art. 15, § único, inciso I'],
+     audio:'O Ofício 671 orienta: silêncio total significa encerrar imediatamente o termo. Silêncio parcial significa registrar apenas as perguntas e respostas da defesa.'},
+    {estagio:'pegadinha',titulo:'O Que Mudou com o Ofício 671?',
+     corpo:'O art. 127, §7º do MAPPA orientava a autoridade a persistir registrando as perguntas mesmo após o silêncio.',
+     destaque:'O Ofício 671 MODIFICOU essa orientação: após invocação do silêncio, NÃO se deve continuar o interrogatório — configura abuso de autoridade (Lei 13.869/19).',
+     alerta:"Banca cobra: 'o que fazer após silêncio total?' Resposta: ENCERRAR o termo IMEDIATAMENTE.",
+     audio:'Atenção: o MAPPA dizia para continuar registrando perguntas. O Ofício 671 mudou isso: ao invocar o silêncio total, encerra-se imediatamente o termo.'},
+    {estagio:'conceito',titulo:'Ofício 945 — Escuta Protegida',
+     corpo:'Baseado na Lei 13.431/2017 (Lei da Escuta Protegida), o Ofício 945 orienta sobre oitiva de crianças e adolescentes vítimas ou testemunhas.',
+     tabela:[{item:'Escuta especializada',valor:'Por órgãos da rede de proteção (ex: CREAS, saúde)'},{item:'Depoimento especial',valor:'Perante autoridade policial ou judiciária'}],
+     audio:'A Lei 13431 de 2017 define duas modalidades: escuta especializada, realizada pela rede de proteção, e depoimento especial, realizado perante autoridade policial ou judiciária.'},
+    {estagio:'estrutura',titulo:'Orientações do Ofício 945 para a PM',
+     lista:['EVITAR a oitiva de criança/adolescente vítima ou testemunha — buscar outros meios de prova','Se imprescindível: realizar por meio de DEPOIMENTO ESPECIAL','NÃO realizar oitiva informal sem os procedimentos da Lei 13.431/17','Formas de violência: física, psicológica, sexual e institucional (e patrimonial)'],
+     audio:'A PM deve evitar a oitiva de criança ou adolescente. Se for imprescindível, usar o depoimento especial, não a oitiva informal.'},
+    {estagio:'pegadinha',titulo:'Escuta Especializada vs. Depoimento Especial',
+     tabela:[{item:'Escuta especializada',valor:'Rede de PROTEÇÃO — não é policial/judiciário'},{item:'Depoimento especial',valor:'Autoridade POLICIAL ou JUDICIÁRIA — com protocolo'},{item:'PM usa qual?',valor:'DEPOIMENTO ESPECIAL (quando imprescindível)'},{item:'Primeira opção',valor:'EVITAR — buscar outros meios de prova'}],
+     alerta:"ERRO CLÁSSICO: dizer que a PM realiza 'escuta especializada'. A PM realiza DEPOIMENTO ESPECIAL.",
+     audio:'Atenção: a escuta especializada é feita pela rede de proteção, não pela PM. A PM usa o depoimento especial quando imprescindível.'},
+    {estagio:'fixacao',titulo:'Resumo dos Dois Ofícios',
+     tabela:[{item:'Ofício 671',valor:'Silêncio TOTAL = encerra; PARCIAL = só perguntas da defesa'},{item:'Fundamento 671',valor:'Lei 13.869/19 — Abuso de Autoridade, art. 15, §único, I'},{item:'Ofício 945',valor:'Escuta protegida: evitar oitiva; usar depoimento especial'},{item:'Fundamento 945',valor:'Lei 13.431/2017 — Lei da Escuta Protegida'},{item:'Violências (945)',valor:'Física, psicológica, sexual, institucional (e patrimonial)'}],
+     audio:'Para memorizar: Ofício 671 trata do silêncio no MAPPA. Ofício 945 trata de escuta protegida de crianças e adolescentes.'}
+   ],
+   transcricao:{
+    ref:'Ofício 671.1.1/2023-CPM e Ofício 00945.1.1/2023-CPM — Corregedoria da PMMG (Cel PM Murilo César Ferreira)',
+    blocos:[
+     {t:'h',v:'1. Ofício 671 — Direito ao Silêncio no MAPPA'},
+     {t:'p',v:'O Ofício 671.1.1/2023-CPM estabelece que: ao invocar silêncio TOTAL, a autoridade encerra o termo imediatamente. Ao invocar silêncio PARCIAL, consigna apenas perguntas e respostas elaboradas pela própria defesa.',kw:['Ofício 671','direito ao silêncio','silêncio total','silêncio parcial','encerra']},
+     {t:'def',label:'Fundamento Legal',v:'Art. 15, §único, I, da Lei 13.869/2019 (Lei de Abuso de Autoridade). Prosseguir com interrogatório após invocação do silêncio pode configurar abuso.'},
+     {t:'p',v:'O art. 127, §7º do MAPPA orientava a autoridade a persistir consignando perguntas mesmo após o silêncio. O Ofício 671 REVISA essa orientação à luz da Lei de Abuso de Autoridade.',kw:['art. 127','MAPPA','perseverar','revisa','Lei 13.869']},
+     {t:'banca',prob:92,assunto:'O que fazer após silêncio total?',resp:'ENCERRAR o termo imediatamente. O art. 127 §7º do MAPPA (que dizia para continuar) foi superado pelo Ofício 671, com fundamento na Lei de Abuso de Autoridade.'},
+     {t:'banca',prob:85,assunto:'Por que o MAPPA foi revisado?',resp:'A Lei de Abuso de Autoridade (art. 15, §único, I) tornou inapropriado continuar o interrogatório após invocação do silêncio. O Ofício 671 adequou a prática à lei.'},
+     {t:'h',v:'2. Ofício 945 — Escuta Protegida (Lei 13.431/2017)'},
+     {t:'p',v:'O Ofício 945 orienta sobre oitiva de crianças e adolescentes vítimas ou testemunhas de violência, com base na Lei 13.431/2017.',kw:['Ofício 945','Lei 13.431/2017','criança','adolescente','vítima','testemunha']},
+     {t:'def',label:'Escuta Especializada',v:'Realizada por profissionais da rede de proteção (assistência social, CREAS, saúde). NÃO é conduzida por policial ou autoridade judiciária.'},
+     {t:'def',label:'Depoimento Especial',v:'Realizado perante autoridade policial ou judiciária, com protocolo próprio para evitar revitimização. É o procedimento que a PM deve usar quando imprescindível.'},
+     {t:'banca',prob:88,assunto:'PM pode ouvir criança vítima normalmente?',resp:'NÃO. Deve EVITAR a oitiva e buscar outros meios de prova. Se for imprescindível: DEPOIMENTO ESPECIAL (nunca oitiva informal).'},
+     {t:'p',v:'Formas de violência previstas na Lei 13.431/2017: física, psicológica, sexual e institucional (e patrimonial).',kw:['física','psicológica','sexual','institucional','patrimonial']},
+     {t:'banca',prob:80,assunto:'Formas de violência na Lei 13.431',resp:'4 formas definidas: física, psicológica, sexual e institucional. A patrimonial é mencionada na doutrina. A banca pode variar.'},
+     {t:'banca',prob:78,assunto:'Escuta especializada: quem realiza?',resp:'A REDE DE PROTEÇÃO (assistência social, CREAS). NÃO é realizada por PM ou autoridade judiciária. O depoimento especial é que é feito pela PM (quando imprescindível).'}
+    ]
+   },
+   questoes:[
+    {enunciado:'Conforme o Ofício 671.1.1/2023-CPM, quando o sindicado invoca o direito ao silêncio de forma TOTAL, a autoridade deve:',
+     alternativas:['Continuar consignando as perguntas mesmo sem obter resposta','Encerrar o termo de interrogatório imediatamente','Registrar todas as perguntas e aguardar nova sessão','Substituir o interrogatório por declaração escrita da defesa'],
+     correta:1,
+     explicacao:'Silêncio total: ENCERRAR IMEDIATAMENTE o termo. Fundamento: Lei de Abuso de Autoridade (art. 15, §único, I, Lei 13.869/19).',
+     pegadinha:'O art. 127 §7º do MAPPA dizia para continuar consignando perguntas. O Ofício 671 MUDOU isso. Quem responde com a regra antiga do MAPPA erra.'},
+    {enunciado:'O Ofício 671.1.1/2023-CPM alterou a orientação do MAPPA porque:',
+     alternativas:['O MAPPA foi integralmente revogado pela Resolução 5.332/2023','Prosseguir com interrogatório após invocação do silêncio pode configurar abuso de autoridade (Lei 13.869/2019)','O direito ao silêncio foi modificado pelo novo CPM','A Resolução 5.346/2024 exige novo protocolo de interrogatório'],
+     correta:1,
+     explicacao:'Fundamento: Lei 13.869/2019 (Abuso de Autoridade). Prosseguir forçando interrogatório após silêncio pode configurar crime de abuso.',
+     pegadinha:'A banca atribui a mudança a outra norma. O fundamento correto é a Lei 13.869/2019.'},
+    {enunciado:'A ESCUTA ESPECIALIZADA de criança ou adolescente, conforme o Ofício 945 e a Lei 13.431/2017, é realizada:',
+     alternativas:['Pela autoridade policial com protocolo especial','Pelo Ministério Público em audiência pública','Por profissionais da rede de proteção (assistência social, CREAS, saúde)','Pelo Juiz da Vara de Infância e Juventude'],
+     correta:2,
+     explicacao:'Escuta especializada: realizada pela REDE DE PROTEÇÃO. O DEPOIMENTO ESPECIAL é que é feito por autoridade policial ou judiciária.',
+     pegadinha:'Confundir escuta especializada com depoimento especial. A PM usa DEPOIMENTO ESPECIAL, não escuta especializada.'},
+    {enunciado:'O Ofício 945.1.1/2023-CPM orienta que a PM, ao se deparar com criança ou adolescente vítima ou testemunha de violência, deve:',
+     alternativas:['Realizar a oitiva normalmente para coleta imediata de provas','Evitar a oitiva, buscando outros meios de prova; se imprescindível, usar o depoimento especial','Encaminhar sempre para o Conselho Tutelar realizar a oitiva','Realizar a oitiva conjuntamente com o Ministério Público'],
+     correta:1,
+     explicacao:'Orientação: EVITAR a oitiva. Buscar outros meios de prova. Se imprescindível: depoimento especial.',
+     pegadinha:"Confundir 'Conselho Tutelar' com 'rede de proteção/CREAS'. E não realizar oitiva informal — apenas depoimento especial."}
+   ]
+  }
+
+  ] // fim topicos
+}; // fim BLOCO
+
+// ── ESTILOS DE ESTÁGIO ─────────────────────────────────────────
+const EC = {
+  tema:      {cor:'#C7A14A',label:'TEMA'},
+  conceito:  {cor:'#7A8B5E',label:'CONCEITO'},
+  finalidade:{cor:'#6B8CAE',label:'FINALIDADE'},
+  estrutura: {cor:'#6B8CAE',label:'ESTRUTURA'},
+  pegadinha: {cor:'#9C3D3D',label:'⚠ PEGADINHA'},
+  fixacao:   {cor:'#7A8B5E',label:'FIXAÇÃO'},
+};
+
+// ── PERSISTÊNCIA ───────────────────────────────────────────────
+function lerProg(){try{return JSON.parse(localStorage.getItem('eap_b2')||'{}')}catch{return{}}}
+function salProg(p){try{localStorage.setItem('eap_b2',JSON.stringify(p))}catch{}}
+
+// ── HIGHLIGHT ──────────────────────────────────────────────────
+function renderText(texto,kws){
+  if(!kws||!kws.length) return [document.createTextNode(texto)];
+  const parts=[],kw_lower=kws.map(k=>k.toLowerCase());
+  let rem=texto;
+  while(rem.length){
+    let best=null,bestIdx=Infinity;
+    kws.forEach((kw,ki)=>{const idx=rem.toLowerCase().indexOf(kw_lower[ki]);if(idx!==-1&&idx<bestIdx){best=kw;bestIdx=idx;}});
+    if(!best){parts.push(document.createTextNode(rem));break;}
+    if(bestIdx>0) parts.push(document.createTextNode(rem.slice(0,bestIdx)));
+    const mark=document.createElement('kw');mark.textContent=rem.slice(bestIdx,bestIdx+best.length);
+    parts.push(mark);rem=rem.slice(bestIdx+best.length);
+  }
+  return parts;
+}
+
+// ── TTS ────────────────────────────────────────────────────────
+let falando=false,ttsTimer=null;
+function falar(txt){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  if(ttsTimer){clearInterval(ttsTimer);ttsTimer=null;}
+  if(falando){falando=false;renderApp();return;}
+  const u=new SpeechSynthesisUtterance(txt);u.lang='pt-BR';u.rate=0.95;
+  u.onstart=()=>{ttsTimer=setInterval(()=>{window.speechSynthesis.pause();window.speechSynthesis.resume();},10000);};
+  u.onend=()=>{falando=false;if(ttsTimer){clearInterval(ttsTimer);ttsTimer=null;}renderApp();};
+  u.onerror=()=>{falando=false;if(ttsTimer){clearInterval(ttsTimer);ttsTimer=null;}};
+  function doSpeak(){const vs=window.speechSynthesis.getVoices();const pv=vs.find(v=>v.lang.startsWith('pt'));if(pv)u.voice=pv;window.speechSynthesis.speak(u);falando=true;renderApp();}
+  if(window.speechSynthesis.getVoices().length>0)doSpeak();else window.speechSynthesis.onvoiceschanged=doSpeak;
+}
+
+// ── ESTADO ─────────────────────────────────────────────────────
+let state={tela:'trilha',ti:0,si:0,qi:0,resp:null,prog:lerProg(),bancas:{}};
+function setState(upd){
+  const sc=document.querySelector('.scroll');const sp=sc?sc.scrollTop:0;const pt=state.tela;
+  Object.assign(state,upd);
+  if(state.tela!=='slide'){falando=false;window.speechSynthesis&&window.speechSynthesis.cancel();}
+  renderApp();
+  if(state.tela===pt){const sc2=document.querySelector('.scroll');if(sc2)sc2.scrollTop=sp;}
+}
+
+// ── HELPERS ────────────────────────────────────────────────────
+function el(tag,cls,style){const e=document.createElement(tag);if(cls)e.className=cls;if(style)e.style.cssText=style;return e;}
+function div(cls,style){return el('div',cls,style);}
+function span(cls,txt){const e=el('span',cls);if(txt!==undefined)e.textContent=txt;return e;}
+function btn(cls,txt,fn){const b=el('button',cls);b.textContent=txt;b.onclick=fn;return b;}
+
+// ── RENDER PRINCIPAL ───────────────────────────────────────────
+function renderApp(){
+  const app=document.getElementById('app');app.innerHTML='';
+  const {tela,ti,si,qi,resp,prog,bancas}=state;
+  const top=BLOCO.topicos[ti];
+  const sld=top?.slides[si];
+  const qst=top?.questoes[qi];
+  const nS=top?.slides.length||0;
+  const nQ=top?.questoes.length||0;
+  const ok=idx=>!!prog[BLOCO.topicos[idx]?.id];
+  if(tela==='trilha')       renderTrilha(app,ok,prog);
+  else if(tela==='slide')   renderSlide(app,top,sld,si,nS);
+  else if(tela==='transcricao') renderTranscricao(app,top,bancas);
+  else if(tela==='questao') renderQuestao(app,top,qst,qi,nQ,resp);
+  else if(tela==='concluido') renderConcluido(app,top,prog);
+}
+
+// ── TELA TRILHA ────────────────────────────────────────────────
+function renderTrilha(app,ok,prog){
+  const hdr=div('hdr');
+  const row=div('hdr-row');
+  row.appendChild(span('lbl',`${BLOCO.emoji} ${BLOCO.titulo.toUpperCase()}`));
+  row.appendChild(span('lbl',`${Object.keys(prog).length}/${BLOCO.topicos.length} concluídos`));
+  hdr.appendChild(row);
+  const sub=span('lbl','EAP 2026 — 3º Sargento PMMG');sub.style.fontSize='9px';sub.style.color='#7d7a6c';
+  hdr.appendChild(sub);app.appendChild(hdr);
+  const scr=div('scroll');
+  BLOCO.topicos.forEach((top,idx)=>{
+    const done=ok(idx),blk=idx>0&&!ok(idx-1);
+    const card=div('card',`opacity:${blk?.45:1};cursor:${blk?'not-allowed':'pointer'}`);
+    const ic=div('card-ic',`background:${done?'#7A8B5E22':blk?'#ffffff08':'#C7A14A22'}`);
+    ic.style.color=done?'#7A8B5E':blk?'#7d7a6c':'#C7A14A';
+    ic.textContent=blk?'🔒':done?'✓':top.emoji;
+    card.appendChild(ic);
+    const info=div('');
+    const tt=div('card-titulo');tt.style.color=done?'#7A8B5E':blk?'#7d7a6c':'#E8E4D8';tt.textContent=top.titulo;
+    const mt=div('card-meta');mt.textContent=`${top.subtitulo||''} · ${top.slides.length} slides · ${top.questoes.length} questões`;
+    info.appendChild(tt);info.appendChild(mt);card.appendChild(info);
+    if(!blk){const arr=span('','›');arr.style.cssText='color:#7d7a6c;font-size:18px';card.appendChild(arr);}
+    card.onclick=()=>{if(!blk) setState({tela:'slide',ti:idx,si:0,qi:0,resp:null,bancas:{}});};
+    scr.appendChild(card);
+  });
+  app.appendChild(scr);
+  const foot=div('foot');foot.appendChild(span('lbl','← voltar ao início'));foot.style.cursor='pointer';foot.onclick=()=>window.location.href='eap-inicio.html';
+  app.appendChild(foot);
+}
+
+// ── TELA SLIDE ─────────────────────────────────────────────────
+function renderSlide(app,top,sld,si,nS){
+  const cfg=EC[sld.estagio]||EC.estrutura;
+  const hdr=div('hdr');hdr.style.cssText='flex-direction:row;align-items:center;justify-content:space-between;padding:14px 16px 10px;background:#21261b;border-bottom:1px solid #2a2f21;flex-shrink:0;display:flex';
+  hdr.appendChild(btn('btn-back','← Trilha',()=>setState({tela:'trilha'})));
+  const mid=div('','text-align:center');mid.appendChild(span('lbl',top.titulo));hdr.appendChild(mid);
+  hdr.appendChild(span('lbl',`${si+1}/${nS}`));app.appendChild(hdr);
+  const pb=div('prog-bar');
+  top.slides.forEach((_,i)=>{const s=div('prog-seg');s.style.background=i<=si?cfg.cor:'#3a3f2e';pb.appendChild(s);});
+  app.appendChild(pb);
+  const card=div('slide-card');card.style.borderColor=cfg.cor+'44';
+  const tag=div('estagio-tag');tag.textContent=cfg.label;tag.style.background=cfg.cor+'22';tag.style.color=cfg.cor;
+  card.appendChild(tag);
+  const titulo=div('slide-titulo');titulo.textContent=sld.titulo;card.appendChild(titulo);
+  if(sld.corpo){const p=div('slide-corpo');p.textContent=sld.corpo;card.appendChild(p);}
+  if(sld.lista){
+    const ul=el('ul','lista');
+    sld.lista.forEach(item=>{
+      const li=el('li');const bull=span('','›');bull.style.cssText=`color:${cfg.cor};margin-right:8px;flex-shrink:0`;
+      li.appendChild(bull);li.appendChild(document.createTextNode(item));ul.appendChild(li);
+    });
+    card.appendChild(ul);
+  }
+  if(sld.tabela){
+    const tbl=div('tabela');
+    sld.tabela.forEach(row=>{
+      const tr=div('tabela-row');
+      const ti=span('tabela-item',row.item);ti.style.color=cfg.cor;
+      const tv=span('tabela-val',row.valor);
+      tr.appendChild(ti);tr.appendChild(tv);tbl.appendChild(tr);
+    });
+    card.appendChild(tbl);
+  }
+  if(sld.destaque){const d=div('destaque');d.textContent=sld.destaque;d.style.borderColor=cfg.cor;d.style.background=cfg.cor+'11';card.appendChild(d);}
+  if(sld.alerta){const al=div('alerta');const ico=span('','⚠');ico.style.cssText='color:#9C3D3D;flex-shrink:0;font-size:14px';al.appendChild(ico);al.appendChild(document.createTextNode(sld.alerta));card.appendChild(al);}
+  app.appendChild(card);
+  const nav=div('nav');
+  const bk=el('button','btn-nav');bk.innerHTML='&#8249; Anterior';bk.style.opacity=si===0?.3:1;bk.disabled=si===0;bk.onclick=()=>{if(si>0)setState({si:si-1});};
+  const au=el('button','btn-audio');au.innerHTML=falando?'🔇':'🔊';au.onclick=()=>falar(sld.audio||sld.corpo||'');
+  const nx=el('button','btn-primary');
+  if(si<nS-1){nx.innerHTML='Próximo &#8250;';nx.onclick=()=>setState({si:si+1});}
+  else{nx.innerHTML='📄 Ver Manual';nx.onclick=()=>setState({tela:'transcricao',bancas:{}});}
+  nav.appendChild(bk);nav.appendChild(au);nav.appendChild(nx);app.appendChild(nav);
+}
+
+// ── TELA TRANSCRIÇÃO ───────────────────────────────────────────
+function renderTranscricao(app,top,bancas){
+  const tr=top.transcricao;
+  const hdr=div('hdr');hdr.style.cssText='flex-direction:row;align-items:center;justify-content:space-between;padding:14px 16px 10px;background:#21261b;border-bottom:1px solid #2a2f21;flex-shrink:0;display:flex';
+  hdr.appendChild(btn('btn-back','← Slides',()=>setState({tela:'slide'})));
+  const mid=div('','text-align:center');
+  const lbl=span('lbl','📄 TRANSCRIÇÃO');lbl.style.color='#6B8CAE';mid.appendChild(lbl);
+  const ref=document.createElement('div');ref.className='lbl';ref.textContent=tr.ref;ref.style.cssText='font-size:8px;color:#7d7a6c;margin-top:2px';mid.appendChild(ref);
+  hdr.appendChild(mid);hdr.appendChild(div('','width:60px'));app.appendChild(hdr);
+  const scr=div('scroll','');scr.style.gap='0';scr.style.padding='12px 16px';
+  const inner=div('','padding:4px 4px 16px');
+  tr.blocos.forEach((b,i)=>{
+    if(b.t==='h'){const h=div('tr-h');h.textContent=b.v;inner.appendChild(h);}
+    else if(b.t==='p'){const p=div('tr-p');renderText(b.v,b.kw||[]).forEach(n=>p.appendChild(n));inner.appendChild(p);}
+    else if(b.t==='def'){
+      const box=div('tr-def');
+      const lbl=div('tr-def-lbl');lbl.textContent=b.label;
+      const v=div('tr-def-v');v.textContent=b.v;
+      box.appendChild(lbl);box.appendChild(v);inner.appendChild(box);
+    }
+    else if(b.t==='eq'){const eq=div('tr-eq');eq.textContent=b.v;inner.appendChild(eq);}
+    else if(b.t==='banca'){
+      const k=`b${i}`,open=!!bancas[k],cor=b.prob>=90?'#9C3D3D':'#C7A14A';
+      const wrap=div('','margin-bottom:8px');
+      const trigger=el('button','banca-btn');
+      trigger.style.cssText=`background:${cor}18;border:1px solid ${cor}55;border-radius:${open?'8px 8px 0 0':'8px'};`;
+      const left=div('','display:flex;align-items:center;gap:8px');
+      const star=span('','★');star.style.color=cor;
+      const prob=span('',`⚡ ${b.prob}% chance em prova`);prob.style.cssText=`font-family:'IBM Plex Mono',monospace;font-size:10px;color:${cor};font-weight:600`;
+      left.appendChild(star);left.appendChild(prob);
+      const right=div('','display:flex;align-items:center;gap:6px');
+      const ass=span('',b.assunto);ass.style.cssText='font-size:11px;color:#c4c0b2';
+      const arr=span('',open?'▲':'▼');arr.style.color=cor;arr.style.fontSize='10px';
+      right.appendChild(ass);right.appendChild(arr);
+      trigger.appendChild(left);trigger.appendChild(right);
+      trigger.onclick=()=>setState({bancas:{...state.bancas,[k]:!open}});
+      wrap.appendChild(trigger);
+      if(open){const body=div('banca-body');body.style.cssText=`background:${cor}0e;border:1px solid ${cor}33;border-top:none;border-radius:0 0 8px 8px`;body.textContent=b.resp;wrap.appendChild(body);}
+      inner.appendChild(wrap);
+    }
+  });
+  scr.appendChild(inner);app.appendChild(scr);
+  const nav=div('nav');
+  const bk=el('button','btn-nav');bk.innerHTML='&#8249; Slides';bk.onclick=()=>setState({tela:'slide'});
+  const nx=el('button','btn-primary');nx.style.marginLeft='auto';nx.innerHTML='Questões &#8250;';nx.onclick=()=>setState({tela:'questao',qi:0,resp:null});
+  nav.appendChild(bk);nav.appendChild(nx);app.appendChild(nav);
+}
+
+// ── TELA QUESTÃO ───────────────────────────────────────────────
+function renderQuestao(app,top,qst,qi,nQ,resp){
+  const hdr=div('hdr');hdr.style.cssText='flex-direction:row;align-items:center;justify-content:space-between;padding:14px 16px 10px;background:#21261b;border-bottom:1px solid #2a2f21;flex-shrink:0;display:flex';
+  hdr.appendChild(btn('btn-back','← Manual',()=>setState({tela:'transcricao'})));
+  hdr.appendChild(span('lbl',`Questão ${qi+1} de ${nQ}`));app.appendChild(hdr);
+  const scr=div('scroll');const inner=div('','padding:0 4px 8px');
+  const tag=div('estagio-tag');tag.textContent='QUESTÃO DE FIXAÇÃO';
+  tag.style.cssText='display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-family:IBM Plex Mono,monospace;font-weight:500;letter-spacing:1px;background:#6B8CAE22;color:#6B8CAE;margin-bottom:12px';
+  inner.appendChild(tag);
+  const enun=div('','font-size:13px;color:#c4c0b2;line-height:1.65;margin-bottom:16px');enun.textContent=qst.enunciado;inner.appendChild(enun);
+  qst.alternativas.forEach((alt,i)=>{
+    const b=el('button','alt-btn');
+    let bg='#ffffff08',bc='#3a3f2e';
+    if(resp!==null){if(i===qst.correta){bg='#7A8B5E22';bc='#7A8B5E';}else if(i===resp&&resp!==qst.correta){bg='#9C3D3D22';bc='#9C3D3D';}else{bg='#ffffff05';}}
+    b.style.background=bg;b.style.borderColor=bc;b.style.cursor=resp!==null?'default':'pointer';
+    if(resp!==null&&i===qst.correta){const ic=span('','✓');ic.style.cssText='color:#7A8B5E;flex-shrink:0';b.appendChild(ic);}
+    if(resp!==null&&i===resp&&resp!==qst.correta){const ic=span('','✗');ic.style.cssText='color:#9C3D3D;flex-shrink:0';b.appendChild(ic);}
+    b.appendChild(document.createTextNode(alt));
+    b.onclick=()=>{if(resp===null)setState({resp:i});};
+    inner.appendChild(b);
+  });
+  if(resp!==null){
+    const expl=div('expl');expl.innerHTML=`<strong style="color:#7A8B5E">✓ </strong>${qst.explicacao}`;inner.appendChild(expl);
+    const al=div('alerta');al.style.marginBottom='12px';al.innerHTML=`<span style="color:#9C3D3D;flex-shrink:0;margin-right:6px">⚠</span><span><strong style="color:#9C3D3D">Pegadinha: </strong>${qst.pegadinha}</span>`;inner.appendChild(al);
+    const nx=el('button','btn-primary');nx.style.cssText='width:100%;justify-content:center;display:flex;padding:10px 14px;font-size:13px';
+    nx.textContent=qi<nQ-1?'Próxima questão →':'Concluir tópico ✓';
+    nx.onclick=()=>{
+      if(qi<nQ-1) setState({qi:qi+1,resp:null});
+      else{const ti=state.ti,top2=BLOCO.topicos[ti],np={...state.prog,[top2.id]:true};salProg(np);setState({prog:np,tela:'concluido'});}
+    };
+    inner.appendChild(nx);
+  }
+  scr.appendChild(inner);app.appendChild(scr);
+}
+
+// ── TELA CONCLUÍDO ─────────────────────────────────────────────
+function renderConcluido(app,top,prog){
+  const hdr=div('hdr');app.appendChild(hdr);
+  const body=div('','display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:24px;gap:16px;min-height:500px');
+  const em=div('','font-size:48px;text-align:center');em.textContent='🎖';body.appendChild(em);
+  const tt=div('','font-family:Oswald,sans-serif;font-size:22px;color:#C7A14A;text-align:center');tt.textContent='TÓPICO CONCLUÍDO';body.appendChild(tt);
+  const st=div('','font-family:IBM Plex Mono,monospace;font-size:14px;color:#7A8B5E;text-align:center');st.textContent=top.titulo;body.appendChild(st);
+  const n=Object.keys(prog).length,pct=Math.round((n/BLOCO.topicos.length)*100);
+  const pd=div('destaque');pd.style.cssText='border-color:#C7A14A;background:#C7A14A11;text-align:center';pd.innerHTML=`Progresso Bloco 2: <strong style="color:#C7A14A">${n}/${BLOCO.topicos.length} tópicos (${pct}%)</strong>`;body.appendChild(pd);
+  const bk=el('button','btn-primary');bk.style.cssText='width:100%;justify-content:center;display:flex;padding:12px 14px;font-size:14px;margin-top:8px';bk.textContent='Voltar à Trilha';bk.onclick=()=>setState({tela:'trilha'});body.appendChild(bk);
+  app.appendChild(body);
+}
+
+renderApp();
+</script>
+</body>
+</html>

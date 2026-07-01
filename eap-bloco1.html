@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>App EAP 2026 — Bloco 1: Doutrina Operacional</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#111410;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#3a3f2e;border-radius:2px}
+button{font-family:'Inter',sans-serif}
+.device{width:390px;min-height:760px;background:#1a1d16;border-radius:32px;border:1px solid #3a3f2e;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.6);max-height:95vh}
+.hdr{padding:20px 16px 12px;background:#21261b;border-bottom:1px solid #2a2f21;display:flex;flex-direction:column;gap:4px;flex-shrink:0}
+.hdr-row{display:flex;align-items:center;justify-content:space-between}
+.lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#9a9684;letter-spacing:.5px}
+.scroll{flex:1;overflow-y:auto;padding:12px 16px 72px;display:flex;flex-direction:column;gap:8px;overscroll-behavior:contain}
+.foot{padding:12px 16px;background:#21261b;border-top:1px solid #2a2f21;display:flex;justify-content:center;flex-shrink:0}
+.card{display:flex;align-items:center;gap:12px;padding:12px 14px;background:#21261b;border:1px solid #2a2f21;border-radius:10px;cursor:pointer}
+.card-ic{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.card-titulo{font-size:13px;font-weight:500;color:#E8E4D8;margin-bottom:2px}
+.card-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7d7a6c}
+.prog-bar{display:flex;gap:3px;padding:0 16px 12px;flex-shrink:0}
+.prog-seg{flex:1;height:3px;border-radius:2px}
+.slide-card{margin:0 16px;padding:16px;background:#21261b;border:1px solid;border-radius:12px;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+.estagio-tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-family:'IBM Plex Mono',monospace;font-weight:500;letter-spacing:1px;align-self:flex-start;margin-bottom:2px}
+.slide-titulo{font-family:'Oswald',sans-serif;font-size:20px;font-weight:600;color:#F2EFE6;line-height:1.2}
+.slide-corpo{font-size:13px;color:#c4c0b2;line-height:1.65}
+.lista{list-style:none;display:flex;flex-direction:column;gap:6px}
+.lista li{font-size:12px;color:#c4c0b2;line-height:1.5;display:flex;align-items:flex-start}
+.tabela{border-radius:8px;overflow:hidden;border:1px solid #3a3f2e}
+.tabela-row{display:flex;padding:8px 10px;gap:8px}
+.tabela-row:nth-child(odd){background:#ffffff08}
+.tabela-item{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;min-width:80px;flex-shrink:0}
+.tabela-val{font-size:12px;color:#c4c0b2;line-height:1.4}
+.destaque{padding:10px 12px;border-left:3px solid;border-radius:0 6px 6px 0;font-size:12px;color:#c4c0b2;line-height:1.5}
+.alerta{display:flex;align-items:flex-start;padding:10px 12px;background:#9C3D3D11;border:1px solid #9C3D3D44;border-radius:8px;font-size:12px;color:#c4c0b2;line-height:1.5;gap:8px}
+.nav{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#21261b;border-top:1px solid #2a2f21;flex-shrink:0}
+.btn-nav{display:flex;align-items:center;gap:4px;padding:8px 12px;background:#2a2f21;border:1px solid #3a3f2e;border-radius:8px;color:#9a9684;font-size:12px;cursor:pointer}
+.btn-primary{display:flex;align-items:center;gap:4px;padding:8px 14px;background:#C7A14A22;border:1px solid #C7A14A66;border-radius:8px;color:#C7A14A;font-size:12px;cursor:pointer}
+.btn-audio{display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:#C7A14A11;border:1px solid #C7A14A33;border-radius:50%;cursor:pointer;flex-shrink:0}
+.btn-back{background:transparent;border:none;color:#9a9684;font-size:12px;cursor:pointer;font-family:'IBM Plex Mono',monospace;padding:4px 0}
+.tr-h{font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;color:#C7A14A;letter-spacing:.5px;margin:16px 0 8px;padding-left:4px}
+.tr-p{font-size:13px;color:#c4c0b2;line-height:1.7;margin-bottom:10px;padding-left:4px}
+.tr-def{background:#21261b;border:1px solid #3a3f2e;border-radius:8px;padding:10px 12px;margin-bottom:8px}
+.tr-def-lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6B8CAE;font-weight:600;margin-bottom:4px}
+.tr-def-v{font-size:12px;color:#c4c0b2;line-height:1.6}
+.tr-eq{background:#C7A14A11;border:1px solid #C7A14A44;border-radius:8px;padding:12px 14px;margin-bottom:10px;text-align:center;font-family:'Oswald',sans-serif;font-size:13px;color:#C7A14A;letter-spacing:1px;font-weight:600}
+.banca-btn{width:100%;display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border:none;cursor:pointer;text-align:left}
+.banca-body{padding:10px 12px;font-size:12px;color:#E8E4D8;line-height:1.6;border-top:none}
+kw{background:#C7A14A22;color:#C7A14A;border-radius:3px;padding:0 3px;font-weight:600}
+.alt-btn{width:100%;display:flex;align-items:center;padding:10px 12px;border:1px solid #3a3f2e;border-radius:8px;margin-bottom:6px;background:#ffffff08;cursor:pointer;font-size:12px;color:#c4c0b2;text-align:left;gap:6px}
+.expl{padding:10px 12px;border-left:3px solid #7A8B5E;background:#7A8B5E11;border-radius:0 6px 6px 0;font-size:12px;color:#c4c0b2;line-height:1.5;margin-bottom:8px}
+</style>
+</head>
+<body>
+<div class="device" id="app"></div>
+<script>
+// ── DADOS ──────────────────────────────────────────────────────
+const BLOCO = {
+  id: "bloco1",
+  titulo: "Doutrina Operacional",
+  emoji: "🟢",
+  topicos: [
+
+  // ══════════════════════════════════════════════════════════════
+  // TÓPICO 01 — PRIMEIRO INTERVENTOR
+  // Instrução nº 3.03.24/2018-CG
+  // ══════════════════════════════════════════════════════════════
+  {
+    id: "primeiro-interventor",
+    titulo: "Primeiro Interventor",
+    subtitulo: "Instrução nº 3.03.24/2018-CG",
+    emoji: "🚨",
+    slides: [
+      {
+        estagio: "tema",
+        titulo: "PRIMEIRO INTERVENTOR",
+        corpo: "Policial militar que primeiro se depara com um incidente crítico de segurança pública durante o patrulhamento rotineiro, sendo responsável pelas ações iniciais de gestão do incidente.",
+        audio: "O tema é Primeiro Interventor. É o policial militar que primeiro se depara com um incidente crítico durante o patrulhamento, sendo responsável pelas ações iniciais de gestão."
+      },
+      {
+        estagio: "conceito",
+        titulo: "Incidente Crítico — Definição",
+        corpo: "Incidentes críticos de segurança pública são fenômenos sociais complexos de quebra da normalidade que, por colocarem a vida dos cidadãos em risco, exigem a intervenção especial da polícia.",
+        lista: [
+          "Apresentam imprevisibilidade — não se identifica local e hora com precisão",
+          "Geram ambiente de pressão psicológica intensa",
+          "Processos específicos de gestão e resolução",
+          "FBI: 'evento crucial que exige resposta especial da polícia para solução aceitável'"
+        ],
+        audio: "Incidente crítico é fenômeno social complexo de quebra da normalidade que, por colocar a vida dos cidadãos em risco, exige a intervenção especial da polícia. Uma característica central é a imprevisibilidade."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "CIEVA — As 5 Ações Iniciais",
+        corpo: "O mnemônico das ações que o primeiro interventor deve executar ao se deparar com um incidente crítico:",
+        tabela: [
+          { item: "C — CONTER", valor: "Evitar que a situação aumente seu grau de risco, agrave ou se alastre" },
+          { item: "I — ISOLAR", valor: "Interromper contato perpetrador/exterior. Polícia = único veículo de interlocução" },
+          { item: "E — ESTABILIZAR", valor: "Acalmar perpetrador e vítimas (emocional) + diminuir tensão no ponto crítico (físico)" },
+          { item: "V — VERBALIZAR", valor: "Comunicação oral com entonação adequada. SEM promessas, trocas ou concessões" },
+          { item: "A — ACIONAR", valor: "Repassar informações ao COPOM/SOU → acionamento do Controlador do Incidente" }
+        ],
+        audio: "C-I-E-V-A: Conter, Isolar, Estabilizar, Verbalizar, Acionar. O Verbalizar não admite promessas, trocas ou concessões. O Acionar repassa informações ao COPOM barra SOU."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "4 Componentes Operacionais",
+        corpo: "Quem atua na gestão de um incidente crítico e qual o papel de cada um:",
+        tabela: [
+          { item: "1. Primeiro Interventor", valor: "Policial que se depara inicialmente com o incidente. Identifica tipo e perpetrador." },
+          { item: "2. Controlador do Incidente", valor: "CPU/correspondente. Coleta info, confirma tipologia, repassa ao COPOM/SOU." },
+          { item: "3. Gestor do Incidente", valor: "Oficial do BOPE. AUTORIDADE TÉCNICA. Assessora o Comandante." },
+          { item: "4. Comandante da Cena", valor: "Oficial MAIS ANTIGO no local. AUTORIDADE DE LINHA. Coordena tudo." }
+        ],
+        destaque: "GESTOR = Autoridade TÉCNICA (BOPE). COMANDANTE = Autoridade de LINHA (mais antigo). Não confundir!",
+        audio: "Quatro componentes: Primeiro Interventor, Controlador do Incidente que é o C-P-U, Gestor do Incidente que é Autoridade Técnica do BOPE, e Comandante da Cena de Ação que é o oficial mais antigo — Autoridade de Linha."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Organização da Cena — 3 Perímetros",
+        corpo: "Os perímetros táticos delimitam fisicamente as zonas de atuação:",
+        tabela: [
+          { item: "IMEDIATO", valor: "🔴 Zona VERMELHA — só perpetrador + refém/suicida + equipes táticas BOPE" },
+          { item: "MEDIATO", valor: "🟡 Zona AMARELA — Posto Tático (gestor + equipes) + Posto de Comando (comandante)" },
+          { item: "EXTERNO", valor: "🟢 Zona VERDE — imprensa, familiares, SAMU, Bombeiros, logística, assessoria de risco" }
+        ],
+        audio: "Três perímetros: Imediato é zona vermelha, só BOPE e perpetrador. Mediato é zona amarela, Posto Tático e Posto de Comando. Externo é zona verde, imprensa, SAMU e logística."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Tipologia de Perpetradores",
+        corpo: "O primeiro interventor deve identificar o tipo de perpetrador para adotar ações específicas. São 5 tipos:",
+        lista: [
+          "🔫 CRIMINOSO COMUM — planeja para obter vantagem ilícita (refém, explosão de caixa)",
+          "🧠 MENTALMENTE PERTURBADO — psicopatologia; pode ser influenciado por drogas/remédios",
+          "⚡ OCASIONAL/EVENTUAL — flagrado em delito, toma refém por impulso",
+          "💔 SUICIDA — busca encerrar a própria vida, muitas vezes de forma pública",
+          "💣 TERRORISTA — ideologia radical; busca causar medo e pânico generalizados"
+        ],
+        destaque: "REFÉM vs. VÍTIMA: com vínculo emocional → tecnicamente VÍTIMA (perpetrador quer atingi-la diretamente). Sem vínculo → REFÉM (usado para exigências). Alto potencial de homicídio seguido de suicídio no vínculo emocional.",
+        audio: "Cinco tipos de perpetradores: criminoso comum, mentalmente perturbado, ocasional ou eventual, suicida e terrorista. Atenção: com vínculo emocional, a pessoa retida é tecnicamente vítima, não refém."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Classificação por Urgência",
+        corpo: "Os incidentes críticos são classificados conforme o grau de urgência da intervenção:",
+        tabela: [
+          { item: "UU — PRIORITÁRIA", valor: "Danos graves e risco imediato à vida (ex: refém terrorista, confronto armado, artefato explosivo)" },
+          { item: "U — IMPORTANTE", valor: "Danos médios (ex: indivíduo perturbado sem arma, ameaça de bomba sem confirmação)" },
+          { item: "NECESSÁRIA", valor: "Sem risco imediato à integridade física (ex: objeto suspeito em local desocupado)" }
+        ],
+        audio: "Três níveis de urgência: U-U prioritária com danos graves, U importante com danos médios, e Necessária sem risco imediato."
+      },
+      {
+        estagio: "pegadinha",
+        titulo: "Pegadinhas do Primeiro Interventor",
+        alerta: "1) CIEVA pode ser apresentado fora de ordem ou com termos trocados (ex: 'Negociar' no lugar de 'Verbalizar'). São exatamente: Conter, Isolar, Estabilizar, Verbalizar, Acionar.\n2) Gestor do Incidente ≠ Comandante da Cena. GESTOR = técnico (BOPE). COMANDANTE = hierárquico (mais antigo).\n3) Perímetro VERMELHO é o IMEDIATO (interno), não o externo.\n4) O Primeiro Interventor NÃO é liberado após chegada das equipes — permanece como relator do REDS.",
+        audio: "Quatro pegadinhas: C-I-E-V-A com 'Negociar' no lugar de 'Verbalizar'. Gestor versus Comandante. Vermelho é Imediato, não externo. E o primeiro interventor não é liberado — fica como relator do REDS."
+      },
+      {
+        estagio: "fixacao",
+        titulo: "FIXAÇÃO",
+        corpo: "CIEVA: Conter · Isolar · Estabilizar · Verbalizar · Acionar\n3 Perímetros: Vermelho (imediato) · Amarelo (mediato) · Verde (externo)\n4 Atores: PI · Controlador · Gestor Técnico (BOPE) · Comandante de Linha (mais antigo)",
+        destaque: "Verbalizar = SEM promessas/trocas/concessões. Refém com vínculo emocional = tecnicamente VÍTIMA.",
+        audio: "Fixe: C-I-E-V-A. Vermelho é interno, verde é externo. Gestor é técnico do BOPE. Comandante é o mais antigo. Verbalizar não admite promessas. Com vínculo emocional, é vítima, não refém."
+      }
+    ],
+    transcricao: {
+      ref: "Instrução nº 3.03.24/2018-CG — PMMG",
+      blocos: [
+        { t: "h", v: "PRIMEIRO INTERVENTOR EM OCORRÊNCIAS DE INCIDENTES CRÍTICOS" },
+        { t: "p", v: "A primeira intervenção em incidentes críticos de segurança pública de natureza policial é fundamental no processo de gestão do incidente. As ações iniciais, se corretamente realizadas, contribuem para a resolução adequada da situação crítica, protegendo a vida do policial militar que se depara com o incidente, bem como dos outros cidadãos.", kw: ["primeira intervenção", "fundamental", "ações iniciais"] },
+        { t: "def", label: "Incidente Crítico de Segurança Pública (PMMG)", v: "Fenômenos sociais complexos de quebra da normalidade que, por colocarem a vida dos cidadãos em risco, exigem a intervenção especial da polícia." },
+        { t: "def", label: "Crise (Academia Nacional do FBI)", v: "Um evento ou situação crucial que exige uma resposta especial da polícia a fim de assegurar uma solução aceitável." },
+        { t: "def", label: "Gerenciamento de Crises (FBI)", v: "Processo de identificar, obter e aplicar os recursos necessários à antecipação, prevenção e resolução de uma crise." },
+        { t: "h", v: "CIEVA — As 5 Ações Iniciais do Primeiro Interventor" },
+        { t: "def", label: "C — CONTER", v: "Evitar que a situação aumente seu grau de risco, seu agravamento ou que se alastre." },
+        { t: "def", label: "I — ISOLAR", v: "Interromper o contato dos perpetradores e reféns com o exterior, com a polícia assumindo o controle como único veículo de interlocução." },
+        { t: "def", label: "E — ESTABILIZAR", v: "Dois aspectos: (1) acalmar o perpetrador e as vítimas em termos emocionais; (2) diminuir a tensão no ponto crítico em termos físicos." },
+        { t: "def", label: "V — VERBALIZAR", v: "Utilização da comunicação oral, com entonação apropriada e emprego de termos adequados, SEM fazer promessas, trocas ou concessões." },
+        { t: "def", label: "A — ACIONAR", v: "Repassar informações preliminares ao COPOM/SOU, para que proceda o acionamento do Controlador do Incidente (CPU ou correspondente)." },
+        { t: "h", v: "Componentes Operacionais" },
+        { t: "def", label: "Primeiro Interventor", v: "Policial militar de radiopatrulhamento que primeiro se depara com o incidente crítico. Identifica o tipo do incidente e o tipo de perpetrador. NÃO deve ser liberado após chegada das equipes — permanece como relator do REDS." },
+        { t: "def", label: "Controlador do Incidente (CPU)", v: "Realiza contato com o primeiro interventor, coleta informações iniciais, confirma a tipologia do incidente crítico e repassa ao COPOM/SOU." },
+        { t: "def", label: "Gestor do Incidente Crítico", v: "Oficial da Unidade Especializada/BOPE. É a AUTORIDADE TÉCNICA. Assessora o Comandante da Cena de Ação na tomada de decisão." },
+        { t: "def", label: "Comandante da Cena de Ação", v: "Oficial MAIS ANTIGO presente no local. É a AUTORIDADE DE LINHA. Coordena, controla e comanda todo o efetivo envolvido na operação." },
+        { t: "h", v: "Organização da Cena de Ação — 3 Perímetros Táticos" },
+        { t: "def", label: "Perímetro Tático IMEDIATO — Zona Vermelha", v: "Perímetro interno. Nele só podem permanecer: perpetrador, refém ou suicida e policiais das equipes táticas do BOPE." },
+        { t: "def", label: "Perímetro Tático MEDIATO — Zona Amarela", v: "Nesse perímetro é montado o Posto Tático (coordenado pelo gestor do incidente) e o Posto de Comando (coordenado pelo comandante da cena de ação)." },
+        { t: "def", label: "Perímetro Tático EXTERNO — Zona Verde", v: "Parte mais segura. São instalados: sala de imprensa, sala de recepção de familiares e autoridades, apoio logístico e grupo de assessoria de risco (SAMU, Resgate, Corpo de Bombeiros)." },
+        { t: "banca", prob: "ALTA", assunto: "CIEVA — as 5 ações na ordem correta", resp: "Conter → Isolar → Estabilizar → Verbalizar → Acionar. A banca troca 'Verbalizar' por 'Negociar' ou embaralha a ordem. São CINCO ações, nessa sequência." },
+        { t: "banca", prob: "ALTA", assunto: "Gestor vs. Comandante da Cena de Ação", resp: "GESTOR = Autoridade TÉCNICA = Oficial do BOPE (conhecimento técnico profundo). COMANDANTE = Autoridade de LINHA = oficial MAIS ANTIGO no local. A banca inverte os dois." },
+        { t: "banca", prob: "ALTA", assunto: "Perímetro Tático Imediato — quem permanece?", resp: "Zona VERMELHA (não verde!). Só podem permanecer: perpetrador + refém/suicida + equipes táticas do BOPE. Ninguém mais." },
+        { t: "banca", prob: "ALTA", assunto: "Refém vs. Vítima no vínculo emocional", resp: "Com vínculo emocional, a pessoa retida é tecnicamente VÍTIMA (o perpetrador quer atingi-la diretamente). SEM vínculo, é REFÉM (usado para obter exigências de terceiros). Potencial de homicídio seguido de suicídio é ALTO no vínculo emocional." },
+        { t: "banca", prob: "ALTA", assunto: "O Primeiro Interventor é liberado após chegada do BOPE?", resp: "NÃO. Ele permanece na cena de ação pois será o relator da ocorrência (REDS). A banca dirá que ele deve ser liberado assim que chegarem as equipes especializadas." },
+        { t: "banca", prob: "MÉDIA", assunto: "Definição de incidente crítico vs. evento crítico", resp: "INCIDENTE CRÍTICO = imprevisível (não se sabe local/hora). EVENTO CRÍTICO = há previsibilidade e conhecimento prévio das variáveis (ex: reintegração de posse)." },
+        { t: "banca", prob: "MÉDIA", assunto: "O Verbalizar admite concessões?", resp: "NÃO. O texto literal diz: 'sem fazer promessas, trocas ou concessões'. A banca vai dizer que o primeiro interventor pode ceder em pequenas exigências para acalmar o perpetrador." },
+      ]
+    },
+    questoes: [
+      {
+        enunciado: "As 5 ações iniciais do Primeiro Interventor em um incidente crítico, segundo a Instrução nº 3.03.24/2018-CG, são representadas pelo mnemônico:",
+        alternativas: [
+          "A) CIVEA — Conter, Isolar, Verbalizar, Estabilizar, Acionar",
+          "B) CIEVA — Conter, Isolar, Estabilizar, Verbalizar, Acionar",
+          "C) CIEVA — Conter, Isolar, Estabilizar, Verbalizar, Avisar",
+          "D) CINVA — Conter, Isolar, Negociar, Verbalizar, Acionar"
+        ],
+        correta: 1,
+        explicacao: "CIEVA: Conter, Isolar, Estabilizar, Verbalizar, Acionar. A ordem e os termos são exatos — 'Acionar' (não 'Avisar') e sem 'Negociar'.",
+        pegadinha: "A banca embaralha a ordem (CIVEA em vez de CIEVA) ou substitui 'Acionar' por 'Avisar' (alt. C) ou inclui 'Negociar' (alt. D)."
+      },
+      {
+        enunciado: "No incidente crítico, o Gestor do Incidente Crítico e o Comandante da Cena de Ação exercem, respectivamente, as seguintes autoridades:",
+        alternativas: [
+          "A) Autoridade de linha e autoridade técnica",
+          "B) Autoridade técnica e autoridade de linha",
+          "C) Ambos exercem autoridade de linha, com precedência do mais antigo",
+          "D) Autoridade técnica e autoridade técnica especializada"
+        ],
+        correta: 1,
+        explicacao: "Gestor do Incidente = AUTORIDADE TÉCNICA (Oficial do BOPE). Comandante da Cena de Ação = AUTORIDADE DE LINHA (oficial mais antigo no local).",
+        pegadinha: "A alternativa A inverte os dois — é a pegadinha clássica. Gestor é técnico; Comandante é hierárquico."
+      },
+      {
+        enunciado: "Sobre o Perímetro Tático Imediato (Zona Vermelha), assinale a afirmativa CORRETA conforme a Instrução nº 3.03.24/2018-CG:",
+        alternativas: [
+          "A) É o perímetro mais externo, onde ficam imprensa e familiares",
+          "B) É o perímetro interno onde permanecem perpetrador, refém/suicida e equipes táticas do BOPE",
+          "C) É coordenado pelo Comandante da Cena de Ação e abriga o Posto de Comando",
+          "D) Corresponde à zona verde, sendo a área mais segura do perímetro tático"
+        ],
+        correta: 1,
+        explicacao: "Imediato = Zona VERMELHA (interno). Só permanecem: perpetrador, refém/suicida e policiais do BOPE. Verde = externo (imprensa, SAMU). Amarelo = mediato (Posto de Comando + Posto Tático).",
+        pegadinha: "As alternativas A e D invertem as cores dos perímetros — armadilha clássica. Vermelho é interno, verde é externo."
+      },
+      {
+        enunciado: "Em um incidente com tomada de refém de VÍNCULO EMOCIONAL, a pessoa mantida contra a vontade é tecnicamente classificada como:",
+        alternativas: [
+          "A) Refém, pois está sob coerção do perpetrador",
+          "B) Vítima, pois o perpetrador deseja atingi-la diretamente e não utilizá-la para exigências de terceiros",
+          "C) Testemunha, pois está presente no ponto crítico mas não é o alvo principal",
+          "D) Refém qualificado, pois há relação prévia com o perpetrador"
+        ],
+        correta: 1,
+        explicacao: "Com vínculo emocional, a pessoa é tecnicamente VÍTIMA — o perpetrador quer atingi-la diretamente. Sem vínculo = REFÉM (usado para obter exigências de terceiros). Potencial de homicídio seguido de suicídio é muito alto.",
+        pegadinha: "A alternativa A parece óbvia — está sob coerção, logo é refém. A instrução distingue os dois conceitos e isso cai bastante em prova."
+      }
+    ]
+  },
+
+  // ══════════════════════════════════════════════════════════════
+  // TÓPICO 02 — TCO
+  // Resolução nº 4.745/2018-CG + Memorando nº 30.106.2/23-EMPM
+  // ══════════════════════════════════════════════════════════════
+  {
+    id: "tco",
+    titulo: "TCO",
+    subtitulo: "Resolução nº 4.745/2018-CG",
+    emoji: "📋",
+    slides: [
+      {
+        estagio: "tema",
+        titulo: "TCO — TERMO CIRCUNSTANCIADO DE OCORRÊNCIA",
+        corpo: "Regulamentado pela Resolução nº 4.745/2018-CG, define os procedimentos operacionais para lavratura do Termo Circunstanciado de Ocorrências pela PMMG. Destinado a infrações penais de menor potencial ofensivo.",
+        audio: "Tema: Termo Circunstanciado de Ocorrência. Regulamentado pela Resolução 4.745 barra 2018 da CG. Destinado a infrações penais de menor potencial ofensivo."
+      },
+      {
+        estagio: "conceito",
+        titulo: "Conceitos Fundamentais",
+        corpo: "Base: Art. 2º da Resolução 4.745/2018-CG. Definições essenciais que a banca exige decoradas:",
+        tabela: [
+          { item: "Infração MPO", valor: "Crimes com pena máx. até 2 anos (c/ ou s/ multa) + CONTRAVENÇÕES PENAIS" },
+          { item: "REDS-TC", valor: "Registro de Evento de Defesa Social de infração MPO, cujo autor assume compromisso de comparecer em juízo" },
+          { item: "Autoridade Policial", valor: "Qualquer autoridade pública no exercício do poder de polícia (repressivo OU preventivo)" },
+          { item: "CREDS-TC", valor: "Central de REDS-TC: local da Unidade/Fração para processamento do REDS-TC e custódia de materiais" },
+          { item: "Ato Infracional", valor: "Conduta descrita como crime ou contravenção praticada por criança (<12 anos) ou adolescente (12-18 anos)" }
+        ],
+        audio: "Cinco conceitos: Infração M-P-O é crime até 2 anos ou contravenção. R-E-D-S-T-C é o registro com compromisso de comparecer. Autoridade policial é qualquer autoridade no exercício do poder de polícia. C-R-E-D-S-T-C é a central de processamento. Ato infracional é crime praticado por criança ou adolescente."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Quando NÃO Lavrar o REDS-TC — Art. 4º",
+        corpo: "EXCEÇÕES — situações em que a PMMG NÃO lavra o REDS-TC (cai muito em prova!):",
+        lista: [
+          "🔞 MENORES DE IDADE — atos infracionais (→ ECA, não TCO)",
+          "👩 VIOLÊNCIA DOMÉSTICA — infrações envolvendo violência doméstica e familiar contra a mulher (Lei Maria da Penha)",
+          "⚖️ JUSTIÇA FEDERAL ou CRIMES MILITARES",
+          "⚡ CONCURSO DE CRIMES — soma das penas máximas > 2 anos → não lavra TCO",
+          "🗳️ ELEITORAIS — regra: PF lavra. EXCEÇÃO: PMMG pode lavrar quando NÃO houver PF no local"
+        ],
+        audio: "Cinco exceções ao T-C-O: menores de idade, violência doméstica, justiça federal ou crimes militares, concurso de crimes com soma acima de 2 anos, e crimes eleitorais — esses a PF lavra, salvo se não houver PF no local."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Condição Indispensável — Art. 12",
+        corpo: "A condição indispensável para lavratura do REDS-TC é o compromisso do autor de comparecer em juízo.",
+        tabela: [
+          { item: "Autor assume compromisso", valor: "→ REDS-TC lavrado + autor liberado + encaminhado ao JECrim" },
+          { item: "Autor RECUSA compromisso", valor: "→ REDS lavrado imediatamente, endereçado à autoridade policial CIVIL. Autor = preso em FLAGRANTE" },
+          { item: "Impossibilidade (embriaguez, faculdades mentais)", valor: "→ REDS lavrado + encerrada na delegacia de polícia de imediato" },
+          { item: "Sem documento de ID", valor: "→ Pode lavrar SE dados confirmados nos sistemas de informações policiais" },
+          { item: "Documento com rasuras/falso", valor: "→ Recusa de lavratura do TCO" }
+        ],
+        destaque: "Sem compromisso = sem TCO. Autor vai preso em flagrante e caso vai para a autoridade policial civil (Delegacia).",
+        audio: "Condição indispensável: compromisso do autor de comparecer em juízo. Se recusar: preso em flagrante, delegacia. Se embriagado: também delegacia. Sem documento mas com dados nos sistemas: pode lavrar."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Procedimento Operacional",
+        corpo: "Sequência do PM ao atender uma ocorrência de infração MPO:",
+        lista: [
+          "1️⃣ Identificar a infração e cientificar os centros de operação (COPOM/SOU)",
+          "2️⃣ Colher manifestação da vítima (representação) — ação pública condicionada",
+          "3️⃣ Verificar compromisso do autor + coletar data/hora da audiência no JECrim",
+          "4️⃣ Lavrar o REDS-TC com codificação correta da infração penal",
+          "5️⃣ Liberar as partes após avaliação do ânimo",
+          "6️⃣ Lacar materiais e entregar REDS-TC na CREDS-TC",
+          "7️⃣ Conferência e encaminhamento ao JECrim em até 1 SEMANA (preferencialmente 1º dia útil)"
+        ],
+        destaque: "Vítima/autor que não sabe assinar: policial cientifica verbalmente com presença de 2 testemunhas, que assinam no termo.",
+        audio: "Sete passos: identificar, colher manifestação da vítima, verificar compromisso, lavrar o REDS-TC, liberar as partes, lacar materiais e entregar na C-R-E-D-S, encaminhar ao JECrim em até uma semana."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "CREDS-TC e Materiais — Memorando 30.106.2/23",
+        corpo: "O Memorando nº 30.106.2/23-EMPM regula o armazenamento adequado de materiais nas CREDS-TC:",
+        tabela: [
+          { item: "Estrutura mínima", valor: "Serviços de protocolo, espaço seguro e condições ambientais adequadas para conferência e recepção" },
+          { item: "Prazo JECrim", valor: "Preferencialmente 1º dia útil; MÁXIMO: 1 semana" },
+          { item: "Materiais", valor: "Lacrados em invólucro PRÓPRIO (NUNCA improvisado). Deve conter: nº de controle, data, natureza, PM responsável" },
+          { item: "Lacres", valor: "Numeração individualizada. Lacre rompido → acondicionar no interior do novo recipiente" },
+          { item: "Diagnóstico materiais", valor: "UDI determina às UEOp → a cada 3 MESES" },
+          { item: "Destinação final", valor: "JECrim é responsável (doação, destruição, restituição)" }
+        ],
+        audio: "C-R-E-D-S-T-C: estrutura com protocolo e espaço seguro. Prazo: primeiro dia útil, máximo uma semana. Materiais em invólucro próprio, nunca improvisado. Lacres individualizados. Diagnóstico trimestral. Destinação final: JECrim."
+      },
+      {
+        estagio: "pegadinha",
+        titulo: "Pegadinhas do TCO",
+        alerta: "1) 'Autoridade policial' NO TCO é qualquer autoridade pública no exercício do poder de polícia — não apenas a PMMG.\n2) Prazo para JECrim: banca coloca '3 dias' ou '10 dias' → correto: preferencialmente 1º dia útil, máximo 1 SEMANA.\n3) Concurso de crimes: SOMA das penas máximas > 2 anos → não lavra TCO (mesmo que crime isolado caiba).\n4) Crime eleitoral → regra é a PF; PMMG só lavra se não houver PF no local — é exceção, não regra.\n5) Infração sem vestígios não precisa de exame pericial. COM vestígios na vítima → encaminhar para atendimento médico e constar nº do prontuário no REDS-TC.",
+        audio: "Cinco pegadinhas: autoridade policial não é só a PM. Prazo é uma semana, não 3 nem 10 dias. Concurso de crimes some acima de 2 anos, sem TCO. Crime eleitoral: a regra é a PF, não a PMMG. Vestígios na vítima exigem atendimento médico e prontuário no REDS."
+      },
+      {
+        estagio: "fixacao",
+        titulo: "FIXAÇÃO — TCO",
+        corpo: "MPO = pena máx. até 2 anos OU contravenção. Condição indispensável = compromisso de comparecer. Exceções Art. 4º: menores, violência doméstica, Justiça Federal/Militar, concurso >2 anos, eleitorais (sem PF).",
+        destaque: "Prazo JECrim: 1º dia útil (pref.) / 1 semana (máx.). CREDS-TC: invólucro próprio, lacre numerado. Diagnóstico materiais: a cada 3 meses.",
+        audio: "Fixe: pena até 2 anos é M-P-O. Compromisso é condição indispensável. Exceções: menores, doméstica, militar, concurso acima de 2 anos, eleitoral sem P-F. Prazo JECrim: máximo uma semana."
+      }
+    ],
+    transcricao: {
+      ref: "Resolução nº 4.745/2018-CG + Memorando nº 30.106.2/23-EMPM",
+      blocos: [
+        { t: "h", v: "TCO — PROCEDIMENTOS OPERACIONAIS PELA PMMG" },
+        { t: "p", v: "A Resolução nº 4.745/2018-CG tem por finalidade regulamentar o procedimento operacional a ser observado pelos integrantes da PMMG para a lavratura do Termo Circunstanciado de Ocorrência (TCO).", kw: ["TCO", "procedimento operacional"] },
+        { t: "h", v: "CONCEITOS BÁSICOS — Art. 2º" },
+        { t: "def", label: "Infração penal de menor potencial ofensivo", v: "Abrange os crimes de menor potencial ofensivo (pena máxima de até 2 anos, cumulada ou não com multa) e as contravenções penais." },
+        { t: "def", label: "REDS-TC", v: "Registro de Evento de Defesa Social (REDS) relativo a infrações penais de menor potencial ofensivo, cujo autor assume o compromisso de comparecer em juízo." },
+        { t: "def", label: "Autoridade Policial (no contexto do TCO)", v: "Qualquer autoridade pública no exercício do poder de polícia, seja repressivo ou preventivo, com capacidade para lavratura do TCO." },
+        { t: "def", label: "CREDS-TC — Central de REDS-TC", v: "Local da Unidade/Fração destinado ao processamento do REDS-TC e custódia de materiais e/ou objetos arrecadados/apreendidos, quando houver." },
+        { t: "def", label: "Ato Infracional", v: "É a conduta descrita como crime ou contravenção penal praticada por criança (menor de 12 anos) ou adolescente (maior de 12 e menor de 18 anos), sujeita às medidas protetivas do ECA." },
+        { t: "h", v: "CASOS DE NÃO LAVRATURA — Art. 4º (EXCEÇÕES)" },
+        { t: "p", v: "Não será lavrado o REDS-TC nas seguintes situações:", kw: [] },
+        { t: "def", label: "I — Atos infracionais (menores)", v: "Em regra, não será lavrado REDS-TC para atos infracionais análogos às infrações penais de menor potencial ofensivo cometidos por menores de idade." },
+        { t: "def", label: "II — Violência doméstica e familiar", v: "Não se lavra REDS-TC para infrações penais relacionadas à violência doméstica e familiar contra a mulher (Lei Maria da Penha)." },
+        { t: "def", label: "III — Justiça Federal e Crimes Militares", v: "Crimes da Justiça Federal ou Militares estão fora do âmbito do TCO." },
+        { t: "def", label: "IV — Concurso de crimes com pena > 2 anos", v: "Quando a soma das penas máximas de dois ou mais delitos em concurso ultrapassa dois anos, não será lavrado o REDS-TC." },
+        { t: "def", label: "V — Infrações penais eleitorais (EXCEÇÃO)", v: "Regra: competência da Polícia Federal. EXCEÇÃO: a PMMG poderá lavrar o REDS-TC quando no local da infração não houver órgãos da Polícia Federal." },
+        { t: "h", v: "CONDIÇÃO INDISPENSÁVEL — Art. 12" },
+        { t: "p", v: "É condição indispensável para a lavratura do REDS-TC o compromisso do autor das infrações em comparecer em juízo.", kw: ["condição indispensável", "compromisso", "comparecer em juízo"] },
+        { t: "def", label: "Autor RECUSA o compromisso", v: "O REDS será lavrado com registro imediato, endereçado à autoridade policial civil, e o autor será conduzido preso em flagrante delito." },
+        { t: "def", label: "Impossibilidade (embriaguez / faculdades mentais)", v: "Deverá ser lavrado o REDS e encerrada a ocorrência de imediato na delegacia de polícia." },
+        { t: "def", label: "Autor sem documento de identificação", v: "Não impede a lavratura do REDS-TC desde que seus dados de identificação sejam confirmados nos sistemas de informações policiais disponíveis." },
+        { t: "def", label: "Vítima/Autor que não sabe assinar", v: "O policial poderá cientificá-lo verbalmente do conteúdo na presença de 2 (duas) testemunhas, colhendo a assinatura destas no termo." },
+        { t: "h", v: "CREDS-TC E MATERIAIS — Memorando nº 30.106.2/23-EMPM" },
+        { t: "p", v: "O Memorando nº 30.106.2/23-EMPM trata do armazenamento adequado de materiais decorrentes de TCO.", kw: ["Memorando", "armazenamento", "materiais"] },
+        { t: "def", label: "Prazo de encaminhamento ao JECrim", v: "Preferencialmente no primeiro dia útil posterior ao registro. O prazo máximo não poderá ultrapassar uma semana." },
+        { t: "def", label: "Invólucro dos materiais", v: "Devem ser lacrados e acondicionados em invólucro PRÓPRIO (em hipótese alguma improvisados). O invólucro deve conter: número de controle, data do REDS-TC, natureza, assinado e identificado pelo PM responsável." },
+        { t: "def", label: "Lacres", v: "Todos os recipientes deverão ser selados com lacres com numeração individualizada. Lacre rompido → acondicionar no interior do novo recipiente." },
+        { t: "def", label: "Diagnóstico dos materiais", v: "As UDI devem determinar às UEOp a produção de diagnóstico sobre os materiais arrecadados a cada três meses." },
+        { t: "def", label: "Destinação final dos materiais", v: "Cabe ao JECrim (doação, destruição, restituição). Trimestralmente a Unidade oficia ao Poder Judiciário solicitando autorização. Os protocolos são arquivados na P3." },
+        { t: "banca", prob: "ALTA", assunto: "Prazo de encaminhamento ao JECrim", resp: "Preferencialmente no 1º dia útil após o registro, prazo MÁXIMO de 1 semana. A banca cita '3 dias', '5 dias' ou '10 dias' — todos estão errados." },
+        { t: "banca", prob: "ALTA", assunto: "Condição indispensável — e se o autor recusar?", resp: "Sem compromisso = sem TCO. REDS lavrado imediatamente, endereçado à autoridade policial CIVIL (delegacia). Autor preso em flagrante. Não confundir: não é a PMMG que fica com o caso." },
+        { t: "banca", prob: "ALTA", assunto: "Concurso de crimes e o limite de 2 anos", resp: "A SOMA das penas máximas dos crimes em concurso deve ser calculada. Se ultrapassar 2 anos, NÃO lavra TCO — mesmo que cada crime individualmente tivesse pena abaixo de 2 anos." },
+        { t: "banca", prob: "ALTA", assunto: "Infração eleitoral: quem lavra o TCO?", resp: "REGRA: Polícia Federal. A PMMG só lavra por EXCEÇÃO: quando NÃO houver órgãos da PF no local da infração. A banca diz que PMMG sempre pode — ERRADO." },
+        { t: "banca", prob: "MÉDIA", assunto: "'Autoridade Policial' no TCO inclui só a PM?", resp: "NÃO. É qualquer autoridade pública no exercício do poder de polícia, seja repressivo ou preventivo. Inclui PM, PC, Guardas Municipais etc., desde que no exercício do poder de polícia." },
+        { t: "banca", prob: "MÉDIA", assunto: "Invólucro improvisado é permitido nas CREDS-TC?", resp: "NÃO, em nenhuma hipótese. Materiais devem ser lacrados em invólucro PRÓPRIO com numeração individualizada, nº de controle, data, natureza e identificação do PM." }
+      ]
+    },
+    questoes: [
+      {
+        enunciado: "Segundo a Resolução nº 4.745/2018-CG, é condição indispensável para a lavratura do REDS-TC:",
+        alternativas: [
+          "A) A presença da vítima e a coleta de sua representação",
+          "B) O compromisso do autor da infração em comparecer em juízo",
+          "C) A identificação do autor por meio de documento civil original",
+          "D) A comunicação prévia ao JECrim antes de lavrar o registro"
+        ],
+        correta: 1,
+        explicacao: "Art. 12 da Resolução 4.745/2018: condição indispensável = compromisso do autor de comparecer em juízo. Sem esse compromisso, o autor vai preso em flagrante e o REDS é endereçado à autoridade policial civil.",
+        pegadinha: "A alt. C parece certa mas não é — a falta de documento não impede a lavratura se os dados forem confirmados nos sistemas policiais."
+      },
+      {
+        enunciado: "Conforme o Art. 4º da Resolução nº 4.745/2018-CG, em qual situação a PMMG PODERÁ lavrar o REDS-TC para infração penal eleitoral?",
+        alternativas: [
+          "A) Sempre que a infração for de menor potencial ofensivo, independentemente de outros fatores",
+          "B) Apenas quando a infração for cometida em flagrante e o eleitor for encontrado no local",
+          "C) Quando no local da infração não houver órgãos da Polícia Federal",
+          "D) Quando houver autorização expressa do Juiz Eleitoral competente"
+        ],
+        correta: 2,
+        explicacao: "Crimes eleitorais são competência da Polícia Federal. A PMMG pode lavrar o REDS-TC por EXCEÇÃO: apenas quando não houver órgãos da PF no local da infração.",
+        pegadinha: "A banca apresenta o crime eleitoral como se a PMMG tivesse competência ordinária — errado. A PMMG atua em caráter excepcional, supletivo, quando não há PF no local."
+      },
+      {
+        enunciado: "De acordo com o Memorando nº 30.106.2/23-EMPM, o prazo máximo para a CREDS-TC encaminhar o REDS-TC ao Juizado Especial Criminal (JECrim) é:",
+        alternativas: [
+          "A) 3 (três) dias úteis após o registro",
+          "B) 5 (cinco) dias úteis após o registro",
+          "C) Preferencialmente o 1º dia útil; máximo de uma semana",
+          "D) 10 (dez) dias corridos após o registro"
+        ],
+        correta: 2,
+        explicacao: "O prazo preferencial é o primeiro dia útil posterior ao registro. O prazo máximo não pode ultrapassar uma semana. As alternativas com '3', '5' ou '10 dias' são invenção de banca.",
+        pegadinha: "A banca usa prazos plausíveis (3, 5, 10 dias) que parecem certos. O texto diz 'preferencialmente 1º dia útil' e 'máximo uma semana' — memorize exatamente assim."
+      },
+      {
+        enunciado: "Dois crimes em concurso formal têm penas máximas de 1 ano e 1 ano e 6 meses, respectivamente. A PMMG deve:",
+        alternativas: [
+          "A) Lavrar o REDS-TC, pois ambos os crimes individualmente têm pena inferior a 2 anos",
+          "B) Não lavrar o REDS-TC, pois a soma das penas máximas (2 anos e 6 meses) ultrapassa 2 anos",
+          "C) Lavrar o REDS-TC para o crime de pena menor e encaminhar o outro à delegacia",
+          "D) Aguardar decisão do JECrim sobre a competência antes de lavrar o registro"
+        ],
+        correta: 1,
+        explicacao: "No concurso de crimes, a SOMA das penas máximas é o critério: 1 + 1,5 = 2,5 anos > 2 anos. Não se lavra o REDS-TC. O caso vai para a autoridade policial civil.",
+        pegadinha: "A alt. A é a armadilha: analisa cada crime isoladamente. O texto diz 'soma das penas máximas dos crimes em concurso' — é a soma que determina."
+      }
+    ]
+  },
+
+  // ══════════════════════════════════════════════════════════════
+  // TÓPICO 03 — GDO
+  // Instrução nº 8007.2/2023-CG (5ª Edição)
+  // ══════════════════════════════════════════════════════════════
+  {
+    id: "gdo",
+    titulo: "GDO",
+    subtitulo: "Instrução nº 8007.2/2023-CG",
+    emoji: "📊",
+    slides: [
+      {
+        estagio: "tema",
+        titulo: "GDO — GESTÃO DE DESEMPENHO OPERACIONAL",
+        corpo: "A GDO é um sistema de medição de desempenho apoiado pelas dinâmicas relacionadas à contratualização de resultados sob uma perspectiva analítica de solução de problemas. Normatizada pela Instrução nº 8007.2/2023-CG (5ª Edição).",
+        audio: "Tema: Gestão de Desempenho Operacional. A GDO é um sistema de medição de desempenho apoiado pela contratualização de resultados sob uma perspectiva analítica de solução de problemas. Instrução 8007 ponto 2 barra 2023 hífen CG, quinta edição."
+      },
+      {
+        estagio: "finalidade",
+        titulo: "Finalidade da GDO",
+        corpo: "A GDO surgiu da necessidade de estabelecer, na PMMG, uma metodologia científica de análise do fenômeno criminal, indicação de respostas e ações para contenção e minoração da problemática criminal e do grau de insegurança da população.",
+        lista: [
+          "Oferece fundamentos de apresentações analíticas",
+          "Elaboração e execução de ferramentas de resolução de problemas pelos gestores operacionais",
+          "Dinâmica pragmática (prática) e interface metodológica simplificada e objetiva",
+          "Inserida no eixo 'Gerenciamento pelas Diretrizes' do planejamento estratégico da PMMG"
+        ],
+        audio: "A finalidade da GDO: metodologia científica para análise criminal e indicação de respostas para minorar a criminalidade. Oferece apresentações analíticas e ferramentas de solução de problemas. É pragmática e está no eixo Gerenciamento pelas Diretrizes."
+      },
+      {
+        estagio: "conceito",
+        titulo: "4 Conceitos Fundamentais da GDO",
+        corpo: "A banca exige a distinção exata entre esses 4 termos — não os confunda:",
+        tabela: [
+          { item: "OBJETIVO", valor: "Grande anseio da PMMG (ex: aumentar sensação de segurança; reduzir crime violento)" },
+          { item: "INDICADOR", valor: "Métrica sobre como o objetivo vai ser mensurado (deve ser calculada de forma clara por todos)" },
+          { item: "META", valor: "Valor a ser atingido ao final de um período (ex: redução de 2% no IMV). Deve ser Específica, Aceita e Atingível" },
+          { item: "DESEMPENHO", valor: "Esforço empreendido em direção ao resultado — quantificado pelo valor alcançado sobre a meta estabelecida" }
+        ],
+        audio: "Quatro conceitos: Objetivo é o grande anseio. Indicador é a métrica de mensuração. Meta é o valor a ser atingido — específica, aceita e atingível. Desempenho é o esforço em direção ao resultado."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Indicadores: 2 Tipos",
+        corpo: "Todos os indicadores da GDO são de um dos dois tipos — e a banca inverte:",
+        tabela: [
+          { item: "DE RESULTADO", valor: "MENOS gerenciáveis. Ligados diretamente aos objetivos organizacionais. Também chamados de 'outcomes' ou de controle.\n▸ IMV — Indicador de Mortes Violentas\n▸ ICCP — Indicador de Crimes Contra o Patrimônio\n▸ IMT — Indicador de Mortes no Trânsito" },
+          { item: "DE ESFORÇO", valor: "MAIS gerenciáveis. Direcionam o resultado — o que a PMMG empreende. Também chamados de 'drivers' ou direcionadores.\n▸ IPQ — Indicador de Prisão Qualificada\n▸ IRQ — Indicador de Resposta Qualificada\n▸ IPRP — Indicador de Prisão de Reincidentes Policiais" }
+        ],
+        destaque: "Esforço → gera → Resultado. Esforço é mais gerenciável. Resultado é menos gerenciável.",
+        audio: "Dois tipos: Resultado — menos gerenciável, são o IMV, ICCP e IMT. Esforço — mais gerenciável, são o IPQ, IRQ e IPRP. Esforço direciona o resultado."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Ciclo de Funcionamento da GDO",
+        corpo: "O ciclo se inicia com a pactuação de indicadores e metas, seguida por formalização e execução:",
+        lista: [
+          "1️⃣ PACTUAÇÃO — definição de indicadores e metas entre níveis estratégico e operacional",
+          "2️⃣ FORMALIZAÇÃO — comunicação entre as partes, formalizada anualmente pelo CHEM",
+          "3️⃣ EXECUÇÃO — depende de: portfólio de serviços + estratégias de policiamento + capacidade de gestão dos comandantes",
+          "4️⃣ RELATÓRIOS MENSAIS DE DESEMPENHO — comunicam o desempenho consolidado das Unidades",
+          "5️⃣ REUNIÕES DE ACOMPANHAMENTO — avaliação por nível (estratégico, tático, operacional)"
+        ],
+        destaque: "RELATÓRIO A3: plano de intervenção quando o desempenho é insuficiente. Contém: causas, metas, ações, responsabilidades e prazos. Executa-se até atingir farol verde ou amarelo.",
+        audio: "Ciclo da GDO: pactuação, formalização anual pelo CHEM, execução, relatórios mensais e reuniões. O Relatório A3 é o plano de intervenção para desempenho insuficiente — define causas, metas, ações e prazos."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Níveis de Avaliação + Histórico",
+        corpo: "A GDO opera em 3 níveis hierárquicos e passou por 5 edições:",
+        tabela: [
+          { item: "ESTRATÉGICO", valor: "Comando-Geral da PMMG" },
+          { item: "TÁTICO", valor: "RPM / UDI (Unidades de Direção Intermediária)" },
+          { item: "OPERACIONAL", valor: "Batalhão / Companhia" }
+        ],
+        lista: [
+          "2015 → 1ª Ed.: 11 indicadores, reuniões sistemáticas",
+          "2017 → 2ª Ed.: alinhamento ao Plano Estratégico 2016-2019",
+          "2020 → 3ª Ed.: aprimoramento de parâmetros",
+          "2022 → 4ª Ed.: publicada no BGPM nº 02, de 06/01/2022",
+          "2023 → 5ª Ed. ATUAL: Instrução nº 8007.2/2023-CG"
+        ],
+        audio: "Três níveis: estratégico no Comando-Geral, tático nas RPM e UDI, operacional nos batalhões. Quinta edição de 2023 é a atual. Lembre: a quarta edição foi publicada no B-G-P-M número 02, de 06 de janeiro de 2022."
+      },
+      {
+        estagio: "pegadinha",
+        titulo: "Pegadinhas da GDO",
+        alerta: "1) Indicadores de RESULTADO = MENOS gerenciáveis (banca diz 'mais'). Indicadores de ESFORÇO = MAIS gerenciáveis.\n2) OBJETIVO ≠ META ≠ INDICADOR. A banca troca os três — objetivo é o anseio, indicador é a métrica, meta é o valor numérico.\n3) 'GDO é apenas controle de produtividade' → ERRADO. É análise + solução + gestão de problemas.\n4) Relatório A3 ≠ Relatório Mensal. O A3 é o plano de intervenção para desvio/insuficiência. O mensal é o relatório rotineiro.\n5) GDO integra o eixo 'Gerenciamento pelas DIRETRIZES' — não 'Gerenciamento de Resultados'.",
+        audio: "Cinco pegadinhas: resultado é menos gerenciável, não mais. Objetivo anseio, indicador métrica, meta valor numérico. GDO não é só produtividade. A3 é intervenção por desvio, não relatório mensal. E o eixo é Gerenciamento pelas Diretrizes."
+      },
+      {
+        estagio: "fixacao",
+        titulo: "FIXAÇÃO — GDO",
+        corpo: "GDO = sistema de medição de desempenho por contratualização de resultados. 4 conceitos: Objetivo (anseio) → Indicador (métrica) → Meta (valor/período) → Desempenho (esforço/resultado).",
+        destaque: "Indicadores de Resultado (IMV, ICCP, IMT) = MENOS gerenciáveis. Indicadores de Esforço (IPQ, IRQ, IPRP) = MAIS gerenciáveis. Edição atual: 5ª (2023). Eixo: Gerenciamento pelas Diretrizes.",
+        audio: "Fixe: GDO é medição por contratualização de resultados. Resultado menos gerenciável, esforço mais gerenciável. IMV, ICCP, IMT são resultado. IPQ, IRQ, IPRP são esforço. Quinta edição de 2023. Eixo: Gerenciamento pelas Diretrizes."
+      }
+    ],
+    transcricao: {
+      ref: "Instrução nº 8007.2/2023-CG — 5ª Edição",
+      blocos: [
+        { t: "h", v: "GESTÃO DE DESEMPENHO OPERACIONAL — GDO" },
+        { t: "p", v: "A Gestão do Desempenho Operacional surgiu da necessidade de estabelecer, na PMMG, uma metodologia científica de análise do fenômeno criminal, indicação de respostas e ações para contenção e minoração da problemática criminal e do grau de insegurança da população.", kw: ["metodologia científica", "fenômeno criminal", "grau de insegurança"] },
+        { t: "def", label: "Definição da GDO", v: "Sistema de medição de desempenho apoiado pelas dinâmicas relacionadas à contratualização de resultados sob uma perspectiva analítica de solução de problemas." },
+        { t: "def", label: "Alinhamento Estratégico", v: "A GDO encontra-se inserida no eixo denominado Gerenciamento pelas Diretrizes, que traduzem mudanças estruturais necessárias à sustentabilidade da Instituição." },
+        { t: "h", v: "TRÍADE METODOLÓGICA (Dinâmica Pragmática)" },
+        { t: "eq", v: "Apresentações Analíticas → Elaborar Ferramentas → Executar as Ferramentas de Solução" },
+        { t: "h", v: "4 CONCEITOS FUNDAMENTAIS" },
+        { t: "def", label: "OBJETIVO", v: "É o grande anseio da PMMG. Exemplo: aumentar a sensação de segurança ou reduzir o crime violento." },
+        { t: "def", label: "INDICADOR", v: "É a métrica sobre como o objetivo vai ser mensurado, devendo ser calculada de forma clara por todos os envolvidos." },
+        { t: "def", label: "META", v: "É o valor a ser atingido ao final de um período. Exemplo: redução de 2% no Indicador de Mortes Violentas (IMV). As metas da GDO devem ser Específicas, Aceitas e Atingíveis." },
+        { t: "def", label: "DESEMPENHO", v: "É o esforço empreendido em direção ao resultado, quantificado pelo valor alcançado sobre a meta estabelecida." },
+        { t: "h", v: "TIPOS DE INDICADORES" },
+        { t: "def", label: "Indicadores de RESULTADO (outcomes / controle)", v: "Indicadores MENOS gerenciáveis, com relação direta aos objetivos organizacionais.\n• IMV — Indicador de Mortes Violentas (homicídio + roubo fatal)\n• ICCP — Indicador de Crimes Contra o Patrimônio (roubo, furto, extorsão)\n• IMT — Indicador de Mortes no Trânsito" },
+        { t: "def", label: "Indicadores de ESFORÇO (drivers / direcionadores)", v: "Indicadores que PODEM ser gerenciados pelo que a PMMG e/ou suas Unidades empreendem.\n• IPQ — Indicador de Prisão Qualificada\n• IRQ — Indicador de Resposta Qualificada\n• IPRP — Indicador de Prisão de Reincidentes Policiais" },
+        { t: "h", v: "CICLO DE FUNCIONAMENTO" },
+        { t: "def", label: "Pactuação", v: "Definição de indicadores e metas entre os níveis estratégico e operacional e entre unidades e subunidades." },
+        { t: "def", label: "Formalização", v: "Como os indicadores, metas e o desempenho serão comunicados entre as partes. Formalizado anualmente pelo CHEM." },
+        { t: "def", label: "Execução nas Unidades Operacionais", v: "Três condições essenciais: (1) emprego eficiente do portfólio de serviços; (2) estratégias de policiamento; (3) capacidade de gestão dos comandantes." },
+        { t: "def", label: "Relatório A3", v: "Ferramenta de plano de intervenção. Usado quando o desempenho está insuficiente ou requerendo atenção. Deve conter propostas para neutralizar/minimizar causas, metas, ações, responsabilidades e prazos. Executa-se até atingir farol verde ou amarelo." },
+        { t: "def", label: "Níveis de Avaliação", v: "Estratégico (Comando-Geral) → Tático (RPM/UDI) → Operacional (Batalhão/Cia)." },
+        { t: "banca", prob: "ALTA", assunto: "Indicador de Resultado = mais ou menos gerenciável?", resp: "MENOS gerenciável. A banca diz 'mais gerenciável' — errado. É o indicador de ESFORÇO que é mais gerenciável, pois depende do que a PMMG empreende." },
+        { t: "banca", prob: "ALTA", assunto: "Diferença entre Objetivo, Indicador e Meta", resp: "OBJETIVO = grande anseio (qualitativo). INDICADOR = métrica de como medir. META = valor numérico a atingir em determinado período. A banca apresenta Meta como sinônimo de Objetivo ou Indicador como sinônimo de Meta." },
+        { t: "banca", prob: "ALTA", assunto: "Em qual eixo estratégico está a GDO?", resp: "No eixo 'Gerenciamento pelas DIRETRIZES'. A banca coloca 'Gerenciamento de Resultados', 'Gerenciamento por Objetivos' ou 'Gerenciamento por Indicadores' — todos errados." },
+        { t: "banca", prob: "ALTA", assunto: "Quais os 3 Indicadores de Resultado?", resp: "IMV (Mortes Violentas), ICCP (Crimes Contra o Patrimônio) e IMT (Mortes no Trânsito). Qualquer outro é indicador de esforço. A banca coloca IPQ ou IRQ como se fossem de resultado." },
+        { t: "banca", prob: "MÉDIA", assunto: "O Relatório A3 substitui os Relatórios Mensais?", resp: "NÃO. São instrumentos distintos. Os relatórios mensais comunicam o desempenho consolidado rotineiro. O A3 é o plano de intervenção específico para quando o desempenho é insuficiente ou requer atenção." }
+      ]
+    },
+    questoes: [
+      {
+        enunciado: "A Gestão do Desempenho Operacional (GDO), segundo a Instrução nº 8007.2/2023-CG, pode ser interpretada como:",
+        alternativas: [
+          "A) Um sistema de controle de produtividade dos policiais militares, baseado em avaliações semestrais de rendimento individual",
+          "B) Um sistema de medição de desempenho apoiado pela contratualização de resultados sob uma perspectiva analítica de solução de problemas",
+          "C) Um programa de metas numéricas de prisões e apreensões, com base em comparações mensais entre unidades",
+          "D) Uma metodologia de gestão de recursos humanos inserida no eixo Gerenciamento por Resultados"
+        ],
+        correta: 1,
+        explicacao: "Definição literal da Instrução: 'sistema de medição de desempenho apoiado pelas dinâmicas relacionadas à contratualização de resultados sob uma perspectiva analítica de solução de problemas'. Inserida no eixo Gerenciamento pelas DIRETRIZES (não 'por Resultados').",
+        pegadinha: "Alt. D erra o eixo estratégico ('por Resultados' ao invés de 'pelas Diretrizes'). Alt. A reduz a GDO a controle individual de produtividade — a GDO é analítica e organizacional."
+      },
+      {
+        enunciado: "Em relação à classificação dos indicadores da GDO, assinale a alternativa CORRETA:",
+        alternativas: [
+          "A) Os indicadores de resultado são mais gerenciáveis, pois dependem do esforço direto das unidades policiais",
+          "B) O IPQ (Indicador de Prisão Qualificada) é um indicador de resultado, pois mede o sucesso da ação policial",
+          "C) Os indicadores de esforço são mais gerenciáveis, pois dependem do que a PMMG e suas Unidades empreendem",
+          "D) O IMV (Indicador de Mortes Violentas) é um indicador de esforço, pois mede a eficiência das patrulhas"
+        ],
+        correta: 2,
+        explicacao: "Indicadores de ESFORÇO são mais gerenciáveis (dependem do que a PM faz). Indicadores de RESULTADO são menos gerenciáveis (dependem de fatores sociais mais amplos). IPQ é esforço; IMV é resultado.",
+        pegadinha: "A alt. A inverte a regra. A alt. B e D trocam IPQ e IMV de categoria — exatamente o que a banca faz. IPQ é esforço (PM pode controlar quantas prisões faz). IMV é resultado (depende de fatores sociais)."
+      },
+      {
+        enunciado: "No ciclo de funcionamento da GDO, o Relatório A3 é utilizado quando:",
+        alternativas: [
+          "A) A Unidade atingiu todas as metas mensais e deseja reportar o sucesso ao nível estratégico",
+          "B) O desempenho está insuficiente ou requerendo atenção, como plano de intervenção com causas, metas, ações, responsabilidades e prazos",
+          "C) Um novo indicador de desempenho é pactuado entre a Unidade e o Comando-Geral",
+          "D) É necessário formalizar anualmente o acompanhamento dos indicadores pelo CHEM"
+        ],
+        correta: 1,
+        explicacao: "O Relatório A3 é o plano de intervenção — ativado quando o desempenho está insuficiente ou requerendo atenção (farol vermelho). Contém identificação das causas, metas, ações, responsabilidades e prazos. A formalização anual pelo CHEM (alt. D) é outra etapa do ciclo.",
+        pegadinha: "A alt. D descreve a etapa de 'Formalização' do ciclo — não é o Relatório A3. A banca mistura os dois instrumentos."
+      }
+    ]
+  },
+
+  // ══════════════════════════════════════════════════════════════
+  // TÓPICO 04 — MTP 01
+  // MTP Nº 3.04.01/2020-CG — Intervenção Policial, Comunicação e Uso da Força
+  // ══════════════════════════════════════════════════════════════
+  {
+    id: "mtp01",
+    titulo: "MTP 01",
+    subtitulo: "Nº 3.04.01/2020-CG — Intervenção, Comunicação e Força",
+    emoji: "⚡",
+    slides: [
+      {
+        estagio: "tema",
+        titulo: "MTP 01 — INTERVENÇÃO POLICIAL, COMUNICAÇÃO E USO DA FORÇA",
+        corpo: "Manual Técnico-Profissional nº 3.04.01/2020-CG. Publicado no BEPM nº 10, de 05/10/2020. Regula 6 grandes temas: Preparo Mental · Avaliação de Riscos · Pensamento Tático · Intervenção Policial · Processo de Comunicação · Uso da Força.",
+        audio: "Tema: M-T-P 01, Manual Técnico-Profissional 3.04.01 barra 2020-CG, B-E-P-M 10, de 5 de outubro de 2020. Seis temas: Preparo Mental, Avaliação de Riscos, Pensamento Tático, Intervenção Policial, Comunicação e Uso da Força."
+      },
+      {
+        estagio: "conceito",
+        titulo: "Preparo Mental + Estados de Atenção",
+        corpo: "Preparo mental: processo de pré-visualizar os prováveis problemas de uma intervenção e ensaiar mentalmente as possibilidades de resposta. Finalidade: ampliar a capacidade de resposta em situações adversas. Palavra-chave: ANTECIPAÇÃO.",
+        tabela: [
+          { item: "⬜ BRANCO", valor: "Estado relaxado, despercebido — inadequado ao patrulhamento" },
+          { item: "🟡 AMARELO", valor: "Estado de atenção — PADRÃO DO PATRULHAMENTO. Risco Nível I" },
+          { item: "🟠 LARANJA", valor: "Estado de alerta — situação específica de risco. Risco Nível II" },
+          { item: "🔴 VERMELHO", valor: "Estado de ação — ameaça concreta, atuação imediata. Risco Nível III" }
+        ],
+        audio: "Preparo mental é antecipação. Quatro estados: Branco relaxado, Amarelo patrulhamento normal é o padrão, Laranja alerta é Risco Nível II, Vermelho ação é Risco Nível III."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Avaliação de Riscos + Pensamento Tático",
+        corpo: "AR + PT = DPI (Avaliação de Riscos + Pensamento Tático = base para o Diagnóstico do Plano de Intervenção).",
+        tabela: [
+          { item: "Avaliação de Riscos (AR)", valor: "5 etapas metodológicas: antecipar, identificar, avaliar, controlar e monitorar os riscos da intervenção" },
+          { item: "Pensamento Tático (PT)", valor: "Quarteto: Área de Segurança (AS) + Área de Risco (AR) + Ponto de Decisão + Ponto de Intervenção" }
+        ],
+        destaque: "AR + PT → DPI (Diagnóstico para o Plano de Intervenção). Esta sigla cai em prova!",
+        audio: "A-R mais P-T igual a D-P-I. Avaliação de Riscos tem 5 etapas. Pensamento Tático tem o quarteto: Área de Segurança, Área de Risco, Ponto de Decisão e Ponto de Intervenção."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Etapas da Intervenção + Níveis",
+        corpo: "As 4 etapas da intervenção são (em ordem — cai muito em prova!):",
+        tabela: [
+          { item: "1. DIAGNÓSTICO", valor: "Baseado na AR + PT — avalia risco, tipo de ocorrência, perfil do suspeito" },
+          { item: "2. PLANO DE AÇÃO", valor: "Define estratégia, recursos e divisão de tarefas" },
+          { item: "3. EXECUÇÃO", valor: "Implementação do plano de ação" },
+          { item: "4. AVALIAÇÃO", valor: "Análise do resultado — ajuste de procedimentos para próximas intervenções" }
+        ],
+        lista: [
+          "Nível I: ação preventiva, educativa e assistencial → Risco I / Estado AMARELO",
+          "Nível II: verificação preventiva (fundada suspeita) → Risco II / Estado LARANJA",
+          "Nível III: ação repressiva (certeza ou risco iminente) → Risco III / Estado VERMELHO"
+        ],
+        audio: "Quatro etapas: Diagnóstico, Plano, Execução, Avaliação. Três níveis: I preventivo amarelo, II fundada suspeita laranja, III ação repressiva vermelho."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Abordagem Policial — SSRAU",
+        corpo: "Abordagem: conjunto de ações ordenadas para aproximar, orientar, identificar, advertir, buscar ou deter. Fundamentos mnemônicos SSRAU:",
+        tabela: [
+          { item: "S — SEGURANÇA", valor: "Prioridade máxima — do policial, da guarnição e de terceiros" },
+          { item: "S — SURPRESA", valor: "Reduzir o tempo de reação do suspeito; negar vantagem" },
+          { item: "R — RAPIDEZ", valor: "Reduzir tempo de exposição. ATENÇÃO: rapidez ≠ afobamento" },
+          { item: "A — AÇÃO VIGOROSA", valor: "Resposta técnica proporcional — NÃO é truculência" },
+          { item: "U — UNIDADE DE COMANDO", valor: "Coordenação centralizada — apenas um comandante dá ordens" }
+        ],
+        audio: "S-S-R-A-U: Segurança, Surpresa, Rapidez, Ação vigorosa, Unidade de comando. Rapidez não é afobamento. Ação vigorosa não é truculência."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Uso da Força — Princípios e Níveis",
+        corpo: "FORÇA ≠ VIOLÊNCIA. Força é legal, legítima e profissional. Violência é ilegal e arbitrária.",
+        tabela: [
+          { item: "Princípios", valor: "Legalidade · Necessidade · Proporcionalidade (nessa ordem)" },
+          { item: "Nível PRIMÁRIO", valor: "Presença policial + Verbalização" },
+          { item: "Nível SECUNDÁRIO", valor: "Controle de contato + Controle físico + IMPO + Uso dissuasivo da arma" },
+          { item: "Nível TERCIÁRIO", valor: "Força potencialmente letal + Disparo de arma de fogo" }
+        ],
+        destaque: "Verbalização está presente em TODOS os níveis. IMPO = Instrumento de Menor Potencial Ofensivo (nível secundário).",
+        audio: "Força não é violência. Princípios: Legalidade, Necessidade, Proporcionalidade. Nível Primário: presença e verbalização. Secundário: controle físico, IMPO, uso dissuasivo. Terciário: força letal e disparo."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Posições de Arma + Comunicação",
+        corpo: "4 posições de emprego da arma de fogo:",
+        tabela: [
+          { item: "Posição 1 — LOCALIZADA", valor: "Arma no coldre — patrulhamento normal (estado amarelo)" },
+          { item: "Posição 2 — GUARDA BAIXA", valor: "Arma desembainada em 45° para baixo — atenção elevada" },
+          { item: "Posição 3 — GUARDA ALTA", valor: "Arma apontada para cima — ready position" },
+          { item: "Posição 4 — PRONTA RESPOSTA", valor: "Apontada para a ameaça — iminência de defesa (estado vermelho)" }
+        ],
+        lista: [
+          "Comunicação: Emissor + Receptor + Mensagem",
+          "Boa comunicação: Clareza e Precisão",
+          "Postura do policial: Firme · Justo · Cortês"
+        ],
+        audio: "Quatro posições: Localizada no coldre, Guarda baixa 45 graus, Guarda alta apontada para cima, Pronta resposta apontada para a ameaça — é o estado vermelho. Comunicação: clareza e precisão. Postura: firme, justo, cortês."
+      },
+      {
+        estagio: "pegadinha",
+        titulo: "Pegadinhas do MTP 01",
+        alerta: "1) Estado AMARELO = padrão do patrulhamento ordinário (não o branco nem o laranja).\n2) Rapidez ≠ Afobamento. Ação vigorosa ≠ Truculência.\n3) A verbalização está presente em TODOS os níveis de uso da força — não só no primário.\n4) Sequência das etapas da intervenção: Diagnóstico → Plano → Execução → Avaliação (nunca inverta!).\n5) Nível Terciário: uso da força potencialmente LETAL. IMPO (instrumento de menor potencial ofensivo) é nível SECUNDÁRIO — a banca coloca no terciário.\n6) Força ≠ Violência. Força é legal. Violência é ilegal e arbitrária.",
+        audio: "Seis pegadinhas: Amarelo é o padrão, não branco. Rapidez não é afobamento. Verbalização em todos os níveis. Diagnóstico-Plano-Execução-Avaliação, nunca inverta. IMPO é secundário, não terciário. Força é legal, violência é ilegal."
+      },
+      {
+        estagio: "fixacao",
+        titulo: "FIXAÇÃO — MTP 01",
+        corpo: "6 Temas: Preparo Mental · Avaliação de Riscos · Pensamento Tático · Intervenção · Comunicação · Uso da Força. AR + PT = DPI. SSRAU: Segurança, Surpresa, Rapidez, Ação Vigorosa, Unidade de Comando.",
+        destaque: "Etapas: D-P-E-A. Níveis de força: Primário (presença/verbal) → Secundário (controle/IMPO) → Terciário (letal). Posição 4 = pronta resposta = iminência de defesa.",
+        audio: "Fixe: seis temas do MTP 01. A-R mais P-T igual a D-P-I. S-S-R-A-U na abordagem. Etapas D-P-E-A. Nível primário é presença e verbalização, secundário é controle e IMPO, terciário é letal. Posição 4 é iminência de defesa."
+      }
+    ],
+    transcricao: {
+      ref: "MTP Nº 3.04.01/2020-CG — BEPM nº 10, de 05/10/2020",
+      blocos: [
+        { t: "h", v: "MTP 01 — INTERVENÇÃO POLICIAL, PROCESSO DE COMUNICAÇÃO E USO DA FORÇA" },
+        { t: "p", v: "O MTP 01 regula três pilares essenciais da atuação policial-militar: intervenção policial, processo de comunicação e uso da força. Está alinhado à legislação brasileira e aos documentos internacionais da ONU sobre uso da força.", kw: ["intervenção policial", "processo de comunicação", "uso da força"] },
+        { t: "h", v: "PREPARO MENTAL" },
+        { t: "def", label: "Definição", v: "Processo de pré-visualizar os prováveis problemas a serem encontrados em cada tipo de intervenção policial-militar e ensaiar mentalmente as possibilidades de resposta." },
+        { t: "def", label: "Finalidade", v: "Ampliar a capacidade de resposta diante de situações adversas." },
+        { t: "def", label: "Estados de Atenção", v: "BRANCO (relaxado/inadequado) → AMARELO (atenção = padrão do patrulhamento / Risco I) → LARANJA (alerta / Risco II) → VERMELHO (ação/iminência / Risco III)" },
+        { t: "h", v: "AVALIAÇÃO DE RISCOS + PENSAMENTO TÁTICO" },
+        { t: "eq", v: "AR (Avaliação de Riscos) + PT (Pensamento Tático) = DPI" },
+        { t: "def", label: "Avaliação de Riscos", v: "5 etapas metodológicas: antecipar, identificar, avaliar, controlar e monitorar os riscos da intervenção." },
+        { t: "def", label: "Quarteto do Pensamento Tático", v: "Área de Segurança (AS) + Área de Risco (AR) + Ponto de Decisão + Ponto de Intervenção." },
+        { t: "h", v: "ETAPAS DA INTERVENÇÃO (DPEA)" },
+        { t: "eq", v: "Diagnóstico → Plano de Ação → Execução → Avaliação" },
+        { t: "def", label: "Níveis de Intervenção", v: "I: preventivo/educativo/assistencial → Amarelo. II: verificação preventiva, fundada suspeita → Laranja. III: ação repressiva, certeza ou risco iminente → Vermelho." },
+        { t: "h", v: "ABORDAGEM POLICIAL — FUNDAMENTOS SSRAU" },
+        { t: "def", label: "Definição de Abordagem", v: "Conjunto de ações ordenadas para aproximar, orientar, identificar, advertir, buscar ou deter pessoa(s)." },
+        { t: "def", label: "S — Segurança", v: "Prioridade máxima — segurança do policial, da guarnição e de terceiros." },
+        { t: "def", label: "S — Surpresa", v: "Reduzir o tempo de reação do suspeito, negando-lhe vantagem." },
+        { t: "def", label: "R — Rapidez", v: "Reduzir o tempo de exposição ao risco. ATENÇÃO: rapidez ≠ afobamento." },
+        { t: "def", label: "A — Ação vigorosa", v: "Resposta técnica proporcional ao risco. NÃO é truculência." },
+        { t: "def", label: "U — Unidade de Comando", v: "Coordenação centralizada: apenas um comandante emite ordens na cena." },
+        { t: "h", v: "USO DA FORÇA — PRINCÍPIOS E NÍVEIS" },
+        { t: "def", label: "Força vs. Violência", v: "FORÇA: legal, legítima e profissional. VIOLÊNCIA: ilegal e arbitrária. São conceitos opostos." },
+        { t: "def", label: "Princípios do Uso da Força", v: "1. Legalidade — 2. Necessidade — 3. Proporcionalidade." },
+        { t: "def", label: "Nível Primário", v: "Presença policial + Verbalização." },
+        { t: "def", label: "Nível Secundário", v: "Controle de contato + Controle físico + IMPO (Instrumento de Menor Potencial Ofensivo) + Uso dissuasivo da arma." },
+        { t: "def", label: "Nível Terciário", v: "Força potencialmente letal + Disparo de arma de fogo." },
+        { t: "h", v: "POSIÇÕES DE EMPREGO DA ARMA DE FOGO" },
+        { t: "def", label: "Posição 1 — Localizada", v: "Arma no coldre — patrulhamento normal, estado amarelo." },
+        { t: "def", label: "Posição 2 — Guarda baixa", v: "Arma desembainada apontada 45° para baixo." },
+        { t: "def", label: "Posição 3 — Guarda alta", v: "Arma apontada para cima — ready position." },
+        { t: "def", label: "Posição 4 — Pronta Resposta", v: "Arma apontada para a ameaça — iminência de defesa (estado vermelho)." },
+        { t: "h", v: "PROCESSO DE COMUNICAÇÃO" },
+        { t: "def", label: "Elementos", v: "Emissor + Receptor + Mensagem." },
+        { t: "def", label: "Qualidades", v: "Boa comunicação exige: Clareza + Precisão. Postura: Firme, Justo e Cortês." },
+        { t: "banca", prob: "ALTA", assunto: "Estado adequado ao patrulhamento ordinário", resp: "Estado AMARELO — não é o branco (relaxado/inadequado) nem o laranja (alerta). Amarelo é o estado de atenção que deve ser mantido durante o patrulhamento rotineiro." },
+        { t: "banca", prob: "ALTA", assunto: "Sequência correta das etapas da intervenção", resp: "Diagnóstico → Plano de Ação → Execução → Avaliação. A banca embaralha a ordem: coloca 'Plano' antes de 'Diagnóstico', ou coloca 'Avaliação' antes de 'Execução'." },
+        { t: "banca", prob: "ALTA", assunto: "IMPO — em qual nível de uso da força?", resp: "NÍVEL SECUNDÁRIO. A banca coloca no terciário (junto com força letal) — ERRADO. Nível terciário = força potencialmente LETAL e disparo de arma de fogo. IMPO não é letal." },
+        { t: "banca", prob: "ALTA", assunto: "Verbalização — em qual nível está presente?", resp: "Em TODOS os níveis de intervenção. A banca diz que é exclusiva do nível primário — errado. A verbalização acompanha qualquer tipo de intervenção policial." },
+        { t: "banca", prob: "ALTA", assunto: "Fundamentos da abordagem — SSRAU", resp: "Segurança, Surpresa, Rapidez, Ação vigorosa, Unidade de comando. Rapidez ≠ afobamento. Ação vigorosa ≠ truculência. A banca substitui um dos 5 por outro termo." },
+        { t: "banca", prob: "MÉDIA", assunto: "Risco Nível II → qual estado de atenção?", resp: "Estado LARANJA. I → Amarelo / II → Laranja / III → Vermelho. A banca embaralha as correspondências entre nível de risco e estado de atenção." }
+      ]
+    },
+    questoes: [
+      {
+        enunciado: "Conforme o MTP 01 (Nº 3.04.01/2020-CG), o estado de atenção adequado ao patrulhamento ordinário é:",
+        alternativas: [
+          "A) Estado Branco — policial relaxado e atento ao ambiente",
+          "B) Estado Amarelo — estado de atenção, correspondente ao Risco Nível I",
+          "C) Estado Laranja — estado de alerta, correspondente ao Risco Nível II",
+          "D) Estado Vermelho — policial em posição de pronta resposta"
+        ],
+        correta: 1,
+        explicacao: "O Estado Amarelo é o padrão do patrulhamento ordinário. O Estado Branco é relaxado e inadequado para o serviço ativo. O Laranja (Risco II) e Vermelho (Risco III) são estados de atenção elevada para situações específicas.",
+        pegadinha: "A alt. A parece certa ('atento ao ambiente') mas o Branco é relaxado/despercebido — inadequado ao patrulhamento. O correto é o Amarelo."
+      },
+      {
+        enunciado: "Assinale a sequência CORRETA das etapas da intervenção policial, conforme o MTP 01:",
+        alternativas: [
+          "A) Plano de Ação → Diagnóstico → Execução → Avaliação",
+          "B) Diagnóstico → Plano de Ação → Execução → Avaliação",
+          "C) Diagnóstico → Execução → Plano de Ação → Avaliação",
+          "D) Execução → Diagnóstico → Avaliação → Plano de Ação"
+        ],
+        correta: 1,
+        explicacao: "A sequência correta é: Diagnóstico → Plano de Ação → Execução → Avaliação (D-P-E-A). Primeiro se diagnóstica, depois se planeja, executa e avalia. Não se pode planejar sem antes diagnosticar.",
+        pegadinha: "A alt. A inverte as duas primeiras etapas — a pegadinha clássica. Diagnóstico sempre vem antes do Plano de Ação."
+      },
+      {
+        enunciado: "O IMPO (Instrumento de Menor Potencial Ofensivo) pertence a qual nível do uso diferenciado da força, segundo o MTP 01?",
+        alternativas: [
+          "A) Nível Primário, junto com a presença policial e a verbalização",
+          "B) Nível Secundário, junto com o controle físico e o uso dissuasivo da arma",
+          "C) Nível Terciário, junto com o disparo de arma de fogo",
+          "D) Nível intermediário, previsto entre o secundário e o terciário"
+        ],
+        correta: 1,
+        explicacao: "IMPO pertence ao Nível SECUNDÁRIO: controle de contato + controle físico + IMPO + uso dissuasivo da arma. Nível Terciário = força potencialmente LETAL + disparo. O IMPO, por definição, tem menor potencial ofensivo — não é letal.",
+        pegadinha: "A alt. C é a armadilha típica de prova: IMPO soa como 'impacto' e a banca o coloca junto com o disparo de arma. Mas IMPO é SECUNDÁRIO, não terciário."
+      },
+      {
+        enunciado: "Sobre os fundamentos da Abordagem Policial conforme o MTP 01, assinale a alternativa CORRETA:",
+        alternativas: [
+          "A) São: Segurança, Surpresa, Rapidez, Agressividade e Unidade de Comando",
+          "B) São: Segurança, Sigilo, Rapidez, Ação Vigorosa e Unidade de Comando",
+          "C) São: Segurança, Surpresa, Rapidez, Ação Vigorosa e Unidade de Comando",
+          "D) São: Segurança, Surpresa, Rendição, Ação Vigorosa e Unidade de Comando"
+        ],
+        correta: 2,
+        explicacao: "SSRAU: Segurança · Surpresa · Rapidez · Ação Vigorosa · Unidade de Comando. 'Agressividade' (alt. A) confunde-se com truculência. 'Sigilo' (alt. B) não é fundamento da abordagem. 'Rendição' (alt. D) não existe no rol.",
+        pegadinha: "A banca substitui 'Surpresa' por 'Sigilo' (alt. B) ou 'Ação Vigorosa' por 'Agressividade' (alt. A) — termos próximos mas distintos. O mnemônico correto é SSRAU."
+      }
+    ]
+  },
+
+  // ══════════════════════════════════════════════════════════════
+  // TÓPICO 05 — MTP 02 — ABORDAGEM A PESSOAS
+  // MTP Nº 3.04.02/2020-CG — BEPM nº 11, de 06/10/2020
+  // ══════════════════════════════════════════════════════════════
+  {
+    id: "mtp02",
+    titulo: "MTP 02",
+    subtitulo: "Nº 3.04.02/2020-CG — Abordagem a Pessoas",
+    emoji: "🫱",
+    slides: [
+      {
+        estagio: "tema",
+        titulo: "MTP 02 — ABORDAGEM A PESSOAS",
+        corpo: "Manual Técnico-Profissional nº 3.04.02/2020-CG. BEPM nº 11, de 06/10/2020. Regula: Técnica e Tática Policial Básica · Abordagem a Pessoas · Busca Pessoal e Algemas · Procedimentos Específicos · Abordagem às Vítimas · Local de Crime.",
+        audio: "Tema: M-T-P 02, Abordagem a Pessoas. B-E-P-M 11, de 06 de outubro de 2020. Sete grandes temas: técnica e tática básica, abordagem, busca pessoal, algemas, procedimentos específicos, abordagem às vítimas e local de crime."
+      },
+      {
+        estagio: "conceito",
+        titulo: "Finalidade e Supremacia de Força",
+        corpo: "A abordagem policial é o conjunto de ações ordenadas para aproximar, identificar, orientar, advertir, buscar ou deter pessoa(s) de fundada suspeita.",
+        tabela: [
+          { item: "Objetivo principal", valor: "Controle seguro da situação — NÃO é intimidação nem punição imediata" },
+          { item: "Supremacia de força", valor: "Uso SUFICIENTE de recursos para garantir o controle da situação (não é uso máximo nem violência)" },
+          { item: "Controle visual", valor: "Prioritariamente nas MÃOS do abordado — não no rosto nem nos pés" },
+          { item: "Grupos vulneráveis", valor: "Pessoas que necessitam de proteção especial — crianças, idosos, pessoas com deficiência, em surto" }
+        ],
+        audio: "Objetivo: controle seguro, não intimidação. Supremacia de força é uso suficiente, não máximo. Controle visual prioritário nas mãos. Grupos vulneráveis recebem atenção especial."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Busca Pessoal e Uso de Algemas",
+        corpo: "Dois procedimentos com requisitos distintos:",
+        tabela: [
+          { item: "BUSCA PESSOAL", valor: "Objetivo: localizar armas ou objetos ilícitos. Exige: fundada suspeita. Arma branca = maior risco em CURTA distância." },
+          { item: "USO DE ALGEMAS", valor: "Permitido quando houver resistência ou risco de fuga. Deve ser justificado. Súmula Vinculante nº 11 regula o uso de algemas." },
+          { item: "Princípios algemas", valor: "Necessidade + Proporcionalidade. Uso arbitrário = abuso de autoridade." }
+        ],
+        destaque: "Súmula Vinculante nº 11: proíbe o uso de algemas sem necessidade, salvo fundado receio de fuga ou perigo à integridade física.",
+        audio: "Busca pessoal: localizar armas e objetos ilícitos. Arma branca é mais perigosa em curta distância. Algemas: resistência ou risco de fuga. Súmula Vinculante 11."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Procedimentos Específicos e Local de Crime",
+        corpo: "Situações que demandam protocolos diferenciados:",
+        lista: [
+          "🧠 Pessoas em surto (drogas/distúrbio): abordagem DIFERENCIADA e cautelosa",
+          "⚖️ Autoridades: respeito institucional SEM afastar a aplicação da lei (não há imunidade)",
+          "📍 LOCAL DE CRIME: preservar → isolar → comunicar → registrar (não contaminar vestígios)",
+          "🩺 Abordagem às vítimas: atendimento humanizado, encaminhamento médico quando necessário",
+          "⚠️ Mais ocupantes que policiais + risco → liberar o veículo e comunicar ao COPOM (não abordar)"
+        ],
+        audio: "Surto: abordagem diferenciada. Autoridades: respeitoso mas a lei se aplica. Local de crime: preservar, isolar, comunicar, registrar. Mais ocupantes que policiais com risco: liberar e comunicar o COPOM."
+      },
+      {
+        estagio: "pegadinha",
+        titulo: "Pegadinhas do MTP 02",
+        alerta: "1) Objetivo da abordagem = controle seguro da situação (não 'intimidação', não 'punição imediata').\n2) Supremacia de força = uso SUFICIENTE, não uso MÁXIMO de força — a banca coloca 'máxima força disponível'.\n3) Controle visual prioritário = MÃOS (não rosto, não pés).\n4) Arma branca = maior perigo em CURTA distância (banca coloca 'longa distância').\n5) Algemas: Súmula Vinculante nº 11 — não é automático, precisa de justificativa (resistência ou risco de fuga).",
+        audio: "Cinco pegadinhas: objetivo é controle, não intimidação. Supremacia é suficiente, não máxima. Visual nas mãos, não no rosto. Arma branca é perigo em curta distância. Algemas pela Súmula 11."
+      },
+      {
+        estagio: "fixacao",
+        titulo: "FIXAÇÃO — MTP 02",
+        corpo: "Objetivo = controle seguro. Supremacia = uso suficiente. Visual = mãos. Busca pessoal = localizar armas/ilícitos. Algemas = resistência/fuga (SV nº 11). Arma branca = perigo a curta distância.",
+        destaque: "Pessoas em surto → abordagem diferenciada. Autoridades → lei se aplica (sem imunidade). Mais suspeitos que policiais + risco → liberar + COPOM.",
+        audio: "Fixe: controle seguro, uso suficiente, visual nas mãos. Busca: armas e ilícitos. Algemas: Súmula 11. Surto: diferenciado. Autoridade: sem imunidade. Mais suspeitos com risco: liberar e chamar o COPOM."
+      }
+    ],
+    transcricao: {
+      ref: "MTP Nº 3.04.02/2020-CG — BEPM nº 11, de 06/10/2020",
+      blocos: [
+        { t: "h", v: "MTP 02 — ABORDAGEM A PESSOAS" },
+        { t: "p", v: "O MTP 02 regula a abordagem a pessoas no âmbito da PMMG. A abordagem é o conjunto de ações ordenadas para aproximar, orientar, identificar, advertir, buscar ou deter pessoa(s) de fundada suspeita.", kw: ["abordagem", "fundada suspeita"] },
+        { t: "def", label: "Objetivo principal da abordagem", v: "Controle seguro da situação — não é intimidação, não é punição imediata." },
+        { t: "def", label: "Supremacia de força", v: "Emprego suficiente de recursos para garantir o controle da situação. NÃO é uso máximo de força. NÃO é violência preventiva." },
+        { t: "def", label: "Controle visual prioritário", v: "As MÃOS do abordado — pois é por onde partem as ameaças físicas." },
+        { t: "h", v: "BUSCA PESSOAL E USO DE ALGEMAS" },
+        { t: "def", label: "Busca pessoal", v: "Objetivo: localizar armas ou objetos ilícitos. Exige fundada suspeita. Arma branca apresenta maior risco em CURTA distância." },
+        { t: "def", label: "Uso de algemas", v: "Permitido quando houver resistência ou risco de fuga. Deve ser justificado. Princípios: Necessidade e Proporcionalidade. Uso arbitrário = abuso de autoridade." },
+        { t: "def", label: "Súmula Vinculante nº 11", v: "Só é lícito o uso de algemas em casos de resistência e de fundado receio de fuga ou de perigo à integridade física própria ou alheia, por parte do preso ou de terceiros, justificada a excepcionalidade por escrito." },
+        { t: "h", v: "PROCEDIMENTOS ESPECÍFICOS" },
+        { t: "def", label: "Pessoas em surto (drogas/distúrbio mental)", v: "Exigem abordagem DIFERENCIADA e cautelosa. Não devem ser tratadas com intervenção imediata e repressiva." },
+        { t: "def", label: "Abordagem a autoridades", v: "Respeito institucional, sem afastar a aplicação da lei. Autoridades NÃO têm imunidade à abordagem policial." },
+        { t: "def", label: "Grupos vulneráveis", v: "Pessoas que necessitam de proteção especial: crianças, adolescentes, idosos, pessoas com deficiência, em situação de rua. Abordagem com cuidados específicos." },
+        { t: "h", v: "LOCAL DE CRIME" },
+        { t: "def", label: "Procedimento básico", v: "1. Preservar — 2. Isolar — 3. Comunicar — 4. Registrar. Não contaminar vestígios. Não movimentar objetos sem autorização da perícia." },
+        { t: "banca", prob: "ALTA", assunto: "Objetivo da abordagem policial", resp: "Controle seguro da situação. A banca coloca 'intimidação' ou 'punição imediata' — ambos errados. Abordagem não é punição, é controle." },
+        { t: "banca", prob: "ALTA", assunto: "Supremacia de força — significado", resp: "Uso SUFICIENTE de recursos para garantir o controle. NÃO é uso máximo de força. A banca coloca 'máxima força disponível' ou 'uso irrestrito' — errado." },
+        { t: "banca", prob: "ALTA", assunto: "Controle visual prioritário na abordagem", resp: "As MÃOS do abordado — não o rosto, não os pés, não a vestimenta. As mãos são o ponto de onde parte a ameaça direta." },
+        { t: "banca", prob: "ALTA", assunto: "Súmula Vinculante nº 11 — algemas", resp: "Uso de algemas somente em casos de: (1) resistência; (2) fundado receio de fuga; (3) perigo à integridade física. Deve ser justificado por escrito. Uso sem justificativa = abuso de autoridade." },
+        { t: "banca", prob: "MÉDIA", assunto: "Arma branca — em que distância é mais perigosa?", resp: "CURTA distância. A banca coloca 'longa distância' — errado. Arma branca (faca, estilete) é irrelevante à distância, mas extremamente perigosa a curta distância." }
+      ]
+    },
+    questoes: [
+      {
+        enunciado: "Conforme o MTP 02 (Nº 3.04.02/2020-CG), qual é o principal objetivo da abordagem policial?",
+        alternativas: [
+          "A) Intimidar o suspeito e demonstrar autoridade da Polícia Militar",
+          "B) Controlar a situação com segurança e proporcionalidade",
+          "C) Aplicar punição imediata ao autor do delito no local",
+          "D) Obter confissão do suspeito antes de encaminhá-lo à delegacia"
+        ],
+        correta: 1,
+        explicacao: "O objetivo da abordagem é o controle seguro da situação. Não é intimidação (alt. A), não é punição imediata (alt. C) e não é obtenção de confissão (alt. D). A abordagem é uma técnica de controle e verificação.",
+        pegadinha: "A alt. A é o distrator mais escolhido — 'demonstrar autoridade' parece correto mas não é o objetivo técnico da abordagem conforme o MTP 02."
+      },
+      {
+        enunciado: "De acordo com o MTP 02, o controle visual durante a abordagem deve recair prioritariamente sobre qual parte do corpo do abordado?",
+        alternativas: [
+          "A) Rosto — para identificar expressões de agressividade",
+          "B) Vestimenta — para identificar possíveis armas escondidas",
+          "C) Mãos — pois é de onde partem as ameaças físicas diretas",
+          "D) Pés — para monitorar possível fuga do abordado"
+        ],
+        correta: 2,
+        explicacao: "O controle visual prioritário deve recair sobre as MÃOS do abordado, pois é por onde partem as ameaças físicas — empunhamento de armas, golpes, etc. As outras partes têm importância secundária.",
+        pegadinha: "A alt. A (rosto) parece intuitiva — observar expressões. Mas tecnicamente o MTP 02 determina que as mãos são o ponto prioritário de vigilância."
+      },
+      {
+        enunciado: "Sobre o uso de algemas, conforme a Súmula Vinculante nº 11 do STF e o MTP 02, é CORRETO afirmar:",
+        alternativas: [
+          "A) O uso de algemas é obrigatório em toda abordagem com condução à delegacia",
+          "B) É permitido apenas após a lavratura formal do flagrante delito",
+          "C) É lícito somente em casos de resistência, fundado receio de fuga ou perigo à integridade física, devendo ser justificado",
+          "D) Pode ser usado preventivamente sempre que o policial considerar necessário"
+        ],
+        correta: 2,
+        explicacao: "Súmula Vinculante nº 11: uso de algemas somente quando houver resistência, fundado receio de fuga ou perigo à integridade física. Deve ser justificado por escrito. Uso sem justificativa = abuso de autoridade.",
+        pegadinha: "Alt. D ('preventivamente') é a armadilha — uso preventivo sem resistência ou risco é exatamente o que a SV 11 proíbe."
+      }
+    ]
+  },
+
+  // ══════════════════════════════════════════════════════════════
+  // TÓPICO 06 — MTP 03 — BLITZ POLICIAL
+  // MTP Nº 3.04.03/2020-CG — BEPM nº 12, de 07/10/2020
+  // ══════════════════════════════════════════════════════════════
+  {
+    id: "mtp03",
+    titulo: "MTP 03",
+    subtitulo: "Nº 3.04.03/2020-CG — Blitz Policial",
+    emoji: "🚧",
+    slides: [
+      {
+        estagio: "tema",
+        titulo: "MTP 03 — BLITZ POLICIAL",
+        corpo: "Manual Técnico-Profissional nº 3.04.03/2020-CG. BEPM nº 12, de 07/10/2020. Regula a blitz policial no âmbito da PMMG. Temas: Conceito · Planejamento e Desenvolvimento · Processo de Comunicação · Situações Específicas.",
+        audio: "Tema: M-T-P 03, Blitz Policial. B-E-P-M 12, de 07 de outubro de 2020. Quatro temas: conceito, planejamento e desenvolvimento, processo de comunicação e situações específicas."
+      },
+      {
+        estagio: "conceito",
+        titulo: "Conceito e Tipos de Blitz",
+        corpo: "Blitz policial: operação de policiamento ostensivo realizada em vias urbanas ou rurais para verificação, fiscalização e/ou abordagem de pessoas e veículos.",
+        tabela: [
+          { item: "Local de atuação", valor: "Vias URBANAS ou RURAIS (não é exclusiva de rodovias nem de centros urbanos)" },
+          { item: "Blitz EDUCATIVA", valor: "Objetivo: conscientização da população. NÃO tem caráter repressivo." },
+          { item: "Blitz REPRESSIVA/PREVENTIVA", valor: "Objetivos de segurança pública, combate ao crime e verificação de veículos/pessoas" },
+          { item: "Blitz categoria 1", valor: "2 ou 3 policiais militares (mínimo para operação)." }
+        ],
+        audio: "Blitz em vias urbanas ou rurais. Educativa visa conscientização, não repressão. Categoria 1 tem 2 ou 3 policiais."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Papéis na Blitz — 4 Funções",
+        corpo: "Na blitz policial, cada policial tem uma função específica:",
+        tabela: [
+          { item: "SELECIONADOR", valor: "Responsável por escolher/selecionar os veículos que serão abordados" },
+          { item: "REVISTADOR", valor: "Realiza a busca pessoal e/ou veicular" },
+          { item: "SEGURANÇA", valor: "Garante a segurança da equipe e da operação" },
+          { item: "RELATOR", valor: "Responsável pelo registro de ocorrências (REDS)" }
+        ],
+        destaque: "A blitz deve ser planejada pela P3 (Assessoria Estratégica de Operações). O dispositivo onde ocorre a abordagem chama-se BOX.",
+        audio: "Quatro funções: Selecionador escolhe os veículos. Revistador faz a busca. Segurança protege a equipe. Relator faz o registro. Planejamento é da P3. Dispositivo de abordagem é o BOX."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Álcool + Situações Específicas",
+        corpo: "Fiscalização de alcoolemia — limites legais:",
+        tabela: [
+          { item: "0,05 a 0,33 mg/L", valor: "INFRAÇÃO ADMINISTRATIVA (multa, suspensão CNH)" },
+          { item: "≥ 0,34 mg/L", valor: "CRIME (art. 306, CTB) — condução sob influência de álcool" },
+          { item: "Estado de prontidão", valor: "Antes da abordagem na blitz: estado AMARELO (não vermelho)" }
+        ],
+        lista: [
+          "Busca veicular na blitz: exige FUNDADA SUSPEITA (não é automática para todos os veículos)",
+          "Mais ocupantes que policiais + risco: LIBERAR o veículo e comunicar ao COPOM",
+          "Ao final da blitz: PM Comandante agradece a colaboração do cidadão"
+        ],
+        audio: "Alcoolemia: até 0,33 é infração administrativa. 0,34 ou mais é crime. Estado na blitz: amarelo. Busca veicular: fundada suspeita. Mais ocupantes com risco: liberar e chamar o COPOM."
+      },
+      {
+        estagio: "pegadinha",
+        titulo: "Pegadinhas do MTP 03",
+        alerta: "1) Blitz é em vias URBANAS OU RURAIS — não é exclusiva de rodovias.\n2) Blitz educativa = CONSCIENTIZAÇÃO — não repressão criminal.\n3) Estado de prontidão na blitz = AMARELO (não vermelho).\n4) Limite CRIME (art. 306 CTB) = ≥ 0,34 mg/L. Entre 0,05 e 0,33 = apenas infração administrativa.\n5) Mais suspeitos que policiais com risco = LIBERAR + comunicar COPOM (não abordar sem condições).",
+        audio: "Cinco pegadinhas: blitz em urbanas e rurais. Educativa é conscientização. Estado amarelo na blitz. Crime de álcool é 0,34, não 0,20. Mais suspeitos com risco: liberar e COPOM."
+      },
+      {
+        estagio: "fixacao",
+        titulo: "FIXAÇÃO — MTP 03",
+        corpo: "Blitz: vias urbanas ou rurais. Planejamento: P3. BOX = local de abordagem. Funções: Selecionador (veículos) · Revistador (busca) · Segurança (proteção) · Relator (REDS).",
+        destaque: "Álcool crime: ≥ 0,34 mg/L. Administrativa: 0,05–0,33. Busca veicular: fundada suspeita. Mais suspeitos que PM + risco: liberar + COPOM. Estado antes da abordagem: AMARELO.",
+        audio: "Fixe: blitz urbanas e rurais. P3 planeja. BOX para abordagem. Funções: Selecionador, Revistador, Segurança, Relator. Crime de álcool: 0,34. Busca com fundada suspeita. Liberar quando risco elevado."
+      }
+    ],
+    transcricao: {
+      ref: "MTP Nº 3.04.03/2020-CG — BEPM nº 12, de 07/10/2020",
+      blocos: [
+        { t: "h", v: "MTP 03 — BLITZ POLICIAL" },
+        { t: "p", v: "O MTP 03 regula a blitz policial no âmbito da PMMG. Pode ser realizada em vias urbanas ou rurais, com finalidade educativa ou repressiva/preventiva.", kw: ["blitz policial", "vias urbanas ou rurais"] },
+        { t: "def", label: "Blitz Educativa", v: "Tem como objetivo a conscientização da população. Não possui caráter repressivo." },
+        { t: "def", label: "Blitz Categoria 1", v: "Composta por 2 ou 3 policiais militares." },
+        { t: "def", label: "Planejamento", v: "Responsabilidade da P3 (Assessoria Estratégica de Operações)." },
+        { t: "def", label: "BOX", v: "Dispositivo físico onde ocorre a abordagem dos veículos selecionados." },
+        { t: "h", v: "FUNÇÕES NA BLITZ" },
+        { t: "def", label: "Selecionador", v: "Policial responsável por escolher/selecionar os veículos que serão abordados." },
+        { t: "def", label: "Revistador", v: "Policial que realiza a busca pessoal e/ou veicular." },
+        { t: "def", label: "Segurança", v: "Policial responsável pela segurança da equipe e da operação." },
+        { t: "def", label: "Relator", v: "Policial responsável pelo registro de ocorrências (REDS) durante a blitz." },
+        { t: "h", v: "SITUAÇÕES ESPECÍFICAS" },
+        { t: "def", label: "Fiscalização de alcoolemia — limites", v: "0,05 a 0,33 mg/L: infração administrativa (multa + suspensão CNH). ≥ 0,34 mg/L: CRIME (art. 306 do CTB)." },
+        { t: "def", label: "Estado de prontidão na blitz", v: "AMARELO — não vermelho. A blitz é um procedimento planejado e controlado." },
+        { t: "def", label: "Busca veicular", v: "Exige fundada suspeita — não é realizada automaticamente em todos os veículos." },
+        { t: "def", label: "Mais ocupantes que policiais com risco", v: "Liberar o veículo e comunicar ao COPOM. Não realizar a abordagem sem condições de segurança." },
+        { t: "banca", prob: "ALTA", assunto: "Blitz policial — em que vias pode ser realizada?", resp: "Em vias URBANAS OU RURAIS. A banca coloca 'apenas em vias urbanas' ou 'apenas em rodovias' — ambas erradas. O MTP 03 não restringe por tipo de via." },
+        { t: "banca", prob: "ALTA", assunto: "Limite para crime de alcoolemia (art. 306 CTB)", resp: "≥ 0,34 mg/L = CRIME. Entre 0,05 e 0,33 mg/L = infração administrativa. A banca usa 0,20 ou 0,30 — errados. O crime começa em 0,34." },
+        { t: "banca", prob: "ALTA", assunto: "Quem planeja a blitz policial?", resp: "A P3 (Assessoria Estratégica de Operações). Não é a P1, P2 nem P4. P3 = planejamento e operações." },
+        { t: "banca", prob: "MÉDIA", assunto: "Blitz educativa — qual é o objetivo?", resp: "CONSCIENTIZAÇÃO da população — não repressão criminal, não investigação, não prisão. A banca tenta misturar blitz educativa com preventiva/repressiva." }
+      ]
+    },
+    questoes: [
+      {
+        enunciado: "A Blitz Policial, conforme o MTP 03 (Nº 3.04.03/2020-CG), pode ser realizada:",
+        alternativas: [
+          "A) Apenas em vias urbanas, pois exige iluminação artificial e apoio logístico imediato",
+          "B) Apenas em rodovias estaduais e federais, por competência exclusiva nessas vias",
+          "C) Em vias urbanas ou rurais, conforme as necessidades operacionais",
+          "D) Exclusivamente durante o período diurno, por razões de segurança operacional"
+        ],
+        correta: 2,
+        explicacao: "O MTP 03 determina que a blitz pode ser realizada em vias urbanas ou rurais. Não há restrição de tipo de via nem de período do dia no texto da norma.",
+        pegadinha: "As alternativas A e B limitam a blitz a um tipo de via específica — as banca costuma usar essa restrição para confundir. O MTP 03 é claro: urbanas OU rurais."
+      },
+      {
+        enunciado: "Na fiscalização de alcoolemia em blitz policial, o limite a partir do qual a conduta configura CRIME (art. 306 do CTB) é:",
+        alternativas: [
+          "A) 0,05 mg/L (qualquer quantidade detectada)",
+          "B) 0,20 mg/L de álcool por litro de ar alveolar",
+          "C) 0,34 mg/L de álcool por litro de ar alveolar",
+          "D) 0,40 mg/L, sendo que abaixo disso é mera infração administrativa"
+        ],
+        correta: 2,
+        explicacao: "≥ 0,34 mg/L: CRIME (art. 306 CTB). Entre 0,05 e 0,33 mg/L: infração administrativa (multa + suspensão CNH). Abaixo de 0,05 mg/L: sem sanção.",
+        pegadinha: "A banca usa 0,20 (alt. B) ou 0,40 (alt. D) — valores plausíveis mas errados. O limite exato é 0,34 mg/L para crime e 0,05 para infração administrativa."
+      },
+      {
+        enunciado: "Na estrutura de pessoal da blitz policial, o policial responsável por selecionar os veículos que serão submetidos à abordagem é denominado:",
+        alternativas: [
+          "A) Comandante de blitz",
+          "B) Revistador",
+          "C) Selecionador",
+          "D) Segurança"
+        ],
+        correta: 2,
+        explicacao: "Selecionador = escolhe os veículos. Revistador = faz a busca. Segurança = protege a equipe. Relator = registra as ocorrências. Funções distintas e específicas.",
+        pegadinha: "A banca mistura as 4 funções. Atenção: quem faz a busca é o Revistador, não o Selecionador. E quem registra é o Relator, não o Comandante."
+      }
+    ]
+  },
+
+  // ══════════════════════════════════════════════════════════════
+  // TÓPICO 07 — MTP 04 — ABORDAGEM A VEÍCULOS
+  // MTP Nº 3.04.04/2020-CG — BEPM nº 13, de 08/10/2020
+  // ══════════════════════════════════════════════════════════════
+  {
+    id: "mtp04",
+    titulo: "MTP 04",
+    subtitulo: "Nº 3.04.04/2020-CG — Abordagem a Veículos",
+    emoji: "🚗",
+    slides: [
+      {
+        estagio: "tema",
+        titulo: "MTP 04 — ABORDAGEM A VEÍCULOS",
+        corpo: "Manual Técnico-Profissional nº 3.04.04/2020-CG. BEPM nº 13, de 08/10/2020. Regula: Considerações Iniciais · Táticas de Abordagem a Veículos · Abordagem a Veículos com Características Especiais · Operação Cerco, Bloqueio e Interceptação.",
+        audio: "Tema: M-T-P 04, Abordagem a Veículos. B-E-P-M 13, de 08 de outubro de 2020. Quatro temas: considerações iniciais, táticas de abordagem, veículos especiais e operação cerco, bloqueio e interceptação."
+      },
+      {
+        estagio: "conceito",
+        titulo: "Busca Veicular vs. Vistoria",
+        corpo: "O MTP 04 estabelece a distinção técnica entre dois procedimentos muito confundidos:",
+        tabela: [
+          { item: "BUSCA VEICULAR", valor: "Verificação interna e externa do veículo em compartimentos onde objetos ilícitos podem estar escondidos. Exige FUNDADA SUSPEITA." },
+          { item: "VISTORIA", valor: "Conferência do chassi, número do motor, carrocerias, placas e documentos. Verifica adulterações ou falsificações. Externa e interna." }
+        ],
+        lista: [
+          "Busca veicular: inicia pelo PORTA-MALAS → compartimento de ocupantes → box do motor",
+          "Suspeita de pessoa no porta-malas: PM Vistoriador em posição 3 (guarda alta) + cobertura do PM Segurança",
+          "Ao final da abordagem: PM Comandante agradece a colaboração e explica a importância"
+        ],
+        audio: "Busca veicular: objetos ilícitos, com fundada suspeita, começa no porta-malas. Vistoria: chassi, placas, documentos. Ao final: PM Comandante agradece a colaboração."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Posições de PM na Abordagem Veicular",
+        corpo: "O dispositivo de abordagem varia conforme o número de PMs e viaturas. Posições táticas dos policiais:",
+        tabela: [
+          { item: "PM Comandante", valor: "Lidera a abordagem. Na segunda viatura, ocupa posição 4 (pronta resposta) dando cobertura ao Comandante da viatura principal" },
+          { item: "PM Motorista", valor: "Permanece próximo à viatura na posição de cobertura" },
+          { item: "PM Vistoriador", valor: "Realiza a vistoria e a busca veicular. No porta-malas: posição 3 (guarda alta)" },
+          { item: "PM Segurança", valor: "Posição 3 à retaguarda da viatura — mantém segurança do perímetro" }
+        ],
+        destaque: "Segunda viatura: posicionada à retaguarda da primeira, em DIAGONAL, distância de 3 a 5 metros.",
+        audio: "PM Comandante lidera. Motorista dá cobertura. Vistoriador faz busca e vistoria — posição 3 no porta-malas. Segurança mantém perímetro. Segunda viatura: diagonal a 3 a 5 metros."
+      },
+      {
+        estagio: "estrutura",
+        titulo: "Consulta de Dados + Cerco/Bloqueio",
+        corpo: "Procedimentos táticos complementares:",
+        lista: [
+          "📊 Consulta de dados criminais: deve ser realizada ENQUANTO os abordados estão na área de custódia",
+          "⏱️ Se retardada: risco de fuga se houver mandado de prisão em aberto",
+          "🔍 Busca interna: se motorista preso/algemado → PM Comandante pode arrolar testemunha idônea",
+          "🔒 Operação Cerco: isolar o veículo com posicionamento tático das viaturas",
+          "🛑 Interceptação: técnica de parar o veículo em fuga de forma controlada e segura"
+        ],
+        audio: "Consulta de dados: enquanto o abordado está na área de custódia. Motorista preso: testemunha para busca interna. Cerco isola o veículo. Interceptação para o veículo em fuga."
+      },
+      {
+        estagio: "pegadinha",
+        titulo: "Pegadinhas do MTP 04",
+        alerta: "1) Busca veicular ≠ Vistoria. Busca = objetos ilícitos (fundada suspeita). Vistoria = conferência de chassi, placas e documentos.\n2) Ordem da busca veicular: PORTA-MALAS primeiro → ocupantes → box do motor.\n3) PM Vistoriador no porta-malas suspeito: posição 3 (guarda ALTA, não posição 4).\n4) Consulta de dados: DURANTE a permanência na área de custódia (não depois da liberação!).\n5) Segunda viatura: posicionada em diagonal à retaguarda, a 3–5 metros (não lado a lado).",
+        audio: "Cinco pegadinhas: busca não é vistoria. Ordem: porta-malas primeiro. Vistoriador no porta-malas: posição 3, não 4. Consulta durante a custódia. Segunda viatura diagonal a 3 a 5 metros."
+      },
+      {
+        estagio: "fixacao",
+        titulo: "FIXAÇÃO — MTP 04",
+        corpo: "BUSCA: objetos ilícitos + fundada suspeita + porta-malas → ocupantes → motor. VISTORIA: chassi, placas, documentos.",
+        destaque: "Porta-malas suspeito: PM Vistoriador posição 3 (guarda alta). Consulta dados: na área de custódia. 2ª viatura: diagonal, 3–5m. Final: PM Comandante agradece e explica.",
+        audio: "Fixe: busca é ilícitos com suspeita, começa no porta-malas. Vistoria é chassi e placas. Porta-malas suspeito: posição 3. Consulta de dados na custódia. Segunda viatura diagonal a 3 a 5 metros."
+      }
+    ],
+    transcricao: {
+      ref: "MTP Nº 3.04.04/2020-CG — BEPM nº 13, de 08/10/2020",
+      blocos: [
+        { t: "h", v: "MTP 04 — ABORDAGEM A VEÍCULOS" },
+        { t: "p", v: "O MTP 04 regula a abordagem a veículos no âmbito da PMMG, incluindo táticas, busca, vistoria e operações de cerco, bloqueio e interceptação.", kw: ["abordagem a veículos", "cerco", "bloqueio", "interceptação"] },
+        { t: "h", v: "BUSCA VEICULAR vs. VISTORIA" },
+        { t: "def", label: "Busca Veicular", v: "Verificação interna e externa do veículo em compartimentos suscetíveis de esconder objetos ilícitos. A busca estende-se a quaisquer objetos com as pessoas no interior. Exige fundada suspeita." },
+        { t: "def", label: "Vistoria", v: "Conferência do chassi, número do motor, carrocerias, placas e outros sinais veiculares. Verifica se estão nas especificações das normas de trânsito. Analisa adulterações ou falsificações. Realizada externa e internamente." },
+        { t: "def", label: "Ordem da Busca Veicular", v: "1º porta-malas → 2º compartimento de ocupantes → 3º box do motor." },
+        { t: "def", label: "Porta-malas com suspeita de pessoa", v: "PM Vistoriador se posiciona na extremidade DIREITA TRASEIRA, com arma em POSIÇÃO 3 (guarda alta), enquanto recebe cobertura do PM Segurança." },
+        { t: "h", v: "DISPOSITIVO DE 2 VIATURAS" },
+        { t: "def", label: "Posicionamento da 2ª viatura", v: "À retaguarda da 1ª viatura, em diagonal em relação à via, a uma distância de 3 a 5 metros." },
+        { t: "def", label: "PM Comandante da 2ª viatura", v: "Ocupa a posição 4 (pronta resposta), dando cobertura ao Comandante da viatura principal." },
+        { t: "h", v: "CONSULTA DE DADOS E FINALIZAÇÃO" },
+        { t: "def", label: "Consulta de dados criminais", v: "Deve ser realizada ENQUANTO os abordados estão na área de custódia. Se retardada: risco de fuga caso haja mandado de prisão em aberto." },
+        { t: "def", label: "Busca interna com motorista preso", v: "PM Comandante pode arrolar testemunha idônea para acompanhar a busca interna." },
+        { t: "def", label: "Finalização da abordagem", v: "PM Comandante agradece a colaboração e explica a importância da abordagem policial para a manutenção da ordem pública." },
+        { t: "banca", prob: "ALTA", assunto: "Qual a diferença entre Busca Veicular e Vistoria?", resp: "BUSCA VEICULAR = procurar objetos ilícitos escondidos. Exige fundada suspeita. VISTORIA = conferir chassi, placas, documentos — verifica irregularidades nos sinais veiculares. São procedimentos distintos com finalidades diferentes." },
+        { t: "banca", prob: "ALTA", assunto: "Qual a ordem da busca veicular?", resp: "Porta-malas → compartimento dos ocupantes → box do motor. A banca embaralha a ordem, colocando 'motor primeiro' ou 'interior dos ocupantes antes do porta-malas'." },
+        { t: "banca", prob: "ALTA", assunto: "Posição do PM Vistoriador ao abrir porta-malas suspeito", resp: "Posição 3 (GUARDA ALTA) — não posição 4 (pronta resposta). O Vistoriador não aponta diretamente; fica em guarda alta enquanto o PM Segurança dá cobertura." },
+        { t: "banca", prob: "MÉDIA", assunto: "Quando deve ser feita a consulta de dados dos abordados?", resp: "ENQUANTO os abordados estão na área de custódia — não depois de liberados. Se retardada, o abordado pode fugir se houver mandado de prisão em aberto." }
+      ]
+    },
+    questoes: [
+      {
+        enunciado: "Segundo o MTP 04 (Nº 3.04.04/2020-CG), qual é a ordem correta da busca veicular?",
+        alternativas: [
+          "A) Box do motor → porta-malas → compartimento dos ocupantes",
+          "B) Porta-malas → compartimento dos ocupantes → box do motor",
+          "C) Compartimento dos ocupantes → porta-malas → box do motor",
+          "D) Porta-malas → box do motor → compartimento dos ocupantes"
+        ],
+        correta: 1,
+        explicacao: "A ordem determinada pelo MTP 04 é: 1º porta-malas → 2º compartimento dos ocupantes → 3º box do motor. Começa pelo porta-malas pois é o local de maior possibilidade de ameaça oculta.",
+        pegadinha: "A banca embaralha a ordem dos três estágios. A chave é: sempre começa no PORTA-MALAS e termina no motor."
+      },
+      {
+        enunciado: "Ao abrir o porta-malas de um veículo em que existe suspeita de pessoa escondida, o PM Vistoriador deve adotar qual posição de arma de fogo?",
+        alternativas: [
+          "A) Posição 1 — Localizada (no coldre), para não intimidar",
+          "B) Posição 2 — Guarda baixa (45° para baixo)",
+          "C) Posição 3 — Guarda alta, recebendo cobertura do PM Segurança",
+          "D) Posição 4 — Pronta resposta (apontada diretamente)"
+        ],
+        correta: 2,
+        explicacao: "PM Vistoriador: posição na extremidade direita traseira do veículo, arma em POSIÇÃO 3 (guarda alta), enquanto recebe cobertura do PM Segurança. Posição 4 seria da cobertura, não do vistoriador.",
+        pegadinha: "A alt. D (posição 4, pronta resposta) parece mais segura — mas é o PM SEGURANÇA que dá cobertura. O Vistoriador está em posição 3."
+      },
+      {
+        enunciado: "Conforme o MTP 04, a consulta de dados criminais dos abordados em uma abordagem veicular deve ser realizada:",
+        alternativas: [
+          "A) Antes de iniciar a abordagem, pelo Comandante, via rádio ao COPOM",
+          "B) Somente após a liberação dos abordados e registro no REDS",
+          "C) Enquanto os abordados estão na área de custódia, durante a abordagem",
+          "D) Apenas quando houver suspeita concreta de atividade criminosa"
+        ],
+        correta: 2,
+        explicacao: "A consulta de dados criminais deve ser realizada ENQUANTO os abordados estão na área de custódia. Se retardada, há possibilidade de fuga caso algum abordado tenha mandado de prisão em aberto.",
+        pegadinha: "A alt. B é o erro clássico — consultar depois é ineficaz pois o abordado já foi liberado. O MTP determina consulta durante a custódia, não após."
+      }
+    ]
+  },
+
+  // ──────────────────── TÓPICO 08 ────────────────────────────────
+  {
+    id:'t08', titulo:'Descriminalização do Porte de Maconha',
+    subtitulo:'Memorando 30.070.2/2024 · POP 1.8.0.049',
+    emoji:'🌿',
+    slides:[
+      {
+        estagio:'tema', titulo:'RE 635.659 — A Decisão do STF',
+        corpo:'Em 2024, o STF concluiu o julgamento do RE nº 635.659 e declarou que o porte de Cannabis sativa para consumo pessoal constitui ilícito administrativo, não mais crime. O caso de origem: cidadão portava apenas 3 gramas de maconha e havia sido condenado a prestação de serviços à comunidade.',
+        destaque:'Porte para consumo pessoal DEIXOU DE SER CRIME → tornou-se ilícito administrativo. Mas CONTINUA ILEGAL.',
+        alerta:'Em qualquer quantidade, o porte permanece proibido. Apenas a natureza jurídica mudou: saiu do direito penal.',
+        audio:'O STF descriminalizou, não legalizou. O porte de maconha saiu da esfera criminal e virou ilícito administrativo. Continua ilegal no Brasil.'
+      },
+      {
+        estagio:'conceito', titulo:'Art. 28 × Art. 290 CPM',
+        corpo:'A descriminalização alcança o Art. 28 da Lei 11.343/06 — que trata do porte para consumo pessoal por civis. O Art. 290 do Código Penal Militar, que rege a conduta de militares, permanece intacto. A PMMG não pode lavrar multas.',
+        lista:['Art. 28 Lei 11.343/06 → porte consumo pessoal civil → descriminalizado (ilícito admin.)','Art. 290 CPM → tráfico/posse/uso por militares → CONTINUA CRIME, decisão não se aplica','PMMG não pode lavrar multas — sanção é exclusiva do juiz competente (art. 28 I e III)'],
+        audio:'Art. 28 é civil, descriminalizado. Art. 290 do CPM é militar, continua crime. E a PM não aplica nenhuma multa.'
+      },
+      {
+        estagio:'finalidade', titulo:'Critério dos 40g e 6 Plantas',
+        corpo:'O STF fixou parâmetro quantitativo para presumir consumo pessoal: até 40 gramas OU até 6 plantas fêmeas. Atenção: esse limite NÃO é taxativo — as circunstâncias do caso concreto definem a natureza da ocorrência.',
+        lista:['≤ 40g OU ≤ 6 plantas fêmeas → presunção de consumo pessoal (ilícito admin.)','Pesagem NÃO é obrigatória — circunstâncias do caso definem a natureza','≥ 7 plantas fêmeas → encaminhar à Delegacia de PC (regra de tráfico)','Indícios de tráfico: variedade de drogas, balança de precisão, cadernos, filmagens de venda, acondicionamento'],
+        alerta:'Superar 40g NÃO configura tráfico automaticamente. Ainda depende das circunstâncias do caso concreto.',
+        audio:'40 gramas ou 6 plantas é presunção, não certeza. Pesagem não é obrigatória. 7 ou mais plantas vai pra Delegacia.'
+      },
+      {
+        estagio:'estrutura', titulo:'Procedimentos — Autores Adultos',
+        corpo:'Para maiores de 18 anos, os procedimentos variam conforme a substância encontrada:',
+        tabela:[
+          {item:'Só maconha (≤ 40g)', val:'BO Natureza I 99.000 → JECrim · TCO VEDADO · Notificar + liberar'},
+          {item:'Maconha + outras drogas', val:'TCO Natureza I 04.028 (principal) + I 99.000 (secundária) → JECrim'},
+          {item:'Substância apreendida', val:'SEMPRE → encaminhar à CREDS-TC com demais materiais e BO'}
+        ],
+        destaque:'Adulto + só maconha = BO 99.000, SEM TCO, notifica para comparecer ao JECrim e libera.',
+        audio:'Adulto com só maconha: BO 99.000, sem TCO, JECrim, libera. Com outras drogas: TCO I 04.028, JECrim.'
+      },
+      {
+        estagio:'estrutura', titulo:'Adolescentes e Crianças',
+        corpo:'Para menores de 18 anos, os procedimentos são mais protetivos e envolvem o ECA:',
+        tabela:[
+          {item:'Adolescente (12-18) + só maconha', val:'BO I 99.000 → MP/Vara Infância · entrega pais ou Conselho Tutelar'},
+          {item:'Adolescente (12-18) + outras drogas', val:'BO I 04.028 (principal) + I 99.000 (secundária) → Delegacia PC · apresentar adolescente'},
+          {item:'Criança (< 12 anos)', val:'BO natureza correspondente → MP/Vara Infância · entrega pais ou Conselho Tutelar'}
+        ],
+        alerta:'ECA Art. 244-B (Corrupção de menor): adultos e menores no mesmo contexto com outras drogas → encerra na Delegacia PC.',
+        audio:'Adolescente com só maconha vai pro MP. Com outras drogas, vai pra Delegacia. Criança sempre pro MP.'
+      },
+      {
+        estagio:'pegadinha', titulo:'Armadilhas Clássicas da Banca',
+        lista:['🚫 40g NÃO configura tráfico automático — depende das circunstâncias do caso','🚫 Pesagem NÃO é obrigatória — a PM não precisa pesar a droga','🚫 PMMG NÃO aplica multa — sanção cabe exclusivamente ao juiz','🚫 Art. 290 CPM NÃO muda — a decisão do STF não alcança militares','🚫 Adulto + só maconha = BO 99.000, SEM TCO — nunca lavrar TCO aqui','✅ 7 ou mais plantas fêmeas → Delegacia PC; adulto liberar + notificar para JECrim'],
+        audio:'Sem pesagem obrigatória. Sem multa da PM. Sem TCO para adulto com só maconha. Art. 290 do CPM não mudou. Isso é o que a banca cobra.'
+      },
+      {
+        estagio:'fixacao', titulo:'Mapa de Rotas — Resumão Final',
+        corpo:'Os 6 destinos que a banca cobra:',
+        lista:['Adulto + só maconha → BO I 99.000 → JECrim (sem TCO, liberar)','Adulto + maconha & outras → TCO I 04.028 → JECrim','Adolescente + só maconha → BO I 99.000 → MP / Vara Infância','Adolescente + maconha & outras → BO I 04.028 → Delegacia PC','Criança (< 12 anos) → BO correspondente → MP / Vara Infância','≥ 7 plantas ou tráfico evidente → Delegacia PC'],
+        destaque:'Adulto usuário → JECrim. Adolescente → MP (só maconha) ou Delegacia (+ outras). Criança → MP sempre.',
+        audio:'O destino define tudo. Adulto vai pro JECrim. Adolescente pode ir pro MP ou pra Delegacia. Criança sempre pro MP.'
+      }
+    ],
+    transcricao:{
+      ref:'Memorando nº 30.070.2/2024-EMPM + POP nº 1.8.0.049 (BGPM nº 56, 23/07/2024)',
+      blocos:[
+        {t:'h', v:'1. Fundamento Legal'},
+        {t:'p', v:'O STF, por meio do RE nº 635.659, descriminalizou o porte de Cannabis sativa para consumo pessoal. O art. 28 da Lei nº 11.343/06 permanece vigente, mas o porte para uso próprio passou de crime para ilícito administrativo. Em qualquer quantidade, o porte continua ilegal.', kw:['RE nº 635.659','art. 28','ilícito administrativo','Cannabis sativa']},
+        {t:'def', lbl:'CPM — Atenção', v:'A decisão do STF trata do art. 28 da Lei 11.343/06 e NÃO se aplica ao art. 290 do CPM. Para militares, tráfico/posse/uso em serviço continua sendo crime militar, permanecendo vigentes as disposições do CPM.'},
+        {t:'h', v:'2. Critérios de Distinção (40g / 6 plantas)'},
+        {t:'p', v:'A quantidade de 40 gramas ou 6 plantas fêmeas presume consumo pessoal. Contudo, essa presunção é relativa — as circunstâncias do caso concreto definem a natureza. A pesagem NÃO é obrigatória para a PM. Com 7 ou mais plantas, encaminha-se à Delegacia de PC.', kw:['40 gramas','6 plantas fêmeas','pesagem não é obrigatória','7 ou mais plantas']},
+        {t:'eq', v:'Indícios de tráfico: variedade de substâncias · balança de precisão · cadernos de anotações · filmagens de venda · forma de acondicionamento'},
+        {t:'banca', prob:82, titulo:'Banca × Pesagem obrigatória', texto:'A banca afirma: "A PM deve pesar a droga para classificar usuário ou traficante." FALSO — a pesagem NÃO é obrigatória. A distinção é feita pelas circunstâncias do caso concreto. O limite de 40g cria uma presunção relativa, não uma exigência de pesagem.'},
+        {t:'h', v:'3. Procedimentos por Perfil (POP 1.8.0.049)'},
+        {t:'p', v:'Os procedimentos variam conforme o perfil do abordado e as substâncias encontradas. Para adultos, o ponto central é a ausência ou presença de outras drogas além da maconha.', kw:['POP nº 1.8.0.049','Natureza I 99.000','Natureza I 04.028']},
+        {t:'def', lbl:'Adulto + só maconha (≤ 40g)', v:'BO Natureza I 99.000 → Destino: JECrim. TCO VEDADO. Notificar para comparecer em juízo + liberar. Substância → CREDS-TC.'},
+        {t:'def', lbl:'Adulto + maconha & outras drogas', v:'TCO Natureza I 04.028 (principal) + I 99.000 (secundária) → Destino: JECrim. Liberar o abordado. Substâncias → CREDS-TC.'},
+        {t:'def', lbl:'Adolescente (12-18) + só maconha', v:'BO Natureza I 99.000 → Destino: MP/Vara Infância e Juventude. Entrega aos pais ou Conselho Tutelar. Cópia do BO ao CT via CREDS-TC.'},
+        {t:'def', lbl:'Adolescente (12-18) + outras drogas', v:'BO Natureza I 04.028 (principal) + I 99.000 (secundária) → Destino: Delegacia PC. Apresentar o adolescente na Delegacia.'},
+        {t:'def', lbl:'Criança (< 12 anos — qualquer droga)', v:'BO natureza correspondente → Destino: MP/Vara Infância. Entrega aos pais ou Conselho Tutelar. TCO vedado.'},
+        {t:'banca', prob:88, titulo:'Banca × TCO para adulto usuário de maconha', texto:'Pegadinha recorrente: "Ao abordar adulto com 30g de maconha para uso pessoal, o PM deve lavrar TCO." ERRADO — TCO é VEDADO quando há apenas maconha para consumo pessoal com adulto. Lavra-se BO Natureza I 99.000, destino ao JECrim, sem TCO.'},
+        {t:'h', v:'4. Multas e Sanções'},
+        {t:'p', v:'A PMMG não possui competência para lavrar multas ou aplicar sanções administrativas pelo porte de maconha. A aplicação das sanções previstas no art. 28, I e III da Lei 11.343/06 cabe exclusivamente ao juiz competente.', kw:['sem multa','juiz competente','art. 28']},
+        {t:'banca', prob:79, titulo:'Banca × Multa pela PM', texto:'"O policial militar pode aplicar multa ao usuário de maconha como sanção administrativa." FALSO. A PMMG não tem competência para isso. Sanções administrativas são aplicadas pelo juiz. A banca usa essa pegadinha comparando com infrações de trânsito onde o PM pode autuar.'},
+        {t:'banca', prob:85, titulo:'Banca × Art. 290 CPM', texto:'"A decisão do STF sobre maconha se aplica a policiais militares que portam a substância em serviço." FALSO — o art. 290 do CPM não foi afetado. Para militares em função castrense, o porte de maconha continua sendo crime militar. A decisão só alcança o art. 28 da Lei 11.343/06 (porte civil).'},
+        {t:'banca', prob:75, titulo:'Banca × 6 plantas vs 7 plantas', texto:'Detalhe numérico que cai em questão: até 6 plantas fêmeas → presunção de consumo pessoal. Com 7 ou mais plantas → encaminhar à Delegacia de PC como tráfico. A banca troca os números ou coloca "mais de 6" onde deveria ser "7 ou mais".'}
+      ]
+    },
+    questoes:[
+      {
+        enunciado:'Um PM aborda um adulto portando 35 gramas de Cannabis sativa, sem outros indícios de tráfico. Com base no Memorando nº 30.070.2/2024-EMPM e POP nº 1.8.0.049, a conduta correta é:',
+        alternativas:['Lavrar TCO Natureza I 04.028 e encaminhar ao JECrim','Lavrar BO Natureza I 99.000, notificar o abordado para comparecer ao JECrim e liberá-lo','Conduzir o abordado à Delegacia de PC para lavratura do TCO','Aplicar advertência e liberar sem registro policial'],
+        correta:1,
+        explicacao:'Com adulto e apenas maconha (≤ 40g sem indícios de tráfico), lavra-se BO Natureza I 99.000 (TCO é VEDADO), destina ao JECrim, notifica o abordado para comparecer em juízo e o libera. A substância vai para a CREDS-TC.'
+      },
+      {
+        enunciado:'Sobre a decisão do STF no RE 635.659 e o art. 290 do Código Penal Militar, é CORRETO afirmar:',
+        alternativas:['A decisão do STF também descriminaliza o porte de maconha para policiais militares em serviço','O art. 290 do CPM foi revogado implicitamente pela decisão do STF','O art. 290 do CPM permanece vigente e a decisão do STF não se aplica a ele','A PMMG pode lavrar multa como alternativa ao TCO para usuários de maconha'],
+        correta:2,
+        explicacao:'O STF julgou o art. 28 da Lei 11.343/06 (porte civil). O art. 290 do CPM não foi afetado e continua sendo crime para militares. A PMMG jamais aplica multas — a sanção cabe exclusivamente ao juiz competente.'
+      },
+      {
+        enunciado:'Um adolescente de 16 anos é abordado portando 20g de maconha e 2 pinos de cocaína. Qual o procedimento correto do POP 1.8.0.049?',
+        alternativas:['BO Natureza I 99.000 → MP/Vara da Infância e Juventude','TCO Natureza I 04.028 (principal) + I 99.000 (secundária) → JECrim','BO Natureza I 04.028 (principal) + I 99.000 (secundária) → Delegacia PC','BO Natureza I 99.000 → Delegacia PC'],
+        correta:2,
+        explicacao:'Adolescente com maconha + outras drogas: BO (não TCO) Natureza I 04.028 principal + I 99.000 secundária → Delegacia PC, apresentando o adolescente. Diferente do adulto na mesma situação, que iria ao JECrim com TCO.'
+      },
+      {
+        enunciado:'Quanto à obrigatoriedade de pesagem da maconha apreendida, o Memorando 30.070.2/2024-EMPM determina que:',
+        alternativas:['A pesagem é obrigatória para classificar usuário ou traficante','A pesagem é recomendada quando a quantidade aparenta superar 40g','A pesagem não é obrigatória — as circunstâncias do caso concreto definem a natureza','A pesagem é obrigatória apenas quando há suspeita de tráfico'],
+        correta:2,
+        explicacao:'A pesagem NÃO é obrigatória. O memorando é explícito: "a pesagem da droga pelos policiais militares não é obrigatória". São as circunstâncias do caso (tipo de embalagem, balança, variedade de drogas, acondicionamento etc.) que distinguem usuário de traficante.'
+      }
+    ]
+  },
+
+  // ──────────────────── TÓPICO 09 ────────────────────────────────
+  {
+    id:'t09', titulo:'Diretriz de Segurança do Emprego Operacional',
+    subtitulo:'Resolução nº 5.383/2024 · Diretriz 3.02.007/2024-CG',
+    emoji:'🛡️',
+    slides:[
+      {
+        estagio:'tema', titulo:'A Diretriz — Contexto e Norma',
+        corpo:'A Resolução nº 5.383, de 29 de agosto de 2024, aprovou a Diretriz de Estratégia nº 3.02.007/2024-CG, que estabelece princípios e objetivos para implementar uma cultura de segurança pessoal e coletiva na PMMG. Publicada no BGPM nº 70/2024.',
+        lista:['Aprovada por: Cel PM Rodrigo Piassi do Nascimento — Comandante-Geral','Alinhada ao objetivo estratégico: promover o desenvolvimento profissional contínuo','Objetivo último: Preservação da vida dos Policiais Militares','Campanha síntese: "É preciso voltar pra casa"'],
+        audio:'Resolução 5.383 de 2024 aprova a Diretriz 3.02.007 de 2024. BGPM 70. Objetivo último: preservar a vida do PM.'
+      },
+      {
+        estagio:'conceito', titulo:'SPC NÃO! — Os Princípios',
+        corpo:'Os quatro princípios da Diretriz são memorizados pelo mnemônico SPC NÃO!:',
+        tabela:[
+          {item:'S', val:'Segurança como VALOR FUNDAMENTAL'},
+          {item:'P', val:'PROATIVIDADE dos comandantes em todos os níveis'},
+          {item:'C', val:'CORREÇÃO de atitudes inadequadas'},
+          {item:'NÃO!', val:'Não BANALIZAÇÃO do risco'}
+        ],
+        destaque:'"SPC NÃO!" — segurança (S), proatividade dos comandantes (P), correção de atitudes (C) e não banalização do risco (NÃO!).',
+        audio:'SPC NÃO! Segurança como valor. Proatividade dos comandantes. Correção de atitudes. Não banalização do risco. Esses são os quatro princípios.'
+      },
+      {
+        estagio:'finalidade', titulo:'EPI — Os Objetivos',
+        corpo:'Os três objetivos da Diretriz são memorizados pelo mnemônico EPI:',
+        tabela:[
+          {item:'E', val:'EXTINGUIR o número de mortes e lesões graves por não uso ou mal uso de EPI/EPC'},
+          {item:'P', val:'PROMOVER cultura de segurança por campanhas e conscientização'},
+          {item:'I', val:'IMPLEMENTAR programa abrangente de treinamento para todos os PMs'}
+        ],
+        destaque:'EPI remete a Equipamento de Proteção Individual — e é exatamente o que os objetivos buscam valorizar.',
+        audio:'EPI: Extinguir mortes. Promover cultura. Implementar treinamento. O verbo é extinguir, não reduzir.'
+      },
+      {
+        estagio:'estrutura', titulo:'TCC — O Aculturamento',
+        corpo:'A implementação da Diretriz ocorre pelo aculturamento em três pilares (TCC):',
+        tabela:[
+          {item:'T', val:'TREINAMENTO — papel fundamental da APM, integrado nos cursos de formação'},
+          {item:'C', val:'COMUNICAÇÃO — produções audiovisuais, campanha "É preciso voltar pra casa"'},
+          {item:'C', val:'CRIAÇÃO de hábitos angulares — checklist de equipamentos, feedback, análise custo × benefício'}
+        ],
+        lista:['Hábito angular: ação habitual positiva que influencia outros hábitos e gera mudança organizacional em cadeia','Checklist: verificação, utilização e estado de conservação dos equipamentos','Fiscalização pelo comandante: não é questão DISCIPLINAR — é de SOBREVIVÊNCIA'],
+        audio:'TCC: Treinamento pela APM. Comunicação com a campanha. Criação de hábitos angulares como o checklist. A fiscalização é de sobrevivência, não disciplinar.'
+      },
+      {
+        estagio:'estrutura', titulo:'Diagnóstico e Fundamentação Teórica',
+        corpo:'A Diretriz fundamenta-se em diagnósticos e referências teóricas para embasar a cultura de segurança:',
+        tabela:[
+          {item:'Diagnóstico', val:'Análise dos últimos 10 anos de mortes, lesões graves, reformas e invalidez'},
+          {item:'Maslow (1943)', val:'Segurança = base da pirâmide — fundamento para o desempenho humano'},
+          {item:'Chiavenato (2010)', val:'Segurança: medidas técnicas, educacionais, médicas e psicológicas'},
+          {item:'Bird (1969)', val:'Reforçar segurança em acidentes leves previne acidentes graves (efeito cascata)'},
+          {item:'Portaria 4.226/2010', val:'PMs devem ter EPI em quantidade e qualidade adequadas'},
+          {item:'Memorando 4.027/1993', val:'Histórico PMMG — cinto de segurança obrigatório (há mais de 30 anos)'}
+        ],
+        audio:'Diagnóstico de 10 anos. Maslow na pirâmide. Chiavenato nas medidas. Bird no efeito cascata. Memorando de 1993 sobre cinto de segurança.'
+      },
+      {
+        estagio:'pegadinha', titulo:'Armadilhas da Banca',
+        lista:['🚫 Resolução 5.383 APROVA a Diretriz 3.02.007 — não confundir os números entre si','🚫 BGPM nº 70 (setembro/2024) — não confundir com BGPM 56 (Tópico 08/Maconha)','🚫 Objetivo: EXTINGUIR mortes — a banca substitui por "reduzir" ou "minimizar"','🚫 Fiscalização dos comandantes: não é DISCIPLINAR — é de SOBREVIVÊNCIA','✅ APM tem papel fundamental no pilar Treinamento (T do TCC)','✅ Hábito angular ≠ hábito qualquer: influencia outros hábitos e gera mudança em cadeia'],
+        audio:'Atenção ao verbo extinguir, não reduzir. A fiscalização é de sobrevivência. Memorize os três mnemônicos: SPC NÃO!, EPI e TCC.'
+      },
+      {
+        estagio:'fixacao', titulo:'Revisão Rápida — Os 3 Mnemônicos',
+        corpo:'Os três mnemônicos que dominam o tema:',
+        lista:['SPC NÃO! → Princípios: Segurança · Proatividade · Correção · Não Banalização','EPI → Objetivos: Extinguir · Promover · Implementar','TCC → Aculturamento: Treinamento (APM) · Comunicação · Criação de hábitos angulares'],
+        destaque:'Norma: Resolução 5.383/2024 → Diretriz 3.02.007/2024-CG. BGPM nº 70/2024. Objetivo último: PRESERVAR A VIDA do PM.',
+        audio:'SPC NÃO! EPI. TCC. Esses três mnemônicos cobrem praticamente toda questão sobre esse tema.'
+      }
+    ],
+    transcricao:{
+      ref:'Resolução nº 5.383/2024 → Diretriz de Estratégia nº 3.02.007/2024-CG (BGPM nº 70, 12/09/2024)',
+      blocos:[
+        {t:'h', v:'1. Identificação da Norma'},
+        {t:'p', v:'A Resolução nº 5.383, de 29 de agosto de 2024, aprovada pelo Cel PM Rodrigo Piassi do Nascimento, aprova a Diretriz de Estratégia nº 3.02.007/2024-CG. Publicada no BGPM nº 70, de 12 de setembro de 2024. Elaborada pela ADO — Assessoria de Desenvolvimento Organizacional.', kw:['Resolução nº 5.383','3.02.007/2024-CG','BGPM nº 70','Rodrigo Piassi']},
+        {t:'def', lbl:'Alinhamento estratégico', v:'A Diretriz está alinhada ao objetivo estratégico de "promover o desenvolvimento profissional contínuo" do Mapa Estratégico 2024-2027 da PMMG. Objetivo último: preservação da vida dos Policiais Militares.'},
+        {t:'h', v:'2. Princípios — SPC NÃO!'},
+        {t:'p', v:'Quatro princípios da Diretriz organizados pelo mnemônico SPC NÃO!: Segurança como valor fundamental, Proatividade dos comandantes, Correção de atitudes e Não Banalização do risco.', kw:['SPC NÃO!','Segurança como valor','Proatividade','Correção','Não Banalização']},
+        {t:'eq', v:'SPC NÃO! → Segurança · Proatividade · Correção · Não Banalização do risco'},
+        {t:'banca', prob:88, titulo:'Banca × Princípios — "Cooperação" no lugar de "Correção"', texto:'A banca apresenta os princípios com um substituto: "Segurança, Proatividade, Cooperação e Não Banalização." ERRADO — Cooperação não é princípio. O correto é CORREÇÃO de atitudes. Memorize SPC NÃO! e identifique a palavra trocada.'},
+        {t:'h', v:'3. Objetivos — EPI'},
+        {t:'p', v:'Os três objetivos: Extinguir o número de mortes e lesões graves por não uso ou mal uso de EPI/EPC, Promover cultura de segurança por campanhas e conscientização, Implementar programa abrangente de treinamento para todos os PMs.', kw:['EPI','Extinguir','Promover cultura','Implementar treinamento']},
+        {t:'banca', prob:85, titulo:'Banca × "Reduzir" vs "Extinguir"', texto:'"O primeiro objetivo da Diretriz é REDUZIR o número de mortes." ERRADO — o verbo exato é EXTINGUIR. A Diretriz é ambiciosa e usa a palavra extinguir propositalmente. Questão de múltipla escolha onde apenas o verbo difere entre as alternativas.'},
+        {t:'h', v:'4. Implementação — TCC (Aculturamento)'},
+        {t:'p', v:'A implementação ocorre pelo aculturamento em três pilares (TCC): Treinamento — papel fundamental da APM, integrado nos cursos de formação; Comunicação — produções audiovisuais e campanha "É preciso voltar pra casa"; Criação de hábitos angulares — checklist de equipamentos e análise custo × benefício.', kw:['TCC','Treinamento','APM','Comunicação','hábitos angulares','checklist','É preciso voltar pra casa']},
+        {t:'def', lbl:'Hábito Angular', v:'Ação habitual positiva que, além de seus efeitos próprios, influencia outros hábitos e comportamentos, gerando mudanças organizacionais em cadeia. Ex.: checklist diário de EPI.'},
+        {t:'banca', prob:80, titulo:'Banca × APM no pilar Treinamento', texto:'"O pilar Treinamento do aculturamento deve ser conduzido pelas Unidades Operacionais da PMMG." INCORRETO — é a APM (Academia de Polícia Militar) que tem papel fundamental no Treinamento, integrando-o nos cursos de formação.'},
+        {t:'h', v:'5. Fundamentação e Diagnóstico'},
+        {t:'p', v:'Diagnóstico abrange os últimos 10 anos de mortes, lesões graves, reformas e invalidez. Teóricos de base: Maslow (pirâmide das necessidades), Chiavenato (segurança como conjunto de medidas), Bird (prevenção em cascata). Histórico: Memorando nº 4.027-EMPM/1993 já tornava obrigatório o cinto de segurança.', kw:['10 anos','Maslow','Chiavenato','Bird','Memorando 4.027/1993']},
+        {t:'banca', prob:76, titulo:'Banca × Fiscalização dos Comandantes', texto:'"A fiscalização dos equipamentos pelo comandante é uma questão disciplinar." ERRADO — a Diretriz é explícita: a fiscalização não se restringe a questões disciplinares, mas sim de SOBREVIVÊNCIA (manutenção da vida). Comandar a segurança é cuidar da vida, não punir.'}
+      ]
+    },
+    questoes:[
+      {
+        enunciado:'A Resolução nº 5.383/2024 aprova qual instrumento normativo, e qual é seu objetivo último?',
+        alternativas:['POP nº 1.8.0.049, com objetivo de padronizar procedimentos de porte de drogas','Diretriz de Estratégia nº 3.02.007/2024-CG, com objetivo último de preservar a vida dos Policiais Militares','Instrução nº 3.03.28/2024-CG, com objetivo de padronizar o gerenciamento de crises','Memorando nº 30.070.2/2024, com objetivo de promover o desenvolvimento profissional'],
+        correta:1,
+        explicacao:'A Resolução nº 5.383/2024 aprova a Diretriz de Estratégia nº 3.02.007/2024-CG. Seu objetivo último — expressamente declarado no documento — é a preservação da vida dos Policiais Militares. Publicada no BGPM nº 70/2024.'
+      },
+      {
+        enunciado:'O mnemônico "SPC NÃO!" representa os princípios da Diretriz de Segurança. Qual alternativa descreve CORRETAMENTE esses princípios?',
+        alternativas:['Segurança, Precisão, Comunicação e Não Banalização','Segurança, Proatividade, Correção e Não Banalização','Segurança, Proatividade, Cooperação e Não Banalização','Segurança, Prudência, Correção e Não Banalização'],
+        correta:1,
+        explicacao:'SPC NÃO! = Segurança como valor fundamental, Proatividade dos comandantes, Correção de atitudes e Não Banalização do risco. A banca tipicamente troca "Correção" por "Cooperação" ou "Proatividade" por "Prudência".'
+      },
+      {
+        enunciado:'Sobre o pilar "Treinamento" do aculturamento (TCC) da Diretriz de Segurança, é CORRETO afirmar:',
+        alternativas:['O treinamento é responsabilidade exclusiva dos Comandantes de Companhia, no nível de fração','As Unidades Operacionais são as principais responsáveis pela execução do treinamento em segurança','A Academia de Polícia Militar (APM) desempenha papel fundamental no pilar Treinamento','O treinamento se restringe ao uso correto de armamento e equipamento de força'],
+        correta:2,
+        explicacao:'A Diretriz define que a APM — Academia de Polícia Militar — tem papel fundamental no pilar Treinamento do aculturamento. O treinamento deve ser integrado nos cursos de formação e é abrangente para todos os PMs.'
+      },
+      {
+        enunciado:'Segundo a Diretriz de Segurança para o Emprego Operacional, a fiscalização dos equipamentos de proteção pelos comandantes:',
+        alternativas:['É uma atribuição de natureza disciplinar, cabendo punição aos que não utilizarem EPI','Não se restringe a questões disciplinares, pois é uma questão de sobrevivência','É opcional, ficando a critério de cada comandante de seção a forma de cobrar','Cabe exclusivamente à APM e não aos comandantes de linha'],
+        correta:1,
+        explicacao:'A Diretriz é explícita: a fiscalização do uso de EPI pelo comandante "não se restringe a questões disciplinares, mas sim de SOBREVIVÊNCIA". O foco é manter a vida do policial, não punir disciplinarmente quem descumpre.'
+      }
+    ]
+  },
+
+  // ──────────────────── TÓPICO 10 ────────────────────────────────
+  {
+    id:'t10', titulo:'Gerenciamento de Crises',
+    subtitulo:'Instrução nº 3.03.28/2020-CG · BEPM nº 03/2020',
+    emoji:'🎯',
+    slides:[
+      {
+        estagio:'tema', titulo:'Incidente Crítico — O que É',
+        corpo:'Um incidente crítico de natureza policial é evento que apresenta três características simultâneas. Regulado pela Instrução nº 3.03.28/2020-CG (BEPM nº 03/2020).',
+        tabela:[
+          {item:'Imprevisibilidade relativa', val:'Evento inesperado, não seletivo quanto a local, hora ou alvo'},
+          {item:'Compressão do tempo', val:'Exige decisões operacionais complexas em curtíssimo espaço de tempo'},
+          {item:'Ameaça à vida', val:'Sempre presente — inclusive quando a ameaça é apenas ao próprio perpetrador'}
+        ],
+        destaque:'Ameaça à vida do PRÓPRIO PERPETRADOR já configura incidente crítico. Não precisa de reféns.',
+        audio:'Três características: imprevisibilidade relativa, compressão do tempo e ameaça à vida. Até a vida do próprio criminoso conta.'
+      },
+      {
+        estagio:'conceito', titulo:'Gestão de Risco e WISA',
+        corpo:'O gerenciamento de crises é parte da Gestão de Riscos (ISO 31000). Risco = combinação de probabilidade de ocorrência e severidade do dano.',
+        lista:['Risco (ISO 31000) = Probabilidade × Severidade (consequência)','Ferramenta SWIFT/WISA = What-If Scenario Analysis (Análise de Cenários "E Se")','Processo: Estabelecer contexto → Identificar risco → Analisar → Avaliar (estimar) → Tratar','Tratar o risco: define escopo, contexto e critérios para mitigar fatos suscetíveis de ocorrer'],
+        audio:'Risco é probabilidade vezes severidade, pela ISO 31000. A ferramenta WISA analisa cenários e se. Estabelece contexto, identifica, analisa, avalia, trata.'
+      },
+      {
+        estagio:'finalidade', titulo:'3 Objetivos + 3 Fases',
+        corpo:'O gerenciamento de crises tem três objetivos e três fases:',
+        tabela:[
+          {item:'Objetivos (3)', val:'Preservar vidas · Aplicar a lei · Restabelecer a normalidade'},
+          {item:'Pré-incidental', val:'Gestão de risco, planejamento, treinamentos, protocolos operacionais'},
+          {item:'Incidental', val:'Pronta resposta, coordenação, controle e resolução do incidente crítico'},
+          {item:'Pós-incidental', val:'Preservação do local, REDS, polícia judiciária, debriefing, vazamento seletivo de imagens'}
+        ],
+        destaque:'Grava: 3 objetivos → 3 fases → 4 alternativas táticas → 3 perímetros.',
+        audio:'Três objetivos: preservar vidas, aplicar a lei, restabelecer normalidade. Três fases: pré, incidental e pós-incidental.'
+      },
+      {
+        estagio:'estrutura', titulo:'Atores e Perímetros Táticos',
+        corpo:'Na fase incidental, a estrutura de comando é definida pelos seguintes atores:',
+        tabela:[
+          {item:'GIC (BOPE)', val:'Gestor do Incidente Crítico — autoridade de linha, DECIDE e emite ordens para intervenção tática'},
+          {item:'CCA', val:'Comandante da Cena de Ação — assessora o GIC e COMANDA as ações operacionais na cena'},
+          {item:'Controlador', val:'Controlador do Incidente — gerencia o fluxo de informações e comunicações'},
+          {item:'1º Interventor', val:'Primeiro policial a chegar — contém a situação até a chegada do GIC'}
+        ],
+        lista:['Perímetro Imediato (vermelho): área do incidente — acesso só ao time tático','Perímetro Mediato: zona de contenção, apoio e logística','Perímetro Externo: imprensa, público e desvios de trânsito','PC (Posto de Comando): no perímetro imediato ou posição com visão/controle da cena'],
+        audio:'GIC decide. CCA comanda a cena. Três perímetros: imediato, mediato e externo. PC fica no imediato.'
+      },
+      {
+        estagio:'estrutura', titulo:'4 Alternativas Táticas',
+        corpo:'Para resolver a crise, o GIC dispõe de quatro alternativas táticas em ordem crescente de risco:',
+        tabela:[
+          {item:'1. Negociação', val:'Técnica: busca rendição real · Tática: subterfúgio/"cortina de fumaça" para outra ação'},
+          {item:'2. IMPO', val:'Técnicas e tecnologias de menor potencial ofensivo (PPEIE, spray, etc.)'},
+          {item:'3. Sniper', val:'Atirador de precisão + spotter (observador) — empregado após exaurimento das negociações ou risco iminente'},
+          {item:'4. Assault', val:'Adentramento tático — alternativa de MAIOR RISCO para o MAIOR NÚMERO de policiais'}
+        ],
+        lista:['Exigências NEGOCIÁVEIS: comida, cigarros, cobertura da mídia','Exigências NÃO NEGOCIÁVEIS: armas, drogas, perdão por crimes, troca de reféns'],
+        audio:'Quatro alternativas: negociação, IMPO, sniper e assault. Assault é a mais arriscada. Armas e drogas são não negociáveis.'
+      },
+      {
+        estagio:'pegadinha', titulo:'Armadilhas Clássicas da Banca (EAP 2022/2024)',
+        lista:['🚫 GIC vs CCA — banca inverte: "CCA decide; GIC assessora" — ERRADO. GIC decide; CCA comanda a cena.','🚫 "Negociação técnica busca ganhar tempo" — ERRADO. A TÁTICA é cortina de fumaça; a TÉCNICA busca rendição real.','🚫 "Assault é mais seguro por ser direto" — ERRADO. É a alternativa de MAIOR RISCO.','🚫 "Ameaça à vida exige reféns" — ERRADO. Ameaça ao próprio perpetrador já configura incidente crítico.','✅ Debriefing ocorre na fase PÓS-incidental (lições aprendidas)','✅ Sniper: decisão do GIC, após exaurimento das negociações ou risco iminente à vida'],
+        audio:'Não confunda GIC com CCA. Negociação tática é cortina de fumaça. Assault é o mais arriscado. Debriefing é pós-incidental.'
+      },
+      {
+        estagio:'fixacao', titulo:'Revisão Rápida — Mapa Mental',
+        lista:['INCIDENTE CRÍTICO: imprevisibilidade relativa + compressão do tempo + ameaça à vida','OBJETIVOS (3): preservar vidas · aplicar a lei · restabelecer normalidade','FASES (3): pré-incidental · incidental · pós-incidental','GIC (BOPE): DECIDE | CCA: comanda a cena | 1º Interventor: contém','ALTERNATIVAS (4): negociação · IMPO · sniper · assault (mais arriscado)','NÃO NEGOCIÁVEIS: armas · drogas · perdão por crimes · troca de reféns'],
+        destaque:'Norma: Instrução nº 3.03.28/2020-CG (BEPM nº 03/2020). Risco: ISO 31000. Ferramenta: WISA/SWIFT.',
+        audio:'Grava os números: 3 objetivos, 3 fases, 4 alternativas táticas, 3 perímetros. E GIC decide, CCA comanda.'
+      }
+    ],
+    transcricao:{
+      ref:'Instrução nº 3.03.28/2020-CG — Gerenciamento de Crises (BEPM nº 03, 16/03/2020)',
+      blocos:[
+        {t:'h', v:'1. Incidente Crítico de Natureza Policial'},
+        {t:'p', v:'A Instrução nº 3.03.28/2020-CG define incidente crítico como evento que apresenta imprevisibilidade relativa (inesperado, não seletivo quanto a local, hora ou alvo), compressão do tempo (decisões complexas em curto prazo) e ameaça à vida — inclusive do próprio perpetrador.', kw:['imprevisibilidade relativa','compressão do tempo','ameaça à vida','perpetrador']},
+        {t:'def', lbl:'Pegadinha recorrente', v:'A ameaça à vida do PRÓPRIO PERPETRADOR já configura incidente crítico — não é preciso haver reféns ou vítimas terceiras. A banca troca por "ameaça a terceiros" ou "presença de reféns".'},
+        {t:'h', v:'2. Gestão de Riscos e WISA'},
+        {t:'p', v:'O gerenciamento de crises é parte da Gestão de Riscos (ISO 31000). Risco = combinação de probabilidade e severidade do dano. A ferramenta WISA (SWIFT) — What-If Scenario Analysis — é utilizada para análise de cenários potenciais.', kw:['ISO 31000','probabilidade','severidade','WISA','SWIFT']},
+        {t:'eq', v:'RISCO (ISO 31000) = Probabilidade de ocorrência × Severidade do dano'},
+        {t:'banca', prob:80, titulo:'Banca × Etapas da Gestão de Risco', texto:'A banca testa as etapas e suas definições: Estabelecer contexto → Identificar risco → Analisar → Avaliar (estimar) → Tratar. "Tratamento do risco" é a ÚLTIMA etapa (define escopo e critérios para mitigar), não a primeira. Confundir com "estabelecimento do contexto" é erro comum.'},
+        {t:'h', v:'3. Três Objetivos + Três Fases'},
+        {t:'p', v:'Três objetivos: preservar vidas, aplicar a lei, restabelecer a normalidade. Três fases: pré-incidental (planejamento, treinamento, protocolos), incidental (coordenação, controle, resolução) e pós-incidental (preservação do local, REDS, polícia judiciária, debriefing, vazamento seletivo de imagens).', kw:['preservar vidas','aplicar a lei','restabelecer a normalidade','pré-incidental','incidental','pós-incidental','debriefing']},
+        {t:'banca', prob:85, titulo:'Banca × Atribuições GIC e CCA (EAP 2022)', texto:'Questão clássica do EAP 2022: "Durante a fase incidental, o Comandante da Cena de Ação, assessorado pelo Gestor do Incidente, adota as providências para resolução da crise." INCORRETO — é o CCA que ASSESSORA o GIC, não o contrário. GIC é a autoridade de linha que decide; CCA comanda as ações na cena.'},
+        {t:'h', v:'4. Estrutura de Comando'},
+        {t:'p', v:'GIC (Gestor do Incidente Crítico): autoridade de linha, decide e emite ordens para intervenção tática — normalmente designado do BOPE. CCA (Comandante da Cena de Ação): assessora o GIC e comanda as ações operacionais diretamente na cena.', kw:['GIC','CCA','Comandante da Cena de Ação','Gestor do Incidente Crítico','BOPE','Primeiro Interventor']},
+        {t:'def', lbl:'Homem de Ligação', v:'Designado para percorrer os perímetros táticos, coletar informações e atualizar todas as equipes sobre o andamento do incidente. Garante o fluxo de informações entre GIC, CCA e equipes.'},
+        {t:'banca', prob:88, titulo:'Banca × GIC decide, CCA comanda', texto:'Pegadinha nº 1 do tema: a banca inverte GIC e CCA. "O GIC comanda as ações na cena e o CCA toma as decisões de intervenção tática." ERRADO. GIC decide e emite ordens. CCA assessora o GIC e comanda as ações na cena. Nunca confunda os papéis.'},
+        {t:'h', v:'5. Alternativas Táticas e Negociação'},
+        {t:'p', v:'Quatro alternativas táticas: Negociação (técnica: busca rendição real; tática: subterfúgio/"cortina de fumaça"), IMPO (menor potencial ofensivo), Sniper com spotter e Adentramento Tático (Assault — maior risco ao maior número de policiais envolvidos).', kw:['Negociação técnica','Negociação tática','IMPO','Sniper','Spotter','Assault','adentramento tático']},
+        {t:'def', lbl:'Exigências Não Negociáveis', v:'Armas, drogas, perdão por crimes e troca de reféns. Nunca aceitar essas exigências em negociação — são ponto inegociável absoluto.'},
+        {t:'banca', prob:82, titulo:'Banca × Negociação técnica vs tática', texto:'"A negociação tática é aquela que busca a rendição real do criminoso." ERRADO — a negociação TÉCNICA busca a rendição real. A TÁTICA serve como subterfúgio / cortina de fumaça para viabilizar outra ação (ex.: posicionamento do sniper). A banca inverte as definições entre técnica e tática.'},
+        {t:'h', v:'6. Fase Pós-incidental'},
+        {t:'p', v:'Após a resolução do incidente: preservação do local do crime (perícia técnica), registro no REDS, medidas de polícia judiciária militar, debriefing (análise de lições aprendidas) e, se necessário, vazamento seletivo e programado de imagens para formação da opinião pública.', kw:['preservação do local','REDS','debriefing','vazamento seletivo','perícia']},
+        {t:'banca', prob:77, titulo:'Banca × Debriefing na fase pós (EAP 2024)', texto:'Questão do EAP 2024: "Iniciar o debriefing durante a fase incidental evita perda de informações." INCORRETO — o debriefing ocorre na fase PÓS-incidental. Na fase incidental, o foco é coordenação, controle e resolução. O debriefing analisa lições aprendidas APÓS a resolução da crise.'}
+      ]
+    },
+    questoes:[
+      {
+        enunciado:'Sobre os objetivos do gerenciamento de crises previstos na Instrução nº 3.03.28/2020-CG, assinale a alternativa CORRETA:',
+        alternativas:['Neutralizar o perpetrador, proteger reféns e restabelecer a normalidade','Preservar vidas, aplicar a lei e restabelecer a normalidade','Isolar o incidente, negociar e realizar o adentramento tático','Coordenar equipes, comunicar a imprensa e preservar o local de crime'],
+        correta:1,
+        explicacao:'Os três objetivos exatos da Instrução são: Preservar vidas, Aplicar a lei e Restabelecer a normalidade. A banca frequentemente substitui "preservar vidas" por "neutralizar o perpetrador" ou muda a ordem, mas os três termos exatos devem ser memorizados.'
+      },
+      {
+        enunciado:'Durante a fase incidental do gerenciamento de crise, qual é a distinção correta entre o GIC e o CCA?',
+        alternativas:['O GIC comanda as ações operacionais na cena e o CCA toma as decisões de intervenção tática','O CCA é a autoridade de linha que decide; o GIC assessora o CCA na cena','O GIC é a autoridade de linha que decide e emite ordens; o CCA assessora o GIC e comanda as ações na cena','GIC e CCA têm funções equivalentes e podem ser substituídos reciprocamente'],
+        correta:2,
+        explicacao:'GIC (geralmente do BOPE) = autoridade de linha que DECIDE e emite ordens para intervenção tática. CCA = ASSESSORA o GIC e COMANDA as ações operacionais na cena. A banca inverte esses papéis — é a pegadinha nº 1 do tema, que caiu no EAP 2022.'
+      },
+      {
+        enunciado:'Em relação às alternativas táticas de resolução de crises, qual assertiva está INCORRETA?',
+        alternativas:['O adentramento tático (Assault) representa a alternativa de maior risco para o maior número de policiais','A negociação técnica busca a rendição real do criminoso; a tática funciona como subterfúgio para outra ação','Armas e drogas são exemplos de exigências não negociáveis durante a negociação','O Sniper pode ser empregado a qualquer momento pelo CCA, independente de negociação'],
+        correta:3,
+        explicacao:'O emprego do Sniper requer decisão do GIC (não do CCA), e deve ocorrer após o exaurimento das negociações ou em risco iminente à vida. Não pode ser empregado "a qualquer momento". As demais alternativas estão corretas segundo a Instrução.'
+      },
+      {
+        enunciado:'Sobre as três características que definem um incidente crítico de natureza policial, assinale a INCORRETA:',
+        alternativas:['Imprevisibilidade relativa: evento inesperado, não seletivo quanto a local, hora ou alvo','Compressão do tempo: exige decisões operacionais complexas em curto espaço de tempo','A ameaça à vida somente configura incidente crítico quando há vítimas ou reféns terceiros','O perpetrador que ameaça apenas sua própria vida já configura um incidente crítico'],
+        correta:2,
+        explicacao:'A alternativa C está INCORRETA. A ameaça à vida do PRÓPRIO PERPETRADOR já configura incidente crítico — não é preciso que haja reféns ou vítimas terceiras. Qualquer ameaça à vida, incluindo a do perpetrador, enquadra o evento como incidente crítico de natureza policial.'
+      }
+    ]
+  }
+
+  ] // fim topicos
+}; // fim BLOCO
+
+// ── ESTILOS DE ESTÁGIO ─────────────────────────────────────────
+const EC = {
+  tema:      { cor: "#C7A14A", label: "TEMA" },
+  conceito:  { cor: "#7A8B5E", label: "CONCEITO" },
+  finalidade:{ cor: "#6B8CAE", label: "FINALIDADE" },
+  estrutura: { cor: "#6B8CAE", label: "ESTRUTURA" },
+  pegadinha: { cor: "#9C3D3D", label: "⚠ PEGADINHA" },
+  fixacao:   { cor: "#7A8B5E", label: "FIXAÇÃO" },
+};
+
+// ── PERSISTÊNCIA ───────────────────────────────────────────────
+function lerProg(){ try{return JSON.parse(localStorage.getItem("eap_b1")||"{}")}catch{return{}} }
+function salProg(p){ try{localStorage.setItem("eap_b1",JSON.stringify(p))}catch{} }
+
+// ── HIGHLIGHT ──────────────────────────────────────────────────
+function renderText(texto, kws){
+  if(!kws||!kws.length) return [document.createTextNode(texto)];
+  const parts=[], kw_lower=kws.map(k=>k.toLowerCase());
+  let rem=texto;
+  while(rem.length){
+    let best=null,bestIdx=Infinity;
+    kws.forEach((kw,ki)=>{ const idx=rem.toLowerCase().indexOf(kw_lower[ki]); if(idx!==-1&&idx<bestIdx){best=kw;bestIdx=idx;} });
+    if(!best){parts.push(document.createTextNode(rem));break;}
+    if(bestIdx>0) parts.push(document.createTextNode(rem.slice(0,bestIdx)));
+    const mark=document.createElement('kw'); mark.textContent=rem.slice(bestIdx,bestIdx+best.length);
+    parts.push(mark);
+    rem=rem.slice(bestIdx+best.length);
+  }
+  return parts;
+}
+
+// ── TTS ────────────────────────────────────────────────────────
+let falando=false,ttsTimer=null;
+function falar(txt){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  if(ttsTimer){clearInterval(ttsTimer);ttsTimer=null;}
+  if(falando){falando=false;renderApp();return;}
+  const u=new SpeechSynthesisUtterance(txt);u.lang='pt-BR';u.rate=0.95;
+  u.onstart=()=>{ttsTimer=setInterval(()=>{window.speechSynthesis.pause();window.speechSynthesis.resume();},10000);};
+  u.onend=()=>{falando=false;if(ttsTimer){clearInterval(ttsTimer);ttsTimer=null;}renderApp();};
+  u.onerror=()=>{falando=false;if(ttsTimer){clearInterval(ttsTimer);ttsTimer=null;}};
+  function doSpeak(){const vs=window.speechSynthesis.getVoices();const pv=vs.find(v=>v.lang.startsWith('pt'));if(pv)u.voice=pv;window.speechSynthesis.speak(u);falando=true;renderApp();}
+  if(window.speechSynthesis.getVoices().length>0)doSpeak();else window.speechSynthesis.onvoiceschanged=doSpeak;
+}
+
+// ── ESTADO ─────────────────────────────────────────────────────
+let state={ tela:"trilha", ti:0, si:0, qi:0, resp:null, prog:lerProg(), bancas:{} };
+function setState(upd){
+  const sc=document.querySelector('.scroll');const sp=sc?sc.scrollTop:0;const pt=state.tela;
+  Object.assign(state,upd);
+  if(state.tela!=="slide"){falando=false;window.speechSynthesis&&window.speechSynthesis.cancel();}
+  renderApp();
+  if(state.tela===pt){const sc2=document.querySelector('.scroll');if(sc2)sc2.scrollTop=sp;}
+}
+
+// ── HELPERS ────────────────────────────────────────────────────
+function el(tag,cls,style){const e=document.createElement(tag);if(cls)e.className=cls;if(style)e.style.cssText=style;return e;}
+function div(cls,style){return el('div',cls,style);}
+function span(cls,txt){const e=el('span',cls);if(txt!==undefined)e.textContent=txt;return e;}
+function btn(cls,txt,fn){const b=el('button',cls);b.textContent=txt;b.onclick=fn;return b;}
+
+// ── RENDER PRINCIPAL ───────────────────────────────────────────
+function renderApp(){
+  const app=document.getElementById('app'); app.innerHTML='';
+  const {tela,ti,si,qi,resp,prog,bancas}=state;
+  const top=BLOCO.topicos[ti];
+  const sld=top?.slides[si];
+  const qst=top?.questoes[qi];
+  const nS=top?.slides.length||0;
+  const nQ=top?.questoes.length||0;
+  const ok=idx=>!!prog[BLOCO.topicos[idx]?.id];
+
+  if(tela==="trilha")       renderTrilha(app,ok,prog);
+  else if(tela==="slide")   renderSlide(app,top,sld,si,nS);
+  else if(tela==="transcricao") renderTranscricao(app,top,bancas);
+  else if(tela==="questao") renderQuestao(app,top,qst,qi,nQ,resp);
+  else if(tela==="concluido") renderConcluido(app,top,prog);
+}
+
+// ── TELA TRILHA ────────────────────────────────────────────────
+function renderTrilha(app,ok,prog){
+  const hdr=div('hdr');
+  const row=div('hdr-row');
+  row.appendChild(span('lbl',`${BLOCO.emoji} ${BLOCO.titulo.toUpperCase()}`));
+  row.appendChild(span('lbl',`${Object.keys(prog).length}/${BLOCO.topicos.length} concluídos`));
+  hdr.appendChild(row);
+  const sub=span('lbl','EAP 2026 — 3º Sargento PMMG'); sub.style.fontSize='9px'; sub.style.color='#7d7a6c';
+  hdr.appendChild(sub);
+  app.appendChild(hdr);
+
+  const scr=div('scroll');
+  BLOCO.topicos.forEach((top,idx)=>{
+    const done=ok(idx), blk=idx>0&&!ok(idx-1);
+    const card=div('card',`opacity:${blk?.45:1};cursor:${blk?'not-allowed':'pointer'}`);
+    const ic=div('card-ic',`background:${done?'#7A8B5E22':blk?'#ffffff08':'#C7A14A22'}`);
+    ic.style.color=done?'#7A8B5E':blk?'#7d7a6c':'#C7A14A';
+    ic.textContent=blk?'🔒':done?'✓':top.emoji;
+    card.appendChild(ic);
+    const info=div('');
+    const tt=div('card-titulo'); tt.style.color=done?'#7A8B5E':blk?'#7d7a6c':'#E8E4D8'; tt.textContent=top.titulo;
+    const mt=div('card-meta'); mt.textContent=`${top.subtitulo||''} · ${top.slides.length} slides · ${top.questoes.length} questões`;
+    info.appendChild(tt); info.appendChild(mt); card.appendChild(info);
+    if(!blk){const arr=span('','›');arr.style.cssText='color:#7d7a6c;font-size:18px';card.appendChild(arr);}
+    card.onclick=()=>{ if(!blk) setState({tela:'slide',ti:idx,si:0,qi:0,resp:null,bancas:{}}); };
+    scr.appendChild(card);
+  });
+  app.appendChild(scr);
+
+  const foot=div('foot');
+  foot.appendChild(span('lbl','← voltar ao início'));
+  foot.style.cursor='pointer';
+  foot.onclick=()=>window.location.href='eap-inicio.html';
+  app.appendChild(foot);
+}
+
+// ── TELA SLIDE ─────────────────────────────────────────────────
+function renderSlide(app,top,sld,si,nS){
+  const cfg=EC[sld.estagio]||EC.estrutura;
+
+  const hdr=div('hdr'); hdr.style.cssText='flex-direction:row;align-items:center;justify-content:space-between;padding:14px 16px 10px;background:#21261b;border-bottom:1px solid #2a2f21;flex-shrink:0;display:flex';
+  hdr.appendChild(btn('btn-back','← Trilha',()=>setState({tela:'trilha'})));
+  const mid=div('','text-align:center'); mid.appendChild(span('lbl',top.titulo)); hdr.appendChild(mid);
+  hdr.appendChild(span('lbl',`${si+1}/${nS}`));
+  app.appendChild(hdr);
+
+  const pb=div('prog-bar');
+  top.slides.forEach((_,i)=>{ const s=div('prog-seg'); s.style.background=i<=si?cfg.cor:'#3a3f2e'; pb.appendChild(s); });
+  app.appendChild(pb);
+
+  const card=div('slide-card'); card.style.borderColor=cfg.cor+'44';
+  const tag=div('estagio-tag'); tag.textContent=cfg.label; tag.style.background=cfg.cor+'22'; tag.style.color=cfg.cor;
+  card.appendChild(tag);
+  const titulo=div('slide-titulo'); titulo.textContent=sld.titulo; card.appendChild(titulo);
+  if(sld.corpo){const p=div('slide-corpo'); p.textContent=sld.corpo; card.appendChild(p);}
+  if(sld.lista){
+    const ul=el('ul','lista');
+    sld.lista.forEach(item=>{
+      const li=el('li'); const bull=span('','›'); bull.style.cssText=`color:${cfg.cor};margin-right:8px;flex-shrink:0`;
+      li.appendChild(bull); li.appendChild(document.createTextNode(item)); ul.appendChild(li);
+    });
+    card.appendChild(ul);
+  }
+  if(sld.tabela){
+    const tbl=div('tabela');
+    sld.tabela.forEach(row=>{
+      const tr=div('tabela-row');
+      const ti=span('tabela-item',row.item); ti.style.color=cfg.cor;
+      const tv=span('tabela-val',row.valor);
+      tr.appendChild(ti); tr.appendChild(tv); tbl.appendChild(tr);
+    });
+    card.appendChild(tbl);
+  }
+  if(sld.destaque){const d=div('destaque'); d.textContent=sld.destaque; d.style.borderColor=cfg.cor; d.style.background=cfg.cor+'11'; card.appendChild(d);}
+  if(sld.alerta){const al=div('alerta'); const ico=span('','⚠'); ico.style.cssText='color:#9C3D3D;flex-shrink:0;font-size:14px'; al.appendChild(ico); al.appendChild(document.createTextNode(sld.alerta)); card.appendChild(al);}
+  app.appendChild(card);
+
+  const nav=div('nav');
+  const bk=el('button','btn-nav'); bk.innerHTML='&#8249; Anterior'; bk.style.opacity=si===0?.3:1; bk.disabled=si===0; bk.onclick=()=>{if(si>0)setState({si:si-1});};
+  const au=el('button','btn-audio'); au.innerHTML=falando?'🔇':'🔊'; au.onclick=()=>falar(sld.audio||sld.corpo||'');
+  const nx=el('button','btn-primary');
+  if(si<nS-1){nx.innerHTML='Próximo &#8250;'; nx.onclick=()=>setState({si:si+1});}
+  else{nx.innerHTML='📄 Ver Manual'; nx.onclick=()=>setState({tela:'transcricao',bancas:{}});}
+  nav.appendChild(bk); nav.appendChild(au); nav.appendChild(nx);
+  app.appendChild(nav);
+}
+
+// ── TELA TRANSCRIÇÃO ───────────────────────────────────────────
+function renderTranscricao(app,top,bancas){
+  const tr=top.transcricao;
+  const hdr=div('hdr'); hdr.style.cssText='flex-direction:row;align-items:center;justify-content:space-between;padding:14px 16px 10px;background:#21261b;border-bottom:1px solid #2a2f21;flex-shrink:0;display:flex';
+  hdr.appendChild(btn('btn-back','← Slides',()=>setState({tela:'slide'})));
+  const mid=div('','text-align:center');
+  const lbl=span('lbl','📄 TRANSCRIÇÃO'); lbl.style.color='#6B8CAE'; mid.appendChild(lbl);
+  const ref=document.createElement('div'); ref.className='lbl'; ref.textContent=tr.ref; ref.style.cssText='font-size:8px;color:#7d7a6c;margin-top:2px'; mid.appendChild(ref);
+  hdr.appendChild(mid); hdr.appendChild(div('','width:60px'));
+  app.appendChild(hdr);
+
+  const scr=div('scroll',''); scr.style.gap='0'; scr.style.padding='12px 16px';
+  const inner=div('','padding:4px 4px 16px');
+
+  tr.blocos.forEach((b,i)=>{
+    if(b.t==='h'){const h=div('tr-h'); h.textContent=b.v; inner.appendChild(h);}
+    else if(b.t==='p'){
+      const p=div('tr-p');
+      renderText(b.v,b.kw||[]).forEach(n=>p.appendChild(n));
+      inner.appendChild(p);
+    }
+    else if(b.t==='def'){
+      const box=div('tr-def');
+      const lbl=div('tr-def-lbl'); lbl.textContent=b.label;
+      const v=div('tr-def-v'); v.textContent=b.v;
+      box.appendChild(lbl); box.appendChild(v); inner.appendChild(box);
+    }
+    else if(b.t==='eq'){const eq=div('tr-eq'); eq.textContent=b.v; inner.appendChild(eq);}
+    else if(b.t==='banca'){
+      const k=`b${i}`, open=!!bancas[k], cor=b.prob==='ALTA'?'#9C3D3D':'#C7A14A';
+      const wrap=div('','margin-bottom:8px');
+      const trigger=el('button','banca-btn');
+      trigger.style.cssText=`background:${cor}18;border:1px solid ${cor}55;border-radius:${open?'8px 8px 0 0':'8px'};`;
+      const left=div('','display:flex;align-items:center;gap:8px');
+      const star=span('','★'); star.style.color=cor;
+      const prob=span('',`⚡ ${b.prob} chance em prova`); prob.style.cssText=`font-family:'IBM Plex Mono',monospace;font-size:10px;color:${cor};font-weight:600`;
+      left.appendChild(star); left.appendChild(prob);
+      const right=div('','display:flex;align-items:center;gap:6px');
+      const ass=span('',b.assunto); ass.style.cssText='font-size:11px;color:#c4c0b2';
+      const arr=span('',open?'▲':'▼'); arr.style.color=cor; arr.style.fontSize='10px';
+      right.appendChild(ass); right.appendChild(arr);
+      trigger.appendChild(left); trigger.appendChild(right);
+      trigger.onclick=()=>setState({bancas:{...state.bancas,[k]:!open}});
+      wrap.appendChild(trigger);
+      if(open){const body=div('banca-body'); body.style.cssText=`background:${cor}0e;border:1px solid ${cor}33;border-top:none;border-radius:0 0 8px 8px`; body.textContent=b.resp; wrap.appendChild(body);}
+      inner.appendChild(wrap);
+    }
+  });
+  scr.appendChild(inner); app.appendChild(scr);
+
+  const nav=div('nav');
+  const bk=el('button','btn-nav'); bk.innerHTML='&#8249; Slides'; bk.onclick=()=>setState({tela:'slide'});
+  const nx=el('button','btn-primary'); nx.style.marginLeft='auto'; nx.innerHTML='Questões &#8250;'; nx.onclick=()=>setState({tela:'questao',qi:0,resp:null});
+  nav.appendChild(bk); nav.appendChild(nx); app.appendChild(nav);
+}
+
+// ── TELA QUESTÃO ───────────────────────────────────────────────
+function renderQuestao(app,top,qst,qi,nQ,resp){
+  const hdr=div('hdr'); hdr.style.cssText='flex-direction:row;align-items:center;justify-content:space-between;padding:14px 16px 10px;background:#21261b;border-bottom:1px solid #2a2f21;flex-shrink:0;display:flex';
+  hdr.appendChild(btn('btn-back','← Manual',()=>setState({tela:'transcricao'})));
+  hdr.appendChild(span('lbl',`Questão ${qi+1} de ${nQ}`));
+  app.appendChild(hdr);
+
+  const scr=div('scroll'); const inner=div('','padding:0 4px 8px');
+  const tag=div('estagio-tag'); tag.textContent='QUESTÃO DE FIXAÇÃO';
+  tag.style.cssText='display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-family:IBM Plex Mono,monospace;font-weight:500;letter-spacing:1px;background:#6B8CAE22;color:#6B8CAE;margin-bottom:12px';
+  inner.appendChild(tag);
+  const enun=div('','font-size:13px;color:#c4c0b2;line-height:1.65;margin-bottom:16px'); enun.textContent=qst.enunciado; inner.appendChild(enun);
+
+  qst.alternativas.forEach((alt,i)=>{
+    const b=el('button','alt-btn');
+    let bg='#ffffff08', bc='#3a3f2e';
+    if(resp!==null){ if(i===qst.correta){bg='#7A8B5E22';bc='#7A8B5E';} else if(i===resp&&resp!==qst.correta){bg='#9C3D3D22';bc='#9C3D3D';} else{bg='#ffffff05';} }
+    b.style.background=bg; b.style.borderColor=bc; b.style.cursor=resp!==null?'default':'pointer';
+    if(resp!==null&&i===qst.correta){const ic=span('','✓');ic.style.cssText='color:#7A8B5E;flex-shrink:0';b.appendChild(ic);}
+    if(resp!==null&&i===resp&&resp!==qst.correta){const ic=span('','✗');ic.style.cssText='color:#9C3D3D;flex-shrink:0';b.appendChild(ic);}
+    b.appendChild(document.createTextNode(alt));
+    b.onclick=()=>{if(resp===null)setState({resp:i});};
+    inner.appendChild(b);
+  });
+
+  if(resp!==null){
+    const expl=div('expl'); expl.innerHTML=`<strong style="color:#7A8B5E">✓ </strong>${qst.explicacao}`; inner.appendChild(expl);
+    const al=div('alerta'); al.style.marginBottom='12px'; al.innerHTML=`<span style="color:#9C3D3D;flex-shrink:0;margin-right:6px">⚠</span><span><strong style="color:#9C3D3D">Pegadinha: </strong>${qst.pegadinha}</span>`; inner.appendChild(al);
+    const nx=el('button','btn-primary'); nx.style.cssText='width:100%;justify-content:center;display:flex;padding:10px 14px;font-size:13px';
+    nx.textContent=qi<nQ-1?'Próxima questão →':'Concluir tópico ✓';
+    nx.onclick=()=>{
+      if(qi<nQ-1) setState({qi:qi+1,resp:null});
+      else { const ti=state.ti, top2=BLOCO.topicos[ti], np={...state.prog,[top2.id]:true}; salProg(np); setState({prog:np,tela:'concluido'}); }
+    };
+    inner.appendChild(nx);
+  }
+  scr.appendChild(inner); app.appendChild(scr);
+}
+
+// ── TELA CONCLUÍDO ─────────────────────────────────────────────
+function renderConcluido(app,top,prog){
+  const hdr=div('hdr'); app.appendChild(hdr);
+  const body=div('','display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:24px;gap:16px;min-height:500px');
+  const em=div('','font-size:48px;text-align:center'); em.textContent='🎖'; body.appendChild(em);
+  const tt=div('','font-family:Oswald,sans-serif;font-size:22px;color:#C7A14A;text-align:center'); tt.textContent='TÓPICO CONCLUÍDO'; body.appendChild(tt);
+  const st=div('','font-family:IBM Plex Mono,monospace;font-size:14px;color:#7A8B5E;text-align:center'); st.textContent=top.titulo; body.appendChild(st);
+  const n=Object.keys(prog).length, pct=Math.round((n/BLOCO.topicos.length)*100);
+  const pd=div('destaque'); pd.style.cssText='border-color:#C7A14A;background:#C7A14A11;text-align:center'; pd.innerHTML=`Progresso Bloco 1: <strong style="color:#C7A14A">${n}/${BLOCO.topicos.length} tópicos (${pct}%)</strong>`; body.appendChild(pd);
+  const bk=el('button','btn-primary'); bk.style.cssText='width:100%;justify-content:center;display:flex;padding:12px 14px;font-size:14px;margin-top:8px'; bk.textContent='Voltar à Trilha'; bk.onclick=()=>setState({tela:'trilha'}); body.appendChild(bk);
+  app.appendChild(body);
+}
+
+renderApp();
+</script>
+</body>
+</html>
