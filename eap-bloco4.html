@@ -485,6 +485,10 @@ function renderResultado(app){
 }
 
 renderApp();
+// Bloqueia pull-to-refresh no Android WebView
+let _pty=0;
+document.addEventListener('touchstart',e=>{_pty=e.touches[0].pageY;},{passive:true});
+document.addEventListener('touchmove',e=>{const sc=document.querySelector('.scroll');if(sc&&sc.scrollTop<=0&&e.touches[0].pageY>_pty)e.preventDefault();},{passive:false});
 </script>
 </body>
 </html>

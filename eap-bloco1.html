@@ -1627,8 +1627,8 @@ function falar(txt){
   u.onstart=()=>{ttsTimer=setInterval(()=>{window.speechSynthesis.pause();window.speechSynthesis.resume();},10000);};
   u.onend=()=>{falando=false;if(ttsTimer){clearInterval(ttsTimer);ttsTimer=null;}renderApp();};
   u.onerror=()=>{falando=false;if(ttsTimer){clearInterval(ttsTimer);ttsTimer=null;}};
-  function doSpeak(){const vs=window.speechSynthesis.getVoices();const pv=vs.find(v=>v.lang.startsWith('pt'));if(pv)u.voice=pv;window.speechSynthesis.speak(u);falando=true;renderApp();}
-  if(window.speechSynthesis.getVoices().length>0)doSpeak();else window.speechSynthesis.onvoiceschanged=doSpeak;
+  function doSpeak(){const vs=window.speechSynthesis.getVoices();const pv=vs.find(v=>v.lang&&v.lang.startsWith('pt'));if(pv)u.voice=pv;falando=true;renderApp();setTimeout(()=>window.speechSynthesis.speak(u),50);}
+  const _v=window.speechSynthesis.getVoices();if(_v.length>0)doSpeak();else{let _d=false;window.speechSynthesis.onvoiceschanged=()=>{if(!_d){_d=true;doSpeak();}};setTimeout(()=>{if(!_d){_d=true;doSpeak();}},500);}
 }
 
 // ── ESTADO ─────────────────────────────────────────────────────
@@ -1861,6 +1861,10 @@ function renderConcluido(app,top,prog){
 }
 
 renderApp();
+// Bloqueia pull-to-refresh no Android WebView
+let _pty=0;
+document.addEventListener('touchstart',e=>{_pty=e.touches[0].pageY;},{passive:true});
+document.addEventListener('touchmove',e=>{const sc=document.querySelector('.scroll');if(sc&&sc.scrollTop<=0&&e.touches[0].pageY>_pty)e.preventDefault();},{passive:false});
 </script>
 </body>
 </html>
